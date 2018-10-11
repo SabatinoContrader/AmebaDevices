@@ -34,6 +34,8 @@ public class MenuController implements Controller {
 			request.put("buildings", new BuildingService().getAll(username));
 			MainDispatcher.getInstance().callView("BuildingMenu", request);
 			break;
+		case "ItemMenu":
+			MainDispatcher.getInstance().callView("ItemMenu",null);
 		}
 		
 	}
