@@ -80,9 +80,6 @@ public class CustomerView implements View{
 			
 			break;
 		}
-		
-		
-		  
 	}
 
 	
@@ -101,8 +98,8 @@ public class CustomerView implements View{
 		}
 		else if(mode.equals("Read")) {
 			System.out.println("mode "+mode);
-			request.put("mode", "Return");
-			MainDispatcher.getInstance().callAction("Customer", "doControl", request);
+			request.put("mode", "CustomerMenu");
+			MainDispatcher.getInstance().callAction("Menu", "doControl", request);
 		}
 		else if(mode.equals("UpdateForm")) {
 			request.put("id", id);
