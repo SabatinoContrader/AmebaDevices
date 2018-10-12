@@ -44,19 +44,7 @@ public class ItemController implements Controller {
 			break;
 		
 		
-		case "InsertDb":
-			item=(Item) request.get("item");
-			if(itemService.insertItem(item)) {
-				request= new Request();
-				MainDispatcher.getInstance().callView("Home", request);
-			}
-			else {
-				System.out.println("Dati mancanti o utente già registrato");
-				request= new Request();
-				//request.put("choice", "InsertForm");
-				MainDispatcher.getInstance().callView("Item", request);
-			}
-			break;
+		
 			
 			
 		case "Read":
@@ -64,44 +52,32 @@ public class ItemController implements Controller {
          	request= new Request();
          	request.put("items",items);
          	request.put("mode", "Read");
-         	MainDispatcher.getInstance().callView("Item", request);
+         	MainDispatcher.getInstance().callView("ItemRead", request);
              break;
 			
 		case "Return":
-		request= new Request();
-		MainDispatcher.getInstance().callView("Home", request);
+		MainDispatcher.getInstance().callView("ItemMenu", null);
 		break;
 		
 		case "UpdateForm":
-			request= new Request();
-			request.put("mode", "UpdateForm");
-			MainDispatcher.getInstance().callView("Item", request);
+			item = (Item) request.get("item");
+			
+			if(item == null) {
+				MainDispatcher.getInstance().callView("ItemUpdateForm", null);
+			} else {
+				int id=item.getId();
+				Item foundedItem = itemService.searchItem(id);
+				if(foundedItem != null) {
+					itemService.updateItem(item);
+					MainDispatcher.getInstance().callView("ItemMenu", null);
+				} else {
+					MainDispatcher.getInstance().callView("ItemNotFound", null);
+				}
+			}
+			
 			break;
 			
-		case "UpdateItem":
-		int id=Integer.parseInt(request.get("id").toString());
-		item= itemService.searchItem(id);
-		//System.out.println(item.getId()+"-"+item.getCategoria());
-		request=new Request();
-		
-		if(item != null) {
-			request.put("mode", "UpdateItem");
-			request.put("item", item);
-			MainDispatcher.getInstance().callView("Item", request);
-		} else {
-			request.put("mode", "ItemNotFound");
-			MainDispatcher.getInstance().callView("Item", request);
-			//MainDispatcher.getInstance().callView("Home", null);
-		}
-		
-		break;
-		
-		case "SaveUpdate":
-			Item item1=(Item) request.get("item");
-			itemService.updateItem(item1);
-			MainDispatcher.getInstance().callView("Home", request);
-		break;
-		
+	
 		case "DeleteForm":
 		request= new Request();
 		request.put("mode", "DeleteForm");

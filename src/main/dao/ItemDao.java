@@ -7,12 +7,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 public class ItemDao {
-	//private final String QUERY_UPDATE="update item set categoria=?,marca=?,modello=? where id=?";
 	private final String QUERY_INSERT="insert into amebadevicesdb.item(categoria,marca,modello) values(?,?,?)";
 	private final String QUERY_READ = "select * from amebadevicesdb.item";
 	private final String QUERY_SEARCH="select * from amebadevicesdb.item where id=?";
 	private final String QUERY_UPDATE="update amebadevicesdb.item set categoria=?,marca=?,modello=? where id=?";
 	private final String QUERY_DELETE="delete from amebadevicesdb.item where id=?";
+	private String QUERY_PROVA = "update amebadevicesdb.item set ";
 	public ItemDao() {
 		
 	}
@@ -92,17 +92,67 @@ public class ItemDao {
 		Connection connection= ConnectionSingleton.getInstance();
         try {
       
-            PreparedStatement preparedStatement = connection.prepareStatement(QUERY_UPDATE);
+        	int i = 1;
+        	
+            String categoria = item.getCategoria();
+            String marca = item.getMarca();
+            String modello = item.getModello();
             
-            preparedStatement.setString(1, item.getCategoria());
+            
+            if(!categoria.isEmpty()) {
+            	//QUERY_PROVA.concat("categoria=?,");
+            	QUERY_PROVA += "categoria=?";
+            	if(!marca.isEmpty() || !modello.isEmpty()) {
+                	//QUERY_PROVA.concat("marca=?,");
+                	QUERY_PROVA += ",";
+                	//preparedStatement.setString(2, marca);
+                }
+            	//preparedStatement.setString(1, categoria);
+            }
+            
+            if(!marca.isEmpty()) {
+            	//QUERY_PROVA.concat("marca=?,");
+            	QUERY_PROVA += "marca=?";
+            	//preparedStatement.setString(2, marca);
+            	if(!modello.isEmpty()) {
+                	//QUERY_PROVA.concat("modello=? ");
+                	QUERY_PROVA += ",";
+                	//preparedStatement.setString(3, modello);
+                }
+            }
+            
+            if(!modello.isEmpty()) {
+            	//QUERY_PROVA.concat("modello=? ");
+            	QUERY_PROVA += "modello=?";
+            	//preparedStatement.setString(3, modello);
+            }
+            
+            //QUERY_PROVA.concat("where id=?");
+            QUERY_PROVA += "where id=?";
+            
+            
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY_PROVA);
+            
+            if(!categoria.isEmpty()) {
+            	preparedStatement.setString(i, categoria);
+            	i++;
+            }
+            
+            if(!marca.isEmpty()) {
+            	preparedStatement.setString(i, marca);
+            	i++;
+            }
+            
+            if(!modello.isEmpty()) {
+            	preparedStatement.setString(i, modello);
+            	i++;
+            }
+            
+            
+            
+            preparedStatement.setInt(i, item.getId());
 
-            preparedStatement.setString(2, item.getMarca());
-            
-            preparedStatement.setString(3, item.getModello());
-            preparedStatement.setInt(4, item.getId());
-
-            preparedStatement.execute();
-            
+            preparedStatement.execute();    
         }
         catch (SQLException e) {
             GestoreEccezioni.getInstance().gestisciEccezione(e);
