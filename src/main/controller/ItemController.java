@@ -65,7 +65,7 @@ public class ItemController implements Controller {
 			if(item == null) {
 				MainDispatcher.getInstance().callView("ItemUpdateForm", null);
 			} else {
-				int id=item.getId();
+				int id=Integer.parseInt(item.getId());
 				Item foundedItem = itemService.searchItem(id);
 				if(foundedItem != null) {
 					itemService.updateItem(item);

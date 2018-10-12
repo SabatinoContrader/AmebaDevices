@@ -30,6 +30,11 @@ public class ItemService {
 	public void deleteItem(int id) {
 		itemDao.deleteItem(id);
 	}
+
+	public List<Item> getByBuilding(int buildingId) {
+		// restituire tutti gli item associati ad un determinato building
+		return null;
+	}
 	
 
 }

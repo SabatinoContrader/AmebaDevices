@@ -111,6 +111,9 @@ public class CustomerController implements Controller {
 			request.put("customers", customers);
 			MainDispatcher.getInstance().callView("CustomerMenu", request);
 			break;
+			
+		case "GenerateXML":
+			
 		
 		}
 		

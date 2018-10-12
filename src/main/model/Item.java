@@ -1,6 +1,8 @@
 package main.model;
 
-public class Item {
+import org.jdom2.Element;
+
+public class Item implements Buildable {
 	private int id;
 	private String categoria,modello,marca;
 	public Item(String categoria, String modello, String marca ) {
@@ -14,9 +16,8 @@ public class Item {
 		
 	}
 	
-	public int getId() {
-		return id;
-	}
+	
+	
 	public String getCategoria() {
 		
 		return this.categoria;
@@ -58,6 +59,17 @@ public class Item {
 	public void setId(int id) {
 		this.id=id;
 		
+	}
+
+	@Override
+	public String getId() {
+		return String.valueOf(this.id);
+	}
+
+	@Override
+	public Element getElement() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 		 
 	 }

@@ -61,13 +61,7 @@ public class ItemMenuView implements View {
 	        	request.put("mode", "DeleteForm");
 	        	MainDispatcher.getInstance().callAction("Item", "doControl", request);
 	        }
-	        
-	        else if(choice==5) {
-	        	Request request= new Request();
-	        	MainDispatcher.getInstance().callAction("Login", "doControl", request);
-	        }
-	        
-	    
+		    
 	}
 
 }

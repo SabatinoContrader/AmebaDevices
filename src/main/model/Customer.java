@@ -1,8 +1,14 @@
 package main.model;
 
 import java.sql.Date;
+import java.util.List;
 
-public class Customer {
+import org.jdom2.Attribute;
+import org.jdom2.Element;
+
+import main.service.BuildingService;
+
+public class Customer implements Buildable {
 
 	private int id;
 	private String nome;
@@ -20,9 +26,7 @@ public class Customer {
 		this.username=username;
 		this.password=password;
 	}
-	public int getId() {
-		return id;
-	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -55,6 +59,31 @@ public class Customer {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	@Override
+	public String getId() {
+		return String.valueOf(this.id);
+	}
+	
+	
+	@Override
+	public Element getElement() {
+		Element toReturn =new Element(this.getClass().getSimpleName().toLowerCase());
+		toReturn.setAttribute(new Attribute("id", this.getId()));
+		toReturn.addContent(new Element("nome").setText(this.getNome()));
+		toReturn.addContent(new Element("cognome").setText(this.getCognome()));
+		toReturn.addContent(new Element("username").setText(this.getUsername()));
+		toReturn.addContent(new Element("datanascita").setText(this.getDataNascita()));
+		Element buildingsFather = new Element("buildings");
+		Element buildingsElement;
+		BuildingService bs = new BuildingService();
+		List <Building> buildings = bs.getAll(this.username);
+		for (int i=0 ; i < buildings.size(); i++) {
+			buildingsElement = buildings.get(i).getElement();
+			buildingsFather.addContent(buildingsElement);
+		} 
+		toReturn.addContent(buildingsFather);
+		return toReturn;
 	}
 	
 	

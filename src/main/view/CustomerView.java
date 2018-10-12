@@ -71,7 +71,7 @@ public class CustomerView implements View{
 			System.out.println("Password attuale: "+customer.getPassword()+" inserisci nuova password: ");
 			String password= getInput();
 			customer1= new Customer(nome,cognome,datanascita,username,password);
-			customer1.setId(customer.getId());
+			customer1.setId(Integer.parseInt(customer.getId()));
 			break;
 			
 		case "DeleteForm":

@@ -150,7 +150,7 @@ public class ItemDao {
             
             
             
-            preparedStatement.setInt(i, item.getId());
+            preparedStatement.setInt(i, Integer.parseInt(item.getId()));
 
             preparedStatement.execute();    
         }

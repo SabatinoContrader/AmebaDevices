@@ -25,7 +25,8 @@ public class CustomerMenuView implements View {
     	System.out.println("2) Visualizza customers");
     	System.out.println("3) Modifica customer");
     	System.out.println("4) Elimina customer");
-    	System.out.println("5) Logout");
+    	System.out.println("5) Genera XML");
+    	System.out.println("6) Logout");
     	this.choice = Integer.parseInt(getInput());
 	}
 
@@ -39,9 +40,9 @@ public class CustomerMenuView implements View {
 	public void submit() {
 		Request request = new Request();
 		
-		if (choice < 1 || choice > 5) 
+		if (choice < 1 || choice > 6) 
             MainDispatcher.getInstance().callAction("SuperUserHome", "doControl", request);
-    else if (choice == 5)
+    else if (choice == 6)
         MainDispatcher.getInstance().callAction("Login", "doControl", null);
     else if(choice==1) {
         request.put("mode", "InsertForm");
@@ -57,6 +58,10 @@ public class CustomerMenuView implements View {
     }
     else if(choice==4) {
     	request.put("mode", "DeleteForm");
+    	MainDispatcher.getInstance().callAction("Customer", "doControl", request);
+    }
+    else if(choice==5) {
+    	request.put("mode", "GenerateXML");
     	MainDispatcher.getInstance().callAction("Customer", "doControl", request);
     }
 		

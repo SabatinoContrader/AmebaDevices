@@ -100,7 +100,7 @@ public class CustomerDAO {
 			preparedStatement.setString(3,customer.getDataNascita());
 			preparedStatement.setString(4, customer.getUsername());
 			preparedStatement.setString(5,customer.getPassword());
-			preparedStatement.setInt(6, customer.getId());
+			preparedStatement.setInt(6, Integer.parseInt(customer.getId()));
 			preparedStatement.execute();
 			
 			

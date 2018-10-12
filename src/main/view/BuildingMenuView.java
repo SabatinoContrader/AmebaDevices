@@ -35,7 +35,7 @@ public class BuildingMenuView implements View {
     	System.out.println("2) Visualizza buildings");
     	System.out.println("3) Modifica building");
     	System.out.println("4) Elimina building");
-    	System.out.println("5) Logout");
+    	System.out.println("6) Logout");
     	this.choice = Integer.parseInt(getInput());
 	}
 
@@ -56,9 +56,6 @@ public class BuildingMenuView implements View {
         	request.put("username", username);
           	MainDispatcher.getInstance().callAction("Building", "doControl", request);
 		}
-		else if(choice ==5) { 
-			MainDispatcher.getInstance().callAction("Login", "doControl", null);
-			}
 		else { MainDispatcher.getInstance().callAction("Menu", "doControl", request);}
 		
 		

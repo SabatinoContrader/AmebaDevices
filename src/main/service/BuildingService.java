@@ -36,6 +36,23 @@ public class BuildingService {
 	public boolean update(Building building, Building newValues, String username) {
 		return buildingdao.update(building, newValues, username);
 	}
+
+
+	public int getId(String indirizzo, String interno, String citta, String cap) {
+		// TODO Auto-generated method stub
+		/*
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 							TO DO !!!!!!!!!!!!!!!!!!! non dimenticare
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
+		return 0;
+	}
 	
 	
 
