@@ -19,7 +19,7 @@ public class ItemReadView implements View {
 
 	@Override
 	public void showOptions() {
-		items.forEach(c-> System.out.println(c.getCategoria()+"-"+c.getModello()+"-"+c.getMarca()));
+		items.forEach(c-> System.out.println(c.getId()+"-"+c.getCategoria()+"-"+c.getModello()+"-"+c.getMarca()));
 				
 	}
 
