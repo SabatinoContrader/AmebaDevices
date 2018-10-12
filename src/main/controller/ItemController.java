@@ -79,19 +79,16 @@ public class ItemController implements Controller {
 			
 	
 		case "DeleteForm":
-		request= new Request();
-		request.put("mode", "DeleteForm");
-		MainDispatcher.getInstance().callView("Item", request);
-		break;
 		
+		MainDispatcher.getInstance().callView("DeleteForm", request);
+		break;
+	
+	
 		case "DeleteItem":
-		//request= new Request();
 		int id1=Integer.parseInt(request.get("id").toString());
-		//request.get("id").toString();
-		//System.out.println("request è" +request);
 		itemService.deleteItem(id1);
 		
-		MainDispatcher.getInstance().callView("Home", request);
+		MainDispatcher.getInstance().callView("ItemMenu", null);
 			break;
 		}
 		
