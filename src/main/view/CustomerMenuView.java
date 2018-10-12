@@ -15,7 +15,7 @@ public class CustomerMenuView implements View {
 	@Override
 	public void showResults(Request request) {
 		customers=(List<Customer>) request.get("customers");
-		customers.forEach(c->System.out.println(c.getId()+"-"+c.getNome()+"-"+c.getCognome()+"-"+c.getDataNascita()+"-"+c.getUsername()));
+		customers.forEach(c->System.out.println(c.getId()+") "+c.getNome()+" "+c.getCognome()+" "+c.getDataNascita()+" "+c.getUsername()));
 		System.out.println("");
 	}
 

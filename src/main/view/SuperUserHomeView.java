@@ -9,10 +9,12 @@ public class SuperUserHomeView implements View {
 	
 	private Request request;
 	private int choice;
-
+	private String username;
+	
 	@Override
 	public void showResults(Request request) {
 	  	this.request=request;
+	  	this.username=request.get("username").toString();
 	}
 
 	@Override
@@ -32,11 +34,13 @@ public class SuperUserHomeView implements View {
 	public void submit() {
 		Request request = new Request();
 		if(choice < 1 || choice > 2) {
-			MainDispatcher.getInstance().callAction("SuperUserHome", "doControl", request);
+			request.put("username", username);
+			MainDispatcher.getInstance().callAction("Menu", "doControl", request);
 		} else if (choice == 2) {
 			MainDispatcher.getInstance().callAction("Login", "doControl", null);
 		} else if (choice==1){
             request.put("mode", "CustomerMenu");
+            request.put("username", username);
             MainDispatcher.getInstance().callAction("Menu", "doControl", request);
 		}
 	}

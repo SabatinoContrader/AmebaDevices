@@ -16,13 +16,11 @@ public class HomeController implements Controller {
             String password = request.get("password").toString();
             int choice= Integer.parseInt(request.get("choice").toString());
             if (loginService.login(nomeUtente, password,choice)) {
+            	request.put("username", nomeUtente);
             	if(choice==1)
             		MainDispatcher.getInstance().callView("SuperUserHome", request);
             	else
-            	{
-            		request.put("username", nomeUtente);
             		MainDispatcher.getInstance().callView("CustomerHome", request);
-            	}
              }
             else
                 MainDispatcher.getInstance().callAction("Login", "doControl", request);
