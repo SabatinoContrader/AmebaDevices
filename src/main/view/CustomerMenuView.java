@@ -11,6 +11,7 @@ public class CustomerMenuView implements View {
 
 	private int choice;
 	List<Customer> customers;
+	private int xmlChoice;
 	
 	@Override
 	public void showResults(Request request) {
@@ -28,6 +29,10 @@ public class CustomerMenuView implements View {
     	System.out.println("5) Genera XML");
     	System.out.println("6) Logout");
     	this.choice = Integer.parseInt(getInput());
+    	if (choice == 5) {
+    		System.out.println("per quale utente vuoi generare l'xml? Prego inserire id");
+    		this.xmlChoice = Integer.parseInt(getInput());
+    	}
 	}
 
 	@Override
@@ -62,6 +67,7 @@ public class CustomerMenuView implements View {
     }
     else if(choice==5) {
     	request.put("mode", "GenerateXML");
+    	request.put("xml", xmlChoice);
     	MainDispatcher.getInstance().callAction("Customer", "doControl", request);
     }
 		

@@ -93,9 +93,6 @@ public class Building implements Buildable {
 		Element itemsFather = new Element("items");
 		Element itemsElement;
 		ItemService is = new ItemService();
-		if (this.buildingId == 0) {
-			this.buildingId = new BuildingService().getId(indirizzo,interno,citta,cap);
-		}
 		if (this.buildingId != 0) {
 		List <Item> items = is.getByBuilding(this.buildingId);
 		for (int i=0 ; i < items.size(); i++) {

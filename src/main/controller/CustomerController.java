@@ -1,6 +1,12 @@
 package main.controller;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
+
+import org.jdom2.Document;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 import main.MainDispatcher;
 import main.model.Customer;
@@ -113,6 +119,19 @@ public class CustomerController implements Controller {
 			break;
 			
 		case "GenerateXML":
+			Document doc = new Document();
+			int customerId = Integer.parseInt(request.get("xml").toString());
+			Customer xmlCustomer = customerService.searchCustomer(customerId);
+			doc.setRootElement(xmlCustomer.getElement());
+			XMLOutputter x = new XMLOutputter();
+			x.setFormat(Format.getPrettyFormat());
+			try {
+				x.output(doc, new FileWriter(xmlCustomer.getUsername()+".xml"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			
 		
 		}
