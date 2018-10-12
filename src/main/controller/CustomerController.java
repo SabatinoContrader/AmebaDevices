@@ -131,7 +131,10 @@ public class CustomerController implements Controller {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+			customers=customerService.readAll();
+			request.put("customers", customers);
+			MainDispatcher.getInstance().callView("CustomerMenu", request);
+			break;
 			
 		
 		}
