@@ -11,16 +11,15 @@ public class DeleteBuildingController implements Controller {
 		Request newRequest = new Request();
 		Building building = (Building) request.get("toDeleteBuilding");
 		String username = request.get("username").toString();
-		
+		newRequest.put("buildings", new BuildingService().getAll(username));
 		if (new BuildingService().delete(building, username)) {
-			newRequest.put("nomeUtente", username);
-			newRequest.put("choice", 2);
-			MainDispatcher.getInstance().callView("Home", newRequest);
-		} else {
-			
+			newRequest.put("buildings", new BuildingService().getAll(username));
 			newRequest.put("username", username);
-			newRequest.put("mode", "delete");
-			MainDispatcher.getInstance().callView("BuildingPanel", newRequest);
+			MainDispatcher.getInstance().callView("BuildingMenu", newRequest);
+		} else {
+			newRequest.put("buildings", new BuildingService().getAll(username));
+			newRequest.put("username", username);
+			MainDispatcher.getInstance().callView("DeleteBuilding", newRequest);
 		}
 	}
 

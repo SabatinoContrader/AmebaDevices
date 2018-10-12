@@ -147,7 +147,6 @@ public class BuildingDAO {
 
 			ResultSet res = firstStep.executeQuery();
 			if (res.next()) {
-				System.err.println("Primo ok!");
 				buildingId = res.getInt(1);
 				PreparedStatement second = connection.prepareStatement(deletePropr);
 				second.setInt(1, buildingId);
@@ -160,10 +159,8 @@ public class BuildingDAO {
 
 			}
 		} catch (SQLException e) {
-			System.err.println("SQL ECCECCION");
 			e.printStackTrace();
 		}
-		System.err.println("so much love <3");
 		return false;
 	}
 

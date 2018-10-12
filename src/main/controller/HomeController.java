@@ -12,18 +12,20 @@ public class HomeController implements Controller {
     }
 
     public void doControl(Request request) {
-        if (request != null &&  request.get("alreadyLogged") == null ) {
             String nomeUtente = request.get("nomeUtente").toString();
             String password = request.get("password").toString();
             int choice= Integer.parseInt(request.get("choice").toString());
-            if (loginService.login(nomeUtente, password,choice)) 
-                MainDispatcher.getInstance().callView("Home", request);
+            if (loginService.login(nomeUtente, password,choice)) {
+            	if(choice==1)
+            		MainDispatcher.getInstance().callView("SuperUserHome", request);
+            	else
+            	{
+            		request.put("username", nomeUtente);
+            		MainDispatcher.getInstance().callView("CustomerHome", request);
+            	}
+             }
             else
                 MainDispatcher.getInstance().callAction("Login", "doControl", request);
-        } else if (request != null && request.get("alreadyLogged")!= null && request.get("alreadyLogged").equals("y")) 
-        				MainDispatcher.getInstance().callView("Home", request); 
-        
-        else MainDispatcher.getInstance().callView("Home", null);
 
     }
 }

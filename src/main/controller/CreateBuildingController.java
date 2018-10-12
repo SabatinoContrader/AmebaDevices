@@ -10,28 +10,19 @@ public class CreateBuildingController implements Controller {
 	public void doControl(Request request) {
 		
 		String username = request.get("username").toString();
-		String city = request.get("city").toString();
-		String address = request.get("address").toString();
-		String cap = request.get("cap").toString();
-		String interno = request.get("interno").toString();
-		Building myNewBuilding = new Building();
-		
-		myNewBuilding.setCap(cap);
-		myNewBuilding.setCitta(city);
-		myNewBuilding.setIndirizzo(address);
-		myNewBuilding.setInterno(interno);
-		
+	
+		Building myNewBuilding = (Building) request.get("building");
+			
 		Request newRequest = new Request();
 		if ( new BuildingService().create(username, myNewBuilding) ) {
 			
-			newRequest.put("nomeUtente", username);
-			newRequest.put("choice", 2);
-			MainDispatcher.getInstance().callView("Home", newRequest); 
+			newRequest.put("username", username);
+			newRequest.put("buildings", new BuildingService().getAll(username));
+			MainDispatcher.getInstance().callView("BuildingMenu", newRequest); 
 			
 		} else {
 			newRequest.put("username", username);
-			newRequest.put("mode", "create");
-			MainDispatcher.getInstance().callView("BuildingPanel", newRequest);
+			MainDispatcher.getInstance().callView("InsertBuilding", newRequest);
 		}
 
 	}

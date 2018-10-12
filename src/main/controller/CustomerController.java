@@ -7,8 +7,9 @@ import main.model.Customer;
 import main.service.CustomerService;
 
 public class CustomerController implements Controller {
-	CustomerService customerService;
-	Customer customer;
+	private CustomerService customerService;
+	private Customer customer;
+	private List<Customer> customers;
 	
 	public CustomerController() {
 		customerService=new CustomerService();
@@ -22,20 +23,19 @@ public class CustomerController implements Controller {
 		switch(mode) {
 		case "InsertForm":
 			request=new Request();
-			request.put("mode", mode);
-			MainDispatcher.getInstance().callView("Customer", request);
+			MainDispatcher.getInstance().callView("InsertCustomer", request);
 			break;
 		case "InsertDb":
 			customer= (Customer) request.get("customer");
 			if(customerService.insertCustomer(customer)) {
 				request=new Request();
-				request.put("choice", 1);
-				MainDispatcher.getInstance().callView("Home", request);
+				customers=customerService.readAll();
+				request.put("customers", customers);
+				MainDispatcher.getInstance().callView("CustomerMenu", request);
 			}else {
-			System.out.println("Dati mancanti o utente già registrato");
 			request=new Request();
 			request.put("choice", "InsertForm");
-			MainDispatcher.getInstance().callView("Customer", request);
+			MainDispatcher.getInstance().callView("InsertCustomer", request);
 			}
 			break;
 		case "Read":
@@ -44,56 +44,72 @@ public class CustomerController implements Controller {
 			request.put("choice", 1);
 			request.put("customers",customers);
 			request.put("mode", "Read");
-			MainDispatcher.getInstance().callView("Customer", request);
+			MainDispatcher.getInstance().callView("CustomerMenu", request);
 			break;
 		
 		
 		case "Return":
 			request= new Request();
-			request.put("choice", 1);
-			MainDispatcher.getInstance().callView("Home", request);
+			MainDispatcher.getInstance().callView("SuperUserHome", request);
 			break;
 			
 		case "UpdateForm":
 			request= new Request();
+			customers= customerService.readAll();
 			request.put("mode", "UpdateForm");
-			MainDispatcher.getInstance().callView("Customer", request);
+			request.put("customers",customers);
+			MainDispatcher.getInstance().callView("UpdateCustomer", request);
 			break;
 		
 		case "UpdateCustomer":
 			int id=Integer.parseInt(request.get("id").toString());
 			Customer customer=customerService.searchCustomer(id);
-			if(customer==null) {
-				System.out.println("Id non valido");
-				request.put("choice", 1);
-				MainDispatcher.getInstance().callView("Home", request);}
-			else {
-				System.out.println(customer.getNome()+" "+customer.getCognome());
-				request= new Request();
-				request.put("mode", "UpdateCustomer");
-				request.put("customer", customer);
-				MainDispatcher.getInstance().callView("Customer", request);
-				}
+			switch(Integer.parseInt(request.get("field").toString())) {
+				case 1:
+					customer.setNome(request.get("value").toString());
+					break;
+				case 2:
+					customer.setCognome(request.get("value").toString());
+					break;
+				case 3:
+					customer.setDataNascita(request.get("value").toString());
+					break;
+				case 4:
+					customer.setUsername(request.get("value").toString());
+					break;
+				case 5:
+					customer.setPassword(request.get("value").toString());
+					break;
+				default:
+					break;
+			}
+			customerService.updateCustomer(customer);
+			customers=customerService.readAll();
+			request=new Request();
+			request.put("customers", customers);
+			MainDispatcher.getInstance().callView("CustomerMenu", request);
 			break;
-			
 		case "SaveUpdate":
 			Customer customer1=(Customer) request.get("customer");
 			customerService.updateCustomer(customer1);
-			request.put("choice", 1);
-			MainDispatcher.getInstance().callView("Home", request);
+			MainDispatcher.getInstance().callView("SuperUserHome", request);
 			break;
 			
 		case "DeleteForm":
 			request=new Request();
+			customers=customerService.readAll();
 			request.put("mode", "DeleteForm");
-			MainDispatcher.getInstance().callView("Customer", request);
+			request.put("customers", customers);
+			MainDispatcher.getInstance().callView("DeleteCustomer", request);
 			break;
 		
 		case "DeleteCustomer":
 			int id1= Integer.parseInt(request.get("id").toString());
 			customerService.deleteCustomer(id1);
-			request.put("choice", 1);
-			MainDispatcher.getInstance().callView("Home", request);
+			customers=customerService.readAll();
+			request=new Request();
+			request.put("customers", customers);
+			MainDispatcher.getInstance().callView("CustomerMenu", request);
 			break;
 		
 		}

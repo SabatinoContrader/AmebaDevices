@@ -44,13 +44,19 @@ public class Building {
 		this.cap = cap;
 	}
 	
-	public Building(int buildingId, String indirizzo, String citta, String cap) {
+	public Building(int buildingId, String indirizzo, String citta, String cap,String interno) {
 		this.buildingId = buildingId;
 		this.indirizzo = indirizzo;
 		this.citta = citta;
 		this.cap = cap;
+		this.interno=interno;
 	}
-	
+	public Building(String indirizzo, String citta, String cap, String interno) {
+		this.indirizzo = indirizzo;
+		this.citta = citta;
+		this.cap = cap;
+		this.interno=interno;
+	}
 	public Building() {
 	}
 	

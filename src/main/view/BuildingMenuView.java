@@ -1,18 +1,32 @@
 package main.view;
 
+import java.util.List;
 import java.util.Scanner;
 
 import main.MainDispatcher;
 import main.controller.Request;
+import main.model.Building;
 
 public class BuildingMenuView implements View {
 	
 	private int choice;
+	private Request request;
+	private String username;
 
 	@Override
 	public void showResults(Request request) {
-		// TODO Auto-generated method stub
-		
+		this.request=request;
+		this.username=request.get("username").toString();
+		List<Building> buildings= (List<Building>) request.get("buildings");
+	
+			System.out.println("----------ciao, " + username + " questi sono i tuoi buildings ----------");
+			if (buildings.size() == 0)
+				System.out.println(" ");
+			for (int i = 0; i < buildings.size(); i++) {
+				System.out.println(i + 1 + ") " + buildings.get(i).getIndirizzo() + " " + buildings.get(i).getCap()
+						+ " " + buildings.get(i).getCitta() + " " + buildings.get(i).getInterno());
+			}
+			System.out.println("-----------------------------------------------------------");
 	}
 
 	@Override
@@ -35,30 +49,18 @@ public class BuildingMenuView implements View {
 	public void submit() {
 		Request request = new Request();
 		
-		switch (choice) {
-        case 1:
-        case 2: 
-        case 3: 
-        case 4:
-        	// Viene richiamato il BuildingController per le operazioni CRUD
-        	Request newRequest = new Request();
-        	newRequest.put("choice", choice);
-        	String prova=request.get("nomeUtente").toString();
-        	System.out.println(prova);
-        	newRequest.put("username", request.get("nomeUtente").toString());
-        	System.out.println("username="+ request.get("nomeUtente").toString());
-        	System.out.println("sono nel caso 4");
-        	System.out.println("nomeUtente="+request.get("nomeUtente").toString());
-        	
-        	MainDispatcher.getInstance().callAction("Building", "doControl", newRequest);
-        	break;
-        case 5:
-        	 MainDispatcher.getInstance().callAction("Login", "doControl", null);
-        	break;
-        default:
-        	 MainDispatcher.getInstance().callAction("Home", "doControl", request);
-        	break; 
-        }
+		if(choice>0 && choice <5) {
+			// Viene richiamato il BuildingController per le operazioni CRUD
+        	request = new Request();
+        	request.put("choice", choice);
+        	request.put("username", username);
+          	MainDispatcher.getInstance().callAction("Building", "doControl", request);
+		}
+		else if(choice ==5) { 
+			MainDispatcher.getInstance().callAction("Login", "doControl", null);
+			}
+		else { MainDispatcher.getInstance().callAction("Menu", "doControl", request);}
+		
 		
 	}
 

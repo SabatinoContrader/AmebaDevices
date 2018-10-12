@@ -1,18 +1,22 @@
 package main.view;
 
+import java.util.List;
 import java.util.Scanner;
 
 import main.MainDispatcher;
 import main.controller.Request;
+import main.model.Customer;
 
 public class CustomerMenuView implements View {
 
 	private int choice;
+	List<Customer> customers;
 	
 	@Override
 	public void showResults(Request request) {
-		// TODO Auto-generated method stub
-		
+		customers=(List<Customer>) request.get("customers");
+		customers.forEach(c->System.out.println(c.getId()+"-"+c.getNome()+"-"+c.getCognome()+"-"+c.getDataNascita()+"-"+c.getUsername()));
+		System.out.println("");
 	}
 
 	@Override
@@ -36,12 +40,11 @@ public class CustomerMenuView implements View {
 		Request request = new Request();
 		
 		if (choice < 1 || choice > 5) 
-            MainDispatcher.getInstance().callAction("Home", "doControl", request);
+            MainDispatcher.getInstance().callAction("SuperUserHome", "doControl", request);
     else if (choice == 5)
         MainDispatcher.getInstance().callAction("Login", "doControl", null);
     else if(choice==1) {
         request.put("mode", "InsertForm");
-        
     	 MainDispatcher.getInstance().callAction("Customer", "doControl", request);
     }
     else if(choice==2) {

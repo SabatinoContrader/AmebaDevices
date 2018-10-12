@@ -27,20 +27,20 @@ public class BuildingController implements Controller {
 			
 			case 1: // create	
 				newRequest.put("mode", "create");
-				MainDispatcher.getInstance().callView("BuildingPanel", newRequest);
+				MainDispatcher.getInstance().callView("InsertBuilding", newRequest);
 				break;
 			case 2: // read
 				newRequest.put("mode", "read");
-				MainDispatcher.getInstance().callView("BuildingPanel", newRequest);
+				MainDispatcher.getInstance().callView("BuildingMenu", newRequest);
 				break;
 			case 3: // update
 				newRequest.put("mode", "update");
-				MainDispatcher.getInstance().callView("BuildingPanel", newRequest);
+				MainDispatcher.getInstance().callView("UpdateBuilding", newRequest);
 				
 				break;
 			case 4: // delete
 				newRequest.put("mode", "delete");
-				MainDispatcher.getInstance().callView("BuildingPanel", newRequest);
+				MainDispatcher.getInstance().callView("DeleteBuilding", newRequest);
 				break;
 			default:
 				break;

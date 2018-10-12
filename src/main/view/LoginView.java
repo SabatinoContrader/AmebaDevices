@@ -10,9 +10,10 @@ public class LoginView implements View {
     private String nomeUtente;
     private String password;
     private String choice;
+    private Request request;
 
     public void showResults (Request request) {
-
+    	this.request=request;
     }
 
 
@@ -28,7 +29,7 @@ public class LoginView implements View {
     }
 
     public void submit() {
-        Request request = new Request();
+        request = new Request();
         request.put("nomeUtente", nomeUtente);
         request.put("password", password);
         request.put("choice", choice);
