@@ -19,10 +19,7 @@ public class ItemController implements Controller {
 	@Override
 	public void doControl(Request request) {
 		
-		//int choice= (int) request.get("choice");
-		//System.out.println(choice);
 		mode= request.get("mode").toString();
-		//System.out.println("mode ha "+mode);
 		switch(mode) {
 		case "InsertForm":
 			item=(Item) request.get("item");
@@ -30,7 +27,8 @@ public class ItemController implements Controller {
 				MainDispatcher.getInstance().callView("ItemInsertForm", null);
 			}
 			else {
-				if(itemService.insertItem(item)) {
+				int buildingId = Integer.parseInt(request.get("buildingId").toString());
+				if(itemService.insertItem(item, buildingId)) {
 					MainDispatcher.getInstance().callView("ItemMenu", null);
 				}
 				else {

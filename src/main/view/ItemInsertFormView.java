@@ -11,7 +11,7 @@ import main.service.ItemService;
 
 public class ItemInsertFormView implements View {
 	int id;
-	String categoria,marca,modello;
+	String categoria, marca, modello, buildingId;
 	Item item;
 	List<Item> items;
 	String mode="";
@@ -31,6 +31,8 @@ public class ItemInsertFormView implements View {
 		this.marca = getInput();
 		System.out.println("Modello");
 		this.modello = getInput();
+		System.out.println("Inserisci id building da associare ad un item:");
+		this.buildingId = getInput();
 		item = new Item(categoria, marca, modello);
 		
 	}
@@ -46,6 +48,8 @@ public class ItemInsertFormView implements View {
 		Request request= new Request();
 		request.put("item", item);
 		request.put("mode", "InsertForm");
+		request.put("buildingId", buildingId);
+		//System.out.println("abcd");
 		MainDispatcher.getInstance().callAction("Item", "doControl", request);
 	}
 

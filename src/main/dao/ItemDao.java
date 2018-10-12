@@ -13,6 +13,9 @@ public class ItemDao {
 	private final String QUERY_UPDATE="update amebadevicesdb.item set categoria=?,marca=?,modello=? where id=?";
 	private final String QUERY_DELETE="delete from amebadevicesdb.item where id=?";
 	private String QUERY_PROVA = "update amebadevicesdb.item set ";
+	private final String QUERY_SELECT_ITEM_ID = "select id from amebadevicesdb.item where categoria=? and marca=? and modello=?";
+	private final String QUERY_INSERT_COLLEGAMENTO = "insert into amebadevicesdb.collegamento(item, building) values(?,?)";
+	
 	public ItemDao() {
 		
 	}
@@ -39,21 +42,48 @@ public class ItemDao {
         return items;
     }
 	
-	public boolean insertItem(Item item) {
+	public boolean insertItem(Item item, int buildingId) {
 		Connection connection= ConnectionSingleton.getInstance();
         try {
+        	
+        	String categoria = item.getCategoria();
+        	String marca = item.getMarca();
+        	String modello = item.getModello();
+        	boolean result = false;
       
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
             
-            preparedStatement.setString(1, item.getCategoria());
+            preparedStatement.setString(1, categoria);
 
-            preparedStatement.setString(2, item.getMarca());
+            preparedStatement.setString(2, marca);
             
-            preparedStatement.setString(3, item.getModello());
-           
-
-            preparedStatement.execute();
-            return true;
+            preparedStatement.setString(3, modello);
+            
+            if(!preparedStatement.execute()) {
+            	PreparedStatement getItemIdStatement = connection.prepareStatement(QUERY_SELECT_ITEM_ID);
+            	
+            	getItemIdStatement.setString(1, categoria);
+            	getItemIdStatement.setString(2, marca);
+                getItemIdStatement.setString(3, modello);
+                
+                ResultSet idResult = getItemIdStatement.executeQuery();
+                int itemId = 0;
+                if(idResult.next()) {
+                	itemId = idResult.getInt(1);
+                	
+                	if(itemId != 0) {
+                		PreparedStatement insertCollegamentoStatement = connection.prepareStatement(QUERY_INSERT_COLLEGAMENTO);
+                		
+                		insertCollegamentoStatement.setInt(1, itemId);
+                		insertCollegamentoStatement.setInt(2, buildingId);
+                		
+                		insertCollegamentoStatement.execute();
+                		result = true;
+                	}
+                }
+            }
+            
+            return result;
         }
         catch (SQLException e) {
             GestoreEccezioni.getInstance().gestisciEccezione(e);

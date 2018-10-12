@@ -15,8 +15,8 @@ public class ItemService {
         return this.itemDao.getAllItem();
     }
 	
-	public boolean insertItem(Item item) {
-		return this.itemDao.insertItem(item);
+	public boolean insertItem(Item item, int buildingId) {
+		return this.itemDao.insertItem(item, buildingId);
 	}
 	
 	public Item searchItem(int id) {
