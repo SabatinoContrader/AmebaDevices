@@ -21,6 +21,7 @@ public class MenuController implements Controller {
 		this.request=request;
 		mode = request.get("mode").toString();
 		username=request.get("username").toString();
+		
 		this.request=new Request();
 		switch(mode) {
 		case "CustomerMenu":
@@ -35,7 +36,10 @@ public class MenuController implements Controller {
 			MainDispatcher.getInstance().callView("BuildingMenu", request);
 			break;
 		case "ItemMenu":
+			//request.put("username", username);
+			
 			MainDispatcher.getInstance().callView("ItemMenu",null);
+			break;
 		}
 		
 	}

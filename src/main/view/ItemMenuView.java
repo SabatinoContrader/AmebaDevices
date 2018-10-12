@@ -7,10 +7,10 @@ import main.controller.Request;
 
 public class ItemMenuView implements View {
 	private int choice;
+	Request request;
+	String username;
 	@Override
 	public void showResults(Request request) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -32,8 +32,11 @@ public class ItemMenuView implements View {
 
 	@Override
 	public void submit() {
-		 if (this.choice < 1 || this.choice > 5)
-	            MainDispatcher.getInstance().callAction("Home", "doControl", null);
+		 if (this.choice < 1 || this.choice > 5) {
+			 Request request= new Request();
+			 request.put("mode","Return");
+	            MainDispatcher.getInstance().callAction("Item", "doControl", request);
+		 }
 	        else if (this.choice == 5)
 	            MainDispatcher.getInstance().callAction("Login", "doControl", null);
 	        else if(choice==1) {

@@ -43,7 +43,9 @@ public class CustomerHomeView implements View {
             MainDispatcher.getInstance().callAction("Menu", "doControl", request);
 		}
 		else if (choice == 2) {
+			request.put("username", username);
             request.put("mode", "ItemMenu");
+            MainDispatcher.getInstance().callAction("Menu", "doControl", request);
 		}
 		else if (choice == 3) {
 			MainDispatcher.getInstance().callAction("Login", "doControl", null);
