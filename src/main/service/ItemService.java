@@ -32,8 +32,7 @@ public class ItemService {
 	}
 
 	public List<Item> getByBuilding(int buildingId) {
-		// restituire tutti gli item associati ad un determinato building
-		return null;
+		return itemDao.getByBuilding(buildingId);
 	}
 	
 

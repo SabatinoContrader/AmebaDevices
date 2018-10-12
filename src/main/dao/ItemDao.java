@@ -15,6 +15,7 @@ public class ItemDao {
 	private String QUERY_PROVA = "update amebadevicesdb.item set ";
 	private final String QUERY_SELECT_ITEM_ID = "select id from amebadevicesdb.item where categoria=? and marca=? and modello=?";
 	private final String QUERY_INSERT_COLLEGAMENTO = "insert into amebadevicesdb.collegamento(item, building) values(?,?)";
+	private final String QUERY_SELECT_COLLEGAMENTO = "select item from collegamento where building = ?";
 	
 	public ItemDao() {
 		
@@ -202,6 +203,36 @@ public class ItemDao {
 		} catch (SQLException e) {
             GestoreEccezioni.getInstance().gestisciEccezione(e);
 		}
+	}
+
+	public List<Item> getByBuilding(int buildingId) {
+		Connection connection = ConnectionSingleton.getInstance();
+		List <Item> toReturn = new ArrayList<>();
+		try {
+			PreparedStatement ps = connection.prepareStatement(QUERY_SELECT_COLLEGAMENTO);
+			ps.setInt(1, buildingId);
+			ResultSet rs = ps.executeQuery();
+			List <Integer> ids = new ArrayList<>();
+			while(rs.next()) {
+				ids.add(rs.getInt(1));
+			}
+			PreparedStatement secondStep = connection.prepareStatement(QUERY_SEARCH);
+			ResultSet secondResult = secondStep.executeQuery();
+					while(secondResult.next()) {
+						Item tmp = new Item();
+						tmp.setId(secondResult.getInt(1));
+						tmp.setMarca(secondResult.getString(2));
+						tmp.setModello(secondResult.getString(3));
+						tmp.setCategoria(secondResult.getString(4));
+						toReturn.add(tmp);
+					}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return toReturn;
+		
 	}
 }
 	

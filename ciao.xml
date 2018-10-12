@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customer id="1">
+  <nome>ciao</nome>
+  <cognome>buongiorno</cognome>
+  <username>ciao</username>
+  <datanascita>0000-00-00</datanascita>
+  <buildings>
+    <building id="1">
+      <indirizzo>Via Roma</indirizzo>
+      <interno>2</interno>
+      <citta>Napoli</citta>
+      <cap>98888</cap>
+      <items />
+    </building>
+    <building id="2">
+      <indirizzo>Via Napoli</indirizzo>
+      <interno>6</interno>
+      <citta>Paola</citta>
+      <cap>76543</cap>
+      <items />
+    </building>
+  </buildings>
+</customer>
