@@ -5,14 +5,16 @@ import main.model.Item;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.StringJoiner;
 public class ItemDao {
 	private final String QUERY_INSERT="insert into amebadevicesdb.item(categoria,marca,modello) values(?,?,?)";
 	private final String QUERY_READ = "select * from amebadevicesdb.item";
 	private final String QUERY_SEARCH="select * from amebadevicesdb.item where id=?";
 	private final String QUERY_UPDATE="update amebadevicesdb.item set categoria=?,marca=?,modello=? where id=?";
 	private final String QUERY_DELETE="delete from amebadevicesdb.item where id=?";
-	private String QUERY_PROVA = "update amebadevicesdb.item set ";
 	private final String QUERY_SELECT_ITEM_ID = "select id from amebadevicesdb.item where categoria=? and marca=? and modello=?";
 	private final String QUERY_INSERT_COLLEGAMENTO = "insert into amebadevicesdb.collegamento(item, building) values(?,?)";
 	private final String QUERY_SELECT_COLLEGAMENTO = "select item from collegamento where building = ?";
@@ -117,72 +119,61 @@ public class ItemDao {
 		}
 		return item;
 	}
+	
+	private String prapareUpdateQuery(List<String> itemFields) {
+		StringJoiner joiner = new StringJoiner(", ", "update amebadevicesdb.item set ", " where id=?");
+		List<String> fields = Arrays.asList("categoria=?", "marca=?", "modello=?");
+		
+		int i = 0;
+		while (i < itemFields.size()) {
+			if(!itemFields.get(i).isEmpty()) {
+				joiner.add(fields.get(i));
+			}
+		i++;
+		}
+		
+        return joiner.toString();        
+	}
+	
+	private PreparedStatement prepareUpdateStatement
+	(
+			PreparedStatement preparedStatement,
+			List<String> fields,
+			int id
+	) {
+		Iterator<String> fieldsIterator = fields.iterator();
+		
+		int i = 0;
+		while (fieldsIterator.hasNext()) {
+			try {
+				String field = fieldsIterator.next();
+				if(!field.isEmpty()) {
+					preparedStatement.setString(i + 1, field);
+					i++;
+				}	
+			} catch (SQLException e) {
+				GestoreEccezioni.getInstance().gestisciEccezione(e);
+			}
+		}
+		
+		try {
+			preparedStatement.setInt(++i, id);
+		} catch (SQLException e) {
+			GestoreEccezioni.getInstance().gestisciEccezione(e);
+		}
+		return preparedStatement;
+	}
 
 	
 	public void updateItem(Item item) {
 		Connection connection= ConnectionSingleton.getInstance();
         try {
+        	List<String> ItemFields = Arrays.asList(item.getCategoria(), item.getMarca(), item.getModello());
+        	int itemId = Integer.parseInt(item.getId());
       
-        	int i = 1;
-        	
-            String categoria = item.getCategoria();
-            String marca = item.getMarca();
-            String modello = item.getModello();
-            
-            
-            if(!categoria.isEmpty()) {
-            	//QUERY_PROVA.concat("categoria=?,");
-            	QUERY_PROVA += "categoria=?";
-            	if(!marca.isEmpty() || !modello.isEmpty()) {
-                	//QUERY_PROVA.concat("marca=?,");
-                	QUERY_PROVA += ",";
-                	//preparedStatement.setString(2, marca);
-                }
-            	//preparedStatement.setString(1, categoria);
-            }
-            
-            if(!marca.isEmpty()) {
-            	//QUERY_PROVA.concat("marca=?,");
-            	QUERY_PROVA += "marca=?";
-            	//preparedStatement.setString(2, marca);
-            	if(!modello.isEmpty()) {
-                	//QUERY_PROVA.concat("modello=? ");
-                	QUERY_PROVA += ",";
-                	//preparedStatement.setString(3, modello);
-                }
-            }
-            
-            if(!modello.isEmpty()) {
-            	//QUERY_PROVA.concat("modello=? ");
-            	QUERY_PROVA += "modello=?";
-            	//preparedStatement.setString(3, modello);
-            }
-            
-            //QUERY_PROVA.concat("where id=?");
-            QUERY_PROVA += "where id=?";
-            
-            
-            PreparedStatement preparedStatement = connection.prepareStatement(QUERY_PROVA);
-            
-            if(!categoria.isEmpty()) {
-            	preparedStatement.setString(i, categoria);
-            	i++;
-            }
-            
-            if(!marca.isEmpty()) {
-            	preparedStatement.setString(i, marca);
-            	i++;
-            }
-            
-            if(!modello.isEmpty()) {
-            	preparedStatement.setString(i, modello);
-            	i++;
-            }
-            
-            
-            
-            preparedStatement.setInt(i, Integer.parseInt(item.getId()));
-
+            String updateQuery = this.prapareUpdateQuery(ItemFields);
+            PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+            preparedStatement = this.prepareUpdateStatement(preparedStatement, ItemFields, itemId);
             preparedStatement.execute();    
         }
         catch (SQLException e) {
