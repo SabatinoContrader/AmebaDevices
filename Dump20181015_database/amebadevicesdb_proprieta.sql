@@ -16,31 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `building`
+-- Table structure for table `proprieta`
 --
 
-DROP TABLE IF EXISTS `building`;
+DROP TABLE IF EXISTS `proprieta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `building` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `indirizzo` varchar(100) DEFAULT NULL,
-  `citta` varchar(40) DEFAULT NULL,
-  `cap` varchar(5) DEFAULT NULL,
-  `interno` varchar(5) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `buildinguniquegroup` (`indirizzo`,`interno`,`cap`,`citta`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+CREATE TABLE `proprieta` (
+  `customer` int(11) NOT NULL,
+  `building` int(11) NOT NULL,
+  PRIMARY KEY (`customer`,`building`),
+  KEY `building_idx` (`building`),
+  CONSTRAINT `buildingproprieta` FOREIGN KEY (`building`) REFERENCES `building` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `customer` FOREIGN KEY (`customer`) REFERENCES `customer` (`idcustomer`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `building`
+-- Dumping data for table `proprieta`
 --
 
-LOCK TABLES `building` WRITE;
-/*!40000 ALTER TABLE `building` DISABLE KEYS */;
-INSERT INTO `building` VALUES (4,'Via da qua','Caserta','38492','2'),(5,'Via delle Rose','Bari','66776','4'),(3,'Via Monte Rosa','Bari','89900','4'),(2,'Via Napoli','Paola','76543','6'),(1,'Via Roma','Napoli','98888','2');
-/*!40000 ALTER TABLE `building` ENABLE KEYS */;
+LOCK TABLES `proprieta` WRITE;
+/*!40000 ALTER TABLE `proprieta` DISABLE KEYS */;
+INSERT INTO `proprieta` VALUES (1,1),(1,2),(1,5);
+/*!40000 ALTER TABLE `proprieta` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-15  9:26:05
+-- Dump completed on 2018-10-15 10:17:17

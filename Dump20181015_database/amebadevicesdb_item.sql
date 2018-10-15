@@ -16,31 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `collegamento`
+-- Table structure for table `item`
 --
 
-DROP TABLE IF EXISTS `collegamento`;
+DROP TABLE IF EXISTS `item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `collegamento` (
+CREATE TABLE `item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `item` int(11) NOT NULL,
-  `building` int(11) NOT NULL,
+  `categoria` varchar(50) NOT NULL,
+  `marca` varchar(45) NOT NULL,
+  `modello` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `item_idx` (`item`),
-  KEY `building_idx` (`building`),
-  CONSTRAINT `buildingcollegamento` FOREIGN KEY (`building`) REFERENCES `building` (`id`),
-  CONSTRAINT `item` FOREIGN KEY (`item`) REFERENCES `item` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  UNIQUE KEY `uniquegroup` (`marca`,`modello`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `collegamento`
+-- Dumping data for table `item`
 --
 
-LOCK TABLES `collegamento` WRITE;
-/*!40000 ALTER TABLE `collegamento` DISABLE KEYS */;
-/*!40000 ALTER TABLE `collegamento` ENABLE KEYS */;
+LOCK TABLES `item` WRITE;
+/*!40000 ALTER TABLE `item` DISABLE KEYS */;
+INSERT INTO `item` VALUES (4,'ciaooooo','iiiiiiiiiiiii','uuuuuuuuuuu'),(5,'lol','lol','lol'),(8,'ciao','ciao3','ciao2'),(12,'oii','ererer','oiiisdadsa'),(13,'fdfdfd','fdfdf','dfdfdf'),(14,'xcxc','xxccxc','cxxcx'),(15,'ytyrty','tryt','ytrtry'),(16,'oouiuuoiiuo','iutututut','iouoioyyo'),(17,'ert','etet','rett'),(18,'ciao','modello2','sono io');
+/*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-15  9:26:07
+-- Dump completed on 2018-10-15 10:17:16

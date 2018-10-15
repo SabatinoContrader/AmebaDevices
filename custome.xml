@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customer id="5">
+  <nome>customer</nome>
+  <cognome>customer</cognome>
+  <username>custome</username>
+  <datanascita>1995-12-12</datanascita>
+  <buildings />
+</customer>

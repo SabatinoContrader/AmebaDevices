@@ -7,7 +7,7 @@
   <buildings>
     <building id="1">
       <indirizzo>Via Roma</indirizzo>
-      <interno>2</interno>
+      <interno>3</interno>
       <citta>Napoli</citta>
       <cap>98888</cap>
       <items />
@@ -17,6 +17,13 @@
       <interno>6</interno>
       <citta>Paola</citta>
       <cap>76543</cap>
+      <items />
+    </building>
+    <building id="5">
+      <indirizzo>via ro</indirizzo>
+      <interno>8</interno>
+      <citta>noc</citta>
+      <cap>8334</cap>
       <items />
     </building>
   </buildings>

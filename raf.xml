@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customer id="9">
+  <nome>raff</nome>
+  <cognome>della port</cognome>
+  <username>raf</username>
+  <datanascita>1992-02-11</datanascita>
+  <buildings />
+</customer>

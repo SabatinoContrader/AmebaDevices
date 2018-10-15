@@ -16,30 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `proprieta`
+-- Table structure for table `collegamento`
 --
 
-DROP TABLE IF EXISTS `proprieta`;
+DROP TABLE IF EXISTS `collegamento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `proprieta` (
-  `customer` int(11) NOT NULL,
+CREATE TABLE `collegamento` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item` int(11) NOT NULL,
   `building` int(11) NOT NULL,
-  PRIMARY KEY (`customer`,`building`),
+  PRIMARY KEY (`id`),
+  KEY `item_idx` (`item`),
   KEY `building_idx` (`building`),
-  CONSTRAINT `buildingproprieta` FOREIGN KEY (`building`) REFERENCES `building` (`id`),
-  CONSTRAINT `customer` FOREIGN KEY (`customer`) REFERENCES `customer` (`idcustomer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `buildingcollegamento` FOREIGN KEY (`building`) REFERENCES `building` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `item` FOREIGN KEY (`item`) REFERENCES `item` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `proprieta`
+-- Dumping data for table `collegamento`
 --
 
-LOCK TABLES `proprieta` WRITE;
-/*!40000 ALTER TABLE `proprieta` DISABLE KEYS */;
-INSERT INTO `proprieta` VALUES (1,1),(1,2);
-/*!40000 ALTER TABLE `proprieta` ENABLE KEYS */;
+LOCK TABLES `collegamento` WRITE;
+/*!40000 ALTER TABLE `collegamento` DISABLE KEYS */;
+INSERT INTO `collegamento` VALUES (1,17,1),(2,18,1);
+/*!40000 ALTER TABLE `collegamento` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-15  9:26:07
+-- Dump completed on 2018-10-15 10:17:17

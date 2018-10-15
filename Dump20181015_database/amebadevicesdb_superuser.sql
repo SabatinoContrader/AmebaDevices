@@ -16,29 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `item`
+-- Table structure for table `superuser`
 --
 
-DROP TABLE IF EXISTS `item`;
+DROP TABLE IF EXISTS `superuser`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `item` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `categoria` varchar(50) NOT NULL,
-  `marca` varchar(45) NOT NULL,
-  `modello` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `uniquegroup` (`marca`,`modello`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `superuser` (
+  `idsuperuser` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  PRIMARY KEY (`idsuperuser`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `item`
+-- Dumping data for table `superuser`
 --
 
-LOCK TABLES `item` WRITE;
-/*!40000 ALTER TABLE `item` DISABLE KEYS */;
-/*!40000 ALTER TABLE `item` ENABLE KEYS */;
+LOCK TABLES `superuser` WRITE;
+/*!40000 ALTER TABLE `superuser` DISABLE KEYS */;
+INSERT INTO `superuser` VALUES (1,'superuser','superuser@gmail.com','superuser');
+/*!40000 ALTER TABLE `superuser` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-15  9:26:06
+-- Dump completed on 2018-10-15 10:17:17

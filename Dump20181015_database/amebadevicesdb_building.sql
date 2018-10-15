@@ -16,31 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `superuser`
+-- Table structure for table `building`
 --
 
-DROP TABLE IF EXISTS `superuser`;
+DROP TABLE IF EXISTS `building`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `superuser` (
-  `idsuperuser` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  PRIMARY KEY (`idsuperuser`),
-  UNIQUE KEY `username_UNIQUE` (`username`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE `building` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `indirizzo` varchar(100) DEFAULT NULL,
+  `citta` varchar(40) DEFAULT NULL,
+  `cap` varchar(5) DEFAULT NULL,
+  `interno` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `buildinguniquegroup` (`indirizzo`,`interno`,`cap`,`citta`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `superuser`
+-- Dumping data for table `building`
 --
 
-LOCK TABLES `superuser` WRITE;
-/*!40000 ALTER TABLE `superuser` DISABLE KEYS */;
-INSERT INTO `superuser` VALUES (1,'superuser','superuser@gmail.com','superuser');
-/*!40000 ALTER TABLE `superuser` ENABLE KEYS */;
+LOCK TABLES `building` WRITE;
+/*!40000 ALTER TABLE `building` DISABLE KEYS */;
+INSERT INTO `building` VALUES (4,'corso','ooo','776','8'),(3,'Via Monte Rosa','Bari','89900','4'),(2,'Via Napoli','Paola','76543','6'),(5,'via ro','noc','8334','8'),(1,'Via Roma','Napoli','98888','3');
+/*!40000 ALTER TABLE `building` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-15  9:26:06
+-- Dump completed on 2018-10-15 10:17:15
