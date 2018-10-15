@@ -20,12 +20,11 @@ public class ConnectionSingleton {
     public static Connection getInstance() {
         if (connection == null) {
             try {
-               Properties properties = new Properties();
                 String vendor="mysql";
                 String driver="com.mysql.jdbc.Driver";
                 String host="127.0.0.1";
                 String port="3306";
-                String dbName="contrader";
+                String dbName="amebadevicesdb";
                 String username="root";
                 String password ="root";
                 Class c = Class.forName(driver);

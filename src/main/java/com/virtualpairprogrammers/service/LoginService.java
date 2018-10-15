@@ -1,26 +1,16 @@
 package com.virtualpairprogrammers.service;
 
-import com.virtualpairprogrammers.dao.UtenteDAO;
-import com.virtualpairprogrammers.model.Utente;
+import com.virtualpairprogrammers.dao.LoginDAO;
 
 public class LoginService {
 
-    private UtenteDAO utenteDAO;
+    private LoginDAO loginDAO;
 
     public LoginService() {
-        this.utenteDAO = new UtenteDAO();
+        this.loginDAO = new LoginDAO();
     }
 
-    public boolean login (String username, String password) {
-        Utente utente = utenteDAO.getByNomeUtente(username);
-        if(utente == null){
-            return false;
-        }else{
-            if(utente.getPassword().equals(password)) return true;
-            else return false;
-        }
-
+    public boolean login (String username, String password,int choice) {
+        return this.loginDAO.login(username, password,choice);
     }
-
-
 }
