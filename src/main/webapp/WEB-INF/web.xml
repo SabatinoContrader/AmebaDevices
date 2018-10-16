@@ -22,4 +22,14 @@
     <servlet-name>InsertCustomerServlet</servlet-name>
     <url-pattern>/InsertCustomer</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BuildingServlet</display-name>
+    <servlet-name>BuildingServlet</servlet-name>
+    <servlet-class>com.virtualpairprogrammers.servlets.BuildingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BuildingServlet</servlet-name>
+    <url-pattern>/BuildingServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
