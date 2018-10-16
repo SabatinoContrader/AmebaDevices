@@ -29,14 +29,6 @@ public class Customer implements Buildable {
 		this.username=username;
 		this.password=password;
 	}
-	
-	public Customer(String nome, String cognome, String datanascita, String username, String password) {
-		this.nome=nome;
-		this.cognome=cognome;
-		this.dataNascita=datanascita;
-		this.username=username;
-		this.password=password;
-	}
 	public void setId(int id) {
 		this.id = id;
 	}
