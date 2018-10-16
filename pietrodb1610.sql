@@ -61,6 +61,9 @@ CREATE TABLE `amebadevicesdb`.`proprieta` (
     ON UPDATE CASCADE,
   CONSTRAINT `proprietauser`
     FOREIGN KEY (`iduser`)
+    REFERENCES `amebadevicesdb`.`user` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
 
     CREATE TABLE `amebadevicesdb`.`itemtype` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -68,6 +71,7 @@ CREATE TABLE `amebadevicesdb`.`proprieta` (
   `modello` VARCHAR(45) NOT NULL,
   `descrizione` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
+
 
 CREATE TABLE `amebadevicesdb`.`item` (
   `id` INT NOT NULL AUTO_INCREMENT,
