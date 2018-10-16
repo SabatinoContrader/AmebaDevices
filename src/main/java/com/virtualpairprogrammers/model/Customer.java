@@ -15,15 +15,17 @@ public class Customer implements Buildable {
 	private String nome;
 	private String cognome;
 	private String dataNascita;
+	private String email;
 	private String username;
 	private String password;
 	public Customer() {
 		// TODO Auto-generated constructor stub
 	}
-	public Customer(String nome,String cognome, String dataNascita, String username, String password){
+	public Customer(String nome,String cognome, String dataNascita,String email, String username, String password){
 		this.nome=nome;
 		this.cognome=cognome;
 		this.dataNascita=dataNascita;
+		this.email=email;
 		this.username=username;
 		this.password=password;
 	}
@@ -48,6 +50,12 @@ public class Customer implements Buildable {
 	}
 	public void setDataNascita(String dataNascita) {
 		this.dataNascita = dataNascita;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getUsername() {
 		return username;
