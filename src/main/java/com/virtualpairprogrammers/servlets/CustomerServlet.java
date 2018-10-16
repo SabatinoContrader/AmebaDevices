@@ -15,13 +15,13 @@ import com.virtualpairprogrammers.service.CustomerService;
 /**
  * Servlet implementation class CustomerServlet
  */
-public class InsertCustomerServlet extends HttpServlet {
+public class CustomerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public InsertCustomerServlet() {
+	public CustomerServlet() {
 		super();
 	}
 

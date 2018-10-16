@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h3>Seleziona l'id del customer da modificare</h3>
-	  <form action = "InsertCustomer" method= "post">
+	  <form action = "Customer" method= "post">
 		<div>Id Customer:
 			<select name="idselected">
 				<c:forEach var="customer" items="${customers}">

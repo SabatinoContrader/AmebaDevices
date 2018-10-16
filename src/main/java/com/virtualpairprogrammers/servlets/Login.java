@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.virtualpairprogrammers.service.LoginService;
 
-public class SuperuserLogin extends HttpServlet {
+public class Login extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
     
 	private LoginService loginService;
 	
 	
-    public SuperuserLogin() {
+    public Login() {
     	super();
     	loginService = new LoginService();
     }

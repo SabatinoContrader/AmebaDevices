@@ -34,6 +34,6 @@
 				</tbody>
 		</table>
 		</br>
-		<a href="InsertCustomer?mode=Return">Torna alla home</a>
+		<a href="Customer?mode=Return">Torna alla home</a>
 </body>
 </html>

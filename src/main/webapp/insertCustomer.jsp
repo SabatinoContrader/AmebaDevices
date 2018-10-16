@@ -8,7 +8,7 @@
 </head>
 <body>
 <h2>Inserisci il tuo Customer </h3>
-<form action="InsertCustomer" method="post">
+<form action="Customer" method="post">
 <h3>Nome: <input type = "text" id = "nome" name ="nome" placeholder = "Nome"></h3>
 <h3>Cognome: <input type = "text" id = "cognome" name ="cognome" placeholder = "Cognome"></h3>
 <h3>Data di Nascita: <input type = "date" id = "dataDiNascita" name ="dataDiNascita" placeholder = "Data di Nascita"></h3>
