@@ -69,10 +69,6 @@ CREATE TABLE `amebadevicesdb`.`proprieta` (
   `descrizione` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
 
-    REFERENCES `amebadevicesdb`.`user` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE);
-
 CREATE TABLE `amebadevicesdb`.`item` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `seriale` VARCHAR(45) NULL,
