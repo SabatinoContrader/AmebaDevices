@@ -11,7 +11,7 @@
 	<p>
 		<ol>
 			<li>
-				<a href="ItemMenu?mode=censimentoForm">Censisci Item</a>
+				<a href="ItemMenu?mode=censimentoForm">Censimento Item</a>
 			</li>
 			<li>
 				<a href="ItemMenu?mode=visualizzaItem">Visualizza</a>

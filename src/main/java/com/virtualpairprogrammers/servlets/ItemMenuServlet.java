@@ -2,6 +2,7 @@ package com.virtualpairprogrammers.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -72,6 +73,10 @@ public class ItemMenuServlet extends HttpServlet {
 					GestoreEccezioni.getInstance().gestisciEccezione(e);
 				}
 				break;
+			case "visualizzaItem":
+				List<Item> items = itemService.getAllItem();
+				request.setAttribute("items", items);
+				getServletContext().getRequestDispatcher("/VisualizzaItems.jsp").forward(request,response);
 			}
 	}
 

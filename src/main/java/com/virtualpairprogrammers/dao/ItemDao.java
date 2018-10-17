@@ -15,7 +15,7 @@ import com.virtualpairprogrammers.utils.GestoreEccezioni;
 
 public class ItemDao {
 	private final String QUERY_INSERT="insert into amebadevicesdb.itemtype(categoria,marca,modello, descrizione) values(?,?,?,?)";
-	private final String QUERY_READ = "select * from amebadevicesdb.item";
+	private final String QUERY_READ = "select * from amebadevicesdb.itemtype";
 	private final String QUERY_SEARCH="select * from amebadevicesdb.item where id=?";
 	private final String QUERY_UPDATE="update amebadevicesdb.item set categoria=?,marca=?,modello=? where id=?";
 	private final String QUERY_DELETE="delete from amebadevicesdb.item where id=?";
@@ -27,19 +27,19 @@ public class ItemDao {
 		
 	}
 	
-	/*public List<Item> getAllItem () {
+	public List<Item> getAllItem () {
         List<Item> items = new ArrayList<>();
         Connection connection = ConnectionSingleton.getInstance();
         try {
            Statement statement = connection.createStatement();
            ResultSet resultSet = statement.executeQuery(QUERY_READ);
            while (resultSet.next()) {
-        	   int id= resultSet.getInt("id");
+        	   String id= Integer.toString(resultSet.getInt("id"));
                String categoria = resultSet.getString("categoria");
                String marca = resultSet.getString("marca");
                String modello = resultSet.getString("modello");
-               Item item= new Item(categoria,marca,modello);
-               item.setId(id);
+               String descrizione = resultSet.getString("descrizione");
+               Item item= new Item(id, categoria, marca, modello, descrizione);
                items.add(item);
            }
         }
@@ -47,7 +47,7 @@ public class ItemDao {
             e.printStackTrace();
         }
         return items;
-    }*/
+    }
 	
 	public boolean insertItem(Item item) {
 		Connection connection= ConnectionSingleton.getInstance();
