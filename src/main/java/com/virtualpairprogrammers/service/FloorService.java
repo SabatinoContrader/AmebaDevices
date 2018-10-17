@@ -34,5 +34,11 @@ public class FloorService {
 		return this.floordao.findByPrimaryKey(id);
 	}
 
+
+	public void deleteById(int id) {
+		this.floordao.deleteById(id);
+		
+	}
+
 	
 }

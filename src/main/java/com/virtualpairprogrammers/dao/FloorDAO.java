@@ -15,8 +15,8 @@ import com.virtualpairprogrammers.utils.GestoreEccezioni;
 public class FloorDAO {
 	
 	private static final String ALL_BY_BUILDING = "select * from floor where idbuilding = ?";
-	private static final String UPDATE_FLOOR = "update floor set nome = ? descrizione = ? idbuilding = ? where id = ?";
-	private static final String INSERT_QUERY = "insert into floor (nome, descrizione) values (?,?)";
+	private static final String UPDATE_FLOOR = "update floor set nome = ?, descrizione = ?, idbuilding = ? where id = ?";
+	private static final String INSERT_QUERY = "insert into floor (nome, descrizione, idbuilding) values (?,?,?)";
 	private static final String DELETE = "delete from floor where id = ?";
 	private static final String FIND_BY_PRIMARYKEY = "select * from floor where id = ?";
 	
@@ -27,11 +27,13 @@ public class FloorDAO {
 	public boolean insertFloor(Floor f) {
 		String nomeFloor = f.getNomeFloor();
 		String descrizione = f.getDescrizione();
+		String buildingId = f.getIdBuilding();
 		Connection c = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement ps = c.prepareStatement(INSERT_QUERY);
 			ps.setString(1, nomeFloor);
 			ps.setString(2, descrizione);
+			ps.setInt(3, Integer.parseInt(buildingId));
 			if (ps.execute()) return true;
 			return false;
 		} catch (SQLException e) {
@@ -69,6 +71,7 @@ public class FloorDAO {
 			ps.setString(2, f.getDescrizione());
 			ps.setInt(3, Integer.parseInt(f.getIdBuilding()));
 			ps.setInt(4, Integer.parseInt(f.getId()));
+			ps.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -101,6 +104,18 @@ public class FloorDAO {
 		try {
 			PreparedStatement preparedStatement=connection.prepareStatement(DELETE);
 			preparedStatement.setInt(1, Integer.parseInt(f.getId()));
+			preparedStatement.execute();
+			
+		} catch (SQLException e) {
+			GestoreEccezioni.getInstance().gestisciEccezione(e);
+		}
+	}
+	
+	public void deleteById (int id) {
+		Connection connection=ConnectionSingleton.getInstance();
+		try {
+			PreparedStatement preparedStatement=connection.prepareStatement(DELETE);
+			preparedStatement.setInt(1, id);
 			preparedStatement.execute();
 			
 		} catch (SQLException e) {

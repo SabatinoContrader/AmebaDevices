@@ -29,7 +29,6 @@ public class Customer implements Buildable {
 		this.username=username;
 		this.password=password;
 	}
-	
 	public void setId(int id) {
 		this.id = id;
 	}

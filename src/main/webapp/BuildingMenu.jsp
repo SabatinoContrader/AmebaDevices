@@ -29,7 +29,7 @@
   			</li>
   			<li>
 				<a href="BuildingServlet?richiesta=EliminaBuilding">
-  				Elimina buildings
+  				Elimina building
   				</a>
   			</li>
 		</ol> 

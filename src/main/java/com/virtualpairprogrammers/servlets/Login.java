@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.virtualpairprogrammers.service.LoginService;
 
-public class SuperuserLogin extends HttpServlet {
+public class Login extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
     
 	private LoginService loginService;
 	
 	
-    public SuperuserLogin() {
+    public Login() {
     	super();
     	loginService = new LoginService();
     }
@@ -27,15 +27,21 @@ public class SuperuserLogin extends HttpServlet {
 		String nomeUtente =request.getParameter("username");
         String password = request.getParameter("password");
         System.out.println(nomeUtente + " "+ password);
-        int choice= 1;
-        if (loginService.login(nomeUtente, password,choice)) {
+     
+        if (loginService.login(nomeUtente, password)==1) {
         	// Il login è andato a buon fine
         	System.out.println("si");
+        	getServletContext().getRequestDispatcher("/superuserhome.jsp").forward(request,response);
+         }
+        else if (loginService.login(nomeUtente, password)==2) {
+        	// Il login è andato a buon fine
+        	System.out.println("si");
+        	getServletContext().getRequestDispatcher("/CustomerHome.jsp").forward(request,response);
          }
         else {
         	// Il login non è andato a buon fine
         	System.out.println("NO");
-            
+        	getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
 		
         }
 	}

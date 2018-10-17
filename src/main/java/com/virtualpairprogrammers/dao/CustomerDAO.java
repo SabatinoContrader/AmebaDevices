@@ -15,11 +15,11 @@ import com.virtualpairprogrammers.utils.GestoreEccezioni;
 
 public class CustomerDAO {
 
-	private final String QUERY_INSERT="insert into amebadevicesdb.customer(nome,cognome,datanascita,username,password) values(?,?,?,?,?)";
-	private final String QUERY_READ="select * from amebadevicesdb.customer";
-	private final String QUERY_SEARCH="select * from amebadevicesdb.customer where idcustomer=?";
-	private final String QUERY_UPDATE="update amebadevicesdb.customer set nome=?,cognome=?,datanascita=?,username=?,password=? where idcustomer=?";
-	private final String QUERY_DELETE="delete from amebadevicesdb.customer where idcustomer=?";
+	private final String QUERY_INSERT="insert into amebadevicesdb.user(nome,cognome,datanascita,email,username,password,user_role) values(?,?,?,?,?,?,2)";
+	private final String QUERY_READ="select * from amebadevicesdb.user where user_role=2";
+	private final String QUERY_SEARCH="select * from amebadevicesdb.user where id=?";
+	private final String QUERY_UPDATE="update amebadevicesdb.user set nome=?,cognome=?,datanascita=?,email=?,username=?,password=? where id=?";
+	private final String QUERY_DELETE="delete from amebadevicesdb.user where id=?";
 	
 	public CustomerDAO() {}
 	
@@ -32,8 +32,9 @@ public class CustomerDAO {
 			preparedStatement.setString(1, customer.getNome());
 			preparedStatement.setString(2, customer.getCognome());
 			preparedStatement.setString(3,customer.getDataNascita());
-			preparedStatement.setString(4, customer.getUsername());
-			preparedStatement.setString(5,customer.getPassword());
+			preparedStatement.setString(4,customer.getEmail());
+			preparedStatement.setString(5, customer.getUsername());
+			preparedStatement.setString(6,customer.getPassword());
 			preparedStatement.execute();
 			return true;
 			
@@ -50,20 +51,18 @@ public class CustomerDAO {
 	           Statement statement = connection.createStatement();
 	           ResultSet resultSet = statement.executeQuery(QUERY_READ);
 	           while (resultSet.next()) {
-	        	   int id= resultSet.getInt("idcustomer");
+	        	   int id= resultSet.getInt("id");
 	               String nome = resultSet.getString("nome");
 	               String cognome = resultSet.getString("cognome");
-	               String datanascita=resultSet.getString("datanascita");  
+	               String datanascita=resultSet.getString("datanascita");
+	               String email=resultSet.getString("email");
 	               String username= resultSet.getString("username");
 	               String password= resultSet.getString("password");
-	               Customer customer=new Customer(nome,cognome,datanascita,username,password);
+	               Customer customer=new Customer(nome,cognome,datanascita,email,username,password);
 	               customer.setId(id);
 	               customers.add(customer);
-	           
 	           }
-	           
 	        }
-		  
 	        catch (SQLException e) {
 	            e.printStackTrace();
 	        }
@@ -81,9 +80,10 @@ public class CustomerDAO {
 	               String nome = resultSet.getString("nome");
 	               String cognome = resultSet.getString("cognome");
 	               String datanascita=resultSet.getString("datanascita");  
+	               String email=resultSet.getString("email");
 	               String username= resultSet.getString("username");
 	               String password= resultSet.getString("password");
-	               customer=new Customer(nome,cognome,datanascita,username,password);
+	               customer=new Customer(nome,cognome,datanascita,email,username,password);
 	               customer.setId(id);
 			}
 		} catch (SQLException e) {
@@ -99,9 +99,10 @@ public class CustomerDAO {
 			preparedStatement.setString(1, customer.getNome());
 			preparedStatement.setString(2, customer.getCognome());
 			preparedStatement.setString(3,customer.getDataNascita());
-			preparedStatement.setString(4, customer.getUsername());
-			preparedStatement.setString(5,customer.getPassword());
-			preparedStatement.setInt(6, Integer.parseInt(customer.getId()));
+			preparedStatement.setString(4, customer.getEmail());
+			preparedStatement.setString(5, customer.getUsername());
+			preparedStatement.setString(6,customer.getPassword());
+			preparedStatement.setInt(7, Integer.parseInt(customer.getId()));
 			preparedStatement.execute();
 			
 			
