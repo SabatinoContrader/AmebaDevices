@@ -5,7 +5,7 @@ import org.jdom2.Element;
 public class Room{
 	int id;
 	String nomeRoom,descrizione;
-	private String idroom;
+	private String idfloor;
 	
 	public Room(String nomeRoom, String descrizione) {
 		this.nomeRoom=nomeRoom;
@@ -36,15 +36,15 @@ public class Room{
 	}
 
 
-	public String getIdRoom() {
+	public String getIdFloor() {
 
-		return idroom;
+		return idfloor;
 
 	}
 
-	public void setIdRoom(String idroom) {
+	public void setIdFloor(String idfloor) {
 
-		this.idroom=idroom;
+		this.idfloor=idfloor;
 
 	}
 	

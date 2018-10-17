@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <h3>Seleziona l'id della room da modificare</h3>
 
 	  <form action = "RoomServlet" method= "post">
@@ -21,19 +22,21 @@
 				</c:forEach>
 			</select>
 
-		</div></br>
-
+		</div>
+		
 		<div>Cosa vuoi modificare?   &nbsp; 
 
-			<select  name="selected">
+			<select  name="campi">
   				<option value="1">Nome</option>
   				<option value="2">Descrizione</option>
 			</select>
 			&nbsp;&nbsp;
 			<input type = "text" id = "value" name ="value" placeholder="Inserisci nuovo valore">
-		</div></br>
-		<button type = "submit" value="UpdateForm" name="richiesta"> Modifica</button>
-
+		</div>
+		<div>
+		<br>
+		<button type = "submit" value="UpdateRoom" name="richiesta"> Modifica</button>
+	</div>
 	</form>
 </body>
 </html>

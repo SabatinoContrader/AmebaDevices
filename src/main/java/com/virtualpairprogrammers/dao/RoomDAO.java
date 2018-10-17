@@ -20,7 +20,7 @@ public class RoomDAO {
 
 		String param="";
 		private static final String ALL_ROOM = "select * from room";
-		private static final String UPDATE_ROOM = "update room set nome = ? descrizione = ? idfloor = ? where id = ?";
+		private static final String UPDATE_ROOM = "update amebadevicesdb.room set nome=? , descrizione=? where id=?";
 		private static final String INSERT_QUERY = "insert into room (nome, descrizione) values (?,?)";
 		private static final String DELETE = "delete from amebadevicesdb.room where id = ?";
 		private final String QUERY_SEARCH="select * from amebadevicesdb.room where id=?";
@@ -70,7 +70,7 @@ public class RoomDAO {
 					newRoom.setId((myResult.getInt(1)));
 					newRoom.setNomeRoom(myResult.getString(2));
 					newRoom.setDescrizione(myResult.getString(3));
-					newRoom.setIdRoom(String.valueOf(myResult.getInt(4)));
+					newRoom.setIdFloor(String.valueOf(myResult.getInt(4)));
 					//newRoom.setId(id);
 					newRoom.setId(id);
 					lista.add(newRoom);
@@ -86,7 +86,7 @@ public class RoomDAO {
 			return lista;
 		}
 
-		public Room searchCustomer(int id) {
+		public Room searchRoom(int id) {
 			Connection connection=ConnectionSingleton.getInstance();
 			Room room= null;
 			try {
@@ -114,8 +114,8 @@ public class RoomDAO {
 				PreparedStatement ps = c.prepareStatement(UPDATE_ROOM);
 				ps.setString(1, f.getNomeRoom());
 				ps.setString(2, f.getDescrizione());
-				ps.setInt(3, Integer.parseInt(f.getIdRoom()));
-				ps.setInt(4, (f.getId()));
+				ps.setInt(3, (f.getId()));
+				System.out.println(f.getId());
 				ps.execute();
 				
 			} catch (SQLException e) {
@@ -128,34 +128,7 @@ public class RoomDAO {
 
 		
 
-		public Room findByPrimaryKey(int id){
-
-			Connection c = ConnectionSingleton.getInstance();
-			try {
-
-				PreparedStatement ps = c.prepareStatement(ALL_ROOM);
-				ps.setInt(1, id);
-				ResultSet myResult = ps.executeQuery();
-
-				if (myResult.next()) {
-					Room newRoom = new Room();
-					newRoom.setId((myResult.getInt(1)));
-					newRoom.setNomeRoom(myResult.getString(2));
-					newRoom.setDescrizione(myResult.getString(3));
-					newRoom.setIdRoom(String.valueOf(myResult.getInt(4)));
-					return newRoom;
-
-				}
-
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-
-			}
-
-			return null;
-		}
-
+		
 
 		public void delete (int id) {
 			Connection connection=ConnectionSingleton.getInstance();

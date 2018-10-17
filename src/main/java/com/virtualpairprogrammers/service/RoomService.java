@@ -27,7 +27,7 @@ private RoomDAO roomdao;
 	}
 	
 	public Room searchRoom(int id) {
-		return roomdao.searchCustomer(id);
+		return roomdao.searchRoom(id);
 	}
 
 	public void update (Room f) {
@@ -35,10 +35,7 @@ private RoomDAO roomdao;
 
 	}
 
-	public Room findByPrimaryKey(int id) {
-		return this.roomdao.findByPrimaryKey(id);
-
-	}
+	
 
 	public boolean insertRoom(Room f) {
 		// TODO Auto-generated method stub
