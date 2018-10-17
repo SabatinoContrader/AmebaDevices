@@ -98,6 +98,14 @@ public class ItemMenuServlet extends HttpServlet {
 			case "MainMenu":
 				getServletContext().getRequestDispatcher("/ItemMenu.jsp").forward(request,response);
 				break;
+			case "EliminaForm":
+				getServletContext().getRequestDispatcher("/EliminaItemForm.jsp").forward(request,response);
+				break;
+			case "EliminaItem":
+				String deleteId = request.getParameter("id");
+				itemService.deleteItem(deleteId);
+				getServletContext().getRequestDispatcher("/DeleteItemResult.jsp").forward(request,response);
+				break;
 			}
 	}
 

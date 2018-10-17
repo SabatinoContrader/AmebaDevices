@@ -8,12 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>Hai modificato correttamente l'Item:</p>
-<p>Id:  <c:out value = "${item.getId()}"/></p>
-<p>Categoria:  <c:out value = "${item.getCategoria()}"/></p>
-<p>Marca:  <c:out value = "${item.getMarca()}"/></p>
-<p>Modello: <c:out value = "${item.getModello()}"/></p>
-<p>Descrizione: <c:out value = "${item.getDescrizione()}"/></p>
-<p><a href="ItemMenu?mode=MainMenu">Vai a Menu Item</a></p>
+	<p>Hai modificato correttamente l'Item:</p>
+	<p>Id:  <c:out value = "${item.getId()}"/></p>
+	<p>Categoria:  <c:out value = "${item.getCategoria()}"/></p>
+	<p>Marca:  <c:out value = "${item.getMarca()}"/></p>
+	<p>Modello: <c:out value = "${item.getModello()}"/></p>
+	<p>Descrizione: <c:out value = "${item.getDescrizione()}"/></p>
+	<p><a href="ItemMenu?mode=MainMenu">Vai a Menu Item</a></p>
 </body>
 </html>

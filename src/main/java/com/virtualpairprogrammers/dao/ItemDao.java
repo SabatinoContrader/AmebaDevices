@@ -20,10 +20,7 @@ public class ItemDao {
 	private final String QUERY_INSERT="insert into amebadevicesdb.itemtype(categoria,marca,modello, descrizione) values(?,?,?,?)";
 	private final String QUERY_READ = "select * from amebadevicesdb.itemtype";
 	private final String QUERY_SEARCH="select * from amebadevicesdb.itemtype where id=?";
-	private final String QUERY_UPDATE="update amebadevicesdb.item set categoria=?,marca=?,modello=? where id=?";
-	private final String QUERY_DELETE="delete from amebadevicesdb.item where id=?";
-	private final String QUERY_SELECT_ITEM_ID = "select id from amebadevicesdb.item where categoria=? and marca=? and modello=?";
-	private final String QUERY_INSERT_COLLEGAMENTO = "insert into amebadevicesdb.collegamento(item, building) values(?,?)";
+	private final String QUERY_DELETE="delete from amebadevicesdb.itemtype where id=?";
 	private final String QUERY_SELECT_COLLEGAMENTO = "select item from collegamento where building = ?";
 	
 	public ItemDao() {
@@ -167,12 +164,12 @@ public class ItemDao {
 
 	}
 	
-	/*public void deleteItem(int id) {
+	public void deleteItem(String id) {
 		Connection connection= ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
             
-            preparedStatement.setInt(1,id);
+            preparedStatement.setInt(1,Integer.parseInt(id));
             preparedStatement.execute();
 
 		} catch (SQLException e) {
@@ -195,7 +192,7 @@ public class ItemDao {
 			ResultSet secondResult = secondStep.executeQuery();
 					while(secondResult.next()) {
 						Item tmp = new Item();
-						tmp.setId(secondResult.getInt(1));
+						tmp.setId(Integer.toString(secondResult.getInt(1)));
 						tmp.setMarca(secondResult.getString(2));
 						tmp.setModello(secondResult.getString(3));
 						tmp.setCategoria(secondResult.getString(4));
@@ -208,5 +205,5 @@ public class ItemDao {
 		
 		return toReturn;
 		
-	}*/
+	}
 }

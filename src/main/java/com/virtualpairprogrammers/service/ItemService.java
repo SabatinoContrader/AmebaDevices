@@ -29,13 +29,13 @@ public class ItemService {
 		itemDao.updateItem(item);
 	}
 	
-	/*public void deleteItem(int id) {
+	public void deleteItem(String id) {
 		itemDao.deleteItem(id);
 	}
 
 	public List<Item> getByBuilding(int buildingId) {
 		return itemDao.getByBuilding(buildingId);
-	}*/
+	}
 	
 
 }
