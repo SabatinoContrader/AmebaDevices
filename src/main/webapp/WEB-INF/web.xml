@@ -101,4 +101,14 @@
     <servlet-name>RoomServlet</servlet-name>
     <url-pattern>/RoomServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ItemMenuServlet</display-name>
+    <servlet-name>ItemMenuServlet</servlet-name>
+    <servlet-class>com.virtualpairprogrammers.servlets.ItemMenuServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ItemMenuServlet</servlet-name>
+    <url-pattern>/ItemMenu</url-pattern>
+  </servlet-mapping>
 </web-app>

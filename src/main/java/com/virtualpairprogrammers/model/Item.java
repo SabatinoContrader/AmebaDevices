@@ -4,23 +4,27 @@ package com.virtualpairprogrammers.model;
 import org.jdom2.Element;
 
 public class Item implements Buildable {
-	private int id;
-	private String categoria,modello,marca;
-	public Item(String categoria, String modello, String marca ) {
+	private String id, categoria,modello,marca, descrizione;
 	
-		this.categoria=categoria;
-		this.modello=modello;
-		this.marca=marca;
+	public Item(String id, String categoria, String marca, String modello, String descrizione) {
+	
+		this.id = id;
+		this.categoria = categoria;
+		this.modello = modello;
+		this.marca = marca;
+		this.descrizione = descrizione;
 	}
 	
 	public Item() {
 		
 	}
 	
-	
+	@Override
+	public String getId() {
+		return String.valueOf(this.id);
+	}
 	
 	public String getCategoria() {
-		
 		return this.categoria;
 	}
 	
@@ -32,21 +36,36 @@ public class Item implements Buildable {
 		return this.marca;
 	}
 	
+	public String getDescrizione() {
+		return this.descrizione;
+	}
 	
 	public void setCategoria(String categoria) {
-		this.categoria=categoria;
+		this.categoria = categoria;
 	}
 	
 	public void setModello(String modello) {
-		this.modello=modello;
+		this.modello = modello;
 	}
 	
 	public void setMarca(String marca) {
-		this.marca=marca;
+		this.marca = marca;
 	}
 	
-	 public String toString() {
-	        return "Modello " + modello + "\nMarca: " +marca + "\nCategoria: "+categoria+"\n";
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String toString() {
+		return "id: " + id + 
+				"\nModello: " + modello + 
+	        	"\nMarca: " +marca + 
+	        	"\nCategoria: "+ categoria +
+	        	"\nDescrizione: " + descrizione;
 	 }
 	 
 	 public boolean equals(Object o) {
@@ -54,24 +73,13 @@ public class Item implements Buildable {
 	        if (o == null || getClass() != o.getClass()) return false;
 
 	        Item i = (Item) o;
-	        return modello.equals(i.modello)&&categoria.equals(i.categoria)&&marca.equals(i.marca);
-	    }
-
-	public void setId(int id) {
-		this.id=id;
-		
-	}
-
-	@Override
-	public String getId() {
-		return String.valueOf(this.id);
-	}
-
-	@Override
-	public Element getElement() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-		 
+	        return id == i.id&&modello.equals(i.modello)&&categoria.equals(i.categoria)&&marca.equals(i.marca)&&descrizione.equals(i.descrizione);
 	 }
+	 
+	 @Override
+	 public Element getElement() {
+		 // TODO Auto-generated method stub
+		 return null;
+	}
+}
 

@@ -17,11 +17,11 @@ public class ItemService {
         return this.itemDao.getAllItem();
     }
 	
-	public boolean insertItem(Item item, int buildingId) {
-		return this.itemDao.insertItem(item, buildingId);
+	public boolean insertItem(Item item) {
+		return this.itemDao.insertItem(item);
 	}
 	
-	public Item searchItem(int id) {
+	public Item searchItem(String id) {
 		return this.itemDao.searchItem(id);
 	}
 	
@@ -29,7 +29,7 @@ public class ItemService {
 		itemDao.updateItem(item);
 	}
 	
-	public void deleteItem(int id) {
+	public void deleteItem(String id) {
 		itemDao.deleteItem(id);
 	}
 
