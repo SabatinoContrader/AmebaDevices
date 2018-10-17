@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.StringJoiner;
 
 import com.virtualpairprogrammers.model.Item;
 import com.virtualpairprogrammers.utils.ConnectionSingleton;
@@ -16,7 +19,7 @@ import com.virtualpairprogrammers.utils.GestoreEccezioni;
 public class ItemDao {
 	private final String QUERY_INSERT="insert into amebadevicesdb.itemtype(categoria,marca,modello, descrizione) values(?,?,?,?)";
 	private final String QUERY_READ = "select * from amebadevicesdb.itemtype";
-	private final String QUERY_SEARCH="select * from amebadevicesdb.item where id=?";
+	private final String QUERY_SEARCH="select * from amebadevicesdb.itemtype where id=?";
 	private final String QUERY_UPDATE="update amebadevicesdb.item set categoria=?,marca=?,modello=? where id=?";
 	private final String QUERY_DELETE="delete from amebadevicesdb.item where id=?";
 	private final String QUERY_SELECT_ITEM_ID = "select id from amebadevicesdb.item where categoria=? and marca=? and modello=?";
@@ -74,22 +77,24 @@ public class ItemDao {
 
     }
 	
-	/*public Item searchItem (int id) {
+	public Item searchItem (String id) {
 		Connection connection= ConnectionSingleton.getInstance();
-		Item item=null;
+		Item item = null;
+		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_SEARCH);
             
-            preparedStatement.setInt(1,id);
+            preparedStatement.setInt(1, Integer.parseInt(id));
             ResultSet resultSet= preparedStatement.executeQuery();
+            
             if(resultSet.next()) {
             	String categoria= resultSet.getString("categoria");
             	String marca= resultSet.getString("marca");
             	String modello= resultSet.getString("modello");
-            	item= new Item(categoria,marca,modello);
-            	item.setId(id);
+            	String descrizione = resultSet.getString("descrizione");
+            	
+            	item= new Item(id, categoria, marca, modello, descrizione);
             } else {
-            	//System.out.println("abcd");
             	item = null;
             }
 		} catch(SQLException e) {
@@ -97,11 +102,11 @@ public class ItemDao {
             
 		}
 		return item;
-	}*/
+	}
 	
-	/*private String prapareUpdateQuery(List<String> itemFields) {
-		StringJoiner joiner = new StringJoiner(", ", "update amebadevicesdb.item set ", " where id=?");
-		List<String> fields = Arrays.asList("categoria=?", "marca=?", "modello=?");
+	private String prapareUpdateQuery(List<String> itemFields) {
+		StringJoiner joiner = new StringJoiner(", ", "update amebadevicesdb.itemtype set ", " where id=?");
+		List<String> fields = Arrays.asList("categoria=?", "marca=?", "modello=?", "descrizione=?");
 		
 		int i = 0;
 		while (i < itemFields.size()) {
@@ -112,9 +117,9 @@ public class ItemDao {
 		}
 		
         return joiner.toString();        
-	}*/
+	}
 	
-	/*private PreparedStatement prepareUpdateStatement
+	private PreparedStatement prepareUpdateStatement
 	(
 			PreparedStatement preparedStatement,
 			List<String> fields,
@@ -147,7 +152,7 @@ public class ItemDao {
 	public void updateItem(Item item) {
 		Connection connection= ConnectionSingleton.getInstance();
         try {
-        	List<String> ItemFields = Arrays.asList(item.getCategoria(), item.getMarca(), item.getModello());
+        	List<String> ItemFields = Arrays.asList(item.getCategoria(), item.getMarca(), item.getModello(), item.getDescrizione());
         	int itemId = Integer.parseInt(item.getId());
       
             String updateQuery = this.prapareUpdateQuery(ItemFields);
@@ -162,7 +167,7 @@ public class ItemDao {
 
 	}
 	
-	public void deleteItem(int id) {
+	/*public void deleteItem(int id) {
 		Connection connection= ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);

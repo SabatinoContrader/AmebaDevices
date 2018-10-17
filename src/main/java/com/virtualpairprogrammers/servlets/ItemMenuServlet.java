@@ -77,6 +77,27 @@ public class ItemMenuServlet extends HttpServlet {
 				List<Item> items = itemService.getAllItem();
 				request.setAttribute("items", items);
 				getServletContext().getRequestDispatcher("/VisualizzaItems.jsp").forward(request,response);
+				break;
+			case "ModificaForm":
+				getServletContext().getRequestDispatcher("/ModificaItemForm.jsp").forward(request,response);
+				break;
+			case "Modifica":
+				String id = request.getParameter("id");
+				String marca = request.getParameter("marca");
+				String modello = request.getParameter("modello");
+				String categoria = request.getParameter("categoria");
+				String descrizione = request.getParameter("descrizione");
+				
+				Item item = new Item(id, categoria, marca, modello, descrizione);
+				itemService.updateItem(item);
+				
+				Item updatedItem = itemService.searchItem(id);
+				request.setAttribute("item", updatedItem);
+				getServletContext().getRequestDispatcher("/UpdateItemResult.jsp").forward(request,response);
+				break;
+			case "MainMenu":
+				getServletContext().getRequestDispatcher("/ItemMenu.jsp").forward(request,response);
+				break;
 			}
 	}
 

@@ -21,7 +21,7 @@ public class ItemService {
 		return this.itemDao.insertItem(item);
 	}
 	
-	/*public Item searchItem(int id) {
+	public Item searchItem(String id) {
 		return this.itemDao.searchItem(id);
 	}
 	
@@ -29,7 +29,7 @@ public class ItemService {
 		itemDao.updateItem(item);
 	}
 	
-	public void deleteItem(int id) {
+	/*public void deleteItem(int id) {
 		itemDao.deleteItem(id);
 	}
 
