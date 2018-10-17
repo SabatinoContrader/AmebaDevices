@@ -20,7 +20,7 @@ public class RoomDAO {
 
 		String param="";
 		private static final String ALL_ROOM = "select * from room";
-		private static final String UPDATE_ROOM = "update amebadevicesdb.room set nome=? descrizione=? where id=?";
+		private static final String UPDATE_ROOM = "update amebadevicesdb.room set nome=? , descrizione=? where id=?";
 		private static final String INSERT_QUERY = "insert into room (nome, descrizione) values (?,?)";
 		private static final String DELETE = "delete from amebadevicesdb.room where id = ?";
 		private final String QUERY_SEARCH="select * from amebadevicesdb.room where id=?";
