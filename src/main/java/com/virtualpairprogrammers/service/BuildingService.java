@@ -38,6 +38,11 @@ public class BuildingService {
 	public boolean update(Building building, Building newValues, String username) {
 		return buildingdao.update(building, newValues, username);
 	}
+
+
+	public Building findByPrimaryKey(int buildingId) {
+		return BuildingDAO.findByPrimaryKey(buildingId);
+	}
 		
 
 }

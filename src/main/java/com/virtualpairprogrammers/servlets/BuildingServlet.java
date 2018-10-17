@@ -37,7 +37,7 @@ public class BuildingServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String scelta = request.getParameter("richiesta");
 		String username = request.getSession().getAttribute("username").toString();
-		System.out.println("username= "+username);
+		List<Building> buildings = this.buildingService.getAll(username);
 		switch (scelta) {
 			case "BuildingMenu":
 				getServletContext().getRequestDispatcher("/BuildingMenu.jsp").forward(request, response);
@@ -54,23 +54,34 @@ public class BuildingServlet extends HttpServlet {
 				this.buildingService.create(username, mynewBuilding);
 				getServletContext().getRequestDispatcher("/BuildingMenu.jsp").forward(request, response);
 			break;
-			case "VisualizzaBuilding":
-		//		List<Buildings> Buildings = this.buildingService.getAll("ower");
+			case "VisualizzaBuildings":
+				request.setAttribute("buildings", buildings);
 				getServletContext().getRequestDispatcher("/ReadBuilding.jsp").forward(request, response);
 			break;
 			case "ModificaBuilding":
+				request.setAttribute("buildings", buildings);
 				getServletContext().getRequestDispatcher("/UpdateBuilding.jsp").forward(request, response);
 			break;
 			case "UpdateBuilding":
+				int buildingId = Integer.parseInt(request.getParameter("idselected"));
+				Building building = buildingService.findByPrimaryKey(buildingId);
 				String newindirizzo = request.getParameter("newindirizzo");
 				String newinterno = request.getParameter("newinterno");
-				String newcittà = request.getParameter("newcittà");
+				String newcitta = request.getParameter("newcitta");
 				String newcap = request.getParameter("newcap");
-				Building newValues = new Building(newindirizzo, newinterno, newcittà, newcap);
-			//	this.buildingService.update(building, newValues, username);
-			break;
+				Building newValues = new Building(newindirizzo, newcitta, newcap, newinterno);
+				this.buildingService.update(building, newValues, username);
+				getServletContext().getRequestDispatcher("/BuildingMenu.jsp").forward(request, response);
+				break;
 			case "EliminaBuilding":
+				request.setAttribute("buildings", buildings);
 				getServletContext().getRequestDispatcher("/DeleteBuilding.jsp").forward(request, response);
+			break;
+			case "Delete":
+				int toDelete = Integer.parseInt(request.getParameter("idselected"));
+				Building toDestroy = buildingService.findByPrimaryKey(toDelete);
+				this.buildingService.delete(toDestroy, username);
+				getServletContext().getRequestDispatcher("/BuildingMenu.jsp").forward(request, response);
 			break;
 			case "goBack":
 				getServletContext().getRequestDispatcher("/BuildingMenu.jsp").forward(request, response);;

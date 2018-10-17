@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<h2>CREA IL TUO BUILDING</h2>
 </head>
 <body>
+<p>
+<h2>CREA IL TUO BUILDING</h2>
+</p>
 	<div>
      <form action = "Building" method= "get">
      <h3>Indirizzo del building: <input type = "text" id = "indirizzoBuilding" name ="indirizzo" placeholder = "Inserisci indirizzo del building"></h3>

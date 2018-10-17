@@ -15,7 +15,7 @@ public class BuildingDAO {
 
 	private final String userIdFromUsername = "select id from user where username = ? and user_role = 2";
 
-	private final String propertiesIdOfAnUser = "select building from proprieta where iduser = ?";
+	private final String propertiesIdOfAnUser = "select idbuilding from proprieta where iduser = ?";
 
 	private final String getBuildingIdFrombuildingData = "select id from building where indirizzo = ? and interno = ? and citta = ? and cap = ?";
 
@@ -122,9 +122,10 @@ public class BuildingDAO {
 				myBuilding = new Building();
 				myBuilding.setBuildingId(id);
 				myBuilding.setIndirizzo(resultSet.getString(2));
-				myBuilding.setCitta(resultSet.getString(3));
-				myBuilding.setCap(resultSet.getString(4));
-				myBuilding.setInterno(resultSet.getString(5));
+				myBuilding.setInterno(resultSet.getString(3));
+				myBuilding.setCitta(resultSet.getString(4));
+				myBuilding.setCap(resultSet.getString(5));
+				
 
 			}
 
@@ -166,34 +167,36 @@ public class BuildingDAO {
 	}
 
 	public boolean update(Building building, Building newValues, String username) {
-		int buildingId = 0;
+		int buildingId = building.getBuildingId();
 		Connection connection = ConnectionSingleton.getInstance();
 		PreparedStatement firstStep;
 		try {
+			if (buildingId == 0) {
 			firstStep = connection.prepareStatement(getBuildingIdFrombuildingData);
 			firstStep.setString(1, building.getIndirizzo());
 			firstStep.setString(2, building.getInterno());
 			firstStep.setString(3, building.getCitta());
 			firstStep.setString(4, building.getCap());
-
 			ResultSet res = firstStep.executeQuery();
 			if (res.next()) {
 				buildingId = res.getInt(1);
+			}
+			}
 				PreparedStatement statement = connection.prepareStatement(update);
 				statement.setString(1, newValues.getIndirizzo());
 				statement.setString(2, newValues.getCitta());
 				statement.setString(3, newValues.getCap());
 				statement.setString(4, newValues.getInterno());
+				System.out.println("----------->"+buildingId);
 				statement.setInt(5, buildingId);
 				statement.execute();
 				return true;
 
-			}
+
 		} catch (SQLException e) {
 			return false;
 		}
 
-		return false;
 	}
 
 }
