@@ -11,7 +11,6 @@ import com.virtualpairprogrammers.utils.GestoreEccezioni;
 public class LoginDAO {
 
     private final String QUERY_LOGIN = "select * from user where username = ? and password = ?";
-    
     public int login (String username, String password) {
     	PreparedStatement statement=null;
         Connection connection = ConnectionSingleton.getInstance();

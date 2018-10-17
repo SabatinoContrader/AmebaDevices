@@ -43,6 +43,66 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>BuildingServlet</display-name>
+    <servlet-name>BuildingServlet</servlet-name>
+    <servlet-class>com.virtualpairprogrammers.servlets.BuildingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BuildingServlet</servlet-name>
+    <url-pattern>/Building</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CustomerLogin</display-name>
+    <servlet-name>CustomerLogin</servlet-name>
+    <servlet-class>com.virtualpairprogrammers.servlets.CustomerLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerLogin</servlet-name>
+    <url-pattern>/CustomerLogin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GestioneRoom</display-name>
+    <servlet-name>GestioneRoom</servlet-name>
+    <servlet-class>com.virtualpairprogrammers.servlets.GestioneRoom</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GestioneRoom</servlet-name>
+    <url-pattern>/GestioneRoom</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Logout</display-name>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>com.virtualpairprogrammers.servlets.Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/Logout</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Room</display-name>
+    <servlet-name>Room</servlet-name>
+    <servlet-class>com.virtualpairprogrammers.servlets.Room</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Room</servlet-name>
+    <url-pattern>/Room</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RoomServlet</display-name>
+    <servlet-name>RoomServlet</servlet-name>
+    <servlet-class>com.virtualpairprogrammers.servlets.RoomServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RoomServlet</servlet-name>
+    <url-pattern>/RoomServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>ItemMenuServlet</display-name>
     <servlet-name>ItemMenuServlet</servlet-name>
     <servlet-class>com.virtualpairprogrammers.servlets.ItemMenuServlet</servlet-class>

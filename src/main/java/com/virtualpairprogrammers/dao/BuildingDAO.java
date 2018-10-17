@@ -13,13 +13,13 @@ import com.virtualpairprogrammers.utils.ConnectionSingleton;
 
 public class BuildingDAO {
 
-	private final String userIdFromUsername = "select idcustomer from customer where username = ?";
+	private final String userIdFromUsername = "select id from user where username = ? and user_role = 2";
 
-	private final String propertiesIdOfAnUser = "select building from proprieta where customer = ?";
+	private final String propertiesIdOfAnUser = "select building from proprieta where iduser = ?";
 
 	private final String getBuildingIdFrombuildingData = "select id from building where indirizzo = ? and interno = ? and citta = ? and cap = ?";
 
-	private final String insertIntoProprieta = "insert into proprieta (customer, building) values (?,?)";
+	private final String insertIntoProprieta = "insert into proprieta (iduser, idbuilding) values (?,?)";
 
 	private final String insertQuery = "insert into building(indirizzo, citta, cap, interno) values(?,?,?,?)";
 
@@ -29,7 +29,7 @@ public class BuildingDAO {
 
 	private final String update = "update building set indirizzo = ?, citta = ?, cap = ?, interno = ? where id = ?";
 
-	private final String deletePropr = "delete from proprieta where building = ?";
+	private final String deletePropr = "delete from proprieta where idbuilding = ?";
 
 	public boolean insert(Building myBuilding, String ownerName) {
 		Connection connection = ConnectionSingleton.getInstance();
