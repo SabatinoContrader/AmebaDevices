@@ -10,6 +10,31 @@
      <h1>Benvenuto <%= request.getSession().getAttribute("utente")%></h1>
      <h2>------- MENU ROOMS -------</h2>
 	 
+	 <p>
+		<ol>
+  			<li> 
+  				<a href="RoomServlet?richiesta=InsertForm">
+  				Inserisci room
+  				</a> 
+  			</li>
+  			<li>
+  				<a href="RoomServlet?richiesta=ReadRoom">
+  				Visualizza rooms
+  				</a>
+  			</li>
+  			<li> 
+  				<a href="RoomServlet?richiesta=SearchForm">
+  				Modifica room
+  				</a>
+  			</li>
+  			<li>
+				<a href="RoomServlet?richiesta=DeleteForm">
+  				Elimina room
+  				</a>
+  			</li>
+		</ol> 
+	</p>
+<!-- 
 	 <h3>1. Inserisci una room</h3>
      <form action="RoomServlet" method="get">
      <input type="submit" value="InsertForm" name="richiesta">
@@ -33,4 +58,6 @@
      <h3>5.logout<h3>
      <form action="Logout" method="post">
      <input type="submit" value="Logout" name="Logout">
-     </form>
+     </form>-->
+ </body>
+ </html>
