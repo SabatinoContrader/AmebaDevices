@@ -13,22 +13,22 @@
 	<p>
 		<ol>
   			<li> 
-  				<a href="BuildingServlet?richiesta=InserisciBuilding">
+  				<a href="Building?richiesta=InserisciBuilding">
   				Inserisci building
   				</a> 
   			</li>
   			<li>
-  				<a href="BuildingServlet?richiesta=VisualizzaBuildings">
+  				<a href="Building?richiesta=VisualizzaBuildings">
   				Visualizza buildings
   				</a>
   			</li>
   			<li> 
-  				<a href="BuildingServlet?richiesta=ModificaBuilding">
+  				<a href="Building?richiesta=ModificaBuilding">
   				Modifica building
   				</a>
   			</li>
   			<li>
-				<a href="BuildingServlet?richiesta=EliminaBuilding">
+				<a href="Building?richiesta=EliminaBuilding">
   				Elimina building
   				</a>
   			</li>

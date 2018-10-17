@@ -9,7 +9,7 @@
 <body>
 	
      <h3>Vai a gestione building: </h3>
-     <h3><a href="GestioneBuilding">Gestione Building</a></h3>
+     <h3><a href="Building?richiesta=BuildingMenu">Gestione Building</a></h3>
      
       <h3>Vai a gestione item: </h3>
      <h3><a href="GestioneItem">Gestione Item</a></h3>

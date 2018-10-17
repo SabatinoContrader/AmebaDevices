@@ -36,8 +36,12 @@ public class BuildingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String scelta = request.getParameter("richiesta");
-		HttpSession session = request.getSession(true);
+		String username = request.getSession().getAttribute("username").toString();
+		System.out.println("username= "+username);
 		switch (scelta) {
+			case "BuildingMenu":
+				getServletContext().getRequestDispatcher("/BuildingMenu.jsp").forward(request, response);
+			break;
 			case "InserisciBuilding":
 				getServletContext().getRequestDispatcher("/InsertBuilding.jsp").forward(request, response);
 			break;
@@ -46,9 +50,8 @@ public class BuildingServlet extends HttpServlet {
 				String interno = request.getParameter("interno");
 				String citta = request.getParameter("citta");
 				String cap = request.getParameter("cap");
-				System.out.println(indirizzo+" "+interno+" "+citta+" "+cap);
 				Building mynewBuilding = new Building(indirizzo, citta, cap, interno); 
-				this.buildingService.create("pippo", mynewBuilding);
+				this.buildingService.create(username, mynewBuilding);
 				getServletContext().getRequestDispatcher("/BuildingMenu.jsp").forward(request, response);
 			break;
 			case "VisualizzaBuilding":
