@@ -8,6 +8,11 @@
 <title>Update Customer</title>
 </head>
 <body>
+<div style="display: flex; align-items: center;">
+		<img src="http://cdn.onlinewebfonts.com/svg/img_244280.png"
+			style="width: 5%; padding-right:2%;">
+			<h2>Modifica Customer</h2>
+	</div>
 	<h3>Seleziona l'id del customer da modificare</h3>
 	  <form action = "Customer" method= "post">
 		<div>Id Customer:
@@ -29,8 +34,7 @@
 			&nbsp;&nbsp;
 			<input type = "text" id = "value" name ="value" placeholder="Inserisci nuovo valore">
 		</div></br>
-		<button type = "submit"> Modifica</button>
-		<input hidden name="mode" value="UpdateDb">
+		<button type = "submit" name="mode" value="UpdateDb"> Modifica</button>
 	</form>
 </body>
 

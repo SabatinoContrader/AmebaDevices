@@ -8,7 +8,11 @@
 <title>Customers</title>
 </head>
 <body>
+	<div style="display: flex; align-items: center;">
+		<img src="http://simpleicon.com/wp-content/uploads/multy-user.png"
+			style="width: 5%; padding-right:2%; ">
 	<h2>Customers</h2>
+	</div>
 		<table class="table">
 				<thead>
 					<tr>
@@ -34,6 +38,6 @@
 				</tbody>
 		</table>
 		</br>
-		<a href="Customer?mode=Return">Torna alla home</a>
+		<a href="Customer?mode=Return" style="color:black;">Torna alla home</a>
 </body>
 </html>

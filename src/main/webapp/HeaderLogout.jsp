@@ -4,11 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
 </head>
 <body>
-
- <h3>Logout </h3>
      <h3><a href="Logout">Logout</a></h3>
 
 </body>
