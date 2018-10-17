@@ -68,6 +68,7 @@ CREATE TABLE `amebadevicesdb`.`proprieta` (
     CREATE TABLE `amebadevicesdb`.`itemtype` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `marca` VARCHAR(45) NOT NULL,
+  `categoria` VARCHAR(45) NOT NULL,
   `modello` VARCHAR(45) NOT NULL,
   `descrizione` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
@@ -92,5 +93,3 @@ CREATE TABLE `amebadevicesdb`.`item` (
     REFERENCES `amebadevicesdb`.`itemtype` (`id`)
     ON DELETE SET NULL
     ON UPDATE SET NULL);
-
-
