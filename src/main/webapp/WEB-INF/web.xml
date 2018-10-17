@@ -31,4 +31,14 @@
     <servlet-name>FloorController</servlet-name>
     <url-pattern>/Floor</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ThingManager</display-name>
+    <servlet-name>ThingManager</servlet-name>
+    <servlet-class>com.virtualpairprogrammers.servlets.ThingManager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ThingManager</servlet-name>
+    <url-pattern>/Thing</url-pattern>
+  </servlet-mapping>
 </web-app>
