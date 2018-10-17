@@ -62,6 +62,5 @@
 		<% }%>
 		</table>
 
-		<a href="RoomServlet?richiesta=ReadRoom">Torna alla home</a>
 
 </body>

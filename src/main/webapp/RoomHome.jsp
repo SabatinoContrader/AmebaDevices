@@ -20,12 +20,12 @@
      <input type="submit" value="ReadRoom" name="richiesta">
      </form>
 
-     <h3>3. Elimina un prodotto</h3>
+     <h3>3. Elimina una room</h3>
      <form action="RoomServlet" method="get">
      <input type="submit" value="DeleteForm" name="richiesta">
      </form>
 
-     <h3>4. Ricerca un prodotto</h3>
+     <h3>4. Ricerca di una room</h3>
      <form action="RoomServlet" method="get">
      <input type="submit" value="SearchForm" name="richiesta">
      </form>

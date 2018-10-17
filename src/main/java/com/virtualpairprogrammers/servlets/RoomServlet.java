@@ -17,7 +17,6 @@ import com.virtualpairprogrammers.service.RoomService;
  */
 public class RoomServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private RoomService roomService;
     //RoomManager room;
     private List<Room> l;
     /**
@@ -35,8 +34,8 @@ public class RoomServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String choice = request.getParameter("richiesta");
-		RoomService customerService = new RoomService();
-		List<Room> rooms = customerService.getAllByRoom();
+		RoomService roomService = new RoomService();
+		List<Room> rooms = roomService.getAllByRoom();
 		System.out.println(choice);
 		HttpSession session=request.getSession(true);
 
@@ -68,6 +67,10 @@ public class RoomServlet extends HttpServlet {
         		getServletContext().getRequestDispatcher("/ReadHome.jsp").forward(request,response);
         		break;
         		
+        	case "home":
+        		getServletContext().getRequestDispatcher("/RoomHome.jsp").forward(request,response);
+        	break;
+        		
         	case "DeleteForm":
         		getServletContext().getRequestDispatcher("/DeleteForm.jsp").forward(request,response);
         		break;
@@ -88,10 +91,11 @@ public class RoomServlet extends HttpServlet {
         	case "UpdateRoom":
         		int id = Integer.parseInt(request.getParameter("idselected"));
     			//System.out.println(request.getParameter("selected"));
-    			System.out.println(id);
-    			Room room= new Room();
-    			room= this.roomService.searchRoom(id);
-        		switch (Integer.parseInt(request.getParameter("selected"))) {
+    			//System.out.println(id);
+    			Room room;
+    			
+    			room= roomService.searchRoom(id);
+        		switch (Integer.parseInt(request.getParameter("campi"))) {
 
     			case 1:
     				room.setNomeRoom(request.getParameter("value"));
@@ -100,7 +104,9 @@ public class RoomServlet extends HttpServlet {
     				room.setDescrizione(request.getParameter("value"));
     				break;
     			}
-    			this.roomService.update(room);
+        		
+    			roomService.update(room);
+    			
     			getServletContext().getRequestDispatcher("/RoomHome.jsp").forward(request, response);
     			break;
     			
