@@ -13,15 +13,15 @@ public class ItemService {
 		this.itemDao=new ItemDao();
 	}
 	
-	public List<Item> getAllItem () {
+	/*public List<Item> getAllItem () {
         return this.itemDao.getAllItem();
-    }
+    }*/
 	
-	public boolean insertItem(Item item, int buildingId) {
-		return this.itemDao.insertItem(item, buildingId);
+	public boolean insertItem(Item item) {
+		return this.itemDao.insertItem(item);
 	}
 	
-	public Item searchItem(int id) {
+	/*public Item searchItem(int id) {
 		return this.itemDao.searchItem(id);
 	}
 	
@@ -35,7 +35,7 @@ public class ItemService {
 
 	public List<Item> getByBuilding(int buildingId) {
 		return itemDao.getByBuilding(buildingId);
-	}
+	}*/
 	
 
 }
