@@ -6,6 +6,7 @@ import java.util.List;
 import org.jdom2.Attribute;
 import org.jdom2.Element;
 
+import com.virtualpairprogrammers.service.FloorService;
 import com.virtualpairprogrammers.service.ItemService;
 
 
@@ -92,17 +93,17 @@ public class Building implements Buildable {
 		toReturn.addContent(new Element("interno").setText(this.getInterno()));
 		toReturn.addContent(new Element("citta").setText(this.getCitta()));
 		toReturn.addContent(new Element("cap").setText(this.getCap()));
-		Element itemsFather = new Element("items");
-		Element itemsElement;
-		ItemService is = new ItemService();
+		Element floorsFather = new Element("floors");
+		Element floorsElement;
+		FloorService fs = new FloorService();
 		if (this.buildingId != 0) {
-		List <Item> items = is.getByBuilding(this.buildingId);
-		for (int i=0 ; i < items.size(); i++) {
-			itemsElement = items.get(i).getElement();
-			itemsFather.addContent(itemsElement);
+		List <Floor> floors = fs.getAllByBuilding(this.buildingId);
+		for (int i=0 ; i < floors.size(); i++) {
+			floorsElement = floors.get(i).getElement();
+			floorsFather.addContent(floorsElement);
 		} 
 		
-		toReturn.addContent(itemsFather);
+		toReturn.addContent(floorsFather);
 		}
 		return toReturn;
 		

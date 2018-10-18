@@ -34,6 +34,10 @@ private RoomDAO roomdao;
 		roomdao.update(f);
 
 	}
+	
+	public List<Room> getAllByFloor(int floorId){
+		return roomdao.getAllByFloor(floorId);
+	}
 
 	
 

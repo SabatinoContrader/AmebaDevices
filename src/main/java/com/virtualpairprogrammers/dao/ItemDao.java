@@ -17,11 +17,12 @@ import com.virtualpairprogrammers.utils.ConnectionSingleton;
 import com.virtualpairprogrammers.utils.GestoreEccezioni;
 
 public class ItemDao {
+	//private static final String QUERY_SEARCH_BY_ROOM = null;
 	private final String QUERY_INSERT="insert into amebadevicesdb.itemtype(categoria,marca,modello, descrizione) values(?,?,?,?)";
 	private final String QUERY_READ = "select * from amebadevicesdb.itemtype";
 	private final String QUERY_SEARCH="select * from amebadevicesdb.itemtype where id=?";
 	private final String QUERY_DELETE="delete from amebadevicesdb.itemtype where id=?";
-	private final String QUERY_SELECT_COLLEGAMENTO = "select item from collegamento where building = ?";
+	//private final String QUERY_SELECT_COLLEGAMENTO = "select item from collegamento where building = ?";
 	
 	public ItemDao() {
 		
@@ -177,6 +178,7 @@ public class ItemDao {
 		}
 	}
 
+	/*
 	public List<Item> getByBuilding(int buildingId) {
 		Connection connection = ConnectionSingleton.getInstance();
 		List <Item> toReturn = new ArrayList<>();
@@ -206,4 +208,6 @@ public class ItemDao {
 		return toReturn;
 		
 	}
+	
+	*/
 }
