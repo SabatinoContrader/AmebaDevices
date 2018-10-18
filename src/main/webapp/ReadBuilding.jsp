@@ -23,10 +23,10 @@
 		<c:forEach var="building" items="${buildings}">
 			<tr>
 				<th><a href="Floor?operation=home&buildingId=${building.buildingId}">${building.buildingId}</a></th>
-				<th>${building.indirizzo}</th>
-				<th>${building.citta}</th>
-				<th>${building.cap}</th>
-				<th>${building.interno}</th>
+				<th><a href="Floor?operation=home&buildingId=${building.buildingId}">${building.indirizzo}</a></th>
+				<th><a href="Floor?operation=home&buildingId=${building.buildingId}">${building.citta}</a></th>
+				<th><a href="Floor?operation=home&buildingId=${building.buildingId}">${building.cap}</a></th>
+				<th><a href="Floor?operation=home&buildingId=${building.buildingId}">${building.interno}</a></th>
 			</tr>
 		</c:forEach>
 		</tbody>

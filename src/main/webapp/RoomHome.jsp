@@ -7,7 +7,6 @@
 <title>RoomHome</title>
 </head>
 <body>
-     <h1>Benvenuto <%= request.getSession().getAttribute("utente")%></h1>
      <h2>------- MENU ROOMS -------</h2>
 	 
 	 <p>

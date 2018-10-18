@@ -150,33 +150,21 @@ public class RoomDAO {
 		}
 		
 		public List<Room> getAllByFloor(int floorId) {
-
-			// DA PROVARE
-
 			List <Room> lista = new ArrayList<>();
-
 			Connection c = ConnectionSingleton.getInstance();
-
 			try {
 
-
-
-				Statement statement = c.createStatement();
-
-		        ResultSet myResult = statement.executeQuery(SEARCH_BY_FLOOR);
-
+				PreparedStatement preparedStatement = c.prepareStatement(QUERY_SEARCH);
+	            
+	            preparedStatement.setInt(1, floorId);
+	            ResultSet myResult= preparedStatement.executeQuery();
+	            
 				while (myResult.next()) {
-
 					Room newRoom = new Room();
-
 					newRoom.setId((myResult.getInt(1)));
-
 					newRoom.setNomeRoom(myResult.getString(2));
-
 					newRoom.setDescrizione(myResult.getString(3));
-
 					newRoom.setIdFloor(String.valueOf(myResult.getInt(4)));
-
 					lista.add(newRoom);
 
 				}

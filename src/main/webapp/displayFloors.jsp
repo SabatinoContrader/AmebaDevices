@@ -19,10 +19,10 @@
 										List<Floor> floors = (List<Floor>) request.getAttribute("floors");
 
 										for (int i=0; i < floors.size(); i++) {
-									%><tr>	<td><% out.println(floors.get(i).getId()); %></td>
-											<td><% out.println(floors.get(i).getNomeFloor()); %></td>
-											<td><% out.println(floors.get(i).getDescrizione()); %></td>
-											<td><% out.println(floors.get(i).getIdBuilding()); %></td>
+									%><tr>	<td><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getId()); %></a></td>
+											<td><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getNomeFloor()); %></a></td>
+											<td><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getDescrizione()); %></a></td>
+											<td><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getIdBuilding()); %></a></td>
 									</tr>
 									
 	<%} %>
