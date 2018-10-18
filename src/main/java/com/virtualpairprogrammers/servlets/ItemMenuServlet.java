@@ -62,7 +62,7 @@ public class ItemMenuServlet extends HttpServlet {
 				         out.println("<p>Categoria: " + categoria + "</p>");
 				         out.println("<p>Marca: " + marca + "</p>");
 				         out.println("<p>Modello: " + modello + "</p>");
-				         out.println("<a href=\"ItemMenu?mode=censimentoForm\">Torna indietro</a>");
+				         out.println("<a href=\"ItemMenu?mode=MainMenu\">Torna indietro</a>");
 				         out.println("</body>");
 				         out.println("</html>");
 				      } finally {

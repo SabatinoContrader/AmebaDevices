@@ -7,21 +7,31 @@
 <title>Customer Home</title>
 </head>
 <body>
-	
-     <h3>Vai a gestione building: </h3>
-     <h3><a href="Building?richiesta=BuildingMenu">Gestione Building</a></h3>
-     
-      <h3>Vai a gestione item: </h3>
-     <h3><a href="GestioneItem">Gestione Item</a></h3>
-     
-     <h3>Vai a gestione room: </h3>
-     <h3><a href="GestioneRoom">Gestione Room</a></h3>
-     
-     <h3>Vai a gestione floor: </h3>
-     <h3><a href="GestioneFloor">Gestione Floor</a></h3>
-     
-     
+<jsp:include page="/Building">
+     	<jsp:param name="richiesta" value="VisualizzaBuildings"/>
+     </jsp:include>
+<p> 
+	   	<h2>------- MENU BUILDING -------</h2>
+	</p>
+	<p>
+		<ol>
+  			<li> 
+  				<a href="Building?richiesta=InserisciBuilding">
+  				Inserisci building
+  				</a> 
+  			</li>
+  			<li> 
+  				<a href="Building?richiesta=ModificaBuilding">
+  				Modifica building
+  				</a>
+  			</li>
+  			<li>
+				<a href="Building?richiesta=EliminaBuilding">
+  				Elimina building
+  				</a>
+  			</li>
+		</ol> 
+	</p>
      <jsp:include page="HeaderLogout.jsp"/>
-     
 </body>
 </html>

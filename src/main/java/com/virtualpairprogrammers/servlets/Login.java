@@ -27,21 +27,17 @@ public class Login extends HttpServlet {
 		String nomeUtente =request.getParameter("username");
         String password = request.getParameter("password");
         request.getSession().setAttribute("username", nomeUtente);
+        int userId= loginService.login(nomeUtente, password);
+        request.getSession().setAttribute("userId", userId);
         System.out.println(nomeUtente + " "+ password);
      
-        if (loginService.login(nomeUtente, password)==1) {
-        	// Il login è andato a buon fine
-        	System.out.println("si");
+        if (userId==1) {
         	getServletContext().getRequestDispatcher("/superuserhome.jsp").forward(request,response);
          }
-        else if (loginService.login(nomeUtente, password)==2) {
-        	// Il login è andato a buon fine
-        	System.out.println("si");
+        else if (userId==2) {
         	getServletContext().getRequestDispatcher("/CustomerHome.jsp").forward(request,response);
          }
         else {
-        	// Il login non è andato a buon fine
-        	System.out.println("NO");
         	getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
 		
         }

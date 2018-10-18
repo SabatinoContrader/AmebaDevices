@@ -12,7 +12,13 @@ import com.virtualpairprogrammers.model.Building;
 import com.virtualpairprogrammers.utils.ConnectionSingleton;
 
 public class BuildingDAO {
-
+	
+	/*private final String query_join="SELECT indirizzo, interno, cap, citta\r\n" + 
+			"FROM user AS u\r\n" + 
+			"INNER JOIN proprieta AS p ON u.id = p.iduser\r\n" + 
+			"INNER JOIN building AS b ON p.idbuilding = b.id\r\n" + 
+			"WHERE u.username = ?";*/
+	
 	private final String userIdFromUsername = "select id from user where username = ? and user_role = 2";
 
 	private final String propertiesIdOfAnUser = "select idbuilding from proprieta where iduser = ?";

@@ -111,4 +111,14 @@
     <servlet-name>ItemMenuServlet</servlet-name>
     <url-pattern>/ItemMenu</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GestioneCustomer</display-name>
+    <servlet-name>GestioneCustomer</servlet-name>
+    <servlet-class>com.virtualpairprogrammers.servlets.GestioneCustomer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GestioneCustomer</servlet-name>
+    <url-pattern>/GestioneCustomer</url-pattern>
+  </servlet-mapping>
 </web-app>

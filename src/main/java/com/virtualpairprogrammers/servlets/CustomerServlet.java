@@ -48,14 +48,14 @@ public class CustomerServlet extends HttpServlet {
 			String password = request.getParameter("password");
 			Customer customer = new Customer(nome, cognome, data, email, username, password);
 			customerService.insertCustomer(customer);
-			getServletContext().getRequestDispatcher("/superuserhome.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/GestioneCustomer.jsp").forward(request, response);
 			break;
 		case "Read":
 			request.setAttribute("customers", customers);
 			getServletContext().getRequestDispatcher("/readCustomers.jsp").forward(request, response);
 			break;
 		case "Return":
-			getServletContext().getRequestDispatcher("/superuserhome.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/GestioneCustomer.jsp").forward(request, response);
 			break;
 		case "UpdateForm":
 			request.setAttribute("customers", customers);
@@ -85,7 +85,7 @@ public class CustomerServlet extends HttpServlet {
 				break;
 			}
 			customerService.updateCustomer(customer);
-			getServletContext().getRequestDispatcher("/superuserhome.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/GestioneCustomer.jsp").forward(request, response);
 			break;
 		case "DeleteForm":
 			request.setAttribute("customers", customers);
@@ -95,7 +95,7 @@ public class CustomerServlet extends HttpServlet {
 		case "DeleteDb":
 			int idDelete = Integer.parseInt(request.getParameter("idselected"));
 			customerService.deleteCustomer(idDelete);
-			getServletContext().getRequestDispatcher("/superuserhome.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/GestioneCustomer.jsp").forward(request, response);
 			break;
 		}
 	}

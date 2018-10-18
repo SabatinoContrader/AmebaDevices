@@ -3,6 +3,7 @@ package com.virtualpairprogrammers.servlets;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -52,11 +53,13 @@ public class BuildingServlet extends HttpServlet {
 				String cap = request.getParameter("cap");
 				Building mynewBuilding = new Building(indirizzo, citta, cap, interno); 
 				this.buildingService.create(username, mynewBuilding);
-				getServletContext().getRequestDispatcher("/BuildingMenu.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/CustomerHome.jsp").forward(request, response);
 			break;
 			case "VisualizzaBuildings":
 				request.setAttribute("buildings", buildings);
-				getServletContext().getRequestDispatcher("/ReadBuilding.jsp").forward(request, response);
+				RequestDispatcher view = request.getRequestDispatcher("/ReadBuilding.jsp");      
+		        view.include(request, response);
+				//getServletContext().getRequestDispatcher("/ReadBuilding.jsp").forward(request, response);
 			break;
 			case "ModificaBuilding":
 				request.setAttribute("buildings", buildings);
@@ -71,7 +74,7 @@ public class BuildingServlet extends HttpServlet {
 				String newcap = request.getParameter("newcap");
 				Building newValues = new Building(newindirizzo, newcitta, newcap, newinterno);
 				this.buildingService.update(building, newValues, username);
-				getServletContext().getRequestDispatcher("/BuildingMenu.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/CustomerHome.jsp").forward(request, response);
 				break;
 			case "EliminaBuilding":
 				request.setAttribute("buildings", buildings);
@@ -81,10 +84,10 @@ public class BuildingServlet extends HttpServlet {
 				int toDelete = Integer.parseInt(request.getParameter("idselected"));
 				Building toDestroy = buildingService.findByPrimaryKey(toDelete);
 				this.buildingService.delete(toDestroy, username);
-				getServletContext().getRequestDispatcher("/BuildingMenu.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/CustomerHome.jsp").forward(request, response);
 			break;
 			case "goBack":
-				getServletContext().getRequestDispatcher("/BuildingMenu.jsp").forward(request, response);;
+				getServletContext().getRequestDispatcher("/CustomerHome.jsp").forward(request, response);;
 			break;
 		}
 	//	response.getWriter().append("Served at: ").append(request.getContextPath());

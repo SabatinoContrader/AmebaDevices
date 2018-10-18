@@ -31,6 +31,5 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	     <a href="Building?richiesta=goBack"> Torna alla gestione dei building </a>
 	</body>
 </html>
