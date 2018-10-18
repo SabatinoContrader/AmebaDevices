@@ -7,12 +7,13 @@
 <title>RoomHome</title>
 </head>
 <body>
+
      <h2>------- MENU ROOMS -------</h2>
-	 
+	 <%String floorId= request.getParameter("floorId"); %>
 	 <p>
 		<ol>
   			<li> 
-  				<a href="RoomServlet?richiesta=InsertForm">
+  				<a href="RoomServlet?richiesta=InsertForm&floorId=<%=floorId%>">
   				Inserisci room
   				</a> 
   			</li>

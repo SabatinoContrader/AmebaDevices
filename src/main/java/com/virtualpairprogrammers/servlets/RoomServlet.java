@@ -19,15 +19,16 @@ import com.virtualpairprogrammers.service.RoomService;
  */
 public class RoomServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    //RoomManager room;
-    private List<Room> l;
-    int floorId=1;
+    private List<Room> rooms;
+    private int floorId;
+    RoomService roomService;
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
     public RoomServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        roomService = new RoomService();
     }
 
 	/**
@@ -35,19 +36,22 @@ public class RoomServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		//HttpSession session=request.getSession(true);
+		String floorId = request.getParameter("floorId");
+		System.out.println(floorId);
 		String choice = request.getParameter("richiesta");
-		RoomService fs = new RoomService();
-		request.setAttribute("floorId",String.valueOf(floorId));
-		List <Room> listaPerFloor = new ArrayList<>();
+		//RoomService fs = new RoomService();
+		//request.setAttribute("floorId",String.valueOf(floorId));
+		//List <Room> listaPerFloor = new ArrayList<>();
 
-		listaPerFloor = fs.getAllByFloor(floorId);
+		//listaPerFloor = fs.getAllByFloor(floorId);
 
-		request.setAttribute("rooms", listaPerFloor);
-		RoomService roomService = new RoomService();
-		List<Room> rooms = roomService.getAllByRoom();
-		System.out.println(choice);
-		HttpSession session=request.getSession(true);
+		//request.setAttribute("rooms", listaPerFloor);
+		//RoomService roomService = new RoomService();
+		//List<Room> rooms = roomService.getAllByRoom();
+		//System.out.println(choice);
+		
 
         	switch (choice) {
         	case "InsertForm":
@@ -57,31 +61,34 @@ public class RoomServlet extends HttpServlet {
         	
             	String nome = (String) request.getParameter("nome");
             	String descrizione = (String) request.getParameter("description");
-            	System.out.println(choice);
             	RoomService newRoomService = new RoomService();
 
     			Room f = new Room();
     			f.setNomeRoom(nome);
     			f.setDescrizione(descrizione);
-    			newRoomService.insertRoom(f);;
+    			f.setIdFloor(floorId);
+    			newRoomService.insertRoom(f);
     			getServletContext().getRequestDispatcher("/RoomHome.jsp").forward(request,response);
 
             	break;
             	
-        	case "ReadRoom":
+        	/*case "ReadRoom":
         		request.setAttribute("rooms",rooms );
         		getServletContext().getRequestDispatcher("/ReadRoom.jsp").forward(request,response);
         		break;
         		
         	case "Return":
         		getServletContext().getRequestDispatcher("/ReadHome.jsp").forward(request,response);
-        		break;
+        		break;*/
         		
         	case "home":
+        		if(this.floorId == 0) {
+        			this.floorId = Integer.parseInt(request.getParameter("floorId"));
+        		}
         		getServletContext().getRequestDispatcher("/RoomHome.jsp").forward(request,response);
         	break;
         		
-        	case "DeleteForm":
+        	/*case "DeleteForm":
         		getServletContext().getRequestDispatcher("/DeleteForm.jsp").forward(request,response);
         		break;
         	
@@ -135,7 +142,7 @@ public class RoomServlet extends HttpServlet {
     			fs.update(newRoom);
     			getServletContext().getRequestDispatcher("/RoomHome.jsp").forward(request, response);
 
-    			break;
+    			break;*/
         	}
 	}
 

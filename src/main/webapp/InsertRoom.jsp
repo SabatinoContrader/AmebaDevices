@@ -8,8 +8,8 @@
 </head>
 <body>
 <h3>Inserisci i dati della room</h3>
-
-     <form action="RoomServlet?richiesta=InsertRoom" method="post">
+<h1>Questa è la jsp <%=request.getParameter("floorId") %></h1>
+     <form action="RoomServlet?richiesta=InsertRoom&floorId=<%=request.getParameter("floorId")%>" method="post">
 
      	<h4>Nome: <input type = "text" id = "name" name ="nome" placeholder = "inserisci nome"></h4>     	
 
