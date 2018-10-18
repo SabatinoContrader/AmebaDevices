@@ -42,6 +42,13 @@ private RoomDAO roomdao;
 		return this.roomdao.insertRoom(f);
 	}
 	
+	public List<Room> getAllByFloor(int floorId){
+
+		return roomdao.getAllByFloor(floorId);
+
+	}
+
+
 
 }
 

@@ -23,7 +23,7 @@
   				</a>
   			</li>
   			<li> 
-  				<a href="RoomServlet?richiesta=SearchForm">
+  				<a href="RoomServlet?richiesta=update">
   				Modifica room
   				</a>
   			</li>

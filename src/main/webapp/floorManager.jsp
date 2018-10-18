@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<jsp:include page="/Floor">
+     	<jsp:param name="operation" value="read"/>
+     </jsp:include>
 <form action="Floor" method="post">
 	<select id="operations" name="operation">
   		<option value="create">Crea Floor</option>

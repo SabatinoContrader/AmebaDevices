@@ -24,6 +24,7 @@ public class RoomDAO {
 		private static final String INSERT_QUERY = "insert into room (nome, descrizione) values (?,?)";
 		private static final String DELETE = "delete from amebadevicesdb.room where id = ?";
 		private final String QUERY_SEARCH="select * from amebadevicesdb.room where id=?";
+		private static final String SEARCH_BY_FLOOR = "select * from room where idfloor = ?";
 		public RoomDAO() {
 
 		}
@@ -145,6 +146,48 @@ public class RoomDAO {
 				GestoreEccezioni.getInstance().gestisciEccezione(e);
 
 			}
+
+		}
+		
+		public List<Room> getAllByFloor(int floorId) {
+
+			// DA PROVARE
+
+			List <Room> lista = new ArrayList<>();
+
+			Connection c = ConnectionSingleton.getInstance();
+
+			try {
+
+
+
+				Statement statement = c.createStatement();
+
+		        ResultSet myResult = statement.executeQuery(SEARCH_BY_FLOOR);
+
+				while (myResult.next()) {
+
+					Room newRoom = new Room();
+
+					newRoom.setId((myResult.getInt(1)));
+
+					newRoom.setNomeRoom(myResult.getString(2));
+
+					newRoom.setDescrizione(myResult.getString(3));
+
+					newRoom.setIdFloor(String.valueOf(myResult.getInt(4)));
+
+					lista.add(newRoom);
+
+				}
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+
+			}
+
+			return lista;
 
 		}
 

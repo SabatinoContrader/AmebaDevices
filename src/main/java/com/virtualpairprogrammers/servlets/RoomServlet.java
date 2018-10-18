@@ -1,8 +1,10 @@
 package com.virtualpairprogrammers.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +21,7 @@ public class RoomServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     //RoomManager room;
     private List<Room> l;
+    int floorId=1;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -34,6 +37,13 @@ public class RoomServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String choice = request.getParameter("richiesta");
+		RoomService fs = new RoomService();
+		request.setAttribute("floorId",String.valueOf(floorId));
+		List <Room> listaPerFloor = new ArrayList<>();
+
+		listaPerFloor = fs.getAllByFloor(floorId);
+
+		request.setAttribute("rooms", listaPerFloor);
 		RoomService roomService = new RoomService();
 		List<Room> rooms = roomService.getAllByRoom();
 		System.out.println(choice);
@@ -109,7 +119,23 @@ public class RoomServlet extends HttpServlet {
     			
     			getServletContext().getRequestDispatcher("/RoomHome.jsp").forward(request, response);
     			break;
-    			
+        	case "update":
+        		getServletContext().getRequestDispatcher("/UpdateRoom.jsp").forward(request, response);
+        		break;
+        	case "sendDataForUpdate":
+    			String newName = request.getParameter("roomName");
+    			String newDescription = request.getParameter("roomDescription");
+    			String roomid = (String) request.getAttribute("roomId");
+    			String floorid=(String) request.getAttribute("floorid");
+    			Room newRoom = new Room();
+    			newRoom.setId(floorId);
+    			newRoom.setNomeRoom(newName);
+    			newRoom.setDescrizione(newDescription);
+    			newRoom.setIdFloor(floorid);
+    			fs.update(newRoom);
+    			getServletContext().getRequestDispatcher("/RoomHome.jsp").forward(request, response);
+
+    			break;
         	}
 	}
 

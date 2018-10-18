@@ -22,7 +22,7 @@
 		<tbody>
 		<c:forEach var="building" items="${buildings}">
 			<tr>
-				<th>${building.buildingId}</th>
+				<th><a href="Floor?operation=home&buildingId=${building.buildingId}">${building.buildingId}</a></th>
 				<th>${building.indirizzo}</th>
 				<th>${building.citta}</th>
 				<th>${building.cap}</th>

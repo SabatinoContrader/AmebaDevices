@@ -34,6 +34,7 @@ public class FloorController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// Nothing to do
+		doPost(request, response);
 	}
 
 	/**
@@ -42,8 +43,7 @@ public class FloorController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int userId =2;
-		int buildingId=1;
+		int buildingId = Integer.parseInt(request.getParameter("buildingId"));
 		request.setAttribute("buildingId",String.valueOf(buildingId));
 		RequestDispatcher dispatcher = null;
 		FloorService fs = new FloorService();
@@ -51,12 +51,15 @@ public class FloorController extends HttpServlet {
 		alreadyExisting = fs.getAllByBuilding(buildingId);
 		request.setAttribute("floors", alreadyExisting);
 		String operation = request.getParameter("operation");
+		
 		switch (operation) {
 		case "create":
 			dispatcher = request.getRequestDispatcher("newFloor.jsp");
 			break;
 		case "read":
-			dispatcher = request.getRequestDispatcher("displayFloors.jsp");
+			
+			RequestDispatcher view = request.getRequestDispatcher("/displayFloors.jsp");      
+	        view.include(request, response);
 			break;
 		case "update":
 			dispatcher = request.getRequestDispatcher("updateFloor.jsp");
@@ -89,6 +92,9 @@ public class FloorController extends HttpServlet {
 			fs.update(newFloor);
 			dispatcher = request.getRequestDispatcher("floorManager.jsp");
 			break;
+		case "home":
+			dispatcher = request.getRequestDispatcher("floorManager.jsp");
+			break;
 		case "sendDataForDelete":
 			int id = Integer.parseInt(request.getParameter("floorid"));
 			fs.deleteById(id);
@@ -97,8 +103,8 @@ public class FloorController extends HttpServlet {
 		}
 		if (dispatcher != null) {
 			dispatcher.forward(request, response);
-		} else
-			response.getWriter().append("Non capisco. Che fai?");
+		} 
+		//	response.getWriter().append("Non capisco. Che fai?");
 	}
 
 }
