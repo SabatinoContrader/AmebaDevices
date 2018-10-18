@@ -1,14 +1,34 @@
 <html>
 <head>
-<title>Login Trader</title>
+<link rel="stylesheet" href="styles.css">
+<title>Login Page</title>
 </head>
 <body>
-   <div>
-     <form action = "Login" method= "post">
-     <h3>username: <input type = "text" id = "user" name ="username" placeholder = "inserisci username"></h3>
-     <h3>password: <input type = "password" id = "pass" name ="password" placeholder = "inserisci password"></h3>
-     <button type = "submit" value = "Login" name = "pulsante">Login In</button><br>
-     </form>
-   </div>
+		<div class="login-form">
+			<h2 class="login-text">Login</h2>
+			<p class="insert" >Inserisci i tuoi dati</p>
+			<div>
+				<form action="Login" method="post">
+
+					<div class="form-group">
+
+
+						<input type="text" class="form-control" id="user" name="username"
+							placeholder="Inserisci Username">
+
+					</div>
+					</br>
+					<div class="form-group">
+
+						<input type="password" class="form-control" id="pass"
+							name="password" placeholder="Inserisci Password">
+
+					</div>
+					
+					<button class="loginButton" type="submit" value="Login" name="pulsante">Login</button>
+
+				</form>
+			</div>
+		</div>
 </body>
 <html>
