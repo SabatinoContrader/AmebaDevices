@@ -29,7 +29,7 @@
 	<%} %>
 	</table>
 	<h2>Quale floor vuoi modificare?</h2>
-	<form action="Floor" method="post">
+	<form action="Floor?operation=sendDataForUpdate&buildingId=<%=request.getParameter("buildingId")%>" method="post">
 	<select id="id" name="floorid">
 	<% for (int i=0; i < floors.size(); i++) { %>
   		<option value="<%=floors.get(i).getId()%>"><%=floors.get(i).getId()%></option>
