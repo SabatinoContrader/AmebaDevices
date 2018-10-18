@@ -18,17 +18,17 @@
   				</a> 
   			</li>
   			<li>
-  				<a href="RoomServlet?richiesta=ReadRoom">
+  				<a href="RoomServlet?richiesta=ReadRoom&floorId=<%=floorId%>">
   				Visualizza rooms
   				</a>
   			</li>
   			<li> 
-  				<a href="RoomServlet?richiesta=update">
+  				<a href="RoomServlet?richiesta=update&floorId=<%=floorId%>">
   				Modifica room
   				</a>
   			</li>
   			<li>
-				<a href="RoomServlet?richiesta=DeleteForm">
+				<a href="RoomServlet?richiesta=DeleteForm&floorId=<%=floorId%>">
   				Elimina room
   				</a>
   			</li>

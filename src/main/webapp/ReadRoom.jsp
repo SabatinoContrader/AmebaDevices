@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 
     pageEncoding="ISO-8859-1" %>
-
 <%@ page import="com.virtualpairprogrammers.model.Room"%>
-
-<%@ page import="java.util.*" %>
-
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 
 <html>
@@ -19,7 +17,7 @@
 </head>
 
 <body>
-<form action="RoomServlet" method="post">
+
 	<h2>Rooms</h2>
 
 		<table class="table">
@@ -47,12 +45,14 @@
 					<%for (Room room : rooms) { %>
 
 						<tr>
-
+						
+							<td align="center"> <%=room.getId() %>
+							
 							<td align="center"><%= room.getNomeRoom()%></td>
 
 							<td align="center"><%=room.getDescrizione() %>
 
-							<td align="center"> <%=room.getId() %>
+							<td align="center"> <%=room.getIdFloor() %>
 
 					
 
@@ -62,7 +62,7 @@
 		<% }%>
 		</table>
 		
-		<a href="RoomServlet?richiesta=home">Torna alla Home </a>
+		<a href="RoomServlet?richiesta=home&floorId=<%=request.getParameter("floorId")%>">Torna alla Home </a>
 
 
 </body>

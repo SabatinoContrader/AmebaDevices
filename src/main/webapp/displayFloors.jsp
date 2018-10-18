@@ -15,7 +15,7 @@
 <body>
 	<h1>Questa è la jsp che ti visualizzare tutti i floor relativi al building <%=request.getAttribute("buildingId") %></h1>
 	<table>
-	<%
+	<% 
 										List<Floor> floors = (List<Floor>) request.getAttribute("floors");
 
 										for (int i=0; i < floors.size(); i++) {

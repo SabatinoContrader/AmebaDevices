@@ -2,8 +2,8 @@ package com.virtualpairprogrammers.model;
 
 import org.jdom2.Element;
 
-public class Room{
-	int id;
+public class Room implements Buildable{
+	String id;
 	String nomeRoom,descrizione;
 	private String idfloor;
 	
@@ -48,12 +48,18 @@ public class Room{
 
 	}
 	
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
+	}
+
+	@Override
+	public Element getElement() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

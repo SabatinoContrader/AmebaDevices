@@ -19,16 +19,13 @@ import com.virtualpairprogrammers.service.RoomService;
  */
 public class RoomServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private List<Room> rooms;
     private int floorId;
-    RoomService roomService;
     
     /**
      * @see HttpServlet#HttpServlet()
      */
     public RoomServlet() {
         super();
-        roomService = new RoomService();
     }
 
 	/**
@@ -38,19 +35,17 @@ public class RoomServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		//HttpSession session=request.getSession(true);
-		String floorId = request.getParameter("floorId");
+		int floorId =Integer.parseInt(request.getParameter("floorId"));
 		System.out.println(floorId);
 		String choice = request.getParameter("richiesta");
-		//RoomService fs = new RoomService();
+		RoomService fs = new RoomService();
 		//request.setAttribute("floorId",String.valueOf(floorId));
 		//List <Room> listaPerFloor = new ArrayList<>();
-
 		//listaPerFloor = fs.getAllByFloor(floorId);
-
 		//request.setAttribute("rooms", listaPerFloor);
-		//RoomService roomService = new RoomService();
-		//List<Room> rooms = roomService.getAllByRoom();
-		//System.out.println(choice);
+		 RoomService roomService = new RoomService();
+		 List<Room> rooms = roomService.getAllByRoom();
+		 System.out.println(choice);
 		
 
         	switch (choice) {
@@ -61,25 +56,26 @@ public class RoomServlet extends HttpServlet {
         	
             	String nome = (String) request.getParameter("nome");
             	String descrizione = (String) request.getParameter("description");
+            	String id2 = (String) request.getAttribute("floorId");
             	RoomService newRoomService = new RoomService();
 
     			Room f = new Room();
     			f.setNomeRoom(nome);
     			f.setDescrizione(descrizione);
-    			f.setIdFloor(floorId);
+    			f.setIdFloor(id2);
     			newRoomService.insertRoom(f);
     			getServletContext().getRequestDispatcher("/RoomHome.jsp").forward(request,response);
 
             	break;
             	
-        	/*case "ReadRoom":
+        	case "ReadRoom":
         		request.setAttribute("rooms",rooms );
         		getServletContext().getRequestDispatcher("/ReadRoom.jsp").forward(request,response);
         		break;
         		
         	case "Return":
         		getServletContext().getRequestDispatcher("/ReadHome.jsp").forward(request,response);
-        		break;*/
+        		break;
         		
         	case "home":
         		if(this.floorId == 0) {

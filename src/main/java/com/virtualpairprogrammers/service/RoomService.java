@@ -16,14 +16,14 @@ private RoomDAO roomdao;
 
 	}
 
-	public List <Room> getAllByRoom (){
-		return roomdao.getAllByRoom();
-
-	}
-
 	public void delete(int id) {
 		roomdao.delete(id);
 
+	}
+	
+	public List <Room> getAllByRoom (){
+
+		return roomdao.getAllByRoom();
 	}
 	
 	public Room searchRoom(int id) {
