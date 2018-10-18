@@ -7,7 +7,9 @@
 <title>RoomHome</title>
 </head>
 <body>
-
+<jsp:include page="/RoomServlet">
+     	<jsp:param name="richiesta" value="ReadRoom"/>
+     </jsp:include>
      <h2>------- MENU ROOMS -------</h2>
 	 <%String floorId= request.getParameter("floorId"); %>
 	 <p>
@@ -16,11 +18,6 @@
   				<a href="RoomServlet?richiesta=InsertForm&floorId=<%=floorId%>">
   				Inserisci room
   				</a> 
-  			</li>
-  			<li>
-  				<a href="RoomServlet?richiesta=ReadRoom&floorId=<%=floorId%>">
-  				Visualizza rooms
-  				</a>
   			</li>
   			<li> 
   				<a href="RoomServlet?richiesta=update&floorId=<%=floorId%>">

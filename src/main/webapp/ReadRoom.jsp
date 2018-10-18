@@ -62,7 +62,6 @@
 		<% }%>
 		</table>
 		
-		<a href="RoomServlet?richiesta=home&floorId=<%=request.getParameter("floorId")%>">Torna alla Home </a>
 
 
 </body>

@@ -70,7 +70,8 @@ public class RoomServlet extends HttpServlet {
             	
         	case "ReadRoom":
         		request.setAttribute("rooms",rooms );
-        		getServletContext().getRequestDispatcher("/ReadRoom.jsp").forward(request,response);
+        		RequestDispatcher view = request.getRequestDispatcher("/ReadRoom.jsp");      
+    	        view.include(request, response);
         		break;
         		
         	case "Return":
