@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: amebadevicesdb
+-- Host: localhost    Database: amebadevicesdb
 -- ------------------------------------------------------
 -- Server version	8.0.11
 
@@ -16,32 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `room`
+-- Table structure for table `proprieta`
 --
 
-DROP TABLE IF EXISTS `room`;
+DROP TABLE IF EXISTS `proprieta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `room` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(45) DEFAULT NULL,
-  `descrizione` varchar(45) DEFAULT NULL,
-  `idfloor` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `idfloor_idx` (`idfloor`),
-  CONSTRAINT `idfloor` FOREIGN KEY (`idfloor`) REFERENCES `floor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE `proprieta` (
+  `idbuilding` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL,
+  PRIMARY KEY (`idbuilding`,`iduser`),
+  KEY `proprietauser_idx` (`iduser`),
+  CONSTRAINT `proprietabuilding` FOREIGN KEY (`idbuilding`) REFERENCES `building` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `proprietauser` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `room`
+-- Dumping data for table `proprieta`
 --
 
-LOCK TABLES `room` WRITE;
-/*!40000 ALTER TABLE `room` DISABLE KEYS */;
-INSERT INTO `room` VALUES (1,'stanza seminterrato','la mia unica stanza',1);
-/*!40000 ALTER TABLE `room` ENABLE KEYS */;
+LOCK TABLES `proprieta` WRITE;
+/*!40000 ALTER TABLE `proprieta` DISABLE KEYS */;
+INSERT INTO `proprieta` VALUES (1,2);
+/*!40000 ALTER TABLE `proprieta` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-17 16:50:20
+-- Dump completed on 2018-10-18 10:08:13

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: amebadevicesdb
+-- Host: localhost    Database: amebadevicesdb
 -- ------------------------------------------------------
 -- Server version	8.0.11
 
@@ -16,32 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `floor`
+-- Table structure for table `thing`
 --
 
-DROP TABLE IF EXISTS `floor`;
+DROP TABLE IF EXISTS `thing`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `floor` (
+CREATE TABLE `thing` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `numUscite` int(11) NOT NULL,
   `nome` varchar(45) NOT NULL,
-  `descrizione` varchar(45) NOT NULL,
-  `idbuilding` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `idbuilding_idx` (`idbuilding`),
-  CONSTRAINT `idbuilding` FOREIGN KEY (`idbuilding`) REFERENCES `building` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `floor`
+-- Dumping data for table `thing`
 --
 
-LOCK TABLES `floor` WRITE;
-/*!40000 ALTER TABLE `floor` DISABLE KEYS */;
-INSERT INTO `floor` VALUES (1,'seminterrato','il seminterrato bellissimo',1),(5,'shamalaia','shalalala',1),(7,'supermartina','il floor di super martina',1);
-/*!40000 ALTER TABLE `floor` ENABLE KEYS */;
+LOCK TABLES `thing` WRITE;
+/*!40000 ALTER TABLE `thing` DISABLE KEYS */;
+INSERT INTO `thing` VALUES (1,0,'Martin Luther Thing'),(2,32,'Martin Luther Thing'),(3,2,'Martin Luther Thing'),(4,4,'Martin Luther Thing'),(5,8,'Martin Luther Thing'),(6,16,'Martin Luther Thing');
+/*!40000 ALTER TABLE `thing` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-17 16:50:20
+-- Dump completed on 2018-10-18 10:08:14

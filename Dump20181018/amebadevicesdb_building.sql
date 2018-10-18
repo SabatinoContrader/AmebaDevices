@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: amebadevicesdb
+-- Host: localhost    Database: amebadevicesdb
 -- ------------------------------------------------------
 -- Server version	8.0.11
 
@@ -16,37 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `item`
+-- Table structure for table `building`
 --
 
-DROP TABLE IF EXISTS `item`;
+DROP TABLE IF EXISTS `building`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `item` (
+CREATE TABLE `building` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `seriale` varchar(45) DEFAULT NULL,
-  `consumo_energetico` int(11) DEFAULT NULL,
-  `idroom` int(11) DEFAULT NULL,
-  `iditemtype` int(11) DEFAULT NULL,
-  `thing` int(11) DEFAULT NULL,
+  `indirizzo` varchar(45) NOT NULL,
+  `interno` int(11) NOT NULL,
+  `citta` varchar(45) NOT NULL,
+  `cap` varchar(5) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `iteminroom_idx` (`idroom`),
-  KEY `typeofitem_idx` (`iditemtype`),
-  KEY `association_idx` (`thing`),
-  CONSTRAINT `association` FOREIGN KEY (`thing`) REFERENCES `thing` (`id`),
-  CONSTRAINT `iteminroom` FOREIGN KEY (`idroom`) REFERENCES `room` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `typeofitem` FOREIGN KEY (`iditemtype`) REFERENCES `itemtype` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `unique_index_aggregate` (`indirizzo`,`interno`,`cap`,`citta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `item`
+-- Dumping data for table `building`
 --
 
-LOCK TABLES `item` WRITE;
-/*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'oozk2',100,1,1,NULL);
-/*!40000 ALTER TABLE `item` ENABLE KEYS */;
+LOCK TABLES `building` WRITE;
+/*!40000 ALTER TABLE `building` DISABLE KEYS */;
+INSERT INTO `building` VALUES (1,'via dei longobardi 9',5,'benevento','00100');
+/*!40000 ALTER TABLE `building` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -58,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-17 16:50:21
+-- Dump completed on 2018-10-18 10:08:12
