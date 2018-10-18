@@ -32,22 +32,13 @@ public class RoomServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		//HttpSession session=request.getSession(true);
 		int floorId =Integer.parseInt(request.getParameter("floorId"));
-		System.out.println(floorId);
+		request.setAttribute("floorId",String.valueOf(floorId));
 		String choice = request.getParameter("richiesta");
 		RoomService fs = new RoomService();
-		//request.setAttribute("floorId",String.valueOf(floorId));
-		//List <Room> listaPerFloor = new ArrayList<>();
-		//listaPerFloor = fs.getAllByFloor(floorId);
-		//request.setAttribute("rooms", listaPerFloor);
-		 RoomService roomService = new RoomService();
-		 List<Room> rooms = roomService.getAllByRoom();
-		 System.out.println(choice);
-		
-
+		List <Room> listaPerFloor = new ArrayList<>();
+		listaPerFloor = fs.getAllByFloor(floorId);
+		request.setAttribute("rooms", listaPerFloor);
         	switch (choice) {
         	case "InsertForm":
         		getServletContext().getRequestDispatcher("/InsertRoom.jsp").forward(request,response);
@@ -69,7 +60,7 @@ public class RoomServlet extends HttpServlet {
             	break;
             	
         	case "ReadRoom":
-        		request.setAttribute("rooms",rooms );
+        		request.setAttribute("rooms",listaPerFloor );
         		RequestDispatcher view = request.getRequestDispatcher("/ReadRoom.jsp");      
     	        view.include(request, response);
         		break;
@@ -85,7 +76,7 @@ public class RoomServlet extends HttpServlet {
         		getServletContext().getRequestDispatcher("/RoomHome.jsp").forward(request,response);
         	break;
         		
-        	/*case "DeleteForm":
+        	case "DeleteForm":
         		getServletContext().getRequestDispatcher("/DeleteForm.jsp").forward(request,response);
         		break;
         	
@@ -97,7 +88,7 @@ public class RoomServlet extends HttpServlet {
         		getServletContext().getRequestDispatcher("/RoomHome.jsp").forward(request,response);
         		break;
         		
-        	case "SearchForm":
+        	/*case "SearchForm":
         		request.setAttribute("rooms",rooms );
         		getServletContext().getRequestDispatcher("/SearchFormRoom.jsp").forward(request,response);
         		break;
@@ -123,23 +114,25 @@ public class RoomServlet extends HttpServlet {
     			
     			getServletContext().getRequestDispatcher("/RoomHome.jsp").forward(request, response);
     			break;
+    			*/
         	case "update":
         		getServletContext().getRequestDispatcher("/UpdateRoom.jsp").forward(request, response);
         		break;
         	case "sendDataForUpdate":
     			String newName = request.getParameter("roomName");
     			String newDescription = request.getParameter("roomDescription");
-    			String roomid = (String) request.getAttribute("roomId");
-    			String floorid=(String) request.getAttribute("floorid");
+    			String roomid = (String) request.getAttribute("roomid");
+    			String floorid=(String) request.getAttribute("floorId");
     			Room newRoom = new Room();
-    			newRoom.setId(floorId);
+    			newRoom.setId(roomid);
     			newRoom.setNomeRoom(newName);
     			newRoom.setDescrizione(newDescription);
     			newRoom.setIdFloor(floorid);
+    			System.out.println("roomid"+roomid+"newName"+newName+"newDescription"+newDescription+"floorid"+floorid);
     			fs.update(newRoom);
     			getServletContext().getRequestDispatcher("/RoomHome.jsp").forward(request, response);
 
-    			break;*/
+    			break;
         	}
 	}
 

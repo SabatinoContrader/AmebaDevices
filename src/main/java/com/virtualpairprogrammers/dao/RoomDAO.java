@@ -21,7 +21,7 @@ public class RoomDAO {
 		String param="";
 		private static final String ALL_ROOM = "select * from room";
 		private static final String UPDATE_ROOM = "update amebadevicesdb.room set nome=? , descrizione=?, idfloor=? where id=?";
-		private static final String INSERT_QUERY = "insert into room (nome, descrizione) values (?,?)";
+		private static final String INSERIMENTO_QUERY = "insert into room (nome, descrizione, idfloor) values (?,?,?)";
 		private static final String DELETE = "delete from amebadevicesdb.room where id = ?";
 		private static final String SEARCH_BY_FLOOR = "select * from room where idfloor = ?";
 		private static final String QUERY_SEARCH  ="select * from amebadevicesdb.room where id=?";
@@ -35,83 +35,23 @@ public class RoomDAO {
 
 			String nomeRoom = f.getNomeRoom();
 			String descrizione = f.getDescrizione();
-			//String floorId= f.getIdFloor();
+			String floorId= f.getIdFloor();
 			Connection c = ConnectionSingleton.getInstance();
 
 			try {
-				PreparedStatement ps = c.prepareStatement(INSERT_QUERY);
+				PreparedStatement ps = c.prepareStatement(INSERIMENTO_QUERY);
 				ps.setString(1, nomeRoom);
 				ps.setString(2, descrizione);
-				//ps.setInt(3,Integer.parseInt(floorId));
+				ps.setInt(3,Integer.parseInt(floorId));
 				if (ps.execute()) return true;
 				
 				return false;
 			} catch (SQLException e) {
-				
 				return false;
 
 			}
-
 		}
 		
-		public List<Room> getAllByRoom(){
-
-
-
-			List <Room> lista = new ArrayList<>();
-
-			Connection c = ConnectionSingleton.getInstance();
-
-			try {
-
-
-
-				Statement statement = c.createStatement();
-
-
-
-		           ResultSet myResult = statement.executeQuery(ALL_ROOM);
-
-
-
-				while (myResult.next()) {
-
-
-
-					Room newRoom = new Room();
-
-					int id=myResult.getInt("id");
-
-					newRoom.setId(String.valueOf(myResult.getInt(1)));
-
-					newRoom.setNomeRoom(myResult.getString(2));
-
-					newRoom.setDescrizione(myResult.getString(3));
-
-					newRoom.setIdFloor(String.valueOf(myResult.getInt(4)));
-
-					newRoom.setId(String.valueOf(id));
-
-					newRoom.setId(String.valueOf(id));
-
-					lista.add(newRoom);
-
-
-
-				}
-
-
-
-			} catch (SQLException e) {
-
-
-				e.printStackTrace();
-
-			}
-
-			return lista;
-
-		}
 		
 		public List<Room> getAllByFloor(int floorId) {
 

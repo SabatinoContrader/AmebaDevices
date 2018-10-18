@@ -9,13 +9,13 @@
 <body>
 <h3>Inserisci i dati della room</h3>
 <h1>Questa è la jsp <%=request.getParameter("floorId") %></h1>
-     <form action="RoomServlet?richiesta=InsertRoom&floorId=<%=request.getParameter("floorId")%>" method="post">
+     <form action="RoomServlet?richiesta=InsertRoom&floorId=<%=request.getAttribute("floorId")%>" method="post">
 
-     	<h4>Nome: <input type = "text" id = "name" name ="nome" placeholder = "inserisci nome"></h4>     	
+     	<h4>Nome: <input type = "text"  name ="nome" placeholder = "inserisci nome"></h4>     	
 
-     	<h4>Descrizione: <input type = "text" id = "desc" name ="description" placeholder = "inserisci la descrizione"></h4>
+     	<h4>Descrizione: <input type = "text"  name ="description" placeholder = "inserisci la descrizione"></h4>
 
-     	<input type="submit" value="Inserisci Room" name="richiesta">
+     	<input type="submit" value="InsertRoom" name="richiesta">
 
      </form>
 

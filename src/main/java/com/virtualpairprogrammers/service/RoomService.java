@@ -21,24 +21,18 @@ private RoomDAO roomdao;
 
 	}
 	
-	public List <Room> getAllByRoom (){
-
-		return roomdao.getAllByRoom();
-	}
-	
 	public Room searchRoom(int id) {
 		return roomdao.searchRoom(id);
 	}
 
 	public void update (Room f) {
-		roomdao.update(f);
+		this.roomdao.update(f);
 
 	}
 
 	
 
 	public boolean insertRoom(Room f) {
-		// TODO Auto-generated method stub
 		return this.roomdao.insertRoom(f);
 	}
 	

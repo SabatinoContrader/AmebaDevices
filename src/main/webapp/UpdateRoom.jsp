@@ -13,23 +13,25 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%String floorId=request.getParameter("floorId"); %>
 	<h1>Questa è la jsp che ti permette di modificare una room. </h1>
-	<h2>Questi sono le room relative ai floor <%=request.getAttribute("roomId") %></h2>
+	<h2>Questi sono le room relative ai floor <%=request.getAttribute("floorId") %></h2>
+	<%System.out.println(floorId); %>
 	<table>
-	<%
-										List<Room> rooms = (List<Room>) request.getAttribute("rooms");
+	<%		List<Room> rooms = (List<Room>) request.getAttribute("rooms");
 
-										for (int i=0; i < rooms.size(); i++) {
-									%><tr>	<td><% out.println(rooms.get(i).getId()); %></td>
-											<td><% out.println(rooms.get(i).getNomeRoom()); %></td>
-											<td><% out.println(rooms.get(i).getDescrizione()); %></td>
-											<td><% out.println(rooms.get(i).getIdFloor()); %></td>
-									</tr>
+					for (int i=0; i < rooms.size(); i++) {
+						%><tr>	
+						<td><% out.println(rooms.get(i).getId()); %></td>
+						<td><% out.println(rooms.get(i).getNomeRoom()); %></td>
+						<td><% out.println(rooms.get(i).getDescrizione()); %></td>
+						<td><% out.println(rooms.get(i).getIdFloor()); %></td>
+						</tr>
 									
 	<%} %>
 	</table>
 	<h2>Quale room vuoi modificare?</h2>
-	<form action="RoomServlet" method="post">
+	<form action="RoomServlet?roomid=<%= request.getParameter("roomid") %>&richiesta=sendDataForUpdate&floorId=<%=request.getParameter("floorId")%>" method="post">
 	<select id="id" name="roomid">
 	<% for (int i=0; i < rooms.size(); i++) { %>
   		<option value="<%=rooms.get(i).getId()%>"><%=rooms.get(i).getId()%></option>
