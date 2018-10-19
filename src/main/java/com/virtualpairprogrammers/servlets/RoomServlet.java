@@ -121,7 +121,7 @@ public class RoomServlet extends HttpServlet {
         	case "sendDataForUpdate":
     			String newName = request.getParameter("roomName");
     			String newDescription = request.getParameter("roomDescription");
-    			String roomid = (String) request.getAttribute("roomid");
+    			String roomid = (String) request.getParameter("roomId");
     			String floorid=(String) request.getAttribute("floorId");
     			Room newRoom = new Room();
     			newRoom.setId(roomid);

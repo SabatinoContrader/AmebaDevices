@@ -32,7 +32,7 @@
 	</table>
 	<h2>Quale room vuoi modificare?</h2>
 	<form action="RoomServlet?roomid=<%= request.getParameter("roomid") %>&richiesta=sendDataForUpdate&floorId=<%=request.getParameter("floorId")%>" method="post">
-	<select id="id" name="roomid">
+	<select id="id" name="roomId">
 	<% for (int i=0; i < rooms.size(); i++) { %>
   		<option value="<%=rooms.get(i).getId()%>"><%=rooms.get(i).getId()%></option>
   	<%} %>
