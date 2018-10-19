@@ -6,13 +6,17 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Customers</title>
+<link rel="stylesheet" href="styles.css">
+	<a href="Customer?mode=Return" class="logout">Indietro</a>
+<jsp:include page="HeaderLogout.jsp"></jsp:include>
 </head>
 <body>
-	<div style="display: flex; align-items: center;">
-		<img src="http://simpleicon.com/wp-content/uploads/multy-user.png"
-			style="width: 5%; padding-right:2%; ">
-	<h2>Customers</h2>
+	<div class="readCustomer">
+		<img src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/user.png"
+			class="imgSuperUser">
+	<h1>Customers</h1>
 	</div>
+	<div class="readTable">
 		<table class="table">
 				<thead>
 					<tr>
@@ -37,7 +41,7 @@
 					</c:forEach>
 				</tbody>
 		</table>
+		</div>
 		</br>
-		<a href="Customer?mode=Return" style="color:black;">Torna alla home</a>
 </body>
 </html>

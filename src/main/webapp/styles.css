@@ -196,6 +196,19 @@ a:hover{
 .insertTable{
 	padding-left: 35%;
 }
+.modifyCustomer{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+    padding-left:6%;
+    }
+.idCustomer{
+	display: flex;
+    flex-direction: inherit;
+    margin: 0 auto;
+    align-items: center;
+}
 .registerButton{
 	    background: #435261 none repeat scroll 0 0;
     border-color: #fefefe;
@@ -208,5 +221,60 @@ a:hover{
 }
 button:hover{
 	color:#59b1e5;
-
+}
+.readCustomer{
+	padding-left:37%; 
+	display: flex;
+	align-items: center;
+}
+.table {
+     background: #34495E;
+    color: #fff;
+    border-radius: .4em;
+    overflow: hidden;
+      width: 60%;
+}
+.table tr {
+    border-color: #46637f;
+    font-size:large;
+}
+.table th {
+    color: #dd5;
+}
+.readTable{
+	padding-left:30%;
+}
+.modifyButton{
+	background: #435261 none repeat scroll 0 0;
+    border-color: #fefefe;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    width: 20%;
+    height: 5%;
+    margin-top:2%;
+    margin-left: 40%;
+}
+.deleteCustomer{
+	 padding-left:30%; 
+	display: flex;
+	align-items: center;
+}
+.delete{
+	 display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+    margin-right:5%;
+}
+.deleteButton{
+		background: #435261 none repeat scroll 0 0;
+    border-color: #fefefe;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 170%;
+    width: 58%;
+    height: 5%;
+    margin-top:4%;
+    margin-left: 20%;
 }
