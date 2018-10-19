@@ -128,7 +128,6 @@ public class RoomServlet extends HttpServlet {
     			newRoom.setNomeRoom(newName);
     			newRoom.setDescrizione(newDescription);
     			newRoom.setIdFloor(floorid);
-    			System.out.println("roomid"+roomid+"newName"+newName+"newDescription"+newDescription+"floorid"+floorid);
     			fs.update(newRoom);
     			getServletContext().getRequestDispatcher("/RoomHome.jsp").forward(request, response);
 

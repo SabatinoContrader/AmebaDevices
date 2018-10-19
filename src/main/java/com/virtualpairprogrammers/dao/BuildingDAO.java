@@ -158,7 +158,7 @@ public class BuildingDAO {
 				buildingId = res.getInt(1);
 				PreparedStatement second = connection.prepareStatement(deletePropr);
 				second.setInt(1, buildingId);
-				if (second.execute()) {
+				if (!second.execute()) {
 					PreparedStatement statement = connection.prepareStatement(deleteById);
 					statement.setInt(1, buildingId);
 					statement.execute();
