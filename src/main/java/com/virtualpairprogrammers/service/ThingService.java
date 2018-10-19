@@ -34,6 +34,10 @@ public class ThingService {
 	public void delete(int id) {
 		thingDAO.delete(id);
 	}
+
+	public void update(Thing newThing) {
+		this.thingDAO.update(newThing);
+	}
 	
 	
 

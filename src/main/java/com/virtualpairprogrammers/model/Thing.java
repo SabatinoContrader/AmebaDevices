@@ -29,6 +29,10 @@ public class Thing {
 		items = new Item[numUscite];
 	}
 
+	public Thing() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int addItem(Item item) {
 		int pos = -1;
 		for (int i = 0 ; i < items.length; i++) {

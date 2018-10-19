@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.virtualpairprogrammers.model.Building;
+import com.virtualpairprogrammers.model.Room;
 import com.virtualpairprogrammers.model.Thing;
 import com.virtualpairprogrammers.utils.ConnectionSingleton;
 
@@ -16,6 +17,7 @@ public class ThingDAO {
 	private static final String INSERT_QUERY = "insert into thing (nome, numUscite) values (?,?)";
 	private static final String DELETE_QUERY = "delete from thing where id = ?";
 	private final String QUERY_READ = "select * from thing";
+	private static final String UPDATE_THING = "update amebadevicesdb.thing set numUscite=? , nome=? where id=?";
 	
 	public List<Thing> getAllItem () {
         List<Thing> items = new ArrayList<>();
@@ -63,5 +65,25 @@ public class ThingDAO {
 		}
 		
 	}
+	
+	public void update (Thing newThing ) {
+		Connection c = ConnectionSingleton.getInstance();
+
+		try {
+
+			PreparedStatement ps = c.prepareStatement(UPDATE_THING);
+			ps.setString(1, newThing.getId());
+			ps.setInt(2, newThing.getNumUscite());
+			ps.setString(3, newThing.getNome());
+			ps.execute();
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		}
+
+	}
+
 
 }

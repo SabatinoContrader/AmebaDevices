@@ -66,6 +66,22 @@ public class ThingManager extends HttpServlet {
     		thingService.delete(idThing);
     		getServletContext().getRequestDispatcher("/thingManager.jsp").forward(request,response);
     		break;
+    	case "update":
+    		getServletContext().getRequestDispatcher("/UpdateThing.jsp").forward(request, response);
+    		break;
+    	
+    	case "sendDataForUpdate":
+			int numberPort =Integer.parseInt(request.getParameter("numberPort"));
+			String nameThing = request.getParameter("nameThing");
+			String roomid = (String) request.getParameter("thingId");
+			Thing newThing = new Thing();
+			newThing.setId(roomid);
+			newThing.setNumUscite(numberPort);
+			newThing.setNome(nameThing);
+			ts.update(newThing);
+			getServletContext().getRequestDispatcher("/thingManager.jsp").forward(request, response);
+
+			break;
     	
     	case "ReadThing":
     		request.setAttribute("things",listaPerBuilding);
