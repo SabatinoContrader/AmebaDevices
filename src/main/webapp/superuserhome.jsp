@@ -27,6 +27,13 @@
 			</a></br>	
 		</div>
 		
+		<div style="display: flex; align-items: center;">
+			<img src="http://simpleicon.com/wp-content/uploads/computer-64x64.png"style="width: 5%; padding-right:2%;"> 
+			<a href="Thing?operation=home"style="font-size: x-large; text-decoration: none">
+			Gestione Thing
+			</a></br>	
+		</div>
+		
 		
 	<!--  <div style="background-color: black" width="195">
 		<img

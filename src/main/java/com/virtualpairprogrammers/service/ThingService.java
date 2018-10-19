@@ -19,16 +19,20 @@ public class ThingService {
 		
 	}
 	
-	public List<Thing> getAllByBuilding(Building b) {
-		return thingDAO.getAllByBuilding(b);
+	public List<Thing> getAllItem(){
+		return this.thingDAO.getAllItem();
+	}
+	
+	/*public List<Thing> getAllByBuilding(int buildingId) {
+		return thingDAO.getAllByBuilding(buildingId);
 	}
 	
 	public Thing searchThing(String id) {
 		return thingDAO.searchThing(id);
-	}
+	}*/
 	
-	public void delete(Thing t) {
-		thingDAO.delete(t);
+	public void delete(int id) {
+		thingDAO.delete(id);
 	}
 	
 	

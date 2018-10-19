@@ -15,6 +15,11 @@ public class Thing {
 		this.numUscite = numUscite;
 		items = new Item[numUscite];
 	}
+	
+	public Thing(int numUscite, String nome) {
+		this.numUscite=numUscite;
+		this.nome=nome;
+	}
 
 	public Thing(String id, String nome, int numUscite) {
 		super();
