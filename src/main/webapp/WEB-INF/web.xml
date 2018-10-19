@@ -121,4 +121,14 @@
     <servlet-name>GestioneCustomer</servlet-name>
     <url-pattern>/GestioneCustomer</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FileGenerator</display-name>
+    <servlet-name>FileGenerator</servlet-name>
+    <servlet-class>com.virtualpairprogrammers.servlets.FileGenerator</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileGenerator</servlet-name>
+    <url-pattern>/FileGenerator</url-pattern>
+  </servlet-mapping>
 </web-app>

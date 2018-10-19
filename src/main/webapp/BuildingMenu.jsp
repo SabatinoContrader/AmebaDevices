@@ -32,6 +32,12 @@
   				Elimina building
   				</a>
   			</li>
+  			<li>
+				<a href="Building?richiesta=EliminaBuilding">
+  				Elimina building
+  				</a>
+  			</li>
+  			
 		</ol> 
 	</p>
 

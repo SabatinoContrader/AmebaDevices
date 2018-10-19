@@ -2,6 +2,7 @@ package com.virtualpairprogrammers.model;
 
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -13,7 +14,6 @@ import org.jdom2.Attribute;
 import org.jdom2.Element;
 
 import com.virtualpairprogrammers.service.FloorService;
-import com.virtualpairprogrammers.service.ItemService;
 import com.virtualpairprogrammers.service.RoomService;
 
 
@@ -177,8 +177,6 @@ public class Building implements Buildable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	  
-		
 		return csvPrinter;
 	}
 	
