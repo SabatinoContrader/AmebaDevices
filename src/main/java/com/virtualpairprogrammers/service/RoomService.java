@@ -30,8 +30,6 @@ private RoomDAO roomdao;
 
 	}
 
-	
-
 	public boolean insertRoom(Room f) {
 		return this.roomdao.insertRoom(f);
 	}

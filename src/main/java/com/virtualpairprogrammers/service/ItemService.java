@@ -33,9 +33,14 @@ public class ItemService {
 		itemDao.deleteItem(id);
 	}
 
+	/*
 	public List<Item> getByBuilding(int buildingId) {
 		return itemDao.getByBuilding(buildingId);
 	}
-	
+
+	public List<Item> getAllByRoom(int id) {
+		return itemDao.getAllByRoom(id);
+	}
+	*/
 
 }

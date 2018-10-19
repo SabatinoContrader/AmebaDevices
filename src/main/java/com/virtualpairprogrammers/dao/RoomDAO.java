@@ -67,7 +67,7 @@ public class RoomDAO {
 				while (myResult.next()) {
 
 					Room newRoom = new Room();
-					newRoom.setId(String.valueOf(myResult.getInt(1)));
+					newRoom.setId(myResult.getInt(1));
 					newRoom.setNomeRoom(myResult.getString(2));
 					newRoom.setDescrizione(myResult.getString(3));
 					newRoom.setIdFloor(String.valueOf(myResult.getInt(4)));

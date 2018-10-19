@@ -1,9 +1,12 @@
 body {
 	margin: 0;
-	padding: 0px;
 	font: 10px normal Verdana, Arial, Helvetica, sans-serif;
 	background: #1d1d1d;
 	color: #fff;
+	background-image:url("http://www.ipvision.it/wp-content/uploads/2016/01/wallpaper-blu-scuro.jpg"); 
+	background-repeat:no-repeat;
+	background-position:center; 
+	padding:10px;
 }
 
 #books {
@@ -117,4 +120,93 @@ text-align: center;
 background:#111111 none repeat scroll 0 0;
 float:left;
 width:100%;
+}
+.login-form {
+	padding-left: 43%;
+	padding-top: 13%;
+	
+}
+.login-form .form-control {
+  border-radius: 4px;
+  height:5%;
+}
+.login-text{
+	font-size: 34px; 
+    padding-left: 5%;
+}
+.insert{
+	padding-left:5%;
+	font-size: small;
+}
+.loginButton{
+	background: #435261 none repeat scroll 0 0;
+    border-color: #fefefe;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    width: 10%;
+    height: 5%;
+    margin-top:2%;
+    margin-left: 6%;
+}
+.customerLink{
+	display: block;
+    height: 25%;
+    background: #435261 none repeat scroll 0 0;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+    border-color: #fefefe;
+    font-weight: bold;
+    font-size: x-large; 
+    text-decoration: none;
+    color:white;
+}
+.insertDiv{
+	display: flex;
+	align-items: center;
+	padding-left:30%;
+	padding-bottom:2%;
+}
+
+.imgSuperUser{
+	width: 5%; 
+	padding-right:2%;
+}
+a:hover{
+	color:#59b1e5;
+}
+.logout{
+	text-decoration: none;
+    color: #59b1e5;
+    font-size: large;
+}
+.logoutDisplay{
+	text-align: right;
+}
+.customerForm .form-control{
+	  border-radius: 4px;
+  height:5%;
+}
+.insertCustomer{
+	padding-left:25%; 
+	display: flex;
+	align-items: center;
+}
+.insertTable{
+	padding-left: 35%;
+}
+.registerButton{
+	    background: #435261 none repeat scroll 0 0;
+    border-color: #fefefe;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 18px;
+    width: 12%;
+    margin-top: 2%;
+    margin-left: 40%;
+}
+button:hover{
+	color:#59b1e5;
+
 }

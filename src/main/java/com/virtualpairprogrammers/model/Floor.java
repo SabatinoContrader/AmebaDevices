@@ -1,6 +1,12 @@
 package com.virtualpairprogrammers.model;
 
+import java.util.List;
+
+import org.jdom2.Attribute;
 import org.jdom2.Element;
+
+import com.virtualpairprogrammers.service.FloorService;
+import com.virtualpairprogrammers.service.RoomService;
 
 public class Floor implements Buildable {
 
@@ -55,10 +61,24 @@ public class Floor implements Buildable {
 
 	@Override
 	public Element getElement() {
-		// TODO Auto-generated method stub
-		// Metodo per l'xml
+		Element toReturn =new Element(this.getClass().getSimpleName().toLowerCase());
+		toReturn.setAttribute(new Attribute("id", this.getId()));
+		toReturn.addContent(new Element("nome").setText(this.getNomeFloor()));
+		toReturn.addContent(new Element("descrizione").setText(this.getDescrizione()));	
+		Element roomsFather = new Element("rooms");
+		Element roomsElement;
+		RoomService rs = new RoomService();
+		if (Integer.parseInt(id)!= 0) {
+		List <Room> rooms = rs.getAllByFloor((Integer.parseInt(id)));
+		for (int i=0 ; i < rooms.size(); i++) {
+			roomsElement = rooms.get(i).getElement();
+			roomsFather.addContent(roomsElement);
+		} 
 		
-		return null;
+		toReturn.addContent(roomsFather);
+		}
+		return toReturn;
+		
 	}
 
 }

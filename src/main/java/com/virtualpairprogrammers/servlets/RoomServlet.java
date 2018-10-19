@@ -124,7 +124,7 @@ public class RoomServlet extends HttpServlet {
     			String roomid = (String) request.getParameter("roomId");
     			String floorid=(String) request.getAttribute("floorId");
     			Room newRoom = new Room();
-    			newRoom.setId(roomid);
+    			newRoom.setId(Integer.parseInt(roomid));
     			newRoom.setNomeRoom(newName);
     			newRoom.setDescrizione(newDescription);
     			newRoom.setIdFloor(floorid);
