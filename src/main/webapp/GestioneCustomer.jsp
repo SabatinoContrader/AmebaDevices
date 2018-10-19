@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="styles.css">
 <meta charset="ISO-8859-1">
 <title>Customer Home</title>
+<a href="superuserhome.jsp" class="logout">Indietro</a>
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 </head>
 <body>
