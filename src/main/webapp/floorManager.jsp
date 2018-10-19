@@ -30,6 +30,16 @@
   				Elimina floor
   				</a>
   			</li>
+  			<li>
+				<a href="FileGenerator?type=xml&buildingId=<%=buildingId%>">
+  				Genera XML
+  				</a>
+  			</li>
+  			<li>
+				<a href="FileGenerator?type=csv&buildingId=<%=buildingId%>">
+  				Genera CSV
+  				</a>
+  			</li>
 		</ol> 
 	</p>
 	
