@@ -63,6 +63,7 @@ public class Downloader extends HttpServlet {
 		b = bs.findByPrimaryKey(buildingId);
 		switch (type) {
 		case "xml":
+			//xml 
 			System.out.println("entro");
 			Document doc = new Document();
 			System.out.println(b.getIndirizzo());
