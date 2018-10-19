@@ -22,18 +22,17 @@
 			Gestione Tipologia Item 
 			</a></br>	
 		</div>
-		<div clasS="menuDiv">
+		<div class="menuDiv">
 			<img src="https://media.flixcar.com/f360cdn/HP-393556295-c03905319.png"class="imgSuperUser"> 
 			<a href="Customer?mode=InsertForm" class="customerLink">
 			Gestione Item
 			</a></br>	
 		</div>
-		
-		<div style="display: flex; align-items: center;">
-			<img src="http://simpleicon.com/wp-content/uploads/computer-64x64.png"style="width: 5%; padding-right:2%;"> 
-			<a href="Thing?operation=home"style="font-size: x-large; text-decoration: none">
+		<div class="menuDiv">
+			<img src="https://cdn3.iconfinder.com/data/icons/databases-2-2/512/data_cube-512.png"class="imgSuperUser"> 
+			<a href="Thing?operation=home" class="customerLink">
 			Gestione Thing
-			</a></br>	
+			</a>	
 		</div>
 		
 		
