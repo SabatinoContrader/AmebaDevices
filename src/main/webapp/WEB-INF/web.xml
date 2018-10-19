@@ -131,4 +131,14 @@
     <servlet-name>FileGenerator</servlet-name>
     <url-pattern>/FileGenerator</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Downloader</display-name>
+    <servlet-name>Downloader</servlet-name>
+    <servlet-class>com.virtualpairprogrammers.servlets.Downloader</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Downloader</servlet-name>
+    <url-pattern>/Downloader</url-pattern>
+  </servlet-mapping>
 </web-app>

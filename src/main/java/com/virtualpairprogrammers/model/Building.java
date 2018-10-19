@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -116,7 +117,7 @@ public class Building implements Buildable {
 		
 	}
 	
-	public CSVPrinter buildCSV() {
+	public String buildCSV() {
 		String [] header = {"edificio","interno","citta","cap","floor","", "room", "item"};
 		// la struttura del file è fissa. Abbiamo 8 colonne diverse. La prima contiene l'indirizzo dell'edificio
 		// la seconda colonna è relativa all'interno
@@ -130,8 +131,9 @@ public class Building implements Buildable {
 		// rispetto alle precedenti (es info sul floor solo nella riga relativa alla prima room di quel floor)
 		BufferedWriter bw;
 		CSVPrinter csvPrinter = null;
+		String path = new File(this.indirizzo + " interno "+this.interno+".csv").getAbsolutePath();
 		try {
-			bw = Files.newBufferedWriter(Paths.get(this.indirizzo+" interno "+this.interno+".csv"));
+			bw = Files.newBufferedWriter(Paths.get(path));
 			csvPrinter = new CSVPrinter(bw, CSVFormat.DEFAULT.withHeader(header)); 
 			csvPrinter.flush();
 			
@@ -177,7 +179,7 @@ public class Building implements Buildable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return csvPrinter;
+		return path;
 	}
 	
 	
