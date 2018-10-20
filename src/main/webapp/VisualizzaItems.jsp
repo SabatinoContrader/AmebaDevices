@@ -6,11 +6,21 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Items</title>
+<link rel="stylesheet" href="styles.css">
+	<a href="ItemMenu.jsp" class="logout">Indietro</a>
+<jsp:include page="HeaderLogout.jsp"></jsp:include>
 </head>
 <body>
-<p>------------ Items ---------------</p>
-<p>
-	<table style="width:100%">
+<div class="readCustomer">
+		<img src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/notes.png"
+			class="itemSizeImg">
+	<h1>I tuoi Items</h1>
+	
+	</div>
+	
+<div class="itemForm">
+		<table class="table">
+		<thead>
 		<tr>
     		<th>id</th>
     		<th>Categoria</th> 
@@ -18,19 +28,20 @@
     		<th>Modello</th>
     		<th>Descrizione</th>
   		</tr>
+  		</thead>
+  		<tbody>
 		<c:forEach items="${items}" var="item">
-    		<tr>
-    			<td><c:out value = "${item.getId()}"/></td>      
-        		<td><c:out value = "${item.getCategoria()}"/></td>
-        		<td><c:out value = "${item.getMarca()}"/></td>
-        		<td><c:out value = "${item.getModello()}"/></td>
-        		<td><c:out value = "${item.getDescrizione()}"/></td>
+			<tr>
+    			<td align="center">${item.getId()}</td>      
+        		<td align="center">${item.getCategoria()}</td>
+        		<td align="center">${item.getMarca()}</td>
+        		<td align="center">${item.getModello()}</td>
+        		<td align="center">${item.getDescrizione()}</td>
     		</tr>
 		</c:forEach>
+		</tbody>
 	</table>
-</p>
-<p>
-	<a href="ItemMenu?mode=MainMenu">Torna indietro </a>
-</p>
+	</div>
+
 </body>
 </html>

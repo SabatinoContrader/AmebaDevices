@@ -149,6 +149,7 @@ width:100%;
     margin-top:2%;
     margin-left: 6%;
 }
+
 .customerLink{
 	display: block;
     height: 25%;
@@ -176,6 +177,10 @@ width:100%;
 }
 .imgSuperUser{
 	width: 5%; 
+	padding-right:2%;
+}
+.imgThing{
+	width: 18%; 
 	padding-right:2%;
 }
 .imgItem{
@@ -240,6 +245,11 @@ button:hover{
 	display: flex;
 	align-items: center;
 }
+.readThing{
+	padding-left:30%; 
+	display: flex;
+	align-items: center;
+}
 .table {
      background: #34495E;
     color: #fff;
@@ -290,4 +300,46 @@ button:hover{
     height: 5%;
     margin-top:4%;
     margin-left: 20%;
+}
+.textFont{
+	font: 400 13.3333px Arial;
+}
+.censisciButton{
+	background: #435261 none repeat scroll 0 0;
+    border-color: #fefefe;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    width: 10%;
+    height: 5%;
+    margin-top:2%;
+    margin-left: 40%;
+}
+.itemSizeImg{
+	 width: 13%;
+    padding-right: 2%;	
+}
+.itemForm{
+	padding-left: 40%;
+}
+
+.thingDiv{
+	display:flex;
+	align-items:center;
+    padding-top: 2%;
+}
+.things{
+	font-size: xx-large;
+    font: 3em -webkit-xxx-large Georgia, 'Times New Roman', Times, serif;
+    padding-left: 20%;
+    margin-bottom: -4%;
+}
+.thingTable{
+	width:40%;
+	margin-left:5%;
+}
+.updateThing{
+	padding-left:5%; 
+	display: flex;
+	align-items: center;
 }

@@ -18,22 +18,22 @@
 	</div>
 	<div class="itemDiv">
 	<div class="insertDiv">
-		<img src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/add-user.png"
+		<img src="http://www.aa24.it/wp-content/uploads/2015/03/1426101814_add-notes.png"
 			class="imgSuperUser" > <a href="ItemMenu?mode=censimentoForm"
 			class="customerLink">Censimento item </a>
 	</div>
 	<div class="insertDiv">
-		<img src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/add-user.png"
+		<img src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/notes.png"
 			class="imgSuperUser" > <a href="ItemMenu?mode=visualizzaItem"
 			class="customerLink">Visualizza items </a>
 	</div>
 	<div class="insertDiv">
-		<img src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/add-user.png"
+		<img src="http://icongal.com/gallery/image/43791/edit_notes_delete.png"
 			class="imgSuperUser" > <a href="ItemMenu?mode=ModificaForm"
 			class="customerLink">Modifica item </a>
 	</div>
 	<div class="insertDiv">
-		<img src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/add-user.png"
+		<img src="https://www.shareicon.net/data/512x512/2015/05/10/36482_delete_512x512.png"
 			class="imgSuperUser" > <a href="ItemMenu?mode=EliminaForm"
 			class="customerLink">Elimina item </a>
 	</div>
