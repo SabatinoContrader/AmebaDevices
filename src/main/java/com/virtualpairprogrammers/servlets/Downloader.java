@@ -72,6 +72,7 @@ public class Downloader extends HttpServlet {
 			x.setFormat(Format.getPrettyFormat());
 			try {
 				File file = new File(b.getIndirizzo()+" interno "+b.getInterno()+".xml");
+				System.out.println(file.getAbsolutePath());
 				FileWriter fw = new FileWriter(file);
 				x.output(doc, fw);
 				processRequest(file.getAbsolutePath(), response);
@@ -93,5 +94,5 @@ public class Downloader extends HttpServlet {
             throws ServletException, IOException {
     		doGet(request,response);
     }
-
+    
 }
