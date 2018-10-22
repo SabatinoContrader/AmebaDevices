@@ -10,19 +10,24 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Read Floors</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-	<h1>Questa è la jsp che ti visualizzare tutti i floor relativi al building <%=request.getAttribute("buildingId") %></h1>
-	<table>
+
+	<table class="thingTable table" style="margin-top:-15%;">
+	<tr><th>Id: </th>
+	<th>Nome: </th>
+	<th>Descrizione: </th>
+	<th>IdBuilding: </th></tr>
 	<% 
 										List<Floor> floors = (List<Floor>) request.getAttribute("floors");
 
 										for (int i=0; i < floors.size(); i++) {
-									%><tr>	<td><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getId()); %></a></td>
-											<td><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getNomeFloor()); %></a></td>
-											<td><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getDescrizione()); %></a></td>
-											<td><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getIdBuilding()); %></a></td>
+									%><tr>	<td align="center"><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getId()); %></a></td>
+											<td align="center"><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getNomeFloor()); %></a></td>
+											<td align="center"><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getDescrizione()); %></a></td>
+											<td align="center"><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getIdBuilding()); %></a></td>
 									</tr>
 									
 	<%} %>

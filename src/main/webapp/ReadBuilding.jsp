@@ -7,8 +7,7 @@
 <meta charset="ISO-8859-1">
 </head>
 <body>
-<h2>I TUOI BUILDINGS</h2>
-	<table>
+	<table class="thingTable table" style="margin-top:-6%;">
 		<thead>
 			<tr>
 				<th>id</th>
@@ -22,11 +21,11 @@
 		<tbody>
 		<c:forEach var="building" items="${buildings}">
 			<tr>
-				<th><a href="Floor?operation=home&buildingId=${building.buildingId}">${building.buildingId}</a></th>
-				<th><a href="Floor?operation=home&buildingId=${building.buildingId}">${building.indirizzo}</a></th>
-				<th><a href="Floor?operation=home&buildingId=${building.buildingId}">${building.citta}</a></th>
-				<th><a href="Floor?operation=home&buildingId=${building.buildingId}">${building.cap}</a></th>
-				<th><a href="Floor?operation=home&buildingId=${building.buildingId}">${building.interno}</a></th>
+				<td align="center"><a style="text-decoration:none; color:white" href="Floor?operation=home&buildingId=${building.buildingId}">${building.buildingId}</a></td>
+				<td align="center"><a style="text-decoration:none; color:white" href="Floor?operation=home&buildingId=${building.buildingId}">${building.indirizzo}</a></td>
+				<td align="center"><a style="text-decoration:none; color:white" href="Floor?operation=home&buildingId=${building.buildingId}">${building.citta}</a></td>
+				<td align="center"><a style="text-decoration:none; color:white" href="Floor?operation=home&buildingId=${building.buildingId}">${building.cap}</a></td>
+				<td align="center"><a style="text-decoration:none; color:white" href="Floor?operation=home&buildingId=${building.buildingId}">${building.interno}</a></ta>
 			</tr>
 		</c:forEach>
 		</tbody>

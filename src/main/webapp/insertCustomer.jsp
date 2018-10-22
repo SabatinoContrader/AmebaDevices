@@ -14,7 +14,7 @@
 	<div class="insertCustomer">
 		<img
 			src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/add-user.png"
-			style="width: 5%; padding-right: 2%;">
+			class="imgSuperUser">
 		<h1>Inserisci il tuo Customer</h1>
 	</div>
 	<form class="customerForm" action="Customer" method="post">
