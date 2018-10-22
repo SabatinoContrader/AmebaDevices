@@ -24,10 +24,10 @@
 										List<Floor> floors = (List<Floor>) request.getAttribute("floors");
 
 										for (int i=0; i < floors.size(); i++) {
-									%><tr>	<td align="center"><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getId()); %></a></td>
-											<td align="center"><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getNomeFloor()); %></a></td>
-											<td align="center"><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getDescrizione()); %></a></td>
-											<td align="center"><a href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getIdBuilding()); %></a></td>
+									%><tr>	<td align="center"><a style="color:white; text-decoration:none" href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getId()); %></a></td>
+											<td align="center"><a style="color:white; text-decoration:none" href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getNomeFloor()); %></a></td>
+											<td align="center"><a style="color:white; text-decoration:none" href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getDescrizione()); %></a></td>
+											<td align="center"><a style="color:white; text-decoration:none" href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getIdBuilding()); %></a></td>
 									</tr>
 									
 	<%} %>

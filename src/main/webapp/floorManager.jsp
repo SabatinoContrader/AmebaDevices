@@ -24,31 +24,31 @@
 			<div class="insertDiv">
 				<img
 					src="https://png2.kisspng.com/20180509/che/kisspng-computer-icons-building-cube-clip-art-5af29b46688608.6583202015258489024281.png"
-					class="imgThing"> <a
+					class="imgThing"> <a class="customerLink"
 					href="Floor?operation=create&buildingId=<%=buildingId%>">Inserisci Floor </a>
 			</div>
 		<div class="insertDiv">
 				<img
 					src="https://png2.kisspng.com/20180509/che/kisspng-computer-icons-building-cube-clip-art-5af29b46688608.6583202015258489024281.png"
-					class="imgThing"> <a
+					class="imgThing"> <a class="customerLink"
 					href="Floor?operation=update&buildingId=<%=buildingId%>">Modifica Floor </a>
 			</div>
 			<div class="insertDiv">
 				<img
 					src="https://png2.kisspng.com/20180509/che/kisspng-computer-icons-building-cube-clip-art-5af29b46688608.6583202015258489024281.png"
-					class="imgThing"> <a
+					class="imgThing"> <a class="customerLink"
 					href="Floor?operation=delete&buildingId=<%=buildingId%>">Elimina Floor </a>
 			</div>
 				<div class="insertDiv">
 				<img
 					src="https://png2.kisspng.com/20180509/che/kisspng-computer-icons-building-cube-clip-art-5af29b46688608.6583202015258489024281.png"
-					class="imgThing"> <a
+					class="imgThing"> <a class="customerLink"
 					href="Downloader?type=xml&buildingId=<%=buildingId%>">Genera XML </a>
 			</div>
 				<div class="insertDiv">
 				<img
 					src="https://png2.kisspng.com/20180509/che/kisspng-computer-icons-building-cube-clip-art-5af29b46688608.6583202015258489024281.png"
-					class="imgThing"> <a
+					class="imgThing"> <a class="customerLink"
 					href="Downloader?type=csv&buildingId=<%=buildingId%>">Genera CSV </a>
 			</div>
 		</div>
