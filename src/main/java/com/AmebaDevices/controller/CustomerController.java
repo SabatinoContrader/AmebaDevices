@@ -27,7 +27,7 @@ public class CustomerController  {
 	}
 	@RequestMapping(value="/insertForm", method=RequestMethod.GET)
 	public String insertForm(HttpServletRequest request) {
-
+		
 		return "insertCustomer";
 	} 
 
