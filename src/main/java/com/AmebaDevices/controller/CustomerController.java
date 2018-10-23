@@ -29,6 +29,10 @@ public class CustomerController  {
 	public String insertForm(HttpServletRequest request) {
 		return "insertCustomer";
 	} 
+	@RequestMapping(value="/goBackSuper", method=RequestMethod.GET)
+	public String goBackSuper(HttpServletRequest request) {
+		return "superuserhome";
+	}
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public String insert(HttpServletRequest request) {
 		CustomerService customerService = new CustomerService();
@@ -93,10 +97,6 @@ public class CustomerController  {
 		List<Customer> customers = customerService.readAll();
 		request.setAttribute("customers", customers);
 		return "deletecustomer";
-	} 
-	@RequestMapping(value="/menu", method=RequestMethod.GET)
-	public String menu(HttpServletRequest request) {
-		return "GestioneCustomer";
 	} 
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public String delete(HttpServletRequest request) {

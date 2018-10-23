@@ -13,7 +13,7 @@
 	<h1>Seleziona l'operazione che vuoi effettuare</h1>
 		<div class="menuDiv">
 			<img src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/delete-user.png "class="imgSuperUser"> 
-			<a href="/Customer/menu" class="customerLink">
+			<a href="/Customer/goBack" class="customerLink">
 			Gestione Customer 
 			</a></br>
 		</div>
@@ -31,7 +31,7 @@
 		</div>
 		<div class="menuDiv">
 			<img src="https://cdn3.iconfinder.com/data/icons/databases-2-2/512/data_cube-512.png"class="imgSuperUser"> 
-			<a href="Thing?operation=home" class="customerLink">
+			<a href="/Thing/goBack" class="customerLink">
 			Gestione Thing
 			</a>	
 		</div>
