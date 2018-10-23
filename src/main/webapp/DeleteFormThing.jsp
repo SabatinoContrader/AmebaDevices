@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="src/main/resources/static/css/styles.css">
 <a href="thingManager.jsp" class="logout">Indietro</a>
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 <title>Elimina Thing</title>
@@ -17,7 +17,7 @@
 		<h1>Elimina Thing</h1>
 	</div>
 	<div class="delete">
-		<form action="Thing">
+		<form action="Thing/delete">
 			<table >
 			<tr><td><h2>
 					Id Thing</h2></td>
@@ -26,7 +26,7 @@
 				
 		</table>
 				<input hidden type="submit" value="DeleteThing" name="operation">
-				<button class="deleteButton" type="submit" value="DeleteThing" name="operation">DeleteThing</button>
+				<button class="deleteButton" type="submit" >DeleteThing</button>
 		</form>
 	</div>
 </body>

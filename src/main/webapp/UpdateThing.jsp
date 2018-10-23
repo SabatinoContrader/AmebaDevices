@@ -3,7 +3,7 @@
 
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.virtualpairprogrammers.model.Thing"%>
+<%@page import="com.AmebaDevices.model.Thing"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -28,13 +28,13 @@
 		<h1>Modifica Thing</h1>
 	</div>
 	<div class="thingDiv" style="margin-top:-3%">
-		<jsp:include page="/Thing">
+		<jsp:include page="/Thing/read">
 			<jsp:param name="operation" value="ReadThing" />
 		</jsp:include>
 
 		<div class="updateThing">
 			<form
-				action="Thing?thingid=<%=request.getParameter("thingid")%>&operation=sendDataForUpdate"
+				action="Thing/update"
 				method="post">
 				<table>
 					<tr>
@@ -62,7 +62,8 @@
 							placeholder="inserire nome thing"></td>
 					</tr>
 				</table>
-				<button class="deleteButton"type="submit" value="sendDataForUpdate" name="operation">Modifica</button>
+				<input hidden value="<%=request.getParameter("thingid")%>" name="thingid">
+				<button class="deleteButton"type="submit">Modifica</button>
 				<br>
 			</form>
 		</div>
