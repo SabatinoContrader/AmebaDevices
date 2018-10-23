@@ -26,10 +26,6 @@ public class RoomService {
 
 	}
 
-	public Room searchRoom(int id) {
-		return roomdao.searchRoom(id);
-	}
-
 	public void update(Room f) {
 		this.roomdao.update(f);
 

@@ -84,26 +84,6 @@ public class RoomDAO {
 		}
 
 
-		public Room searchRoom(int id) {
-			Connection connection=ConnectionSingleton.getInstance();
-			Room room= null;
-			try {
-				PreparedStatement preparedStatement=connection.prepareStatement(QUERY_SEARCH);
-				preparedStatement.setInt(1, id);
-				ResultSet resultSet=preparedStatement.executeQuery();
-				if(resultSet.next()) {
-		               String nome = resultSet.getString("nome");
-		               String descrizione = resultSet.getString("descrizione");
-		               room=new Room(nome,descrizione);
-		              // room.setId(id);
-				}
-			} catch (SQLException e) {
-				GestoreEccezioni.getInstance().gestisciEccezione(e);
-			}
-			return room;
-		}
-		
-
 		public void update (Room f) {
 			Connection c = ConnectionSingleton.getInstance();
 

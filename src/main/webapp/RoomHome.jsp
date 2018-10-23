@@ -7,54 +7,30 @@
 <title>RoomHome</title>
 </head>
 <body>
-<jsp:include page="/RoomServlet">
+<!--<jsp:include page="/Room/read">
      	<jsp:param name="richiesta" value="ReadRoom"/>
-     </jsp:include>
+     </jsp:include>-->
      <h2>------- MENU ROOMS -------</h2>
 	 <%String floorId= request.getParameter("floorId"); %>
 	 <p>
 		<ol>
   			<li> 
-  				<a href="RoomServlet?richiesta=InsertForm&floorId=<%=floorId%>">
+  				<a href="insertForm">
   				Inserisci room
   				</a> 
   			</li>
   			<li> 
-  				<a href="RoomServlet?richiesta=update&floorId=<%=floorId%>">
+  				<a href="updateForm">
   				Modifica room
   				</a>
   			</li>
   			<li>
-				<a href="RoomServlet?richiesta=DeleteForm&floorId=<%=floorId%>">
+				<a href="deleteForm">
   				Elimina room
   				</a>
   			</li>
 		</ol> 
 	</p>
-<!-- 
-	 <h3>1. Inserisci una room</h3>
-     <form action="RoomServlet" method="get">
-     <input type="submit" value="InsertForm" name="richiesta">
-     </form>
-     
-	 <h3>2. Visualizza tutte le Room</h3>
-     <form action="RoomServlet" method="get">
-     <input type="submit" value="ReadRoom" name="richiesta">
-     </form>
-
-     <h3>3. Elimina una room</h3>
-     <form action="RoomServlet" method="get">
-     <input type="submit" value="DeleteForm" name="richiesta">
-     </form>
-
-     <h3>4. Ricerca di una room</h3>
-     <form action="RoomServlet" method="get">
-     <input type="submit" value="SearchForm" name="richiesta">
-     </form>
-
-     <h3>5.logout<h3>
-     <form action="Logout" method="post">
-     <input type="submit" value="Logout" name="Logout">
-     </form>-->
+<input hidden value=<%=request.getAttribute("floorId")%> >
  </body>
  </html>
