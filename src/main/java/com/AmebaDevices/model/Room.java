@@ -6,6 +6,7 @@ import org.jdom2.Attribute;
 import org.jdom2.Element;
 
 
+
 public class Room implements Buildable{
 	private int id;
 	private String nomeRoom;
