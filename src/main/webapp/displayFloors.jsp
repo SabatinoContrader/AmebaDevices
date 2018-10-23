@@ -10,8 +10,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Read Floors</title>
-<link rel="stylesheet" href="styles.css">
+<title>I tuoi Floors</title>
+<link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
 </head>
 <body>
 

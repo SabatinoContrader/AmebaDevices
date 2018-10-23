@@ -39,7 +39,7 @@
     </floor>
     <floor id="8">
       <nome>Attico</nome>
-      <descrizione>il mio superattico</descrizione>
+      <descrizione>grandissimo attico</descrizione>
       <rooms>
         <room id="2">
           <nome>cielo rosa</nome>

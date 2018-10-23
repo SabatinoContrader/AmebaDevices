@@ -8,12 +8,14 @@
 
 <!DOCTYPE html>
 <html>
+<link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
+
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Questa � la jsp che ti permette di cancellare un floor :/</h1>
+	<h1>Elimina un floor:</h1>
 	<h2>Questi sono i floor relativi al building <%=request.getAttribute("buildingId") %></h2>
 	<table>
 	<%

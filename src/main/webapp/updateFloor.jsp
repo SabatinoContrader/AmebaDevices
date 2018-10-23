@@ -11,9 +11,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
+
 </head>
 <body>
-	<h1>Questa � la jsp che ti permette di modificare un floor. Usala con cautela</h1>
+	<h1>Questa pagina ti permette di modificare un floor. Usala con cautela</h1>
 	<h2>Questi sono i floor relativi al building <%=request.getAttribute("buildingId") %></h2>
 	<table>
 	<%
