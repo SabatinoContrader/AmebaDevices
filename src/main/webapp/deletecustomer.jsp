@@ -8,7 +8,7 @@
 <meta charset="ISO-8859-1">
 <title>Elimina Customer</title>
 <link rel="stylesheet" href="styles.css">
-<a href="Customer?mode=Return" class="logout">Indietro</a>
+<a href="/Customer/goBack" class="logout">Indietro</a>
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 </head>
 <body>

@@ -12,7 +12,7 @@
 	<h1>Seleziona l'operazione che vuoi effettuare</h1>
 		<div class="menuDiv">
 			<img src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/delete-user.png "class="imgSuperUser"> 
-			<a href="GestioneCustomer" class="customerLink">
+			<a href="/Customer/menu" class="customerLink">
 			Gestione Customer 
 			</a></br>
 		</div>

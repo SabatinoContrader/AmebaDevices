@@ -27,10 +27,89 @@ public class CustomerController  {
 	}
 	@RequestMapping(value="/insertForm", method=RequestMethod.GET)
 	public String insertForm(HttpServletRequest request) {
-		
 		return "insertCustomer";
 	} 
-
+	@RequestMapping(value="/insert", method=RequestMethod.POST)
+	public String insert(HttpServletRequest request) {
+		CustomerService customerService = new CustomerService();
+		String nome = request.getParameter("nome");
+		String cognome = request.getParameter("cognome");
+		String data = request.getParameter("dataDiNascita").toString();
+		String email = request.getParameter("email");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		Customer customer = new Customer(nome, cognome, data, email, username, password);
+		customerService.insertCustomer(customer);
+		return "GestioneCustomer";
+	} 
+	
+	@RequestMapping(value="/read", method=RequestMethod.GET)
+	public String read(HttpServletRequest request) {
+		CustomerService customerService = new CustomerService();
+		List<Customer> customers = customerService.readAll();
+		request.setAttribute("customers", customers);
+		return "readCustomers";
+	}
+	
+	@RequestMapping(value="/updateForm", method=RequestMethod.GET)
+	public String updateForm(HttpServletRequest request) {
+		CustomerService customerService = new CustomerService();
+		List<Customer> customers = customerService.readAll();
+		request.setAttribute("customers", customers);
+		return "updateCustomer";
+	} 
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public String update(HttpServletRequest request) {
+		CustomerService customerService = new CustomerService();
+		int id = Integer.parseInt(request.getParameter("idselected"));
+		Customer newcustomer = customerService.searchCustomer(id);
+		System.out.println(request.getParameter("selected"));
+		switch (Integer.parseInt(request.getParameter("selected"))) {
+		case 1:
+			newcustomer.setNome(request.getParameter("value"));
+			break;
+		case 2:
+			newcustomer.setCognome(request.getParameter("value"));
+			break;
+		case 3:
+			newcustomer.setDataNascita(request.getParameter("value"));
+			break;
+		case 4:
+			newcustomer.setUsername(request.getParameter("value"));
+			break;
+		case 5:
+			newcustomer.setPassword(request.getParameter("value"));
+			break;
+		default:
+			break;
+		}
+		customerService.updateCustomer(newcustomer);
+		return "GestioneCustomer";
+	} 
+	
+	@RequestMapping(value="/deleteForm", method=RequestMethod.GET)
+	public String deleteForm(HttpServletRequest request) {
+		CustomerService customerService = new CustomerService();
+		List<Customer> customers = customerService.readAll();
+		request.setAttribute("customers", customers);
+		return "deletecustomer";
+	} 
+	@RequestMapping(value="/menu", method=RequestMethod.GET)
+	public String menu(HttpServletRequest request) {
+		return "GestioneCustomer";
+	} 
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	public String delete(HttpServletRequest request) {
+		CustomerService customerService = new CustomerService();
+		int idDelete = Integer.parseInt(request.getParameter("idselected"));
+		customerService.deleteCustomer(idDelete);
+		return "GestioneCustomer";
+	} 
+	
+	@RequestMapping(value="/goBack", method=RequestMethod.GET)   // cambiare return con goBack
+	public String goBack(HttpServletRequest request) {
+		return "GestioneCustomer";
+	} 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -95,7 +174,6 @@ public class CustomerController  {
 			break;
 		case "DeleteForm":
 			request.setAttribute("customers", customers);
-			System.out.println(customers.size()+"---------------");
 			getServletContext().getRequestDispatcher("/deletecustomer.jsp").forward(request, response);
 			break;
 		case "DeleteDb":

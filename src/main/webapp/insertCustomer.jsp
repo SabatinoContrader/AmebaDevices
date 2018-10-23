@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="styles.css">
 <meta charset="ISO-8859-1">
 <title>Insert Customer</title>
-	<a href="Customer?mode=Return" class="logout">Indietro</a>
+	<a href="/Customer/goback" class="logout">Indietro</a>
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 </head>
 <body>
