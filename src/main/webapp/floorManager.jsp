@@ -14,7 +14,7 @@
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 </head>
 <body>
-	<h1>Floor Menu</h1>
+	<h1>Building Menu</h1>
 <% String buildingId = request.getParameter("buildingId"); %>
 	<h2 class="things">Floor del building con id <%=buildingId%> </h2>
 	 	<div class="thingDiv">
@@ -24,10 +24,10 @@
 	<th>Descrizione: </th>
 	<th>IdBuilding: </th></tr>
 	<% List<Floor> floors = (List<Floor>) request.getAttribute("floors"); for (int i=0; i < floors.size(); i++) { %>
-		<tr>	<td align="center"><a style="color:white; text-decoration:none" href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getId()); %></a></td>
-				<td align="center"><a style="color:white; text-decoration:none" href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getNomeFloor()); %></a></td>
-				<td align="center"><a style="color:white; text-decoration:none" href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getDescrizione()); %></a></td>
-				<td align="center"><a style="color:white; text-decoration:none" href="RoomServlet?richiesta=home&floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getIdBuilding()); %></a></td>
+		<tr>	<td align="center"><a style="color:white; text-decoration:none" href="/Room/menu?floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getId()); %></a></td>
+				<td align="center"><a style="color:white; text-decoration:none" href="/Room/menu?floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getNomeFloor()); %></a></td>
+				<td align="center"><a style="color:white; text-decoration:none" href="/Room/menu?floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getDescrizione()); %></a></td>
+				<td align="center"><a style="color:white; text-decoration:none" href="/Room/menu?floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getIdBuilding()); %></a></td>
 		</tr>								
 	<%}%>
 	</table>

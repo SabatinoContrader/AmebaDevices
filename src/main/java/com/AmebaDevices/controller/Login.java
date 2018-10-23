@@ -1,6 +1,7 @@
 package com.AmebaDevices.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.AmebaDevices.model.Building;
+import com.AmebaDevices.services.BuildingService;
 import com.AmebaDevices.services.LoginService;
 
 @Controller
@@ -36,6 +39,9 @@ public class Login {
 		if (userId == 1) {
 			return "superuserhome";
 		} else if (userId == 2) {
+			BuildingService buildingService = new BuildingService();
+			List <Building> myBuildings = buildingService.getAll((String) request.getSession().getAttribute("username"));
+			request.setAttribute("buildings", myBuildings);
 			return "CustomerHome";
 		} else {
 			return "index";

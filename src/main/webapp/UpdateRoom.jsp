@@ -15,7 +15,7 @@
 </head>
 <body>
 	
-	<h1>Questa è la jsp che ti permette di modificare una room. </h1>
+	<h1>Questa ï¿½ la jsp che ti permette di modificare una room. </h1>
 	<h2>Questi sono le room relative ai floor <%=request.getAttribute("floorId") %></h2>
 	<%System.out.println(floorId); %>
 	<table>
@@ -40,8 +40,9 @@
 	</select>
 	<h3>Inserire nome room: <input type="text" name="roomName" placeholder="inserire nome room"></h3>
 	<h3>Inserire descrizione: <input type="text" name="roomDescription" placeholder="inserire descrizione"></h3>
-	<button type ="submit" value="update" name="richiesta">Modifica</button><br>
-	<input hidden value=<%= request.getParameter("roomid") %> &floorId=<%=request.getParameter("floorId")%>>
+	<button type ="submit" >Modifica</button><br>
+	<input hidden name="roomid" value=<%=request.getParameter("roomid")%>>
+	<input hidden name="floorId" value=<%=request.getParameter("floorId")%>>
 </form>
 </body>
 </html>

@@ -1,14 +1,9 @@
 package com.AmebaDevices.controller;
 
-import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,7 +37,10 @@ public class BuildingController {
 		String citta = request.getParameter("citta");
 		String cap = request.getParameter("cap");
 		Building mynewBuilding = new Building(indirizzo, citta, cap, interno);
+		System.out.println("Called create");
 		this.buildingService.create(username, mynewBuilding);
+		List<Building> buildings = this.buildingService.getAll(username);
+		request.setAttribute("buildings", buildings);
 		return "CustomerHome";
 	}
 
@@ -78,6 +76,8 @@ public class BuildingController {
 		String newcap = request.getParameter("newcap");
 		Building newValues = new Building(newindirizzo, newcitta, newcap, newinterno);
 		this.buildingService.update(building, newValues, username);
+		List<Building> buildings = this.buildingService.getAll(username);
+		request.setAttribute("buildings", buildings);
 		return "CustomerHome";
 	}
 
@@ -95,6 +95,8 @@ public class BuildingController {
 		int toDelete = Integer.parseInt(request.getParameter("idselected"));
 		Building toDestroy = buildingService.findByPrimaryKey(toDelete);
 		this.buildingService.delete(toDestroy, username);
+		List<Building> buildings = this.buildingService.getAll(username);
+		request.setAttribute("buildings", buildings);
 		return "CustomerHome";
 	}
 

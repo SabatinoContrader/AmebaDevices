@@ -15,30 +15,21 @@
 
 <body>
 
-	<h2>Rooms</h2>
+	<h2>Le tue rooms</h2>
 		<table class="table">
 					<tr>
-
 							<th>Id</th>
 							<th>Nome</th>
 							<th>Descrizione</th>
 							<th>IdFloor</th>
-
 					</tr>
-				
-
 					<%for (Room room : rooms) { %>
-
 						<tr>
 							<td align="center"> <%=room.getId() %>
 							<td align="center"><%=room.getNomeRoom()%></td>
 							<td align="center"><%=room.getDescrizione() %>
 							<td align="center"> <%=room.getIdFloor() %>
-
-					
 						</tr>
-	
 		<% }%>
-		</table>
-		
+		</table>	
 </body>

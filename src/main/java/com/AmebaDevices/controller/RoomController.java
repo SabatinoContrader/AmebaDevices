@@ -23,8 +23,7 @@ import com.AmebaDevices.services.RoomService;
 @Controller
 @RequestMapping("/Room")
 public class RoomController {
-    private int floorId;
-    RoomService fs;
+    private RoomService fs;
     
 @Autowired
     public RoomController() {
@@ -34,6 +33,7 @@ public class RoomController {
 
 @RequestMapping(value="/insertForm", method=RequestMethod.GET)
 	public String insertForm(HttpServletRequest request) {
+	String id = (String) request.getAttribute("floorId");
 		return "InsertRoom";
 	}
 
@@ -41,35 +41,40 @@ public class RoomController {
 public String insert(HttpServletRequest request) {
 	String nome = (String) request.getParameter("nome");
 	String descrizione = (String) request.getParameter("description");
-	String id2 = (String) request.getAttribute("floorId");
+	String id = (String) request.getParameter("floorId");
+	System.out.println(nome + " "+descrizione+" "+id);
 	RoomService newRoomService = new RoomService();
-
 	Room f = new Room();
 	f.setNomeRoom(nome);
 	f.setDescrizione(descrizione);
-	f.setIdFloor(id2);
+	f.setIdFloor(id);
 	newRoomService.insertRoom(f);
-	System.out.println(newRoomService);
+	request.setAttribute("floorId", id);
+	List <Room> listaPerFloor = new ArrayList<>();
+	listaPerFloor = fs.getAllByFloor(Integer.parseInt(id));
+	request.setAttribute("rooms", listaPerFloor);
 	return "RoomHome";
 }
 
 @RequestMapping(value = "/menu", method = RequestMethod.GET)
 public String menu(HttpServletRequest request) {
-	return "RoomHome";
-}
-
-@RequestMapping(value = "/read", method = RequestMethod.GET)
-public String read(HttpServletRequest request) {
 	int floorId =Integer.parseInt(request.getParameter("floorId"));
 	request.setAttribute("floorId",String.valueOf(floorId));
 	List <Room> listaPerFloor = new ArrayList<>();
 	listaPerFloor = fs.getAllByFloor(floorId);
 	request.setAttribute("rooms", listaPerFloor);
-	return "ReadRoom";
+	return "RoomHome";
 }
+
+
 
 @RequestMapping(value="/updateForm", method= RequestMethod.GET)
 public String updateForm(HttpServletRequest request) {
+	int floorId =Integer.parseInt(request.getParameter("floorId"));
+	request.setAttribute("floorId",String.valueOf(floorId));
+	List <Room> listaPerFloor = new ArrayList<>();
+	listaPerFloor = fs.getAllByFloor(floorId);
+	request.setAttribute("rooms", listaPerFloor);
 	return "UpdateRoom";
 }
 
@@ -78,27 +83,42 @@ public String update(HttpServletRequest request) {
 	String newName = request.getParameter("roomName");
 	String newDescription = request.getParameter("roomDescription");
 	String roomid = (String) request.getParameter("roomId");
-	String floorid=(String) request.getAttribute("floorId");
+	String floorid=(String) request.getParameter("floorId");
 	Room newRoom = new Room();
 	newRoom.setId(Integer.parseInt(roomid));
 	newRoom.setNomeRoom(newName);
 	newRoom.setDescrizione(newDescription);
 	newRoom.setIdFloor(floorid);
-	fs.update(newRoom);
+	fs.update(newRoom);	
+	List <Room> listaPerFloor = new ArrayList<>();
+	listaPerFloor = fs.getAllByFloor(Integer.parseInt(floorid));
+	request.setAttribute("rooms", listaPerFloor);
+	System.out.println(listaPerFloor.size());
 	return "RoomHome";	
 }
 
 @RequestMapping(value="/deleteForm",method=RequestMethod.GET)
 public String deleteForm(HttpServletRequest request) {
+	int floorId =Integer.parseInt(request.getParameter("floorId"));
+	request.setAttribute("floorId",String.valueOf(floorId));
+	List <Room> listaPerFloor = new ArrayList<>();
+	listaPerFloor = fs.getAllByFloor(floorId);
+	request.setAttribute("rooms", listaPerFloor);
 	return "DeleteForm";
 }
 
 @RequestMapping(value="/delete", method=RequestMethod.POST)
 public String delete(HttpServletRequest request) {
-	int idRoom= Integer.parseInt(request.getParameter("id_room"));
-	//System.out.println(idRoom);
-	RoomService newRoomService2 = new RoomService();
-	newRoomService2.delete(idRoom);
+	String idRoom= request.getParameter("roomid");
+	if (idRoom!= null) System.out.println(idRoom);
+	else System.out.println("idroom is null");
+	String floorId = request.getParameter("floorId");
+	if(floorId!= null) System.out.println(floorId);
+	else System.out.println("floorid is null");
+	RoomService rs = new RoomService();
+	rs.delete(Integer.parseInt(idRoom));
+	List <Room> listaPerFloor = fs.getAllByFloor(Integer.parseInt(floorId));
+	request.setAttribute("rooms", listaPerFloor);
 	return "RoomHome";
 }
 	

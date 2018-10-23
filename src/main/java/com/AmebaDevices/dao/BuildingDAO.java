@@ -48,12 +48,14 @@ public class BuildingDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement statement = connection.prepareStatement(insertQuery);
+			System.out.println(insertQuery);
 			statement.setString(1, myBuilding.getIndirizzo());
 			statement.setString(2, myBuilding.getCitta());
 			statement.setString(3, myBuilding.getCap());
 			statement.setString(4, myBuilding.getInterno());
 			statement.execute();
 			PreparedStatement secondStatement = connection.prepareStatement(userIdFromUsername);
+			System.out.println(userIdFromUsername);
 			secondStatement.setString(1, ownerName);
 			ResultSet secondResult = secondStatement.executeQuery();
 			int userId = 0;
@@ -64,7 +66,7 @@ public class BuildingDAO {
 			int buildingId = 0;
 			if (userId != 0) {
 				PreparedStatement thirdStatement = connection.prepareStatement(getBuildingIdFrombuildingData);
-
+				System.out.println(getBuildingIdFrombuildingData);
 				thirdStatement.setString(1, myBuilding.getIndirizzo());
 				thirdStatement.setString(2, myBuilding.getInterno());
 				thirdStatement.setString(3, myBuilding.getCitta());
@@ -78,6 +80,7 @@ public class BuildingDAO {
 			}
 			if (userId != 0 && buildingId != 0) {
 				PreparedStatement finalStatement = connection.prepareStatement(insertIntoProprieta);
+				System.out.println(insertIntoProprieta);
 				finalStatement.setInt(1, userId);
 				finalStatement.setInt(2, buildingId);
 				finalStatement.execute();

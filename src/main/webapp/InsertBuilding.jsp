@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,8 @@
 <link rel="stylesheet" href="styles.css">
 <a href="CustomerHome.jsp" class="logout">Indietro</a>
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
+<link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
+
 </head>
 
 <body>
@@ -18,7 +21,7 @@
 		<h1>Crea il tuo building</h1>
 	</div>
 	<div>
-		<form action="Building" method="get">
+		<form action="insert" method="post">
 			<table class="insertTable">
 				<tr>
 					<td><h2>Indirizzo del building:</h2></td>
@@ -31,9 +34,9 @@
 						placeholder="Inserisci interno del building"></td>
 				</tr>
 				<tr>
-					<td><h2>Città del building: </h2></td>
-					<td><input type="text" id="cittàBuilding"
-					name="citta" placeholder="Inserisci città del building"></td>
+					<td><h2>Citta' del building: </h2></td>
+					<td><input type="text" id="cittï¿½Building"
+					name="citta" placeholder="Inserisci cittï¿½ del building"></td>
 				</tr>
 				<tr>
 					<td><h2>Cap del building: </h2></td>
@@ -41,8 +44,9 @@
 					placeholder="Inserisci cap del building"></td>
 				</tr>
 			</table>
+			<button class="censisciButton" type="submit">Crea</button>
 		</form>
-			<button class="censisciButton" type="submit" value="newBuilding" name="richiesta">Crea</button>
+			
 	</div>
 </body>
 </html>

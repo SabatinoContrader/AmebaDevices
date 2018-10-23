@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Modifica Building</title>
-<link rel="stylesheet" href="styles.css">
+<link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
 <a href="CustomerHome.jsp" class="logout">Indietro</a>
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 </head>
@@ -19,11 +19,26 @@
 	</div>
 	<div>
 		<div class="thingDiv" style="margin-top: -3%">
-			<jsp:include page="/Building">
-				<jsp:param name="richiesta" value="VisualizzaBuildings" />
-			</jsp:include>
+			<table>
+			<th>
+				<th>id</th>
+				<th>indirizzo</th>
+				<th>citta</th>
+				<th>cap</th>
+				<th>interno</th>
+			</th>
+			<c:forEach var="building" items="${buildings}">
+			<tr>
+				<td align="center">${building.buildingId}</td>
+				<td align="center">${building.indirizzo}</td>
+				<td align="center">${building.citta}</td>
+				<td align="center">${building.cap}</td>
+				<td align="center">${building.interno}</td>
+			</tr>
+		</c:forEach>
+		</table>
 			<div class="updateThing">
-				<form action="Building" method="post">
+				<form action="update" method="post">
 					<table>
 						<tr>
 							<td><h2>Id Building:</h2></td>
@@ -44,7 +59,7 @@
 								placeholder="inserire interno"></td>
 						</tr>
 						<tr>
-							<td><h2>Inserire città building:</h2></td>
+							<td><h2>Inserire citta building:</h2></td>
 							<td><input type="text" name="newcitta"
 								placeholder="inserire citta"></td>
 						</tr>
@@ -55,7 +70,7 @@
 						</tr>
 
 					</table>
-					<button class="deleteButton" type="submit" value="UpdateBuilding" name="richiesta">Modifica</button>
+					<button class="deleteButton" type="submit">Modifica</button>
 				</form>
 			</div>
 		</div>

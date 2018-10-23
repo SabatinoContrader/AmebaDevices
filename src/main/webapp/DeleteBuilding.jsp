@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Elimina Building</title>
-<link rel="stylesheet" href="styles.css">
+<link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
 <a href="CustomerHome.jsp" class="logout">Indietro</a>
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 </head>
@@ -19,11 +19,26 @@
 	</div>
 	<div>
 		<div class="thingDiv" style="margin-top: 5%">
-			<jsp:include page="/Building">
-				<jsp:param name="richiesta" value="VisualizzaBuildings" />
-			</jsp:include>
+		<table>
+			<th>
+				<th>id</th>
+				<th>indirizzo</th>
+				<th>citta</th>
+				<th>cap</th>
+				<th>interno</th>
+			</th>
+			<c:forEach var="building" items="${buildings}">
+			<tr>
+				<td align="center">${building.buildingId}</td>
+				<td align="center">${building.indirizzo}</td>
+				<td align="center">${building.citta}</td>
+				<td align="center">${building.cap}</td>
+				<td align="center">${building.interno}</td>
+			</tr>
+		</c:forEach>
+		</table>
 			<div class="deleteBuilding" style="margin-top: -6%">
-				<form action="Building" method="post">
+				<form action="delete" method="post">
 					<table>
 						<tr>
 							<td><h2 style="display:block">Id Building:</h2></td>
@@ -34,10 +49,7 @@
 							</select></td>
 						</tr>
 					</table>
-
-
-
-					<button class="deleteButton" type="submit" value="Delete" name="richiesta">Elimina</button>
+					<button class="deleteButton" type="submit">Elimina</button>
 					<br>
 				</form>
 			</div>
