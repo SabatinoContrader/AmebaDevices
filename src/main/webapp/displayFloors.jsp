@@ -3,7 +3,7 @@
 
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.virtualpairprogrammers.model.Floor"%>
+<%@page import="com.AmebaDevices.model.Floor"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     
 <!DOCTYPE html>

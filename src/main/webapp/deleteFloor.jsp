@@ -3,7 +3,7 @@
     
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.virtualpairprogrammers.model.Floor"%>
+<%@page import="com.AmebaDevices.model.Floor"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Questa è la jsp che ti permette di cancellare un floor :/</h1>
+	<h1>Questa ï¿½ la jsp che ti permette di cancellare un floor :/</h1>
 	<h2>Questi sono i floor relativi al building <%=request.getAttribute("buildingId") %></h2>
 	<table>
 	<%
@@ -29,13 +29,13 @@
 	<%} %>
 	</table>
 	<h2>Quale floor vuoi modificare?</h2>
-	<form action="Floor?operation=sendDataForDelete&buildingId=<%=request.getParameter("buildingId")%>" method="post">
+	<form action="Floors/Delete?buildingId=<%=request.getParameter("buildingId")%>" method="post">
 	<select id="id" name="floorid">
 	<% for (int i=0; i < floors.size(); i++) { %>
   		<option value="<%=floors.get(i).getId()%>"><%=floors.get(i).getId()%></option>
   	<%} %>
 	</select>
-	<button type ="submit" value="sendDataForDelete" name="operation">Elimina</button><br>
+	<button type ="submit">Elimina</button><br>
 </form>
 
 </body>

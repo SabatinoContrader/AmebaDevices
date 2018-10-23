@@ -22,7 +22,7 @@ import com.AmebaDevices.services.BuildingService;
 
 public class Downloader extends HttpServlet {
 
-    protected void processRequest(String filePath, HttpServletResponse response) 
+    private void processRequest(String filePath, HttpServletResponse response) 
       throws ServletException, IOException {
         try {
             response.setContentType("text/html;charset=UTF-8");
@@ -58,7 +58,6 @@ public class Downloader extends HttpServlet {
     	
     	int buildingId = Integer.parseInt(request.getParameter("buildingId"));
 		String type =  request.getParameter("type");
-		System.out.println("Sto generando "+type+" relativo al building "+buildingId);
 		Building b = new Building();
 		BuildingService bs = new BuildingService();
 		b = bs.findByPrimaryKey(buildingId);
