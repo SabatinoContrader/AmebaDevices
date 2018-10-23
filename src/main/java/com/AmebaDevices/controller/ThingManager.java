@@ -10,94 +10,78 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.AmebaDevices.model.Thing;
 import com.AmebaDevices.services.ThingService;
 
-/**
- * Servlet implementation class ThingManager
- */
-public class ThingManager extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-  //  int idThing=1;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ThingManager() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+@Controller
+@RequestMapping("/Thing")
+public class ThingManager {
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	//	response.getWriter().append("Served at: ").append(request.getContextPath());
-		RequestDispatcher dispatcher = null;
-		String operation = request.getParameter("operation");
-		System.out.println(operation);
-		ThingService ts = new ThingService();
-		List <Thing> listaPerBuilding = new ArrayList<>();
-		listaPerBuilding = ts.getAllItem();
+	@Autowired
+	public ThingManager() {
+		super();
+	}
+
+	@RequestMapping(value = "/insertForm", method = RequestMethod.GET)
+	public String insertForm(HttpServletRequest request) {
+		return "newThing";
+	}
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public String insert(HttpServletRequest request) {
+		ThingService thingService= new ThingService();
+		String nomeThing = request.getParameter("thingName");
+		int numeroUscite = Integer.parseInt(request.getParameter("numeroUscite"));
+		Thing thing = new Thing(numeroUscite);
+		thing.setNome(nomeThing);
+		thingService.create(thing);
+		return "thingManager";
+	}
+	@RequestMapping(value = "/read", method = RequestMethod.GET)
+	public String read(HttpServletRequest request) {
+		ThingService thingService= new ThingService();
+		List<Thing> listaPerBuilding = new ArrayList<>();
+		listaPerBuilding = thingService.getAllItem();
 		request.setAttribute("things", listaPerBuilding);
-		switch (operation) {
-		case "create":
-			getServletContext().getRequestDispatcher("/newThing.jsp").forward(request,response);
-			break;
-		case "sendDataForInsert":
-			String nomeThing = request.getParameter("thingName");
-			int numeroUscite = Integer.parseInt(request.getParameter("numeroUscite"));
-			Thing thing = new Thing(numeroUscite);
-			thing.setNome(nomeThing);
-			ts.create(thing);
-			getServletContext().getRequestDispatcher("/thingManager.jsp").forward(request,response);
-			break;
-		case "home":
-			getServletContext().getRequestDispatcher("/thingManager.jsp").forward(request,response);
-			break;
-		case "DeleteFormThing":
-			getServletContext().getRequestDispatcher("/DeleteFormThing.jsp").forward(request,response);
-			break;
-    	
-    	case "DeleteThing":
-    		int idThing= Integer.parseInt(request.getParameter("id_thing"));
-    		ThingService thingService = new ThingService();
-    		thingService.delete(idThing);
-    		getServletContext().getRequestDispatcher("/thingManager.jsp").forward(request,response);
-    		break;
-    	case "update":
-    		getServletContext().getRequestDispatcher("/UpdateThing.jsp").forward(request, response);
-    		break;
-    	
-    	case "sendDataForUpdate":
-			int numberPort =Integer.parseInt(request.getParameter("numberPort"));
-			String nameThing = request.getParameter("nameThing");
-			String roomid = (String) request.getParameter("thingId");
-			Thing newThing = new Thing();
-			newThing.setId(roomid);
-			newThing.setNumUscite(numberPort);
-			newThing.setNome(nameThing);
-			ts.update(newThing);
-			getServletContext().getRequestDispatcher("/thingManager.jsp").forward(request, response);
-
-			break;
-    	
-    	case "ReadThing":
-    		request.setAttribute("things",listaPerBuilding);
-    		RequestDispatcher view = request.getRequestDispatcher("/ReadThing.jsp");      
-	        view.include(request, response);
-    		break;
-		}
+		return "ReadThing";
+		//RequestDispatcher view = request.getRequestDispatcher("/ReadThing.jsp");
+		//view.include(request, response);
+	}
+	@RequestMapping(value = "/updateForm", method = RequestMethod.GET)
+	public String updateForm(HttpServletRequest request) {
+		return "UpdateThing";
+	}
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(HttpServletRequest request) {
+		ThingService thingService= new ThingService();
+		int numberPort = Integer.parseInt(request.getParameter("numberPort"));
+		String nameThing = request.getParameter("nameThing");
+		String roomid = (String) request.getParameter("thingId");
+		Thing newThing = new Thing();
+		newThing.setId(roomid);
+		newThing.setNumUscite(numberPort);
+		newThing.setNome(nameThing);
+		thingService.update(newThing);
+		return "thingManager";
+	}
+	@RequestMapping(value = "/deleteForm", method = RequestMethod.GET)
+	public String deleteForm(HttpServletRequest request) {
+		return "DeleteFormThing";
+	}
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String delete(HttpServletRequest request) {
+		int idThing = Integer.parseInt(request.getParameter("id_thing"));
+		ThingService thingService = new ThingService();
+		thingService.delete(idThing);
+		return "thingManager";
+	}
+	@RequestMapping(value = "/goBack", method = RequestMethod.GET)
+	public String goBack(HttpServletRequest request) {
+		return "thingManager";
+	}
 	
-
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		doGet(request, response);
-	}
 }
-
-
