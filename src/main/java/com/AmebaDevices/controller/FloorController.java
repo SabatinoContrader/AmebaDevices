@@ -89,6 +89,11 @@ public class FloorController {
 		f.setDescrizione(description);
 		f.setIdBuilding(bid);
 		newFloorService.insertFloor(f);
+		
+		request.setAttribute("buildingId", String.valueOf(buildingId));
+		List<Floor> alreadyExisting = new ArrayList<>();
+		alreadyExisting = newFloorService.getAllByBuilding(buildingId);
+		request.setAttribute("floors", alreadyExisting);
 		return "floorManager";
 	}
 
@@ -111,6 +116,7 @@ public class FloorController {
 		List<Floor> alreadyExisting = new ArrayList<>();
 		alreadyExisting = fs.getAllByBuilding(buildingId);
 		request.setAttribute("floors", alreadyExisting);
+		request.setAttribute("buildingId", buildingId);
 		return "updateFloor";
 	}
 
@@ -118,8 +124,9 @@ public class FloorController {
 	public String update(HttpServletRequest request) {
 		String newName = request.getParameter("floorName");
 		String newDescription = request.getParameter("floorDescription");
-		String buildingid = (String) request.getAttribute("buildingId");
+		String buildingid = (String) request.getParameter("buildingId");
 		String floorId = request.getParameter("floorid");
+		System.out.println(floorId + " "+newName+" "+newDescription+" "+buildingid);
 		Floor newFloor = new Floor();
 		FloorService fs = new FloorService();
 		newFloor.setId(floorId);
@@ -127,6 +134,12 @@ public class FloorController {
 		newFloor.setDescrizione(newDescription);
 		newFloor.setIdBuilding(buildingid);
 		fs.update(newFloor);
+		
+		int buildingId = Integer.parseInt(request.getParameter("buildingId"));
+		request.setAttribute("buildingId", String.valueOf(buildingId));
+		List<Floor> alreadyExisting = new ArrayList<>();
+		alreadyExisting = fs.getAllByBuilding(buildingId);
+		request.setAttribute("floors", alreadyExisting);
 		return "floorManager";
 	}
 
@@ -146,6 +159,12 @@ public class FloorController {
 		int id = Integer.parseInt(request.getParameter("floorid"));
 		FloorService fs = new FloorService();
 		fs.deleteById(id);
+		
+		int buildingId = Integer.parseInt(request.getParameter("buildingId"));
+		request.setAttribute("buildingId", String.valueOf(buildingId));
+		List<Floor> alreadyExisting = new ArrayList<>();
+		alreadyExisting = fs.getAllByBuilding(buildingId);
+		request.setAttribute("floors", alreadyExisting);
 		return "floorManager";
 	}
 	

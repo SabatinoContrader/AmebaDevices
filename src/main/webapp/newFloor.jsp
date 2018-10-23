@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>Questa � la jsp che ti permette di creare un nuovo floor <%=request.getAttribute("buildingId") %></h1>
-	<form action="Floors/insert?buildingId=<%=request.getParameter("buildingId")%>" method="post">
+	<form action="insert?buildingId=<%=request.getParameter("buildingId")%>" method="post">
 		<h3>Inserire nome floor: <input type="text" name="floorName" placeholder="inserire nome floor"></h3>
 		<h3>Inserire descrizione: <input type="text" name="floorDescription" placeholder="inserire descrizione"></h3>
 		<button type ="submit">Crea</button><br>
