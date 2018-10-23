@@ -21,7 +21,7 @@
 	
 	<div class="modifyCustomer">
 	<h2 >Seleziona l'id del customer da modificare</h2>
-	  <form action = "Customer" method= "post">
+	  <form action = "/Customer/update" method= "post">
 		<div class="idCustomer"><h3>Id Customer:</h3>
 			<div style="padding-left:2%"><select style="border-radius: 10%" name="idselected">
 				<c:forEach var="customer" items="${customers}">
@@ -42,7 +42,7 @@
 			&nbsp;&nbsp;
 			<input type = "text" id = "value" name ="value" placeholder="Inserisci nuovo valore">
 		</div></br>
-		<button class="modifyButton" style="border-radius: 10%" type = "submit" name="mode" value="UpdateDb"> Modifica</button>
+		<button class="modifyButton" style="border-radius: 10%" type = "submit"> Modifica</button>
 	</form>
 	</div>
 </body>

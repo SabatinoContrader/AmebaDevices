@@ -17,7 +17,7 @@
 			class="imgSuperUser">
 		<h1>Inserisci il tuo Customer</h1>
 	</div>
-	<form class="customerForm" action="Customer" method="post">
+	<form class="customerForm" action="/Customer/insert" method="post">
 		<table class="insertTable">
 			<tr>
 				<td><h2>Nome:</h2></td>
@@ -51,7 +51,7 @@
 			</tr>
 		</table>
 
-		<button name="mode" value="InsertDb" type="submit" class="registerButton">Registra</button>
+		<button type="submit" class="registerButton">Registra</button>
 
 	</form>
 

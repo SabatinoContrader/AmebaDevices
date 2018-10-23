@@ -21,7 +21,7 @@
 	</div>
 <div class="delete">
 	<h2>Seleziona l'id del customer da eliminare</h2>
-	<form action="Customer" method="post">
+	<form action="/Customer/delete" method="post">
 		<div  class="idCustomer"><h2>
 			Id Customer: </h2>
 			<div style="padding-left:7%"><select name="idselected">
@@ -32,7 +32,7 @@
 			</div>
 		</div>
 
-		<button class="deleteButton" type="submit" name="mode" value="DeleteDb">Elimina</button>
+		<button class="deleteButton" type="submit">Elimina</button>
 	</form>
 	</div>
 </body>

@@ -13,25 +13,25 @@
 	<h1>Seleziona l'operazione che vuoi effettuare</h1>
 	<div class="insertDiv">
 		<img src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/add-user.png"
-			class="imgSuperUser" > <a href="Customer?mode=InsertForm"
+			class="imgSuperUser" > <a href="/Customer/insertForm"
 			class="customerLink">Inserisci nuovo
 			customer </a>
 	</div>
 	<div class="insertDiv">
 		<img src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/user.png"
-			class="imgSuperUser"> <a href="Customer?mode=Read"
+			class="imgSuperUser"> <a href="/Customer/read"
 			class="customerLink">Visualizza i
 			customers</a>
 	</div>
 	<div class="insertDiv">
 		<img src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/edit-user.png"
-			class="imgSuperUser"> <a href="Customer?mode=UpdateForm"
+			class="imgSuperUser"> <a href="/Customer/updateForm"
 			class="customerLink">Modifica un
 			customer</a>
 	</div>
 	<div class="insertDiv">
 		<img src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/delete-user.png"
-			class="imgSuperUser"> <a href="Customer?mode=DeleteForm"
+			class="imgSuperUser"> <a href="/Customer/deleteForm"
 			class="customerLink">Elimina un
 			customer</a> 
 	</div> 
