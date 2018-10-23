@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="styles.css">
-	<a href="superuserhome.jsp" class="logout">Indietro</a>
-<jsp:include page="HeaderLogout.jsp"></jsp:include>
+<link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
 <meta charset="ISO-8859-1">
 <title>Item</title>
 </head>
 <body>
+<a href="/Item/menu" class="logout">Indietro</a>
+<jsp:include page="HeaderLogout.jsp"></jsp:include>
 <div class="readCustomer">
 		<img src="https://png2.kisspng.com/show/812fa857dddd93107f5556efc9640d62/L0KzQYm3UcMxN6d2fZH0aYP2gLBuTgRma5lzh954Z4mwdcbqjPllbZJzRehuY4Tygn7wgB9vNZpoh9C2b3awebB7hgJvbaUyh9g2dHjsfrj6TgRma5lzh954Z4mwRbKAUMJmbGU4T6hrMkSxQIq5UsA3OWU2TaMCM0C0RIe3UsI4NqFzf3==/kisspng-technology-euclidean-vector-icon-icon-of-internet-of-things-technology-5a702ed4376b24.092206141517301460227.png"
 			class="imgItem">
