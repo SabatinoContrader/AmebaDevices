@@ -17,7 +17,7 @@
 		<h1>Elimina Thing</h1>
 	</div>
 	<div class="delete">
-		<form action="Thing/delete">
+		<form action="/Thing/delete" method="post">
 			<table >
 			<tr><td><h2>
 					Id Thing</h2></td>
@@ -25,7 +25,7 @@
 			</tr>
 				
 		</table>
-				<input hidden type="submit" value="DeleteThing" name="operation">
+				<!-- <input hidden type="submit" value="DeleteThing" name="operation"> -->
 				<button class="deleteButton" type="submit" >DeleteThing</button>
 		</form>
 	</div>

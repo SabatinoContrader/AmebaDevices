@@ -39,7 +39,7 @@ public class ThingManager {
 		Thing thing = new Thing(numeroUscite);
 		thing.setNome(nomeThing);
 		thingService.create(thing);
-		return "thingManager";
+		return goBack(request);
 	}
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public String read(HttpServletRequest request) {

@@ -17,7 +17,7 @@
 			class="imgSuperUser">
 		<h1>Inserisci una nuova Thing</h1>
 	</div>
-	<form action="/insert" method="post">
+	<form action="/Thing/insert" method="post">
 		<div class="readCustomer">
 			<h2>
 				Inserire nome thing: <input type="text" name="thingName"
@@ -34,9 +34,9 @@
 				<option value="32">32</option>
 			</select>
 		</div>
+		<button class="modifyButton" type="submit" >Crea Thing</button>
 	</form>
 	<div>
-		<button class="modifyButton" type="submit" >Crea Thing</button>
 		<br>
 	</div>
 </body>
