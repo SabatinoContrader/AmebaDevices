@@ -17,16 +17,16 @@
 		<h1>Elimina Item</h1>
 	</div>
 	<div class="itemForm">
-		<form action="ItemMenu" method="POST">
+		<form action="/Item/delete" method="POST">
 			<table>
 				<tr>
 					<td><h2>Id:</h2></td>
 					<td><input type="text" name="id" placeholder="id"></td>
 				</tr>
 			</table>
-		</form>
-		<button class="loginButton" type="submit" value="EliminaItem"
+			<button class="loginButton" type="submit" value="EliminaItem"
 			name="mode">Elimina</button>
+		</form>
 	</div>
 </body>
 </html>

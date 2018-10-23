@@ -8,6 +8,6 @@
 </head>
 <body>
 	<p>Hai Eliminato correttamente l'Item:</p>
-	<p><a href="ItemMenu?mode=MainMenu">Vai a Menu Item</a></p>
+	<p><a href="/Item/menu">Vai a Menu Item</a></p>
 </body>
 </html>

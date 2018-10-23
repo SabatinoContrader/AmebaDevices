@@ -16,7 +16,7 @@
 			class="imgSuperUser">
 	<h1>Item</h1>
 	</div>
-	<form action="ItemMenu" method="post">
+	<form action="/Item/insert" method="post">
 		<table class="insertTable">
 		<tr>
 			<td> <h2>Marca: </h2></td>

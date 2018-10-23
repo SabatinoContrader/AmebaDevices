@@ -19,22 +19,22 @@
 	<div class="itemDiv">
 	<div class="insertDiv">
 		<img src="http://www.aa24.it/wp-content/uploads/2015/03/1426101814_add-notes.png"
-			class="imgSuperUser" > <a href="ItemMenu?mode=censimentoForm"
+			class="imgSuperUser" > <a href="/Item/insertForm"
 			class="customerLink">Censimento item </a>
 	</div>
 	<div class="insertDiv">
 		<img src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/notes.png"
-			class="imgSuperUser" > <a href="ItemMenu?mode=visualizzaItem"
+			class="imgSuperUser" > <a href="/Item/read"
 			class="customerLink">Visualizza items </a>
 	</div>
 	<div class="insertDiv">
 		<img src="http://icongal.com/gallery/image/43791/edit_notes_delete.png"
-			class="imgSuperUser" > <a href="ItemMenu?mode=ModificaForm"
+			class="imgSuperUser" > <a href="/Item/updateForm"
 			class="customerLink">Modifica item </a>
 	</div>
 	<div class="insertDiv">
 		<img src="https://www.shareicon.net/data/512x512/2015/05/10/36482_delete_512x512.png"
-			class="imgSuperUser" > <a href="ItemMenu?mode=EliminaForm"
+			class="imgSuperUser" > <a href="/Item/deleteForm"
 			class="customerLink">Elimina item </a>
 	</div>
 	</div>

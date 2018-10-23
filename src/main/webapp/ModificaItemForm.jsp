@@ -16,7 +16,7 @@
 	<h1>Modifica Items</h1>
 	
 	</div>	
-		<form class="itemForm" action = "ItemMenu" method = "POST">
+		<form class="itemForm" action = "/Item/update" method = "POST">
 		<table>
 		<tr>
 			<td> <h2>Id: </h2></td>
