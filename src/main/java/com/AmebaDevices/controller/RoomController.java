@@ -47,7 +47,7 @@ public String insert(HttpServletRequest request) {
 	Room f = new Room();
 	f.setNomeRoom(nome);
 	f.setDescrizione(descrizione);
-	f.setIdFloor(id);
+	f.setIdfloor(Integer.parseInt(id));
 	newRoomService.insertRoom(f);
 	request.setAttribute("floorId", id);
 	List <Room> listaPerFloor = new ArrayList<>();
@@ -88,7 +88,7 @@ public String update(HttpServletRequest request) {
 	newRoom.setId(Integer.parseInt(roomid));
 	newRoom.setNomeRoom(newName);
 	newRoom.setDescrizione(newDescription);
-	newRoom.setIdFloor(floorid);
+	newRoom.setIdfloor(Integer.parseInt(floorid));
 	fs.update(newRoom);	
 	List <Room> listaPerFloor = new ArrayList<>();
 	listaPerFloor = fs.getAllByFloor(Integer.parseInt(floorid));

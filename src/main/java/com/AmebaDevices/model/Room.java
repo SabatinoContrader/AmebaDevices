@@ -1,86 +1,109 @@
 package com.AmebaDevices.model;
 
-import java.util.List;
+import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
 import org.jdom2.Attribute;
 import org.jdom2.Element;
 
+import lombok.Getter;
+import lombok.Setter;
 
-
+@Getter
+@Setter
+@Entity
+@Table (name="Room" ,uniqueConstraints= {@UniqueConstraint(columnNames = { "id" })})
 public class Room implements Buildable{
+	@Id
+	
+	@NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Column
+	@Null
 	private String nomeRoom;
+	
+	@Column
+	@Null
 	private String descrizione;
-	private String idfloor;
 	
-	public Room(String nomeRoom, String descrizione) {
-		this.nomeRoom=nomeRoom;
-		this.descrizione=descrizione;
-	}
+	@Column
+	@Null
+	private int idfloor;
+public Room() {
+	// TODO Auto-generated constructor stub
+}
+
+public Room(String nomeRoom, String descrizione) {
+	this.nomeRoom=nomeRoom;
+	this.descrizione=descrizione;
+}
+
+@ManyToOne
+@JoinColumn(name = "id")
+private Floor floor; 
+
+
+@Override
+public String getId() {
+	return String.valueOf(id);	
+}
+@Override
+public Element getElement() {
+	Element toReturn =new Element(this.getClass().getSimpleName().toLowerCase());
+	toReturn.setAttribute(new Attribute("id", this.getId()));
+	toReturn.addContent(new Element("nome").setText(this.getNomeRoom()));
+	toReturn.addContent(new Element("descrizione").setText(this.getDescrizione()));	
+	/*Element itemsFather = new Element("items");
+	Element itemsElement;
+	ItemService is = new ItemService();
+	if (id!= 0) {
+	List <Item> items = is.getAllByRoom(id);
+	for (int i=0 ; i < items.size(); i++) {
+		itemsElement = items.get(i).getElement();
+		itemsFather.addContent(itemsElement);
+	} 
 	
-	public Room() {
-		
-	}
+	toReturn.addContent(itemsFather);
+	}*/
+	return toReturn;
+}
+@Override
+public String toString() {
+	return "Room [id=" + id + ", nomeRoom=" + nomeRoom + ", descrizione=" + descrizione + ", idfloor=" + idfloor
+			+ "]";
+}
+
+@Override
+public int hashCode() {
 	
-	public String getNomeRoom() {
-		return nomeRoom;
-	}
+	return Objects.hash(id,nomeRoom,descrizione,idfloor);
+}
+
+@Override
+public boolean equals(Object o) {
+	 if (this == o) return true;
+        if (!(o instanceof Room)) return false;
+        Room that = (Room) o;
+        return Integer.compare(that.id, id) == 0 &&
+        		 Objects.equals(nomeRoom, that.nomeRoom) &&
+                 Objects.equals(descrizione, that.descrizione) &&
+                 Objects.equals(idfloor, that.idfloor);
+               
+}
 
 
-	public void setNomeRoom(String nomeRoom) {
-		this.nomeRoom = nomeRoom;
-	}
-
-
-	public String getDescrizione() {
-		return descrizione;
-	}
-
-
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
-	}
-
-
-	public String getIdFloor() {
-
-		return idfloor;
-
-	}
-
-	public void setIdFloor(String idfloor) {
-
-		this.idfloor=idfloor;
-
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getId() {
-		return String.valueOf(id);
-	}
-
-	@Override
-	public Element getElement() {
-		Element toReturn =new Element(this.getClass().getSimpleName().toLowerCase());
-		toReturn.setAttribute(new Attribute("id", this.getId()));
-		toReturn.addContent(new Element("nome").setText(this.getNomeRoom()));
-		toReturn.addContent(new Element("descrizione").setText(this.getDescrizione()));	
-		/*Element itemsFather = new Element("items");
-		Element itemsElement;
-		ItemService is = new ItemService();
-		if (id!= 0) {
-		List <Item> items = is.getAllByRoom(id);
-		for (int i=0 ; i < items.size(); i++) {
-			itemsElement = items.get(i).getElement();
-			itemsFather.addContent(itemsElement);
-		} 
-		
-		toReturn.addContent(itemsFather);
-		}*/
-		return toReturn;
-	}
 
 }

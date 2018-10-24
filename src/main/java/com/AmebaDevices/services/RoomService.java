@@ -2,8 +2,6 @@ package com.AmebaDevices.services;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,31 +12,40 @@ import com.AmebaDevices.model.Room;
 public class RoomService {
 
 	private RoomDAO roomdao;
+	
 
 	@Autowired
 	public RoomService() {
-		this.roomdao = new RoomDAO();
-
+		//this.roomdao=(RoomDAO) room;
 	}
 
 	public void delete(int id) {
-		roomdao.delete(id);
+		Room c= roomdao.findOne(id);
+		roomdao.delete(c);
 
 	}
 
+	public Room insertRoom(Room f) {
+		return this.roomdao.save(f);
+	}
+	
+	
 	public void update(Room f) {
-		this.roomdao.update(f);
+		if(roomdao.findOne(Integer.parseInt(f.getId()))!=null)
+		this.roomdao.save(f);
 
-	}
-
-	public boolean insertRoom(Room f) {
-		return this.roomdao.insertRoom(f);
 	}
 
 	public List<Room> getAllByFloor(int floorId) {
-
-		return roomdao.getAllByFloor(floorId);
-
+		List<Room> room= (List<Room>) roomdao.findAll();
+		for(int i=0; i<room.size();i++) {
+			if (room.get(i).getIdfloor()!= floorId) {
+				room.remove(i);
+				i--;
+			}
+		}
+		return room;
+		
 	}
 
 }
