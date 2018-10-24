@@ -4,11 +4,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.com.contrader</groupId>
-	<artifactId>gommastore</artifactId>
+	<artifactId>amebadevices</artifactId>
 	<version>1.0.0</version>
 
-	<name>GommeStore</name>
-	<description>The GommaStore project</description>
+	<name>AmebaDevices</name>
+	<description>AmebaDevices project</description>
 	<packaging>war</packaging>
 
 
@@ -61,9 +61,15 @@
 		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- <dependency>
+			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>

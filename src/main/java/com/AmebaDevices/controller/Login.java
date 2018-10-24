@@ -18,18 +18,25 @@ import com.AmebaDevices.services.BuildingService;
 import com.AmebaDevices.services.LoginService;
 
 @Controller
-@RequestMapping("/Login")
+@RequestMapping("")
 public class Login {
 
 	private LoginService loginService;
 
 	@Autowired
 	public Login() {
+		System.out.println("wewe");
 		loginService = new LoginService();
 	}
 
-	@RequestMapping(value="", method= RequestMethod.POST)
+	@RequestMapping(value="/", method= RequestMethod.GET)
+	public String retur(HttpServletRequest request) {
+		System.out.println("ciao");
+		return "index";
+	}
+	@RequestMapping(value="/login", method= RequestMethod.POST)
 	public String login(HttpServletRequest request) {
+		System.out.println("ojojohjiybvyg");
 		String nomeUtente = request.getParameter("username");
 		String password = request.getParameter("password");
 		request.getSession().setAttribute("username", nomeUtente);
