@@ -26,7 +26,7 @@
 						<td><% out.println(rooms.get(i).getId()); %></td>
 						<td><% out.println(rooms.get(i).getNomeRoom()); %></td>
 						<td><% out.println(rooms.get(i).getDescrizione()); %></td>
-						<td><% out.println(rooms.get(i).getIdFloor()); %></td>
+						<td><% out.println(rooms.get(i).getIdfloor()); %></td>
 						</tr>
 									
 	<%} %>

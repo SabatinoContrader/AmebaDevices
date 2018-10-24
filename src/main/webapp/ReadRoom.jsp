@@ -28,7 +28,7 @@
 							<td align="center"> <%=room.getId() %>
 							<td align="center"><%=room.getNomeRoom()%></td>
 							<td align="center"><%=room.getDescrizione() %>
-							<td align="center"> <%=room.getIdFloor() %>
+							<td align="center"> <%=room.getIdfloor() %>
 						</tr>
 		<% }%>
 		</table>	

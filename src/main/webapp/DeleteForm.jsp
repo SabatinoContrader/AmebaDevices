@@ -4,11 +4,11 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.AmebaDevices.model.Room"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 
 <!DOCTYPE html>
 <html>
-<link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
+<link href="/resources/css/styles.css" rel="stylesheet">
 
 <head>
 <meta charset="ISO-8859-1">
@@ -25,7 +25,7 @@
 									%><tr>	<td><% out.println(rooms.get(i).getId()); %></td>
 											<td><% out.println(rooms.get(i).getNomeRoom()); %></td>
 											<td><% out.println(rooms.get(i).getDescrizione()); %></td>
-											<td><% out.println(rooms.get(i).getIdFloor()); %></td>
+											<td><% out.println(rooms.get(i).getIdfloor()); %></td>
 									</tr>
 									
 	<%} %>

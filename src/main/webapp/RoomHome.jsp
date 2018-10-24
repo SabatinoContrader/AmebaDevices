@@ -29,7 +29,7 @@
 							<td align="center"> <%=rooms.get(i).getId() %>
 							<td align="center"><%=rooms.get(i).getNomeRoom()%></td>
 							<td align="center"><%=rooms.get(i).getDescrizione() %>
-							<td align="center"> <%=rooms.get(i).getIdFloor() %>
+							<td align="center"> <%=rooms.get(i).getIdfloor() %>
 						</tr>
 		<% }%>
 		</table>	
