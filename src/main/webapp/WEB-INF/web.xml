@@ -121,4 +121,14 @@
     <servlet-name>GestioneCustomer</servlet-name>
     <url-pattern>/GestioneCustomer</url-pattern>
   </servlet-mapping>
+<servlet>
+    <description></description>
+    <display-name>ItemEntityServlet</display-name>
+    <servlet-name>ItemEntityServlet</servlet-name>
+    <servlet-class>com.virtualpairprogrammers.servlets.ItemEntityServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ItemEntityServlet</servlet-name>
+    <url-pattern>/ItemEntity</url-pattern>
+  </servlet-mapping>
 </web-app>

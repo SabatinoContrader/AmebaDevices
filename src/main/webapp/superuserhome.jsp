@@ -22,7 +22,7 @@
 		</div>
 		<div style="display: flex; align-items: center;">
 			<img src="http://simpleicon.com/wp-content/uploads/computer-64x64.png"style="width: 5%; padding-right:2%;"> 
-			<a href="Customer?mode=InsertForm"style="font-size: x-large; text-decoration: none">
+			<a href="ItemEntity?mode=MainMenu"style="font-size: x-large; text-decoration: none">
 			Gestione Item
 			</a></br>	
 		</div>

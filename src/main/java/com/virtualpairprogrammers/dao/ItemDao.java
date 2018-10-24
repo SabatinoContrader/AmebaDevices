@@ -45,7 +45,7 @@ public class ItemDao {
            }
         }
         catch (SQLException e) {
-            e.printStackTrace();
+            GestoreEccezioni.getInstance().gestisciEccezione(e);
         }
         return items;
     }

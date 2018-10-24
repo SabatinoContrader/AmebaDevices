@@ -29,8 +29,5 @@
 		</c:forEach>
 	</table>
 </p>
-<p>
-	<a href="ItemMenu?mode=MainMenu">Torna indietro </a>
-</p>
 </body>
 </html>
