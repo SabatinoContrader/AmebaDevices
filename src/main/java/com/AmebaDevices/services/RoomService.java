@@ -31,7 +31,7 @@ public class RoomService {
 	
 	
 	public void update(Room f) {
-		if(roomdao.findOne(Integer.parseInt(f.getId()))!=null)
+		if(roomdao.findOne(f.getId())!=null)
 		this.roomdao.save(f);
 
 	}

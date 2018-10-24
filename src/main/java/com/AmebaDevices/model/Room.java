@@ -24,7 +24,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table (name="Room" ,uniqueConstraints= {@UniqueConstraint(columnNames = { "id" })})
-public class Room implements Buildable{
+public class Room{
 	@Id
 	
 	@NotNull
@@ -56,30 +56,8 @@ public Room(String nomeRoom, String descrizione) {
 private Floor floor; 
 
 
-@Override
-public String getId() {
-	return String.valueOf(id);	
-}
-@Override
-public Element getElement() {
-	Element toReturn =new Element(this.getClass().getSimpleName().toLowerCase());
-	toReturn.setAttribute(new Attribute("id", this.getId()));
-	toReturn.addContent(new Element("nome").setText(this.getNomeRoom()));
-	toReturn.addContent(new Element("descrizione").setText(this.getDescrizione()));	
-	/*Element itemsFather = new Element("items");
-	Element itemsElement;
-	ItemService is = new ItemService();
-	if (id!= 0) {
-	List <Item> items = is.getAllByRoom(id);
-	for (int i=0 ; i < items.size(); i++) {
-		itemsElement = items.get(i).getElement();
-		itemsFather.addContent(itemsElement);
-	} 
-	
-	toReturn.addContent(itemsFather);
-	}*/
-	return toReturn;
-}
+
+
 @Override
 public String toString() {
 	return "Room [id=" + id + ", nomeRoom=" + nomeRoom + ", descrizione=" + descrizione + ", idfloor=" + idfloor
