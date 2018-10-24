@@ -23,65 +23,61 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table (name="Room" ,uniqueConstraints= {@UniqueConstraint(columnNames = { "id" })})
-public class Room{
+@Table(name = "Room", uniqueConstraints = { @UniqueConstraint(columnNames = { "id" }) })
+public class Room {
+
 	@Id
-	
 	@NotNull
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	@Column
 	@Null
 	private String nomeRoom;
-	
+
 	@Column
 	@Null
 	private String descrizione;
-	
+
 	@Column
 	@Null
 	private int idfloor;
-public Room() {
-	// TODO Auto-generated constructor stub
-}
 
-public Room(String nomeRoom, String descrizione) {
-	this.nomeRoom=nomeRoom;
-	this.descrizione=descrizione;
-}
+	public Room() {
+		// TODO Auto-generated constructor stub
+	}
 
-@ManyToOne
-@JoinColumn(name = "id")
-private Floor floor; 
+	public Room(String nomeRoom, String descrizione) {
+		this.nomeRoom = nomeRoom;
+		this.descrizione = descrizione;
+	}
 
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private Floor floor;
 
+	@Override
+	public String toString() {
+		return "Room [id=" + id + ", nomeRoom=" + nomeRoom + ", descrizione=" + descrizione + ", idfloor=" + idfloor
+				+ "]";
+	}
 
+	@Override
+	public int hashCode() {
 
-@Override
-public String toString() {
-	return "Room [id=" + id + ", nomeRoom=" + nomeRoom + ", descrizione=" + descrizione + ", idfloor=" + idfloor
-			+ "]";
-}
+		return Objects.hash(id, nomeRoom, descrizione, idfloor);
+	}
 
-@Override
-public int hashCode() {
-	
-	return Objects.hash(id,nomeRoom,descrizione,idfloor);
-}
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (!(o instanceof Room))
+			return false;
+		Room that = (Room) o;
+		return Integer.compare(that.id, id) == 0 && Objects.equals(nomeRoom, that.nomeRoom)
+				&& Objects.equals(descrizione, that.descrizione) && Objects.equals(idfloor, that.idfloor);
 
-@Override
-public boolean equals(Object o) {
-	 if (this == o) return true;
-        if (!(o instanceof Room)) return false;
-        Room that = (Room) o;
-        return Integer.compare(that.id, id) == 0 &&
-        		 Objects.equals(nomeRoom, that.nomeRoom) &&
-                 Objects.equals(descrizione, that.descrizione) &&
-                 Objects.equals(idfloor, that.idfloor);
-               
-}
-
-
+	}
 
 }
