@@ -1,25 +1,19 @@
 package com.AmebaDevices.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-import org.jdom2.Attribute;
-import org.jdom2.Element;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.AmebaDevices.services.BuildingService;
-
 @Entity
-public class Customer implements Buildable {
+public class Customer {
 
 	@Id
 	@Column
-	@NotNull
-	private int id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
 
 	@Column
 	private String nome;
@@ -40,7 +34,6 @@ public class Customer implements Buildable {
 	private Integer user_role;
 
 	public Customer() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Customer(String nome, String cognome, String dataNascita, String email, String username, String password,Integer role) {
@@ -103,30 +96,46 @@ public class Customer implements Buildable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 
-	@Override
-	public String getId() {
-		return String.valueOf(this.id);
+	public Integer getUser_role() {
+		return user_role;
 	}
 
-	@Override
-	public Element getElement() {
-		Element toReturn = new Element(this.getClass().getSimpleName().toLowerCase());
-		toReturn.setAttribute(new Attribute("id", this.getId()));
-		toReturn.addContent(new Element("nome").setText(this.getNome()));
-		toReturn.addContent(new Element("cognome").setText(this.getCognome()));
-		toReturn.addContent(new Element("username").setText(this.getUsername()));
-		toReturn.addContent(new Element("datanascita").setText(this.getDataNascita()));
-		Element buildingsFather = new Element("buildings");
-		Element buildingsElement;
-		BuildingService bs = new BuildingService();
-		List<Building> buildings = bs.getAll(this.username);
-		for (int i = 0; i < buildings.size(); i++) {
-			buildingsElement = buildings.get(i).getElement();
-			buildingsFather.addContent(buildingsElement);
-		}
-		toReturn.addContent(buildingsFather);
-		return toReturn;
+	public void setUser_role(Integer user_role) {
+		this.user_role = user_role;
 	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+	public long getId() {
+		return id;
+	}
+////
+//	@Override
+//	public String getId() {
+//		return String.valueOf(this.id);
+//	}
+//
+//	@Override
+//	public Element getElement() {
+//		Element toReturn = new Element(this.getClass().getSimpleName().toLowerCase());
+//		toReturn.setAttribute(new Attribute("id", this.getId()));
+//		toReturn.addContent(new Element("nome").setText(this.getNome()));
+//		toReturn.addContent(new Element("cognome").setText(this.getCognome()));
+//		toReturn.addContent(new Element("username").setText(this.getUsername()));
+//		toReturn.addContent(new Element("datanascita").setText(this.getDataNascita()));
+//		Element buildingsFather = new Element("buildings");
+//		Element buildingsElement;
+//		BuildingService bs = new BuildingService();
+//		List<Building> buildings = bs.getAll(this.username);
+//		for (int i = 0; i < buildings.size(); i++) {
+//			buildingsElement = buildings.get(i).getElement();
+//			buildingsFather.addContent(buildingsElement);
+//		}
+//		toReturn.addContent(buildingsFather);
+//		return toReturn;
+//	}
 
 }

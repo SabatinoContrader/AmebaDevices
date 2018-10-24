@@ -1,5 +1,7 @@
 package com.AmebaDevices.services;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,37 +20,39 @@ public class CustomerService {
 		this.customerDAO = customerDAO;
 	}
 
-	public int login(String username, String password) {
-		System.out.println(username);
-		Customer c = customerDAO.findByUsername(username);
+	public long login(String username, String password) {
+		Customer c = customerDAO.findByUsernameAndPassword(username, password);
 		if (c != null) {
-			System.out.println("c è diverso da null");
-			if (c.getId() != null)
-				return Integer.parseInt(c.getId());
-		} else {
-			System.out.println("nullo");
+			if (c.getId() != 0)
+				return c.getId();
 		}
-
 		return -1;
 	}
 
 	public void insertCustomer(Customer customer) {
+		System.out.println(customer.getId() + customer.getNome() + customer.getCognome() + customer.getDataNascita()
+				+ customer.getEmail() + customer.getUsername() + customer.getPassword() + customer.getUser_role());
 		customerDAO.save(customer);
 	}
 
 	public List<Customer> readAll() {
-		return (List<Customer>) customerDAO.findAll();
+		List<Customer> customers = new ArrayList<>();
+		customerDAO.findAll().forEach(c -> {
+			customers.add(c);
+			System.out.println(c.getNome());
+		});
+		return customers;
 	}
 
 	public void updateCustomer(Customer customer) {
 		customerDAO.save(customer);
 	}
 
-	public Customer searchCustomer(int id) {
+	public Customer searchCustomer(Long id) {
 		return customerDAO.findOne(id);
 	}
 
-	public void deleteCustomer(int id) {
+	public void deleteCustomer(Long id) {
 		Customer c = customerDAO.findOne(id);
 		customerDAO.delete(c);
 	}

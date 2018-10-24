@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import com.AmebaDevices.model.Customer;
 
 @Repository
-public interface CustomerDAO extends CrudRepository<Customer, Integer> {
+public interface CustomerDAO extends CrudRepository<Customer, Long> {
 
 
    // @Query(value = "SELECT c FROM Customer c where c.username = ?1")
-	 Customer findByUsername(String username);
+	 Customer findByUsernameAndPassword(String username, String password);
 }
