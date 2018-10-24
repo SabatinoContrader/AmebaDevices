@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -35,12 +36,10 @@ public class CustomerController  {
 	}
 	@RequestMapping(value="/login", method= RequestMethod.POST)
 	public String login(HttpServletRequest request) {
-		System.out.println("ojojohjiybvyg");
 		String nomeUtente = request.getParameter("username");
 		String password = request.getParameter("password");
 		request.getSession().setAttribute("username", nomeUtente);
-		System.out.println(nomeUtente+"-"+password);
-		int userId = customerService.login(nomeUtente, password);
+		long userId = customerService.login(nomeUtente, password);
 		request.getSession().setAttribute("userId", userId);
 
 		if (userId == 1) {
@@ -67,21 +66,22 @@ public class CustomerController  {
 	}
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public String insert(HttpServletRequest request) {
-		String nome = request.getParameter("nome");
-		String cognome = request.getParameter("cognome");
-		String data = request.getParameter("dataDiNascita").toString();
-		String email = request.getParameter("email");
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		Customer customer = new Customer(nome, cognome, data, email, username, password,2);
+		Customer customer = new Customer();
+		customer.setNome(request.getParameter("nome"));
+		customer.setCognome(request.getParameter("cognome"));
+		customer.setDataNascita(request.getParameter("dataDiNascita").toString());
+		customer.setEmail(request.getParameter("email"));
+		customer.setUsername(request.getParameter("username"));
+		customer.setPassword(request.getParameter("password"));
+		customer.setUser_role(2);
 		customerService.insertCustomer(customer);
 		return "GestioneCustomer";
 	} 
 	
 	@RequestMapping(value="/read", method=RequestMethod.GET)
-	public String read(HttpServletRequest request) {
+	public String read(HttpServletRequest request, Model model) {
 		List<Customer> customers = customerService.readAll();
-		request.setAttribute("customers", customers);
+		model.addAttribute("customers", customers);
 		return "readCustomers";
 	}
 	
@@ -94,7 +94,8 @@ public class CustomerController  {
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	public String update(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("idselected"));
-		Customer newcustomer = customerService.searchCustomer(id);
+		long l=id;
+		Customer newcustomer = customerService.searchCustomer(l);
 		System.out.println(request.getParameter("selected"));
 		switch (Integer.parseInt(request.getParameter("selected"))) {
 		case 1:
@@ -128,7 +129,8 @@ public class CustomerController  {
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public String delete(HttpServletRequest request) {
 		int idDelete = Integer.parseInt(request.getParameter("idselected"));
-		customerService.deleteCustomer(idDelete);
+		long l=idDelete;
+		customerService.deleteCustomer(l);
 		return "GestioneCustomer";
 	} 
 	
