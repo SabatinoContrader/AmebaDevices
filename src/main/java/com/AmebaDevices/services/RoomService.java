@@ -15,8 +15,8 @@ public class RoomService {
 	
 
 	@Autowired
-	public RoomService() {
-		//this.roomdao=(RoomDAO) room;
+	public RoomService(RoomDAO roomdao) {
+		this.roomdao=roomdao;
 	}
 
 	public void delete(int id) {

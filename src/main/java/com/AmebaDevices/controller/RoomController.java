@@ -26,10 +26,10 @@ public class RoomController {
     private RoomService fs;
     
 @Autowired
-    public RoomController() {
-        super();
-        fs= new RoomService();
-    }
+    public RoomController(RoomService fs) {
+	this.fs=fs;
+	
+	}
 
 @RequestMapping(value="/insertForm", method=RequestMethod.GET)
 	public String insertForm(HttpServletRequest request) {
@@ -43,12 +43,11 @@ public String insert(HttpServletRequest request) {
 	String descrizione = (String) request.getParameter("description");
 	String id = (String) request.getParameter("floorId");
 	System.out.println(nome + " "+descrizione+" "+id);
-	RoomService newRoomService = new RoomService();
 	Room f = new Room();
 	f.setNomeRoom(nome);
 	f.setDescrizione(descrizione);
 	f.setIdfloor(Integer.parseInt(id));
-	newRoomService.insertRoom(f);
+	fs.insertRoom(f);
 	request.setAttribute("floorId", id);
 	List <Room> listaPerFloor = new ArrayList<>();
 	listaPerFloor = fs.getAllByFloor(Integer.parseInt(id));
@@ -115,8 +114,7 @@ public String delete(HttpServletRequest request) {
 	String floorId = request.getParameter("floorId");
 	if(floorId!= null) System.out.println(floorId);
 	else System.out.println("floorid is null");
-	RoomService rs = new RoomService();
-	rs.delete(Integer.parseInt(idRoom));
+	fs.delete(Integer.parseInt(idRoom));
 	List <Room> listaPerFloor = fs.getAllByFloor(Integer.parseInt(floorId));
 	request.setAttribute("rooms", listaPerFloor);
 	return "RoomHome";
