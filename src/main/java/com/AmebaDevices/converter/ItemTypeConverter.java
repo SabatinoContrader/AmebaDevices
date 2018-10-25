@@ -1,12 +1,12 @@
 package com.AmebaDevices.converter;
 
-import com.AmebaDevices.dto.ItemDTO;
+import com.AmebaDevices.dto.ItemTypeDTO;
 import com.AmebaDevices.model.ItemType;
 
-public class ItemConverter {
+public class ItemTypeConverter {
 
-	public static ItemDTO convertToDto(ItemType i) {
-		ItemDTO item = new ItemDTO();
+	public static ItemTypeDTO convertToDto(ItemType i) {
+		ItemTypeDTO item = new ItemTypeDTO();
 		item.setId(i.getId());
 		item.setDescrizione(i.getDescrizione());
 		item.setCategoria(i.getCategoria());
@@ -15,7 +15,7 @@ public class ItemConverter {
 		return item;
 	}
 
-	public static ItemType convertToItem(ItemDTO i) {
+	public static ItemType convertToItem(ItemTypeDTO i) {
 		ItemType item = new ItemType();
 		item.setId(i.getId());
 		item.setDescrizione(i.getDescrizione());

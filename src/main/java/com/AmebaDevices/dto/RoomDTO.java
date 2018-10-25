@@ -1,27 +1,30 @@
 package com.AmebaDevices.dto;
 
+import com.AmebaDevices.model.Floor;
+
 public class RoomDTO {
 	
-	private int id;
+	private long id;
 	private String nomeRoom;
 	private String descrizione;
-	private String idfloor;
+	private Floor floor;
 	
 	public RoomDTO() {
 	}
 	
-	public RoomDTO(int id, String nomeRoom, String descrizione, String idfloor) {
+	public RoomDTO(long id, String nomeRoom, String descrizione, Floor floor) {
+		super();
 		this.id = id;
 		this.nomeRoom = nomeRoom;
 		this.descrizione = descrizione;
-		this.idfloor = idfloor;
+		this.floor = floor;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -41,14 +44,16 @@ public class RoomDTO {
 		this.descrizione = descrizione;
 	}
 
-	public String getIdfloor() {
-		return idfloor;
+	public Floor getFloor() {
+		return floor;
 	}
 
-	public void setIdfloor(String idfloor) {
-		this.idfloor = idfloor;
+	public void setFloor(Floor floor) {
+		this.floor = floor;
 	}
-
+	
+	
+	
 	
 
 }

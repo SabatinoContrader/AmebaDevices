@@ -49,7 +49,7 @@ public class Thing {
 	public void removeItem(ItemType item) {
 		for (int i=0 ; i < items.length ; i++) {
 			if (items[i] != null) {
-				if (items[i].getId().equals(item.getId())) {
+				if (items[i].getId() == item.getId()) {
 					items[i] = null;
 				}
 				

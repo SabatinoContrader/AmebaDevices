@@ -1,13 +1,14 @@
 package com.AmebaDevices.dto;
 
-public class ItemDTO {
-	private String id, categoria,modello,marca, descrizione;
-	
-	public ItemDTO() {
+public class ItemTypeDTO {
+	private long id;
+	private String categoria,modello,marca, descrizione;
+	 
+	public ItemTypeDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ItemDTO(String id, String categoria, String modello, String marca, String descrizione) {
+	public ItemTypeDTO(long id, String categoria, String modello, String marca, String descrizione) {
 		super();
 		this.id = id;
 		this.categoria = categoria;
@@ -16,11 +17,11 @@ public class ItemDTO {
 		this.descrizione = descrizione;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

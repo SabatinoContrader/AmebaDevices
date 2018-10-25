@@ -2,46 +2,46 @@ package com.AmebaDevices.dto;
 
 public class BuildingDTO {
 
-	private int buildingId;
-	private String indirizzo;
-	private String citta;
+	private long id;
+	private String address;
+	private String city;
 	private String cap;
-	private String interno;
+	private long interno;
 
 	public BuildingDTO() {
 	}
 
-	public BuildingDTO(int buildingId, String indirizzo, String citta, String cap, String interno) {
+	public BuildingDTO(long buildingId, String indirizzo, String citta, String cap, long interno) {
 		super();
-		this.buildingId = buildingId;
-		this.indirizzo = indirizzo;
-		this.citta = citta;
+		this.id = buildingId;
+		this.address = indirizzo;
+		this.city = citta;
 		this.cap = cap;
 		this.interno = interno;
 	}
 
-	public int getBuildingId() {
-		return buildingId;
+	public long getId() {
+		return id;
 	}
 
-	public void setBuildingId(int buildingId) {
-		this.buildingId = buildingId;
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	public String getIndirizzo() {
-		return indirizzo;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setIndirizzo(String indirizzo) {
-		this.indirizzo = indirizzo;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getCitta() {
-		return citta;
+	public String getCity() {
+		return city;
 	}
 
-	public void setCitta(String citta) {
-		this.citta = citta;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public String getCap() {
@@ -52,12 +52,13 @@ public class BuildingDTO {
 		this.cap = cap;
 	}
 
-	public String getInterno() {
+	public long getInterno() {
 		return interno;
 	}
 
-	public void setInterno(String interno) {
+	public void setInterno(long interno) {
 		this.interno = interno;
 	}
 
+	
 }
