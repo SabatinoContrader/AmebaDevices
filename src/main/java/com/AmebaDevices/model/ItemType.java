@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
@@ -36,6 +38,10 @@ public class ItemType  {
 	@Column
 	@NotNull
 	private String descrizione;
+	
+	@ManyToOne
+	@JoinColumn (name ="iditemtype")
+	private ItemEntity item;
 	
 	public ItemType(Long id, String categoria, String marca, String modello, String descrizione) {
 	
