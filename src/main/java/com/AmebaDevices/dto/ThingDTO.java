@@ -1,6 +1,6 @@
 package com.AmebaDevices.dto;
 
-import com.AmebaDevices.model.Item;
+import com.AmebaDevices.model.ItemType;
 
 public class ThingDTO {
 
@@ -8,11 +8,11 @@ public class ThingDTO {
 	private String nome;
 	private int numUscite; //potenze di 2
 	
-	private Item[] items;
+	private ItemType[] items;
 	
 	public ThingDTO() {
 	}
-	public ThingDTO(String id, String nome, int numUscite, Item[] items) {
+	public ThingDTO(String id, String nome, int numUscite, ItemType[] items) {
 		this.id = id;
 		this.nome = nome;
 		this.numUscite = numUscite;
@@ -36,10 +36,10 @@ public class ThingDTO {
 	public void setNumUscite(int numUscite) {
 		this.numUscite = numUscite;
 	}
-	public Item[] getItems() {
+	public ItemType[] getItems() {
 		return items;
 	}
-	public void setItems(Item[] items) {
+	public void setItems(ItemType[] items) {
 		this.items = items;
 	}
 	

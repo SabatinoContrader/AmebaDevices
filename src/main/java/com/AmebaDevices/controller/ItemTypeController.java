@@ -1,7 +1,6 @@
 package com.AmebaDevices.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,24 +14,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.AmebaDevices.model.Building;
-import com.AmebaDevices.model.Item;
-import com.AmebaDevices.services.ItemService;
+import com.AmebaDevices.model.ItemType;
+import com.AmebaDevices.services.ItemTypeService;
 import com.AmebaDevices.utils.GestoreEccezioni;
 
 @Controller
-@RequestMapping("/Item")
-public class ItemController extends HttpServlet {
+@RequestMapping("/ItemType")
+public class ItemTypeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ItemService itemService;
+	private ItemTypeService itemTypeService;
 
 	@Autowired
-	public ItemController() {
-		itemService = new ItemService();
+	public ItemTypeController(ItemTypeService itemTypeService) {
+		this.itemTypeService =itemTypeService; 
 	}
 
 	@RequestMapping(value = "insertForm", method = RequestMethod.GET)
 	public String insertForm(HttpServletRequest request) {
-		return "CensimentoItemForm";
+		return "CensimentoItemTypeForm";
 	}
 
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
@@ -42,58 +41,62 @@ public class ItemController extends HttpServlet {
 		String categoria = request.getParameter("categoria");
 		String descrizione = request.getParameter("descrizione");
 
-		Item item = new Item(null, categoria, marca, modello, descrizione);
-		itemService.insertItem(item);
-		return "ItemMenu";
+		ItemType item = new ItemType();
+		item.setCategoria(categoria);
+		item.setMarca(marca);
+		item.setModello(modello);
+		item.setDescrizione(descrizione);
+		itemTypeService.insertItemType(item);
+		return "ItemTypeMenu";
 	}
 
 	@RequestMapping(value = "/menu", method = RequestMethod.GET)
 	public String menu(HttpServletRequest request) {
-		return "ItemMenu";
+		return "ItemTypeMenu";
 	}
 
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public String read(HttpServletRequest request) {
-		List<Item> items = itemService.getAllItem();
+		List<ItemType> items = itemTypeService.getAllItemType();
 		request.setAttribute("items", items);
-		return "VisualizzaItems";
+		return "VisualizzaItemsType";
 	}
 
 	@RequestMapping(value = "/updateForm", method = RequestMethod.GET)
 	public String updateForm(HttpServletRequest request) {
-		return "ModificaItemForm";
+		return "ModificaItemTypeForm";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(HttpServletRequest request) {
-		String id = request.getParameter("id");
+		Long id = (long) Integer.parseInt(request.getParameter("id"));
 		String marca = request.getParameter("marca");
 		String modello = request.getParameter("modello");
 		String categoria = request.getParameter("categoria");
 		String descrizione = request.getParameter("descrizione");
 
-		Item item = new Item(id, categoria, marca, modello, descrizione);
-		itemService.updateItem(item);
+		ItemType item = new ItemType(id, categoria, marca, modello, descrizione);
+		itemTypeService.updateItemType(item);
 
-		Item updatedItem = itemService.searchItem(id);
+		ItemType updatedItem = itemTypeService.searchItemType(id);
 		request.setAttribute("item", updatedItem);
-		return "UpdateItemResult";
+		return "UpdateItemTypeResult";
 	}
 
 	@RequestMapping(value = "/deleteForm", method = RequestMethod.GET)
 	public String deleteForm(HttpServletRequest request) {
-		return "EliminaItemForm";
+		return "EliminaItemTypeForm";
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(HttpServletRequest request) {
-		String deleteId = request.getParameter("id");
-		itemService.deleteItem(deleteId);
-		return "DeleteItemResult";
+		Long deleteId =(long)Integer.parseInt( request.getParameter("id"));
+		itemTypeService.deleteItemType(deleteId);
+		return "DeleteItemTypeResult";
 	}
 
 	@RequestMapping(value = "/goBack", method = RequestMethod.GET)
 	public String goBack(HttpServletRequest request) {
-		return "ItemMenu";
+		return "ItemTypeMenu";
 	}
 }
