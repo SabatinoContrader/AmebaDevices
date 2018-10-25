@@ -12,6 +12,10 @@ public class ThingDTO {
 	
 	public ThingDTO() {
 	}
+	public ThingDTO(int numUscite) {
+		this.numUscite = numUscite;
+		items = new ItemType[numUscite];
+	}
 	public ThingDTO(String id, String nome, int numUscite, ItemType[] items) {
 		this.id = id;
 		this.nome = nome;

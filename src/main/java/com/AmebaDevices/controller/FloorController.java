@@ -21,7 +21,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.AmebaDevices.model.Building;
+import com.AmebaDevices.dto.BuildingDTO;
+import com.AmebaDevices.dto.FloorDTO;
 import com.AmebaDevices.model.Floor;
 import com.AmebaDevices.services.BuildingService;
 import com.AmebaDevices.services.FloorService;
@@ -88,12 +89,12 @@ public class FloorController {
 		request.setAttribute("buildingId", String.valueOf(buildingId));
 		String name = request.getParameter("floorName");
 		String description = request.getParameter("floorDescription");
-		Floor f = new Floor();
+		FloorDTO f = new FloorDTO();
 		f.setNomeFloor(name);
 		f.setDescrizione(description);
 		this.fs.insertFloor(f, buildingId);
 		request.setAttribute("buildingId", String.valueOf(buildingId));
-		List<Floor> alreadyExisting = new ArrayList<>();
+		List<FloorDTO> alreadyExisting = new ArrayList<>();
 		alreadyExisting = this.fs.getAllByBuilding(buildingId);
 		request.setAttribute("floors", alreadyExisting);
 		return "floorManager";
@@ -103,7 +104,7 @@ public class FloorController {
 	public String menu(HttpServletRequest request) {
 		long buildingId = Long.parseLong(request.getParameter("buildingId"));
 		request.setAttribute("buildingId", String.valueOf(buildingId));
-		List<Floor> alreadyExisting = new ArrayList<>();
+		List<FloorDTO> alreadyExisting = new ArrayList<>();
 		alreadyExisting = this.fs.getAllByBuilding(buildingId);
 		request.setAttribute("floors", alreadyExisting);
 		return "floorManager";
@@ -113,7 +114,7 @@ public class FloorController {
 	public String updateForm(HttpServletRequest request) {
 		long buildingId = Long.parseLong(request.getParameter("buildingId"));
 		request.setAttribute("buildingId", String.valueOf(buildingId));
-		List<Floor> alreadyExisting = new ArrayList<>();
+		List<FloorDTO> alreadyExisting = new ArrayList<>();
 		alreadyExisting = fs.getAllByBuilding(buildingId);
 		request.setAttribute("floors", alreadyExisting);
 		request.setAttribute("buildingId", buildingId);
@@ -127,14 +128,14 @@ public class FloorController {
 		String buildingid = (String) request.getParameter("buildingId");
 		String floorId = request.getParameter("floorid");
 		System.out.println(floorId + " "+newName+" "+newDescription+" "+buildingid);
-		Floor newFloor = new Floor();
+		FloorDTO newFloor = new FloorDTO();
 		newFloor.setId(Integer.parseInt(floorId));
 		newFloor.setNomeFloor(newName);
 		newFloor.setDescrizione(newDescription);
 		fs.update(newFloor, Long.parseLong(buildingid));
 		long buildingId = Long.parseLong(request.getParameter("buildingId"));
 		request.setAttribute("buildingId", String.valueOf(buildingId));
-		List<Floor> alreadyExisting = new ArrayList<>();
+		List<FloorDTO> alreadyExisting = new ArrayList<>();
 		alreadyExisting = fs.getAllByBuilding(buildingId);
 		request.setAttribute("floors", alreadyExisting);
 		return "floorManager";
@@ -144,7 +145,7 @@ public class FloorController {
 	public String deleteForm(HttpServletRequest request) {
 		int buildingId = Integer.parseInt(request.getParameter("buildingId"));
 		request.setAttribute("buildingId", String.valueOf(buildingId));
-		List<Floor> alreadyExisting = new ArrayList<>();
+		List<FloorDTO> alreadyExisting = new ArrayList<>();
 		alreadyExisting = fs.getAllByBuilding(buildingId);
 		request.setAttribute("floors", alreadyExisting);
 		return "deleteFloor";
@@ -157,7 +158,7 @@ public class FloorController {
 		
 		int buildingId = Integer.parseInt(request.getParameter("buildingId"));
 		request.setAttribute("buildingId", String.valueOf(buildingId));
-		List<Floor> alreadyExisting = new ArrayList<>();
+		List<FloorDTO> alreadyExisting = new ArrayList<>();
 		alreadyExisting = fs.getAllByBuilding(buildingId);
 		request.setAttribute("floors", alreadyExisting);
 		return "floorManager";
@@ -168,7 +169,7 @@ public class FloorController {
 	@RequestMapping (value = "/download", method = RequestMethod.GET)
 	public String download(HttpServletRequest request, HttpServletResponse response) {
     	Long buildingId = Long.parseLong(request.getParameter("buildingId"));
-    	Building current = bs.findByPrimaryKey(buildingId);
+    	BuildingDTO current = bs.findByPrimaryKey(buildingId);
 		String type =  request.getParameter("type");
 		switch (type) {
 		case "xml":

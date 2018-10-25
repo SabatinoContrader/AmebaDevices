@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.AmebaDevices.converter.ItemTypeConverter;
 import com.AmebaDevices.dao.ItemTypeDao;
+import com.AmebaDevices.dto.ItemTypeDTO;
 import com.AmebaDevices.model.Customer;
 import com.AmebaDevices.model.ItemType;
 
@@ -19,25 +21,25 @@ public class ItemTypeService {
 		this.itemTypeDao=itemTypeDao;
 	}
 	
-	public List<ItemType> getAllItemType () {
-		List<ItemType> items = new ArrayList<>();
+	public List<ItemTypeDTO> getAllItemType () {
+		List<ItemTypeDTO> items = new ArrayList<>();
 		itemTypeDao.findAll().forEach(c -> {
-			items.add(c);	});
+			items.add(ItemTypeConverter.convertToDto(c));	});
 		return items;
 	}
     
 	
-	public void insertItemType(ItemType item) {
-		 this.itemTypeDao.save(item);
+	public void insertItemType(ItemTypeDTO item) {
+		 this.itemTypeDao.save(ItemTypeConverter.convertToItem(item));
 	}
 	
-	public ItemType searchItemType(Long id) {
-		return this.itemTypeDao.findOne(id);
+	public ItemTypeDTO searchItemType(Long id) {
+		return ItemTypeConverter.convertToDto(this.itemTypeDao.findOne(id));
 	}
 	
-	public void updateItemType(ItemType item) {
+	public void updateItemType(ItemTypeDTO item) {
 		if (itemTypeDao.findOne(item.getId())!=null)
-		this.itemTypeDao.save(item);
+		this.itemTypeDao.save(ItemTypeConverter.convertToItem(item));
 	}
 	
 	public void deleteItemType(Long id) {

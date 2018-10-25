@@ -9,7 +9,7 @@ public class RoomConverter {
 		RoomDTO room = new RoomDTO();
 		room.setId(r.getId());
 		room.setDescrizione(r.getDescrizione());
-		room.setFloor(r.getFloor());
+		room.setFloor(FloorConverter.convertToDto(r.getFloor()));
 		room.setNomeRoom(r.getNomeRoom());
 		return room;
 	}
@@ -18,7 +18,7 @@ public class RoomConverter {
 		Room room = new Room();
 		room.setId((r.getId()));
 		room.setDescrizione(r.getDescrizione());
-		room.setFloor(r.getFloor());
+		room.setFloor(FloorConverter.convertToFloor(r.getFloor()));
 		room.setNomeRoom(r.getNomeRoom());
 		return room;
 	}

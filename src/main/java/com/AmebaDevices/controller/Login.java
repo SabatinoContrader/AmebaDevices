@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.AmebaDevices.dto.BuildingDTO;
 import com.AmebaDevices.model.Building;
 import com.AmebaDevices.model.Customer;
 import com.AmebaDevices.services.BuildingService;
@@ -51,7 +52,7 @@ public class Login {
 		if (userId == 1) {
 			return "superuserhome";
 		} else if (userId == 2) {
-			List <Building> myBuildings = buildingService.getAll((String)request.getSession().getAttribute("username"));
+			List <BuildingDTO> myBuildings = buildingService.getAll((String)request.getSession().getAttribute("username"));
 			request.setAttribute("buildings", myBuildings);
 			return "CustomerHome";
 		} else {

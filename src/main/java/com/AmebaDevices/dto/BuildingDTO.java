@@ -7,17 +7,19 @@ public class BuildingDTO {
 	private String city;
 	private String cap;
 	private long interno;
+	private CustomerDTO owner;
 
 	public BuildingDTO() {
 	}
 
-	public BuildingDTO(long buildingId, String indirizzo, String citta, String cap, long interno) {
+	public BuildingDTO(long buildingId, String indirizzo, String citta, String cap, long interno, CustomerDTO owner) {
 		super();
 		this.id = buildingId;
 		this.address = indirizzo;
 		this.city = citta;
 		this.cap = cap;
 		this.interno = interno;
+		this.owner=owner;
 	}
 
 	public long getId() {
@@ -58,6 +60,14 @@ public class BuildingDTO {
 
 	public void setInterno(long interno) {
 		this.interno = interno;
+	}
+
+	public CustomerDTO getOwner() {
+		return owner;
+	}
+
+	public void setOwner(CustomerDTO owner) {
+		this.owner = owner;
 	}
 
 	

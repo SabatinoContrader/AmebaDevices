@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.AmebaDevices.dto.ThingDTO;
 import com.AmebaDevices.model.Thing;
 import com.AmebaDevices.services.ThingService;
 
@@ -36,7 +37,7 @@ public class ThingManager {
 		ThingService thingService= new ThingService();
 		String nomeThing = request.getParameter("thingName");
 		int numeroUscite = Integer.parseInt(request.getParameter("numeroUscite"));
-		Thing thing = new Thing(numeroUscite);
+		ThingDTO thing = new ThingDTO(numeroUscite);
 		thing.setNome(nomeThing);
 		thingService.create(thing);
 		return goBack(request);
@@ -44,7 +45,7 @@ public class ThingManager {
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public String read(HttpServletRequest request) {
 		ThingService thingService= new ThingService();
-		List<Thing> listaPerBuilding = new ArrayList<>();
+		List<ThingDTO> listaPerBuilding = new ArrayList<>();
 		listaPerBuilding = thingService.getAllItem();
 		request.setAttribute("things", listaPerBuilding);
 		return "ReadThing";
@@ -61,7 +62,7 @@ public class ThingManager {
 		int numberPort = Integer.parseInt(request.getParameter("numberPort"));
 		String nameThing = request.getParameter("nameThing");
 		String roomid = (String) request.getParameter("thingId");
-		Thing newThing = new Thing();
+		ThingDTO newThing = new ThingDTO();
 		newThing.setId(roomid);
 		newThing.setNumUscite(numberPort);
 		newThing.setNome(nameThing);

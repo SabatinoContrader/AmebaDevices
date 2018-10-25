@@ -3,7 +3,6 @@ package com.AmebaDevices.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.AmebaDevices.dto.BuildingDTO;
+import com.AmebaDevices.dto.CustomerDTO;
 import com.AmebaDevices.model.Building;
-import com.AmebaDevices.model.Customer;
 import com.AmebaDevices.services.BuildingService;
 import com.AmebaDevices.services.CustomerService;
 
@@ -36,6 +36,7 @@ public class CustomerController  {
 		System.out.println("ciao");
 		return "index";
 	}
+	
 	@RequestMapping(value="/login", method= RequestMethod.POST)
 	public String login(HttpServletRequest request) {
 		String nomeUtente = request.getParameter("username");
@@ -47,7 +48,7 @@ public class CustomerController  {
 		if (userId == 1) {
 			return "superuserhome";
 		} else if (userId == 2) {
-			List <Building> myBuildings = buildingService.getAll((String) request.getSession().getAttribute("username"));
+			List <BuildingDTO> myBuildings = buildingService.getAll((String) request.getSession().getAttribute("username"));
 			request.setAttribute("buildings", myBuildings);
 			return "CustomerHome";
 		} else {
@@ -67,7 +68,7 @@ public class CustomerController  {
 	}
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public String insert(HttpServletRequest request) {
-		Customer customer = new Customer();
+		CustomerDTO customer = new CustomerDTO();
 		customer.setNome(request.getParameter("nome"));
 		customer.setCognome(request.getParameter("cognome"));
 		customer.setDataNascita(request.getParameter("dataDiNascita").toString());
@@ -81,14 +82,14 @@ public class CustomerController  {
 	
 	@RequestMapping(value="/read", method=RequestMethod.GET)
 	public String read(HttpServletRequest request, Model model) {
-		List<Customer> customers = customerService.readAll();
+		List<CustomerDTO> customers = customerService.readAll();
 		model.addAttribute("customers", customers);
 		return "readCustomers";
 	}
 	
 	@RequestMapping(value="/updateForm", method=RequestMethod.GET)
 	public String updateForm(HttpServletRequest request) {
-		List<Customer> customers = customerService.readAll();
+		List<CustomerDTO> customers = customerService.readAll();
 		request.setAttribute("customers", customers);
 		return "updateCustomer";
 	} 
@@ -96,7 +97,7 @@ public class CustomerController  {
 	public String update(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("idselected"));
 		long l=id;
-		Customer newcustomer = customerService.searchCustomer(l);
+		CustomerDTO newcustomer = customerService.searchCustomer(l);
 		System.out.println(request.getParameter("selected"));
 		switch (Integer.parseInt(request.getParameter("selected"))) {
 		case 1:
@@ -123,7 +124,7 @@ public class CustomerController  {
 	
 	@RequestMapping(value="/deleteForm", method=RequestMethod.GET)
 	public String deleteForm(HttpServletRequest request) {
-		List<Customer> customers = customerService.readAll();
+		List<CustomerDTO> customers = customerService.readAll();
 		request.setAttribute("customers", customers);
 		return "deletecustomer";
 	} 

@@ -1,12 +1,15 @@
 package com.AmebaDevices.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.AmebaDevices.converter.FloorConverter;
 import com.AmebaDevices.dao.BuildingDAO;
 import com.AmebaDevices.dao.FloorDAO;
+import com.AmebaDevices.dto.FloorDTO;
 import com.AmebaDevices.model.Building;
 import com.AmebaDevices.model.Floor;
 
@@ -24,31 +27,33 @@ public class FloorService {
 	}
 	
 	
-	public Floor insertFloor(Floor f, long buildingId) {
+	public FloorDTO insertFloor(FloorDTO f, long buildingId) {
 		Building b = buildingdao.findOne(buildingId);
 		f.setBuilding(b);
-		return floordao.save(f);
+		return FloorConverter.convertToDto(floordao.save(FloorConverter.convertToFloor(f)));
 	}
 	
-	public List <Floor> getAllByBuilding (long buildingid){
+	public List <FloorDTO> getAllByBuilding (long buildingid){
 		Building b = buildingdao.findOne(buildingid);
 		List <Floor> floors = (List<Floor>) floordao.findByBuilding(b);
-		return floors;
+		List<FloorDTO> toReturn= new ArrayList<>();
+		floors.forEach(f->toReturn.add(FloorConverter.convertToDto(f)));
+		return toReturn;
 	}
 	
-	public void delete(Floor f) {
-		this.floordao.delete(f);
+	public void delete(FloorDTO f) {
+		this.floordao.delete(FloorConverter.convertToFloor(f));
 	}
 		
-	public void update (Floor f, long buildingId) {
+	public void update (FloorDTO f, long buildingId) {
 		Building b = buildingdao.findOne(buildingId);
 		f.setBuilding(b);
 		if (floordao.findOne(f.getId()) != null)
-			this.floordao.save(f);
+			this.floordao.save(FloorConverter.convertToFloor(f));
 	}
 	
-	public Floor findByPrimaryKey(long id) {
-		return this.floordao.findOne(id);
+	public FloorDTO findByPrimaryKey(long id) {
+		return FloorConverter.convertToDto(this.floordao.findOne(id));
 	}
 
 

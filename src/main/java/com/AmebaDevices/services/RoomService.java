@@ -1,11 +1,16 @@
 package com.AmebaDevices.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.AmebaDevices.converter.FloorConverter;
+import com.AmebaDevices.converter.RoomConverter;
 import com.AmebaDevices.dao.RoomDAO;
+import com.AmebaDevices.dto.FloorDTO;
+import com.AmebaDevices.dto.RoomDTO;
 import com.AmebaDevices.model.Floor;
 import com.AmebaDevices.model.Room;
 
@@ -25,19 +30,21 @@ public class RoomService {
 
 	}
 
-	public Room insertRoom(Room f) {
-		return this.roomdao.save(f);
+	public RoomDTO insertRoom(RoomDTO f) {
+		return RoomConverter.convertToDto(this.roomdao.save(RoomConverter.convertToRoom(f)));
 	}
 
-	public void update(Room f) {
+	public void update(RoomDTO f) {
 		if (roomdao.findOne(f.getId()) != null)
-			this.roomdao.save(f);
+			this.roomdao.save(RoomConverter.convertToRoom(f));
 
 	}
 
-	public List<Room> getAllByFloor(Floor f) {
-		List<Room> rooms = (List<Room>) roomdao.findByFloor(f);
-		return rooms;
+	public List<RoomDTO> getAllByFloor(FloorDTO f) {
+		List<Room> rooms = (List<Room>) roomdao.findByFloor(FloorConverter.convertToFloor(f));
+		List<RoomDTO> toReturn= new ArrayList<>();
+		rooms.forEach(r->toReturn.add(RoomConverter.convertToDto(r)));
+		return toReturn;
 
 	}
 

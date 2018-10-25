@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.AmebaDevices.dto.ItemTypeDTO;
 import com.AmebaDevices.model.Building;
 import com.AmebaDevices.model.ItemType;
 import com.AmebaDevices.services.ItemTypeService;
@@ -41,7 +42,7 @@ public class ItemTypeController extends HttpServlet {
 		String categoria = request.getParameter("categoria");
 		String descrizione = request.getParameter("descrizione");
 
-		ItemType item = new ItemType();
+		ItemTypeDTO item = new ItemTypeDTO();
 		item.setCategoria(categoria);
 		item.setMarca(marca);
 		item.setModello(modello);
@@ -57,7 +58,7 @@ public class ItemTypeController extends HttpServlet {
 
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public String read(HttpServletRequest request) {
-		List<ItemType> items = itemTypeService.getAllItemType();
+		List<ItemTypeDTO> items = itemTypeService.getAllItemType();
 		request.setAttribute("items", items);
 		return "VisualizzaItemsType";
 	}
@@ -75,10 +76,10 @@ public class ItemTypeController extends HttpServlet {
 		String categoria = request.getParameter("categoria");
 		String descrizione = request.getParameter("descrizione");
 
-		ItemType item = new ItemType(id, categoria, marca, modello, descrizione);
+		ItemTypeDTO item = new ItemTypeDTO(id, categoria, marca, modello, descrizione);
 		itemTypeService.updateItemType(item);
 
-		ItemType updatedItem = itemTypeService.searchItemType(id);
+		ItemTypeDTO updatedItem = itemTypeService.searchItemType(id);
 		request.setAttribute("item", updatedItem);
 		return "UpdateItemTypeResult";
 	}

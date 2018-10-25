@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.AmebaDevices.dto.FloorDTO;
+import com.AmebaDevices.dto.RoomDTO;
 import com.AmebaDevices.model.Building;
 import com.AmebaDevices.model.Floor;
 import com.AmebaDevices.model.Room;
@@ -47,14 +49,14 @@ public String insert(HttpServletRequest request) {
 	String nome = (String) request.getParameter("nome");
 	String descrizione = (String) request.getParameter("description");
 	String id = (String) request.getParameter("floorId");
-	Floor f = fs.findByPrimaryKey(Long.parseLong(id));
-	Room room = new Room();
+	FloorDTO f = fs.findByPrimaryKey(Long.parseLong(id));
+	RoomDTO room = new RoomDTO();
 	room.setNomeRoom(nome);
 	room.setDescrizione(descrizione);
 	room.setFloor(f);
 	rs.insertRoom(room);
 	request.setAttribute("floorId", id);
-	List <Room> listaPerFloor = new ArrayList<>();
+	List <RoomDTO> listaPerFloor = new ArrayList<>();
 	listaPerFloor = rs.getAllByFloor(f);
 	request.setAttribute("rooms", listaPerFloor);
 	return "RoomHome";
@@ -63,9 +65,9 @@ public String insert(HttpServletRequest request) {
 @RequestMapping(value = "/menu", method = RequestMethod.GET)
 public String menu(HttpServletRequest request) {
 	long floorId =Long.parseLong(request.getParameter("floorId"));
-	Floor f = fs.findByPrimaryKey(floorId);
+	FloorDTO f = fs.findByPrimaryKey(floorId);
 	request.setAttribute("floorId",String.valueOf(floorId));
-	List <Room> listaPerFloor = new ArrayList<>();
+	List <RoomDTO> listaPerFloor = new ArrayList<>();
 	listaPerFloor = rs.getAllByFloor(f);
 	request.setAttribute("rooms", listaPerFloor);
 	return "RoomHome";
@@ -76,9 +78,9 @@ public String menu(HttpServletRequest request) {
 @RequestMapping(value="/updateForm", method= RequestMethod.GET)
 public String updateForm(HttpServletRequest request) {
 	long floorId =Long.parseLong(request.getParameter("floorId"));
-	Floor f = fs.findByPrimaryKey(floorId);
+	FloorDTO f = fs.findByPrimaryKey(floorId);
 	request.setAttribute("floorId",String.valueOf(floorId));
-	List <Room> listaPerFloor = new ArrayList<>();
+	List <RoomDTO> listaPerFloor = new ArrayList<>();
 	listaPerFloor = rs.getAllByFloor(f);
 	request.setAttribute("rooms", listaPerFloor);
 	return "UpdateRoom";
@@ -90,14 +92,14 @@ public String update(HttpServletRequest request) {
 	String newDescription = request.getParameter("roomDescription");
 	String roomid = (String) request.getParameter("roomId");
 	String floorid=(String) request.getParameter("floorId");
-	Floor f = fs.findByPrimaryKey(Long.parseLong(floorid));
-	Room newRoom = new Room();
+	FloorDTO f = fs.findByPrimaryKey(Long.parseLong(floorid));
+	RoomDTO newRoom = new RoomDTO();
 	newRoom.setId(Integer.parseInt(roomid));
 	newRoom.setNomeRoom(newName);
 	newRoom.setDescrizione(newDescription);
 	newRoom.setFloor(f);
 	rs.update(newRoom);	
-	List <Room> listaPerFloor = new ArrayList<>();
+	List <RoomDTO> listaPerFloor = new ArrayList<>();
 	listaPerFloor = rs.getAllByFloor(f);
 	request.setAttribute("rooms", listaPerFloor);
 	System.out.println(listaPerFloor.size());
@@ -107,9 +109,9 @@ public String update(HttpServletRequest request) {
 @RequestMapping(value="/deleteForm",method=RequestMethod.GET)
 public String deleteForm(HttpServletRequest request) {
 	long floorId =Long.parseLong(request.getParameter("floorId"));
-	Floor f = fs.findByPrimaryKey(floorId);
+	FloorDTO f = fs.findByPrimaryKey(floorId);
 	request.setAttribute("floorId",String.valueOf(floorId));
-	List <Room> listaPerFloor = new ArrayList<>();
+	List <RoomDTO> listaPerFloor = new ArrayList<>();
 	listaPerFloor = rs.getAllByFloor(f);
 	request.setAttribute("rooms", listaPerFloor);
 	return "DeleteForm";
@@ -121,9 +123,9 @@ public String delete(HttpServletRequest request) {
 	if (idRoom!= null) System.out.println(idRoom);
 	else System.out.println("idroom is null");
 	long floorId = Long.parseLong(request.getParameter("floorId"));
-	Floor f = fs.findByPrimaryKey(floorId);
+	FloorDTO f = fs.findByPrimaryKey(floorId);
 	rs.delete(Integer.parseInt(idRoom));
-	List <Room> listaPerFloor = rs.getAllByFloor(f);
+	List <RoomDTO> listaPerFloor = rs.getAllByFloor(f);
 	request.setAttribute("rooms", listaPerFloor);
 	return "RoomHome";
 }

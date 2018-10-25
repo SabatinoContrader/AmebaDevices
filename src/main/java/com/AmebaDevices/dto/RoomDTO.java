@@ -7,12 +7,12 @@ public class RoomDTO {
 	private long id;
 	private String nomeRoom;
 	private String descrizione;
-	private Floor floor;
+	private FloorDTO floor;
 	
 	public RoomDTO() {
 	}
 	
-	public RoomDTO(long id, String nomeRoom, String descrizione, Floor floor) {
+	public RoomDTO(long id, String nomeRoom, String descrizione, FloorDTO floor) {
 		super();
 		this.id = id;
 		this.nomeRoom = nomeRoom;
@@ -44,11 +44,11 @@ public class RoomDTO {
 		this.descrizione = descrizione;
 	}
 
-	public Floor getFloor() {
+	public FloorDTO getFloor() {
 		return floor;
 	}
 
-	public void setFloor(Floor floor) {
+	public void setFloor(FloorDTO floor) {
 		this.floor = floor;
 	}
 	
