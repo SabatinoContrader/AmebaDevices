@@ -17,7 +17,8 @@
 			class="imgSuperUser">
 	<h1>Item </h1>
 	</div>
-	<form action="/ItemType/insert" method="post">
+	<%String roomId= request.getParameter("roomId"); %>
+	<form action="/ItemType/insert?roomId=<%=roomId %>" method="post">
 		<table class="insertTable">
 		<tr>
 			<td> <h2>Marca: </h2></td>
@@ -37,11 +38,11 @@
 		</tr>
 		</table> 
 		<h2>
-		<input type="hidden" name="roomId" value=<%=request.getParameter("roomId")%> >
+		
 			<button class="censisciButton" type = "submit" >Censisci</button>
 		</h2>
 		
-		
+		<input type="hidden" name="roomId" value=<%=request.getParameter("roomId")%> >
 	</form>
 </body>
 </html>

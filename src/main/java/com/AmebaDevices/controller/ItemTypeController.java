@@ -20,8 +20,7 @@ import com.AmebaDevices.services.RoomService;
 
 @Controller
 @RequestMapping("/ItemType")
-public class ItemTypeController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class ItemTypeController  {
 	private ItemTypeService itemTypeService;
 
 	@Autowired
@@ -40,7 +39,12 @@ public class ItemTypeController extends HttpServlet {
 		String modello = request.getParameter("modello");
 		String categoria = request.getParameter("categoria");
 		String descrizione = request.getParameter("descrizione");
+
 		ItemTypeDTO item = new ItemTypeDTO();
+
+		String id = (String) request.getParameter("roomId");
+	//	Room room= roomService.findByPrimaryKey(Long.parseLong(id));
+
 		item.setCategoria(categoria);
 		item.setMarca(marca);
 		item.setModello(modello);
