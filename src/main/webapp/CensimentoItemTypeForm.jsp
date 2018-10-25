@@ -15,7 +15,7 @@
 <div class="readCustomer">
 		<img src="http://www.aa24.it/wp-content/uploads/2015/03/1426101814_add-notes.png"
 			class="imgSuperUser">
-	<h1>Item</h1>
+	<h1>Item </h1>
 	</div>
 	<form action="/ItemType/insert" method="post">
 		<table class="insertTable">
@@ -37,6 +37,7 @@
 		</tr>
 		</table> 
 		<h2>
+		<input type="hidden" name="roomId" value=<%=request.getParameter("roomId")%> >
 			<button class="censisciButton" type = "submit" >Censisci</button>
 		</h2>
 		

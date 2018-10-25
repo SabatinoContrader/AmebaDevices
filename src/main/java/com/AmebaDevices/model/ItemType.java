@@ -43,6 +43,10 @@ public class ItemType  {
 	@JoinColumn (name ="iditemtype")
 	private Item item;
 	
+	@ManyToOne
+	@JoinColumn(name="idroom")
+	private Room room;
+	
 	public ItemType(Long id, String categoria, String marca, String modello, String descrizione) {
 	
 		this.id = id;

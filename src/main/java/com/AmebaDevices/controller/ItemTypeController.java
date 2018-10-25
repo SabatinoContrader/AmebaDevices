@@ -1,12 +1,11 @@
 package com.AmebaDevices.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.AmebaDevices.dto.ItemTypeDTO;
-import com.AmebaDevices.model.Building;
 import com.AmebaDevices.model.ItemType;
+import com.AmebaDevices.model.Room;
 import com.AmebaDevices.services.ItemTypeService;
-import com.AmebaDevices.utils.GestoreEccezioni;
+import com.AmebaDevices.services.RoomService;
 
 @Controller
 @RequestMapping("/ItemType")
@@ -41,18 +40,23 @@ public class ItemTypeController extends HttpServlet {
 		String modello = request.getParameter("modello");
 		String categoria = request.getParameter("categoria");
 		String descrizione = request.getParameter("descrizione");
-
 		ItemTypeDTO item = new ItemTypeDTO();
 		item.setCategoria(categoria);
 		item.setMarca(marca);
 		item.setModello(modello);
 		item.setDescrizione(descrizione);
 		itemTypeService.insertItemType(item);
+		List <ItemTypeDTO> catalogo = new ArrayList<>();
+		catalogo = itemTypeService.getAllItemType();
+		request.setAttribute("items", catalogo);
 		return "ItemTypeMenu";
 	}
 
 	@RequestMapping(value = "/menu", method = RequestMethod.GET)
 	public String menu(HttpServletRequest request) {
+		List<ItemTypeDTO> catalogo= new ArrayList<>();
+		catalogo= itemTypeService.getAllItemType(); // fare metodo per ricercare gli item per room
+		request.setAttribute("items", catalogo);
 		return "ItemTypeMenu";
 	}
 

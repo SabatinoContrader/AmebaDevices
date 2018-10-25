@@ -10,7 +10,9 @@ import com.AmebaDevices.converter.ItemTypeConverter;
 import com.AmebaDevices.dao.ItemTypeDao;
 import com.AmebaDevices.dto.ItemTypeDTO;
 import com.AmebaDevices.model.Customer;
+import com.AmebaDevices.model.Floor;
 import com.AmebaDevices.model.ItemType;
+import com.AmebaDevices.model.Room;
 
 @Service
 public class ItemTypeService {
@@ -27,7 +29,11 @@ public class ItemTypeService {
 			items.add(ItemTypeConverter.convertToDto(c));	});
 		return items;
 	}
-    
+	public List<ItemType> getAllByRoom(Room room) {
+		List<ItemType> items = (List<ItemType>) itemTypeDao.findByRoom(room);
+		return items;
+
+	}
 	
 	public void insertItemType(ItemTypeDTO item) {
 		 this.itemTypeDao.save(ItemTypeConverter.convertToItem(item));

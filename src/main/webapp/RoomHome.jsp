@@ -27,9 +27,9 @@
 					for (int i=0 ; i < rooms.size(); i++) { %>
 						<tr>
 							<td align="center"><a style="color:blue; text-decoration:none" href="/ItemType/menu?roomId=<% out.println(rooms.get(i).getId()); %>"><% out.println(rooms.get(i).getId()); %></a></td>
-							<td align="center"><a style="color:blue; text-decoration:none"href="/ItemType/menu?roomId=<% out.println(rooms.get(i).getNomeRoom()); %>"><% out.println (rooms.get(i).getNomeRoom());%></a></td>
-							<td align="center"><a style="color:blue; text-decoration:none"href="/ItemType/menu?roomId=<% out.println(rooms.get(i).getDescrizione()); %>"><% out.println (rooms.get(i).getDescrizione()); %></a></td>
-							<td align="center"><a style="color:blue; text-decoration:none"href="/ItemType/menu?roomId=<% out.println(rooms.get(i).getFloor()); %>"> <% out.println (rooms.get(i).getFloor().getId()); %></a></td>
+							<td align="center"><a style="color:blue; text-decoration:none"href="/ItemType/menu?roomId=<% out.println(rooms.get(i).getId()); %>"><% out.println (rooms.get(i).getNomeRoom());%></a></td>
+							<td align="center"><a style="color:blue; text-decoration:none"href="/ItemType/menu?roomId=<% out.println(rooms.get(i).getId()); %>"><% out.println (rooms.get(i).getDescrizione()); %></a></td>
+							<td align="center"><a style="color:blue; text-decoration:none"href="/ItemType/menu?roomId=<% out.println(rooms.get(i).getId()); %>"> <% out.println (rooms.get(i).getFloor().getId()); %></a></td>
 						</tr>
 		<% }%>
 		</table>	

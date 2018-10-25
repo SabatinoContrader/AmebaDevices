@@ -47,4 +47,8 @@ public class RoomService {
 
 	}
 
+	public Room findByPrimaryKey(long id) {
+		return this.roomdao.findOne(id);
+	}
+
 }
