@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Modifica Items</title>
-<link href="/resources/css/styles.css" rel="stylesheet">
+<link href="/resources/css/styles.css" rel="stylesheet"> 
 	<a href="/ItemType/menu" class="logout">Indietro</a>
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 </head>

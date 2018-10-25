@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<a href="/ItemType/Menu" class="logout">Indietro</a>
+<a href="/ItemType/menu" class="logout">Indietro</a>
 <link href="/resources/css/styles.css" rel="stylesheet">
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 <meta charset="ISO-8859-1">
