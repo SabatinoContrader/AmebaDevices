@@ -1,6 +1,5 @@
 package com.AmebaDevices.converter;
 
-import com.AmebaDevices.dao.BuildingDAO;
 import com.AmebaDevices.dto.BuildingDTO;
 import com.AmebaDevices.model.Building;
 
@@ -12,6 +11,7 @@ public class BuildingConverter {
 		building.setCity(b.getCity());
 		building.setAddress(b.getAddress());
 		building.setInterno(b.getInterno());
+		building.setOwner(CustomerConverter.convertToDto(b.getOwner()));
 		return building;
 	}
 	public static Building convertToBuilding(BuildingDTO b) {
@@ -21,6 +21,7 @@ public class BuildingConverter {
 		building.setCity(b.getCity());
 		building.setAddress(b.getAddress());
 		building.setInterno(b.getInterno());
+		building.setOwner(CustomerConverter.convertToCustomer(b.getOwner()));
 		return building;
 	}
 }

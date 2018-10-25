@@ -3,7 +3,7 @@
     
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.AmebaDevices.model.Room"%>
+<%@page import="com.AmebaDevices.dto.RoomDTO"%>
 
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
 	<h2>Queste sono le room relative al floor <%=request.getAttribute("floorId") %></h2>
 	<table>
 	<%
-										List<Room> rooms = (List<Room>) request.getAttribute("rooms");
+										List<RoomDTO> rooms = (List<RoomDTO>) request.getAttribute("rooms");
 
 										for (int i=0; i < rooms.size(); i++) {
 									%><tr>	<td><% out.println(rooms.get(i).getId()); %></td>

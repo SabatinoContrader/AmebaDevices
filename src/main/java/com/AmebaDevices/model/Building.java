@@ -13,8 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
-import org.jdom2.Attribute;
-import org.jdom2.Element;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -47,7 +47,7 @@ public class Building{
 	@NotNull
 	private long interno;
 	
-	@ManyToOne
+	@ManyToOne 
 	@JoinColumn (name = "owner")
     private Customer owner; 
 	

@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.AmebaDevices.model.Floor"%>
+<%@page import="com.AmebaDevices.dto.FloorDTO"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -23,7 +23,7 @@
 	<th>Nome: </th>
 	<th>Descrizione: </th>
 	<th>IdBuilding: </th></tr>
-	<% List<Floor> floors = (List<Floor>) request.getAttribute("floors"); for (int i=0; i < floors.size(); i++) { %>
+	<% List<FloorDTO> floors = (List<FloorDTO>) request.getAttribute("floors"); for (int i=0; i < floors.size(); i++) { %>
 		<tr>	<td align="center"><a style="color:white; text-decoration:none" href="/Room/menu?floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getId()); %></a></td>
 				<td align="center"><a style="color:white; text-decoration:none" href="/Room/menu?floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getNomeFloor()); %></a></td>
 				<td align="center"><a style="color:white; text-decoration:none" href="/Room/menu?floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getDescrizione()); %></a></td>

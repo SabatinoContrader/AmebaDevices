@@ -60,7 +60,8 @@ public class BuildingService {
 	}
 
 	public void delete(BuildingDTO toDestroy) {
-		buildingdao.delete(BuildingConverter.convertToBuilding(toDestroy));
+		Building b = BuildingConverter.convertToBuilding(toDestroy);
+		buildingdao.delete(b);
 	}
 
 	public Building create(BuildingDTO myNewBuilding, String owner) {

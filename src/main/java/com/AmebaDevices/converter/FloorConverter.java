@@ -10,7 +10,7 @@ public class FloorConverter {
 		floor.setId(f.getId());
 		floor.setDescrizione(f.getDescrizione());
 		floor.setNomeFloor(f.getNomeFloor());
-		floor.setBuilding(f.getBuilding());
+		floor.setBuilding(BuildingConverter.convertToDto(f.getBuilding()));
 		return floor;
 	}
 	
@@ -19,7 +19,7 @@ public class FloorConverter {
 		floor.setId(f.getId());
 		floor.setDescrizione(f.getDescrizione());
 		floor.setNomeFloor(f.getNomeFloor());
-		floor.setBuilding(f.getBuilding());
+		floor.setBuilding(BuildingConverter.convertToBuilding(f.getBuilding()));
 		return floor;
 	}
 }

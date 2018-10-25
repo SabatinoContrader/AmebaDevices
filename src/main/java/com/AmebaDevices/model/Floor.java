@@ -2,6 +2,8 @@ package com.AmebaDevices.model;
 
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.jdom2.Attribute;
 import org.jdom2.Element;
 
