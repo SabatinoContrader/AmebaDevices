@@ -14,6 +14,6 @@
 	<p>Marca:  <c:out value = "${item.getMarca()}"/></p>
 	<p>Modello: <c:out value = "${item.getModello()}"/></p>
 	<p>Descrizione: <c:out value = "${item.getDescrizione()}"/></p>
-	<p><a href="/Item/menu">Vai a Menu Item</a></p>
+	<p><a href="/ItemType/menu">Vai a Menu Item</a></p>
 </body>
 </html>

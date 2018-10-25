@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<a href="ItemMenu.jsp" class="logout">Indietro</a>
-<link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
+<a href="/ItemType/Menu" class="logout">Indietro</a>
+<link href="/resources/css/styles.css" rel="stylesheet">
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 <meta charset="ISO-8859-1">
 <title>Censimento Item</title>
@@ -17,7 +17,7 @@
 			class="imgSuperUser">
 	<h1>Item</h1>
 	</div>
-	<form action="/Item/insert" method="post">
+	<form action="/ItemType/insert" method="post">
 		<table class="insertTable">
 		<tr>
 			<td> <h2>Marca: </h2></td>
@@ -37,7 +37,7 @@
 		</tr>
 		</table> 
 		<h2>
-			<button class="censisciButton" type = "submit" value = "Censimento" name = "mode">Censisci</button>
+			<button class="censisciButton" type = "submit" >Censisci</button>
 		</h2>
 		
 		

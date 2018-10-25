@@ -6,8 +6,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Modifica Items</title>
-<link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
-	<a href="ItemMenu.jsp" class="logout">Indietro</a>
+<link href="/resources/css/styles.css" rel="stylesheet">
+	<a href="/ItemType/menu" class="logout">Indietro</a>
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 </head>
 <body>
@@ -17,7 +17,7 @@
 	<h1>Modifica Items</h1>
 	
 	</div>	
-		<form class="itemForm" action = "/Item/update" method = "POST">
+		<form class="itemForm" action = "/ItemType/update" method = "POST">
 		<table>
 		<tr>
 			<td> <h2>Id: </h2></td>
@@ -40,7 +40,7 @@
 			<td>  <textarea class="textFont" rows="4" cols="50" name="descrizione" placeholder="Inserisci descrizione"></textarea> </td>				
 		</tr>
 		</table>
-         	<p><button class = "loginButton" type = "submit" value = "Modifica" name = "mode">Modifica</button></p>
+         	<p><button class = "loginButton" type = "submit" >Modifica</button></p>
     	</form>
 	
 </body>
