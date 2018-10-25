@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class ItemEntity {
+public class Item {
 
 	@Id
 	@Column
@@ -33,24 +33,7 @@ public class ItemEntity {
 	
 	@ManyToOne
 	@JoinColumn (name ="iditemtype")
-	private ItemType iditemtype;
-	
-	public String toString() {
-		return "id: " + id + 
-				"\nConsumo Energetico: " + consumoEnergetico + 
-				"\nSeriale: " + seriale + 
-				"\nId Room: " + idroom + 
-				"\nTipologia Item" + iditemtype;
-
-	}
-
+	private ItemType itemType;
 	
 
-	public boolean equals(Object o) {
-		 if (this == o) return true;
-	        if (o == null || getClass() != o.getClass()) return false;
-	        ItemEntity i = (ItemEntity) o;
-	        return id == i.id&&consumoEnergetico.equals(i.consumoEnergetico)&&seriale.equals(i.seriale)&&idroom.equals(i.idroom)&&iditemtype.equals(i.iditemtype);
-
-	 }
 }

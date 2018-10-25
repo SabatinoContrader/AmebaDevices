@@ -41,7 +41,7 @@ public class ItemType  {
 	
 	@ManyToOne
 	@JoinColumn (name ="iditemtype")
-	private ItemEntity item;
+	private Item item;
 	
 	public ItemType(Long id, String categoria, String marca, String modello, String descrizione) {
 	
