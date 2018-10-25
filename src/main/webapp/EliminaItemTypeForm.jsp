@@ -27,6 +27,7 @@
 			</table>
 			<button class="loginButton" type="submit"
 			name="mode">Elimina</button>
+			<input type="hidden" name="roomId" value=<%=request.getParameter("roomId")%> >
 		</form>
 	</div>
 </body>

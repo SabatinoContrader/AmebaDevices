@@ -49,7 +49,9 @@ public class ItemTypeService {
 	}
 	
 	public void deleteItemType(Long id) {
-		this.itemTypeDao.delete(id);
+		ItemType item = itemTypeDao.findOne(id);
+		itemTypeDao.delete(item);
+		
 	}
 
 	/*

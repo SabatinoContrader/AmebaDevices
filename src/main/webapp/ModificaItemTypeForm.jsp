@@ -41,6 +41,7 @@
 		</tr>
 		</table>
          	<p><button class = "loginButton" type = "submit" >Modifica</button></p>
+         	<input type="hidden" name="roomId" value=<%=request.getParameter("roomId")%> >
     	</form>
 	
 </body>
