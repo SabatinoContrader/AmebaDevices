@@ -25,6 +25,7 @@ public class RoomService {
 	}
 
 	public void delete(long id) {
+		Room c = roomdao.findOne(id);
 		roomdao.delete(c);
 
 	}
