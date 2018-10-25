@@ -27,7 +27,7 @@
 		<tr>	<td align="center"><a style="color:white; text-decoration:none" href="/Room/menu?floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getId()); %></a></td>
 				<td align="center"><a style="color:white; text-decoration:none" href="/Room/menu?floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getNomeFloor()); %></a></td>
 				<td align="center"><a style="color:white; text-decoration:none" href="/Room/menu?floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getDescrizione()); %></a></td>
-				<td align="center"><a style="color:white; text-decoration:none" href="/Room/menu?floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getIdBuilding()); %></a></td>
+				<td align="center"><a style="color:white; text-decoration:none" href="/Room/menu?floorId=<% out.println(floors.get(i).getId()); %>"><% out.println(floors.get(i).getBuilding().getId()); %></a></td>
 		</tr>								
 	<%}%>
 	</table>

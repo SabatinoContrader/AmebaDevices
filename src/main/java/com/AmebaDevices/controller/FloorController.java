@@ -33,6 +33,15 @@ import com.AmebaDevices.services.FloorService;
 @RequestMapping("/Floors")
 public class FloorController {
 	
+	private FloorService fs;
+	private BuildingService bs;
+	
+	@Autowired 
+	public FloorController (FloorService fs, BuildingService bs) {
+		this.fs = fs;
+		this.bs = bs;
+	}
+	
 	
 	private void processRequest(String filePath, HttpServletRequest request, HttpServletResponse response) 
 		      throws ServletException, IOException {
@@ -65,10 +74,7 @@ public class FloorController {
 		    }
 
 
-	@Autowired
-	public FloorController() {
-	}
-
+	
 	@RequestMapping(value = "/insertForm", method = RequestMethod.GET)
 	public String insertForm(HttpServletRequest request) {
 		int buildingId = Integer.parseInt(request.getParameter("buildingId"));
@@ -78,41 +84,35 @@ public class FloorController {
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insert(HttpServletRequest request) {
-		int buildingId = Integer.parseInt(request.getParameter("buildingId"));
+		long buildingId = Long.parseLong(request.getParameter("buildingId"));
 		request.setAttribute("buildingId", String.valueOf(buildingId));
 		String name = request.getParameter("floorName");
 		String description = request.getParameter("floorDescription");
-		String bid = (String) request.getAttribute("buildingId");
-		FloorService newFloorService = new FloorService();
 		Floor f = new Floor();
 		f.setNomeFloor(name);
 		f.setDescrizione(description);
-		f.setIdBuilding(bid);
-		newFloorService.insertFloor(f);
-		
+		this.fs.insertFloor(f, buildingId);
 		request.setAttribute("buildingId", String.valueOf(buildingId));
 		List<Floor> alreadyExisting = new ArrayList<>();
-		alreadyExisting = newFloorService.getAllByBuilding(buildingId);
+		alreadyExisting = this.fs.getAllByBuilding(buildingId);
 		request.setAttribute("floors", alreadyExisting);
 		return "floorManager";
 	}
 
 	@RequestMapping(value = "/menu", method = RequestMethod.GET)
 	public String menu(HttpServletRequest request) {
-		int buildingId = Integer.parseInt(request.getParameter("buildingId"));
+		long buildingId = Long.parseLong(request.getParameter("buildingId"));
 		request.setAttribute("buildingId", String.valueOf(buildingId));
-		FloorService fs = new FloorService();
 		List<Floor> alreadyExisting = new ArrayList<>();
-		alreadyExisting = fs.getAllByBuilding(buildingId);
+		alreadyExisting = this.fs.getAllByBuilding(buildingId);
 		request.setAttribute("floors", alreadyExisting);
 		return "floorManager";
 	}
 
 	@RequestMapping(value = "/updateForm", method = RequestMethod.GET)
 	public String updateForm(HttpServletRequest request) {
-		int buildingId = Integer.parseInt(request.getParameter("buildingId"));
+		long buildingId = Long.parseLong(request.getParameter("buildingId"));
 		request.setAttribute("buildingId", String.valueOf(buildingId));
-		FloorService fs = new FloorService();
 		List<Floor> alreadyExisting = new ArrayList<>();
 		alreadyExisting = fs.getAllByBuilding(buildingId);
 		request.setAttribute("floors", alreadyExisting);
@@ -128,14 +128,11 @@ public class FloorController {
 		String floorId = request.getParameter("floorid");
 		System.out.println(floorId + " "+newName+" "+newDescription+" "+buildingid);
 		Floor newFloor = new Floor();
-		FloorService fs = new FloorService();
-		newFloor.setId(floorId);
+		newFloor.setId(Integer.parseInt(floorId));
 		newFloor.setNomeFloor(newName);
 		newFloor.setDescrizione(newDescription);
-		newFloor.setIdBuilding(buildingid);
-		fs.update(newFloor);
-		
-		int buildingId = Integer.parseInt(request.getParameter("buildingId"));
+		fs.update(newFloor, Long.parseLong(buildingid));
+		long buildingId = Long.parseLong(request.getParameter("buildingId"));
 		request.setAttribute("buildingId", String.valueOf(buildingId));
 		List<Floor> alreadyExisting = new ArrayList<>();
 		alreadyExisting = fs.getAllByBuilding(buildingId);
@@ -147,7 +144,6 @@ public class FloorController {
 	public String deleteForm(HttpServletRequest request) {
 		int buildingId = Integer.parseInt(request.getParameter("buildingId"));
 		request.setAttribute("buildingId", String.valueOf(buildingId));
-		FloorService fs = new FloorService();
 		List<Floor> alreadyExisting = new ArrayList<>();
 		alreadyExisting = fs.getAllByBuilding(buildingId);
 		request.setAttribute("floors", alreadyExisting);
@@ -157,7 +153,6 @@ public class FloorController {
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("floorid"));
-		FloorService fs = new FloorService();
 		fs.deleteById(id);
 		
 		int buildingId = Integer.parseInt(request.getParameter("buildingId"));
@@ -172,22 +167,19 @@ public class FloorController {
 	
 	@RequestMapping (value = "/download", method = RequestMethod.GET)
 	public String download(HttpServletRequest request, HttpServletResponse response) {
-    	int buildingId = Integer.parseInt(request.getParameter("buildingId"));
+    	Long buildingId = Long.parseLong(request.getParameter("buildingId"));
+    	Building current = bs.findByPrimaryKey(buildingId);
 		String type =  request.getParameter("type");
-		Building b = new Building();
-		BuildingService bs = new BuildingService();
-		b = bs.findByPrimaryKey(buildingId);
 		switch (type) {
 		case "xml":
 			//xml 
 			System.out.println("entro");
 			Document doc = new Document();
-			System.out.println(b.getIndirizzo());
-			doc.setRootElement(b.getElement());
+			doc.setRootElement(bs.getElement(current));
 			XMLOutputter x = new XMLOutputter();
 			x.setFormat(Format.getPrettyFormat());
 			try {
-				File file = new File(b.getIndirizzo()+" interno "+b.getInterno()+".xml");
+				File file = new File(current.getAddress()+" interno "+current.getInterno()+".xml");
 				System.out.println(file.getAbsolutePath());
 				FileWriter fw = new FileWriter(file);
 				x.output(doc, fw);
@@ -200,7 +192,7 @@ public class FloorController {
 			break;
 		case "csv":
 			try {
-				processRequest(b.buildCSV(), request, response);
+				processRequest(bs.buildCSV(current), request, response);
 			} catch (ServletException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -210,44 +202,5 @@ public class FloorController {
 		return "floorManager";
 	}
 
-	/*
-	 * protected void doPost(HttpServletRequest request, HttpServletResponse
-	 * response) throws ServletException, IOException { int buildingId =
-	 * Integer.parseInt(request.getParameter("buildingId"));
-	 * request.setAttribute("buildingId",String.valueOf(buildingId));
-	 * RequestDispatcher dispatcher = null; FloorService fs = new FloorService();
-	 * List <Floor> alreadyExisting = new ArrayList<>(); alreadyExisting =
-	 * fs.getAllByBuilding(buildingId); request.setAttribute("floors",
-	 * alreadyExisting); String operation = request.getParameter("operation");
-	 * 
-	 * switch (operation) { case "create": dispatcher =
-	 * request.getRequestDispatcher("newFloor.jsp"); break; case "read":
-	 * RequestDispatcher view = request.getRequestDispatcher("/displayFloors.jsp");
-	 * view.include(request, response); break; case "update": dispatcher =
-	 * request.getRequestDispatcher("updateFloor.jsp"); break; case "delete":
-	 * dispatcher = request.getRequestDispatcher("deleteFloor.jsp"); break; case
-	 * "sendDataForInsert": String name = request.getParameter("floorName"); String
-	 * description = request.getParameter("floorDescription"); String bid = (String)
-	 * request.getAttribute("buildingId"); FloorService newFloorService = new
-	 * FloorService(); Floor f = new Floor(); f.setNomeFloor(name);
-	 * f.setDescrizione(description); f.setIdBuilding(bid);
-	 * newFloorService.insertFloor(f); dispatcher =
-	 * request.getRequestDispatcher("floorManager.jsp"); break; case
-	 * "sendDataForUpdate": String newName = request.getParameter("floorName");
-	 * String newDescription = request.getParameter("floorDescription"); String
-	 * buildingid = (String) request.getAttribute("buildingId"); String floorId =
-	 * request.getParameter("floorid"); Floor newFloor = new Floor();
-	 * newFloor.setId(floorId); newFloor.setNomeFloor(newName);
-	 * newFloor.setDescrizione(newDescription); newFloor.setIdBuilding(buildingid);
-	 * fs.update(newFloor); dispatcher =
-	 * request.getRequestDispatcher("floorManager.jsp"); break; case "home":
-	 * dispatcher = request.getRequestDispatcher("floorManager.jsp"); break; case
-	 * "sendDataForDelete": int id =
-	 * Integer.parseInt(request.getParameter("floorid")); fs.deleteById(id);
-	 * dispatcher = request.getRequestDispatcher("floorManager.jsp"); break; } if
-	 * (dispatcher != null) { dispatcher.forward(request, response); } //
-	 * response.getWriter().append("Non capisco. Che fai?"); }
-	 * 
-	 */
-
+	
 }

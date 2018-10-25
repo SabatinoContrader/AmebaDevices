@@ -25,7 +25,7 @@
 									%><tr>	<td><% out.println(floors.get(i).getId()); %></td>
 											<td><% out.println(floors.get(i).getNomeFloor()); %></td>
 											<td><% out.println(floors.get(i).getDescrizione()); %></td>
-											<td><% out.println(floors.get(i).getIdBuilding()); %></td>
+											<td><% out.println(floors.get(i).getBuilding().getId()); %></td>
 									</tr>
 									
 	<%} %>

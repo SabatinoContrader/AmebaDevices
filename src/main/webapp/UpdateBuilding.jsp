@@ -29,9 +29,9 @@
 			</th>
 			<c:forEach var="building" items="${buildings}">
 			<tr>
-				<td align="center">${building.buildingId}</td>
-				<td align="center">${building.indirizzo}</td>
-				<td align="center">${building.citta}</td>
+				<td align="center">${building.id}</td>
+				<td align="center">${building.address}</td>
+				<td align="center">${building.city}</td>
 				<td align="center">${building.cap}</td>
 				<td align="center">${building.interno}</td>
 			</tr>
@@ -44,7 +44,7 @@
 							<td><h2>Id Building:</h2></td>
 							<td><select name="idselected">
 									<c:forEach var="building" items="${buildings}">
-										<option value="${building.buildingId}">${building.buildingId}</option>
+										<option value="${building.id}">${building.id}</option>
 									</c:forEach>
 							</select></td>
 						</tr>

@@ -29,11 +29,11 @@
 		<tbody>
 		<c:forEach var="building" items="${buildings}">
 			<tr>
-				<td align="center"><a style="text-decoration:none; color:white" href="Floors/menu?buildingId=${building.buildingId}">${building.buildingId}</a></td>
-				<td align="center"><a style="text-decoration:none; color:white" href="Floors/menu?buildingId=${building.buildingId}">${building.indirizzo}</a></td>
-				<td align="center"><a style="text-decoration:none; color:white" href="Floors/menu?buildingId=${building.buildingId}">${building.citta}</a></td>
-				<td align="center"><a style="text-decoration:none; color:white" href="Floors/menu?buildingId=${building.buildingId}">${building.cap}</a></td>
-				<td align="center"><a style="text-decoration:none; color:white" href="Floors/menu?buildingId=${building.buildingId}">${building.interno}</a></ta>
+				<td align="center"><a style="text-decoration:none; color:white" href="/Floors/menu?buildingId=${building.id}">${building.id}</a></td>
+				<td align="center"><a style="text-decoration:none; color:white" href="/Floors/menu?buildingId=${building.id}">${building.address}</a></td>
+				<td align="center"><a style="text-decoration:none; color:white" href="/Floors/menu?buildingId=${building.id}">${building.city}</a></td>
+				<td align="center"><a style="text-decoration:none; color:white" href="/Floors/menu?buildingId=${building.id}">${building.cap}</a></td>
+				<td align="center"><a style="text-decoration:none; color:white" href="/Floors/menu?buildingId=${building.id}">${building.interno}</a></ta>
 			</tr>
 		</c:forEach>
 		</tbody>

@@ -1,4 +1,4 @@
-package com.AmebaDevices.model;
+package com.AmebaDevices.buildables;
 
 
 import org.jdom2.Element;

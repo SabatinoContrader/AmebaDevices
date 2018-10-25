@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
-<a href="ItemMenu.jsp" class="logout">Indietro</a>
+<a href="/ItemType/menu" class="logout">Indietro</a>
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 <title>Elimina Item</title>
 </head>
@@ -18,14 +18,14 @@
 		<h1>Elimina Item</h1>
 	</div>
 	<div class="itemForm">
-		<form action="/Item/delete" method="POST">
+		<form action="/ItemType/delete" method="POST">
 			<table>
 				<tr>
 					<td><h2>Id:</h2></td>
 					<td><input type="text" name="id" placeholder="id"></td>
 				</tr>
 			</table>
-			<button class="loginButton" type="submit" value="EliminaItem"
+			<button class="loginButton" type="submit"
 			name="mode">Elimina</button>
 		</form>
 	</div>

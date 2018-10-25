@@ -9,11 +9,11 @@ public class Thing {
 	private String nome;
 	private int numUscite; //potenze di 2
 	
-	private Item[] items;
+	private ItemType[] items;
 	
 	public Thing(int numUscite) {
 		this.numUscite = numUscite;
-		items = new Item[numUscite];
+		items = new ItemType[numUscite];
 	}
 	
 	public Thing(int numUscite, String nome) {
@@ -26,14 +26,14 @@ public class Thing {
 		this.id = id;
 		this.nome = nome;
 		this.numUscite = numUscite;
-		items = new Item[numUscite];
+		items = new ItemType[numUscite];
 	}
 
 	public Thing() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int addItem(Item item) {
+	public int addItem(ItemType item) {
 		int pos = -1;
 		for (int i = 0 ; i < items.length; i++) {
 			if (items[i] == null) {
@@ -46,7 +46,7 @@ public class Thing {
 		return pos;
 	}
 	
-	public void removeItem(Item item) {
+	public void removeItem(ItemType item) {
 		for (int i=0 ; i < items.length ; i++) {
 			if (items[i] != null) {
 				if (items[i].getId().equals(item.getId())) {

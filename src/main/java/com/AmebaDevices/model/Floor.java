@@ -5,80 +5,46 @@ import java.util.List;
 import org.jdom2.Attribute;
 import org.jdom2.Element;
 
-import com.AmebaDevices.services.RoomService;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
-public class Floor implements Buildable {
+@Entity
+@Getter
+@Setter
+@Table(name="floor",  uniqueConstraints = {@UniqueConstraint(columnNames={"id"})})
+@NoArgsConstructor
+@AllArgsConstructor
+public class Floor {
 
-	private String id;
+	@Id
+	@Column
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private long id;
+
+	@NotNull
+	@Column (length = 45)
 	private String nomeFloor;
+	
+	@NotNull
+	@Column (length = 100)
 	private String descrizione;
-	private String idBuilding; // l'id del building associato al floor
-
-	public Floor() {
-	}
-
-	public Floor(String nomeFloor, String descrizione) {
-		this.nomeFloor = nomeFloor;
-		this.descrizione = descrizione;
-	}
-
 	
-	
-	
-	public String getNomeFloor() {
-		return nomeFloor;
-	}
-
-	public void setNomeFloor(String nomeFloor) {
-		this.nomeFloor = nomeFloor;
-	}
-
-	public String getDescrizione() {
-		return descrizione;
-	}
-
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
-	}
-
-	public String getIdBuilding() {
-		return idBuilding;
-	}
-
-	public void setIdBuilding(String idBuilding) {
-		this.idBuilding = idBuilding;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	@Override
-	public String getId() {
-		return this.id;
-	}
-
-	@Override
-	public Element getElement() {
-		Element toReturn =new Element(this.getClass().getSimpleName().toLowerCase());
-		toReturn.setAttribute(new Attribute("id", this.getId()));
-		toReturn.addContent(new Element("nome").setText(this.getNomeFloor()));
-		toReturn.addContent(new Element("descrizione").setText(this.getDescrizione()));	
-		Element roomsFather = new Element("rooms");
-		Element roomsElement;
-		RoomService rs = new RoomService();
-		if (Integer.parseInt(id)!= 0) {
-		List <Room> rooms = rs.getAllByFloor((Integer.parseInt(id)));
-		for (int i=0 ; i < rooms.size(); i++) {
-			roomsElement = rooms.get(i).getElement();
-			roomsFather.addContent(roomsElement);
-		} 
-		
-		toReturn.addContent(roomsFather);
-		}
-		return toReturn;
-		
-	}
-
+	@ManyToOne
+	@JoinColumn (name ="idbuilding")
+	private Building building; 
 }

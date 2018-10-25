@@ -17,17 +17,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.AmebaDevices.model.Building;
+import com.AmebaDevices.model.Floor;
 import com.AmebaDevices.model.Room;
+import com.AmebaDevices.services.FloorService;
 import com.AmebaDevices.services.RoomService;
 
 @Controller
 @RequestMapping("/Room")
 public class RoomController {
-    private RoomService fs;
+	
+    private RoomService rs;
+    private FloorService fs;
     
 @Autowired
-    public RoomController(RoomService fs) {
-	this.fs=fs;
+    public RoomController(RoomService rs, FloorService fs) {
+	this.rs=rs;
+	this.fs = fs;
 	
 	}
 
@@ -42,25 +47,26 @@ public String insert(HttpServletRequest request) {
 	String nome = (String) request.getParameter("nome");
 	String descrizione = (String) request.getParameter("description");
 	String id = (String) request.getParameter("floorId");
-	System.out.println(nome + " "+descrizione+" "+id);
-	Room f = new Room();
-	f.setNomeRoom(nome);
-	f.setDescrizione(descrizione);
-	f.setIdfloor(Integer.parseInt(id));
-	fs.insertRoom(f);
+	Floor f = fs.findByPrimaryKey(Long.parseLong(id));
+	Room room = new Room();
+	room.setNomeRoom(nome);
+	room.setDescrizione(descrizione);
+	room.setFloor(f);
+	rs.insertRoom(room);
 	request.setAttribute("floorId", id);
 	List <Room> listaPerFloor = new ArrayList<>();
-	listaPerFloor = fs.getAllByFloor(Integer.parseInt(id));
+	listaPerFloor = rs.getAllByFloor(f);
 	request.setAttribute("rooms", listaPerFloor);
 	return "RoomHome";
 }
 
 @RequestMapping(value = "/menu", method = RequestMethod.GET)
 public String menu(HttpServletRequest request) {
-	int floorId =Integer.parseInt(request.getParameter("floorId"));
+	long floorId =Long.parseLong(request.getParameter("floorId"));
+	Floor f = fs.findByPrimaryKey(floorId);
 	request.setAttribute("floorId",String.valueOf(floorId));
 	List <Room> listaPerFloor = new ArrayList<>();
-	listaPerFloor = fs.getAllByFloor(floorId);
+	listaPerFloor = rs.getAllByFloor(f);
 	request.setAttribute("rooms", listaPerFloor);
 	return "RoomHome";
 }
@@ -69,10 +75,11 @@ public String menu(HttpServletRequest request) {
 
 @RequestMapping(value="/updateForm", method= RequestMethod.GET)
 public String updateForm(HttpServletRequest request) {
-	int floorId =Integer.parseInt(request.getParameter("floorId"));
+	long floorId =Long.parseLong(request.getParameter("floorId"));
+	Floor f = fs.findByPrimaryKey(floorId);
 	request.setAttribute("floorId",String.valueOf(floorId));
 	List <Room> listaPerFloor = new ArrayList<>();
-	listaPerFloor = fs.getAllByFloor(floorId);
+	listaPerFloor = rs.getAllByFloor(f);
 	request.setAttribute("rooms", listaPerFloor);
 	return "UpdateRoom";
 }
@@ -83,14 +90,15 @@ public String update(HttpServletRequest request) {
 	String newDescription = request.getParameter("roomDescription");
 	String roomid = (String) request.getParameter("roomId");
 	String floorid=(String) request.getParameter("floorId");
+	Floor f = fs.findByPrimaryKey(Long.parseLong(floorid));
 	Room newRoom = new Room();
 	newRoom.setId(Integer.parseInt(roomid));
 	newRoom.setNomeRoom(newName);
 	newRoom.setDescrizione(newDescription);
-	newRoom.setIdfloor(Integer.parseInt(floorid));
-	fs.update(newRoom);	
+	newRoom.setFloor(f);
+	rs.update(newRoom);	
 	List <Room> listaPerFloor = new ArrayList<>();
-	listaPerFloor = fs.getAllByFloor(Integer.parseInt(floorid));
+	listaPerFloor = rs.getAllByFloor(f);
 	request.setAttribute("rooms", listaPerFloor);
 	System.out.println(listaPerFloor.size());
 	return "RoomHome";	
@@ -98,10 +106,11 @@ public String update(HttpServletRequest request) {
 
 @RequestMapping(value="/deleteForm",method=RequestMethod.GET)
 public String deleteForm(HttpServletRequest request) {
-	int floorId =Integer.parseInt(request.getParameter("floorId"));
+	long floorId =Long.parseLong(request.getParameter("floorId"));
+	Floor f = fs.findByPrimaryKey(floorId);
 	request.setAttribute("floorId",String.valueOf(floorId));
 	List <Room> listaPerFloor = new ArrayList<>();
-	listaPerFloor = fs.getAllByFloor(floorId);
+	listaPerFloor = rs.getAllByFloor(f);
 	request.setAttribute("rooms", listaPerFloor);
 	return "DeleteForm";
 }
@@ -111,11 +120,10 @@ public String delete(HttpServletRequest request) {
 	String idRoom= request.getParameter("roomid");
 	if (idRoom!= null) System.out.println(idRoom);
 	else System.out.println("idroom is null");
-	String floorId = request.getParameter("floorId");
-	if(floorId!= null) System.out.println(floorId);
-	else System.out.println("floorid is null");
-	fs.delete(Integer.parseInt(idRoom));
-	List <Room> listaPerFloor = fs.getAllByFloor(Integer.parseInt(floorId));
+	long floorId = Long.parseLong(request.getParameter("floorId"));
+	Floor f = fs.findByPrimaryKey(floorId);
+	rs.delete(Integer.parseInt(idRoom));
+	List <Room> listaPerFloor = rs.getAllByFloor(f);
 	request.setAttribute("rooms", listaPerFloor);
 	return "RoomHome";
 }

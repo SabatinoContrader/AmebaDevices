@@ -1,7 +1,6 @@
 package com.AmebaDevices.services;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +54,9 @@ public class CustomerService {
 	public void deleteCustomer(Long id) {
 		Customer c = customerDAO.findOne(id);
 		customerDAO.delete(c);
+	}
+	
+	public Customer findByUsername(String username) {
+		return customerDAO.findByUsername(username);
 	}
 }

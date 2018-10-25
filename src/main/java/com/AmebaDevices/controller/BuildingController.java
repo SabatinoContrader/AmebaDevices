@@ -20,8 +20,8 @@ public class BuildingController {
 	private BuildingService buildingService;
 
 	@Autowired
-	public BuildingController() {
-		buildingService = new BuildingService();
+	public BuildingController(BuildingService bs) {
+		buildingService = bs;
 	}
 
 	@RequestMapping(value = "/insertForm", method = RequestMethod.GET)
@@ -36,9 +36,13 @@ public class BuildingController {
 		String interno = request.getParameter("interno");
 		String citta = request.getParameter("citta");
 		String cap = request.getParameter("cap");
-		Building mynewBuilding = new Building(indirizzo, citta, cap, interno);
+		Building mynewBuilding = new Building();
+		mynewBuilding.setAddress(indirizzo);
+		mynewBuilding.setInterno(Long.parseLong(interno));
+		mynewBuilding.setCity(citta);
+		mynewBuilding.setCap(cap);
 		System.out.println("Called create");
-		this.buildingService.create(username, mynewBuilding);
+		this.buildingService.create(mynewBuilding, username);
 		List<Building> buildings = this.buildingService.getAll(username);
 		request.setAttribute("buildings", buildings);
 		return "CustomerHome";
@@ -68,14 +72,18 @@ public class BuildingController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(HttpServletRequest request) {
 		String username = request.getSession().getAttribute("username").toString();
-		int buildingId = Integer.parseInt(request.getParameter("idselected"));
-		Building building = buildingService.findByPrimaryKey(buildingId);
+		long buildingId = Long.parseLong(request.getParameter("idselected"));
 		String newindirizzo = request.getParameter("newindirizzo");
 		String newinterno = request.getParameter("newinterno");
 		String newcitta = request.getParameter("newcitta");
 		String newcap = request.getParameter("newcap");
-		Building newValues = new Building(newindirizzo, newcitta, newcap, newinterno);
-		this.buildingService.update(building, newValues, username);
+		Building newValues = new Building();
+		newValues.setId(buildingId);
+		newValues.setAddress(newindirizzo);
+		newValues.setInterno(Long.parseLong(newinterno));
+		newValues.setCity(newcitta);
+		newValues.setCap(newcap);
+		this.buildingService.update(newValues, username);
 		List<Building> buildings = this.buildingService.getAll(username);
 		request.setAttribute("buildings", buildings);
 		return "CustomerHome";

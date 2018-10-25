@@ -1,52 +1,180 @@
 package com.AmebaDevices.services;
 
-
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+import org.jdom2.Attribute;
+import org.jdom2.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.AmebaDevices.dao.BuildingDAO;
+import com.AmebaDevices.dao.CustomerDAO;
+import com.AmebaDevices.dao.FloorDAO;
+import com.AmebaDevices.dao.RoomDAO;
 import com.AmebaDevices.model.Building;
-
+import com.AmebaDevices.model.Customer;
+import com.AmebaDevices.model.Floor;
+import com.AmebaDevices.model.Room;
 
 @Service
 public class BuildingService {
-	
+
 	private BuildingDAO buildingdao;
-	
-	// DEVE permettere operazioni di create, read, update e delete 
+	private CustomerDAO customerdao;
+	private FloorDAO floordao;
+	private RoomDAO roomdao;
+
+	// DEVE permettere operazioni di create, read, update e delete
 	// e probabilmente altre se mi serviranno
 	@Autowired
-	public BuildingService () {
-		buildingdao = new BuildingDAO();
+	public BuildingService(BuildingDAO buildingDao, CustomerDAO customerDao, FloorDAO floordao, RoomDAO roomdao) {
+		this.buildingdao = buildingDao;
+		this.customerdao = customerDao;
+		this.floordao = floordao;
+		this.roomdao = roomdao;
+	}
+
+	public List<Building> getAll(String owner) {
+		List<Building> buildings;
+		Customer ownerC = this.customerdao.findByUsername(owner);
+		buildings = (List<Building>) buildingdao.findByOwner(ownerC);
+		System.out.println("----------------------------------->"+buildings.size());
+		return buildings;
+
+	}
+
+	public void delete(Building toDestroy, String owner) {
+		Customer c = customerdao.findByUsername(owner);
+		toDestroy.setOwner(c);
+		buildingdao.delete(toDestroy);
+	}
+
+	public Building create(Building myNewBuilding, String owner) {
+		Customer c = this.customerdao.findByUsername(owner);
+		myNewBuilding.setOwner(c);
+		return buildingdao.save(myNewBuilding);
+
+	}
+
+	public void update(Building newValues, String owner) {
+		if (buildingdao.findOne(newValues.getId()) != null) {
+			Customer customer = this.customerdao.findByUsername(owner);
+			newValues.setOwner(customer);
+			buildingdao.save(newValues);
+		}
+	}
+
+	public Building findByPrimaryKey(long buildingId) {
+		return buildingdao.findOne(buildingId);
 	}
 	
+	public Element getElement(Building b) {
+		Element toReturn =new Element("building");
+		toReturn.setAttribute(new Attribute("id", String.valueOf(b.getId())));
+		toReturn.addContent(new Element("indirizzo").setText(b.getAddress()));
+		toReturn.addContent(new Element("interno").setText(String.valueOf(b.getInterno())));
+		toReturn.addContent(new Element("citta").setText(b.getCity()));
+		toReturn.addContent(new Element("cap").setText(b.getCap()));
+		Element floorsFather = new Element("floors");
+		Element floorsElement;
+		if (b.getId() != 0l) {
+		List <Floor> floors = floordao.findByBuilding(b);
+		for (int i=0 ; i < floors.size(); i++) {
+			floorsElement = new Element ("floor");
+			floorsElement.setAttribute(new Attribute("id", String.valueOf(floors.get(i).getId())));
+			floorsElement.addContent(new Element("nome").setText(floors.get(i).getNomeFloor()));
+			floorsElement.addContent(new Element("descrizione").setText(floors.get(i).getDescrizione()));
+			Element roomsFather = new Element("rooms");
+			if (floors.get(i).getId() != 0l) {
+				List<Room> rooms = roomdao.findByFloor(floors.get(i));
+				for (int j = 0; j < rooms.size(); j++) {
+					Element roomElement =new Element("room");
+					roomElement.setAttribute(new Attribute("id", String.valueOf(rooms.get(j).getId())));
+					roomElement.addContent(new Element("nome").setText(rooms.get(j).getNomeRoom()));
+					roomElement.addContent(new Element("descrizione").setText(rooms.get(j).getDescrizione()));	
+					roomsFather.addContent(roomElement);
+					// Manca item
+				}
+
+				floorsElement.addContent(roomsFather);
+			}
+			floorsFather.addContent(floorsElement);
+		} 
+		
+		toReturn.addContent(floorsFather);
+		}
+		return toReturn;
+		
+	}
 	
-	public List<Building> getAll(String owner){
-		return buildingdao.getAllByUser(owner);
-	
-		
+	public String buildCSV(Building b) {
+		String [] header = {"edificio","interno","citta","cap","floor","", "room", "item"};
+		// la struttura del file è fissa. Abbiamo 8 colonne diverse. La prima contiene l'indirizzo dell'edificio
+		// la seconda colonna è relativa all'interno
+		// la terza contiene la città dell'edificio
+		// la quarta contiene il cap
+		// La quinta e sesta colonna del file contengono i dati relativi al floor
+		// la quinta contiene il nome del floor e la sesta la sua descrizione
+		// La settima colonna contiene il nome della room
+		// L'ottava (ed eventuali successive) contengono le info sugli item
+		// si è pensato per ragioni di ottimizzazione, di "scrivere" le info solo nel momento di cambiamento
+		// rispetto alle precedenti (es info sul floor solo nella riga relativa alla prima room di quel floor)
+		BufferedWriter bw;
+		CSVPrinter csvPrinter = null;
+		String path = new File(b.getAddress()+ " interno "+b.getInterno()+".csv").getAbsolutePath();
+		try {
+			bw = Files.newBufferedWriter(Paths.get(path));
+			csvPrinter = new CSVPrinter(bw, CSVFormat.DEFAULT.withHeader(header)); 
+			csvPrinter.flush();
+			
+			  	String [] row = new String [8];
+			  	row [0] = b.getAddress();
+			  	row [1] = String.valueOf(b.getInterno());
+			  	row [2] = b.getCity();
+			  	row [3] = b.getCap();
+				List <Floor> myFloors = floordao.findByBuilding(b);
+				for (int i=0 ; i < myFloors.size(); i++) {
+					row [4] = myFloors.get(i).getNomeFloor();
+					row [5] = myFloors.get(i).getDescrizione();
+					List <Room> myRooms = roomdao.findByFloor(myFloors.get(i));
+					for (int k=0 ; k < myRooms.size() ; k++) {
+						row[6] = myRooms.get(k).getNomeRoom();
+						csvPrinter.printRecord(row);
+						csvPrinter.flush();
+						row = new String[8];
+				//		ItemService is = new ItemService();
+				//		List<Item> myItems = is.getAllByRoom(Integer.parseInt(myRooms.get(k).getId()));
+						// for sugli item
+							// inserimento di dati nel csv
+					
+						// dato che non abbiamo gli items, stampiamo a livello di rooms				
+					}
+					if (myRooms.size() == 0){
+						// Stampo la riga delle cose relative a building e floor
+						csvPrinter.printRecord(row);
+						csvPrinter.flush();
+						row = new String[8];
+					}
+				}
+				if (myFloors.size() == 0) {
+					// Stampo la riga delle cose relative solamente al building
+					csvPrinter.printRecord(row);
+					csvPrinter.flush();
+					row = new String[8];
+				}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return path;
 	}
-
-	public boolean delete (Building toDestroy, String owner) {
-		return buildingdao.delete(toDestroy, owner);
-	}
-
-	public boolean create(String owner, Building myNewBuilding) {
-		return buildingdao.insert(myNewBuilding, owner);
-		
-	}
-
-
-	public boolean update(Building building, Building newValues, String username) {
-		return buildingdao.update(building, newValues, username);
-	}
-
-
-	public Building findByPrimaryKey(int buildingId) {
-		return BuildingDAO.findByPrimaryKey(buildingId);
-	}
-		
 
 }

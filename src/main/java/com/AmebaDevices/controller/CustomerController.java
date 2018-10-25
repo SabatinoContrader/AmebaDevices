@@ -25,9 +25,11 @@ import com.AmebaDevices.services.CustomerService;
 public class CustomerController  {
 
 	private CustomerService customerService;
+	private BuildingService buildingService;
 	@Autowired
-	public CustomerController(CustomerService customerService) {
+	public CustomerController(CustomerService customerService, BuildingService buildingService) {
 	this.customerService=customerService;
+	this.buildingService = buildingService;
 	}
 	@RequestMapping(value="/", method= RequestMethod.GET)
 	public String retur(HttpServletRequest request) {
@@ -45,7 +47,6 @@ public class CustomerController  {
 		if (userId == 1) {
 			return "superuserhome";
 		} else if (userId == 2) {
-			BuildingService buildingService = new BuildingService();
 			List <Building> myBuildings = buildingService.getAll((String) request.getSession().getAttribute("username"));
 			request.setAttribute("buildings", myBuildings);
 			return "CustomerHome";

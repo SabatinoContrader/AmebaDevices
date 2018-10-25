@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.AmebaDevices.model.Building;
+import com.AmebaDevices.model.Customer;
 import com.AmebaDevices.services.BuildingService;
+import com.AmebaDevices.services.CustomerService;
 import com.AmebaDevices.services.LoginService;
 
 @Controller
@@ -22,11 +24,14 @@ import com.AmebaDevices.services.LoginService;
 public class Login {
 
 	private LoginService loginService;
+	private BuildingService buildingService;
+	private CustomerService customerService;
 
 	@Autowired
-	public Login() {
+	public Login(CustomerService cs) {
 		System.out.println("wewe");
 		loginService = new LoginService();
+		customerService = cs;
 	}
 
 	@RequestMapping(value="/", method= RequestMethod.GET)
@@ -40,14 +45,13 @@ public class Login {
 		String nomeUtente = request.getParameter("username");
 		String password = request.getParameter("password");
 		request.getSession().setAttribute("username", nomeUtente);
-		int userId = loginService.login(nomeUtente, password);
+		long userId = loginService.login(nomeUtente, password);
 		request.getSession().setAttribute("userId", userId);
 
 		if (userId == 1) {
 			return "superuserhome";
 		} else if (userId == 2) {
-			BuildingService buildingService = new BuildingService();
-			List <Building> myBuildings = buildingService.getAll((String) request.getSession().getAttribute("username"));
+			List <Building> myBuildings = buildingService.getAll((String)request.getSession().getAttribute("username"));
 			request.setAttribute("buildings", myBuildings);
 			return "CustomerHome";
 		} else {

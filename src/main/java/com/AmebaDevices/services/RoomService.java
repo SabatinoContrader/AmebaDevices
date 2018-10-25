@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.AmebaDevices.dao.RoomDAO;
+import com.AmebaDevices.model.Floor;
 import com.AmebaDevices.model.Room;
 
 @Service
@@ -18,7 +19,7 @@ public class RoomService {
 		this.roomdao = roomdao;
 	}
 
-	public void delete(int id) {
+	public void delete(long id) {
 		Room c = roomdao.findOne(id);
 		roomdao.delete(c);
 
@@ -34,15 +35,9 @@ public class RoomService {
 
 	}
 
-	public List<Room> getAllByFloor(int floorId) {
-		List<Room> room = (List<Room>) roomdao.findAll();
-		for (int i = 0; i < room.size(); i++) {
-			if (room.get(i).getIdfloor() != floorId) {
-				room.remove(i);
-				i--;
-			}
-		}
-		return room;
+	public List<Room> getAllByFloor(Floor f) {
+		List<Room> rooms = (List<Room>) roomdao.findByFloor(f);
+		return rooms;
 
 	}
 
