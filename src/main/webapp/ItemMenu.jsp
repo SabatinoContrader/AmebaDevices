@@ -52,7 +52,7 @@
 	<th>Modello: </th>
 	<% for (int k=0; k < yourItems.size(); k++) { %>
 		<tr>
-			<td><b><a href="/Item/removeFromRoom?roomId=<% out.println(roomId); %>&itemId=<% out.println(availables.get(k).getId()); %>">-</a></b></td>		
+			<td><b><a href="/Item/removeFromRoom?roomId=<% out.println(roomId); %>&itemId=<% out.println(yourItems.get(k).getId()); %>">-</a></b></td>		
 			<td align="center"><% out.println(yourItems.get(k).getId()); %></a></td>
 			<td align="center"><% out.println(yourItems.get(k).getItemType().getCategoria()); %></a></td>
 			<td align="center"><% out.println(yourItems.get(k).getItemType().getMarca()); %></a></td>
