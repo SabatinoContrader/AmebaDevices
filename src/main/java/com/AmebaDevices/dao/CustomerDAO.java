@@ -1,5 +1,7 @@
 package com.AmebaDevices.dao;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,4 +15,6 @@ public interface CustomerDAO extends CrudRepository<Customer, Long> {
 	 public Customer findByUsernameAndPassword(String username, String password);
 
 	 public Customer findByUsername(String owner);
+	 
+	 public List<Customer> findByUserRole(Integer userRole);
 }

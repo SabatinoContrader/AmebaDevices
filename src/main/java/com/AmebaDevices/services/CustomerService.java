@@ -24,15 +24,15 @@ public class CustomerService {
 	public long login(String username, String password) {
 		Customer c = customerDAO.findByUsernameAndPassword(username, password);
 		if (c != null) {
-			if (c.getId() != 0)
-				return c.getId();
+			if (c.getUserRole() != null)
+				return c.getUserRole();
 		}
 		return -1;
 	}
 
 	public void insertCustomer(CustomerDTO customer) {
 		System.out.println(customer.getId() + customer.getNome() + customer.getCognome() + customer.getDataNascita()
-				+ customer.getEmail() + customer.getUsername() + customer.getPassword() + customer.getUser_role());
+				+ customer.getEmail() + customer.getUsername() + customer.getPassword() + customer.getUserRole());
 		customerDAO.save(CustomerConverter.convertToCustomer(customer));
 	}
 
@@ -43,6 +43,13 @@ public class CustomerService {
 			System.out.println(c.getNome());
 		});
 		return customers;
+	}
+
+	public List<CustomerDTO> readInstallers() {
+		List<CustomerDTO> installers = new ArrayList<>();
+		customerDAO.findByUserRole(3).forEach(i -> installers.add(CustomerConverter.convertToDto(i)));
+		return installers;
+
 	}
 
 	public void updateCustomer(CustomerDTO customer) {
@@ -57,7 +64,7 @@ public class CustomerService {
 		Customer c = customerDAO.findOne(id);
 		customerDAO.delete(c);
 	}
-	
+
 	public CustomerDTO findByUsername(String username) {
 		return CustomerConverter.convertToDto(customerDAO.findByUsername(username));
 	}

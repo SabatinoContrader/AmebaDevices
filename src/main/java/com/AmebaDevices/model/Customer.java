@@ -51,7 +51,7 @@ public class Customer {
 
 	@Column
 	@NotNull
-	private Integer user_role;
+	private Integer userRole;
 
 	
 ////

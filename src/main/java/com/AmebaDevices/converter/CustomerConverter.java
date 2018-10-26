@@ -14,7 +14,7 @@ public class CustomerConverter {
 		customerDTO.setEmail(c.getEmail());
 		customerDTO.setUsername(c.getUsername());
 		customerDTO.setPassword(c.getPassword());
-		customerDTO.setUser_role(c.getUser_role());
+		customerDTO.setUserRole(c.getUserRole());
 		return customerDTO;
 	}
 	
@@ -27,7 +27,7 @@ public class CustomerConverter {
 		customer.setEmail(c.getEmail());
 		customer.setUsername(c.getUsername());
 		customer.setPassword(c.getPassword());
-		customer.setUser_role(c.getUser_role());
+		customer.setUserRole(c.getUserRole());
 		return customer;
 	}
 	

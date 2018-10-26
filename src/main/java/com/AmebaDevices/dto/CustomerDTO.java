@@ -9,14 +9,14 @@ public class CustomerDTO {
 	private String email;
 	private String username;
 	private String password;
-	private Integer user_role;
+	private Integer userRole;
 
 	public CustomerDTO() {
 
 	}
 
 	public CustomerDTO(long id, String nome, String cognome, String dataNascita, String email, String username,
-			String password, Integer user_role) {
+			String password, Integer userRole) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -24,7 +24,7 @@ public class CustomerDTO {
 		this.email = email;
 		this.username = username;
 		this.password = password;
-		this.user_role = user_role;
+		this.userRole = userRole;
 	}
 
 	public long getId() {
@@ -55,8 +55,8 @@ public class CustomerDTO {
 		return password;
 	}
 
-	public Integer getUser_role() {
-		return user_role;
+	public Integer getUserRole() {
+		return userRole;
 	}
 
 	public void setId(long id) {
@@ -87,8 +87,8 @@ public class CustomerDTO {
 		this.password = password;
 	}
 
-	public void setUser_role(Integer user_role) {
-		this.user_role = user_role;
+	public void setUserRole(Integer userRole) {
+		this.userRole = userRole;
 	}
 
 }
