@@ -46,7 +46,14 @@ public class FloorService {
 		return toReturn;
 	}
 	
-	public void delete(FloorDTO f) {		
+	public void delete(FloorDTO f) {	
+		Floor floor = FloorConverter.convertToFloor(f);
+		List <Room>  rooms = roomdao.findByFloor(floor);
+		for (Room room : rooms) {
+			room.setFloor(null);
+			roomdao.save(room);
+			roomdao.delete(room);
+		}
 		this.floordao.delete(FloorConverter.convertToFloor(f));
 	}
 		

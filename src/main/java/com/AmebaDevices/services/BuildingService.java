@@ -17,13 +17,11 @@ import org.springframework.stereotype.Service;
 
 import com.AmebaDevices.converter.BuildingConverter;
 import com.AmebaDevices.converter.CustomerConverter;
-import com.AmebaDevices.converter.ItemTypeConverter;
 import com.AmebaDevices.dao.BuildingDAO;
 import com.AmebaDevices.dao.CustomerDAO;
 import com.AmebaDevices.dao.FloorDAO;
 import com.AmebaDevices.dao.RoomDAO;
 import com.AmebaDevices.dto.BuildingDTO;
-import com.AmebaDevices.dto.ItemTypeDTO;
 import com.AmebaDevices.model.Building;
 import com.AmebaDevices.model.Customer;
 import com.AmebaDevices.model.Floor;
@@ -61,6 +59,14 @@ public class BuildingService {
 
 	public void delete(BuildingDTO toDestroy) {
 		Building b = BuildingConverter.convertToBuilding(toDestroy);
+		b.setOwner(null);
+		List <Floor> floors = floordao.findByBuilding(b);
+		for (Floor floor : floors) {
+			floor.setBuilding(null);
+			floordao.save(floor);
+			floordao.delete(floor);
+		}
+		this.buildingdao.save(b);
 		buildingdao.delete(b);
 	}
 

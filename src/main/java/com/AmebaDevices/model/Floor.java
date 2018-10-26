@@ -14,6 +14,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,7 +47,8 @@ public class Floor {
 	@Column (length = 100)
 	private String descrizione;
 	
-	@ManyToOne
+	@ManyToOne 
 	@JoinColumn (name ="idbuilding")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Building building; 
 }

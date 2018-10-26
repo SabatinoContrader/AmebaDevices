@@ -1,7 +1,7 @@
 package com.AmebaDevices.model;
 
-import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +28,6 @@ public class Building{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column 
-	
 	private long id;
 	
 	@Column (length = 45)
@@ -47,11 +46,9 @@ public class Building{
 	@NotNull
 	private long interno;
 	
-	@ManyToOne 
+	@ManyToOne
 	@JoinColumn (name = "owner")
     private Customer owner; 
-	
-	
-	
+		
 } 
 

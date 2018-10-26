@@ -11,7 +11,6 @@ import com.AmebaDevices.converter.RoomConverter;
 import com.AmebaDevices.dao.RoomDAO;
 import com.AmebaDevices.dto.FloorDTO;
 import com.AmebaDevices.dto.RoomDTO;
-import com.AmebaDevices.model.Floor;
 import com.AmebaDevices.model.Room;
 
 @Service
