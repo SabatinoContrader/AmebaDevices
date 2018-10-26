@@ -19,7 +19,7 @@
 	<h2>Questi sono le room relative ai floor <%=request.getAttribute("floorId") %></h2>
 	<%System.out.println(floorId); %>
 	<table>
-	<%		List<Room> rooms = (List<RoomDTO>) request.getAttribute("rooms");
+	<%		List<RoomDTO> rooms = (List<RoomDTO>) request.getAttribute("rooms");
 
 					for (int i=0; i < rooms.size(); i++) {
 						%><tr>	

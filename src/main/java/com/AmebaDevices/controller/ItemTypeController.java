@@ -47,9 +47,6 @@ public class ItemTypeController  {
 
 		ItemTypeDTO item = new ItemTypeDTO();
 
-		String id = (String) request.getParameter("roomId");
-	//	Room room= roomService.findByPrimaryKey(Long.parseLong(id));
-
 		item.setCategoria(categoria);
 		item.setMarca(marca);
 		item.setModello(modello);
@@ -58,12 +55,6 @@ public class ItemTypeController  {
 		List <ItemTypeDTO> catalogo = new ArrayList<>();
 		catalogo = itemTypeService.getAllItemType();
 		request.setAttribute("items", catalogo);
-
-		
-		itemTypeService.insertItemType(item);
-		List <ItemTypeDTO> listaPerRoom = new ArrayList<>();
-		listaPerRoom = itemTypeService.getAllItemType();
-		request.setAttribute("items", listaPerRoom);
 
 		return "ItemTypeMenu";
 	}

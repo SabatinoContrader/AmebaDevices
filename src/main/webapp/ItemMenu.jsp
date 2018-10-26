@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.AmebaDevices.model.ItemType"%>
+<%@page import="com.AmebaDevices.dto.ItemTypeDTO"%>
 <%@page import="com.AmebaDevices.model.Item"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
 	<h2>Qui puoi personalizzare la tua room inserendo degli item scegliendoli dal nosto catalogo</h2>
 <% 
 		String roomId= request.getParameter("roomId");
-		List <ItemType> availables = (List <ItemType>) request.getAttribute("availableItems");
+		List <ItemTypeDTO> availables = (List <ItemTypeDTO>) request.getAttribute("availableItems");
 		List <Item> yourItems = (List <Item>) request.getAttribute("yourItems");
 %>
 	<h2>Item Disponibili </h2>

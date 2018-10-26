@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.AmebaDevices.model.Room"%>
+<%@page import="com.AmebaDevices.dto.RoomDTO"%>
 <!DOCTYPE html>
 
 
@@ -23,7 +23,7 @@
 							<th>IdFloor</th>
 					</tr>
 					<% 
-					List <Room> rooms = (List <Room>) request.getAttribute("rooms");
+					List <RoomDTO> rooms = (List <RoomDTO>) request.getAttribute("rooms");
 					for (int i=0 ; i < rooms.size(); i++) { %>
 						<tr>
 							<td align="center"><a style="color:blue; text-decoration:none" href="/Item/menu?roomId=<% out.println(rooms.get(i).getId()); %>"><% out.println(rooms.get(i).getId()); %></a></td>
