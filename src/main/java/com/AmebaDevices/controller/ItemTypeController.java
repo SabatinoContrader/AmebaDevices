@@ -132,13 +132,9 @@ public class ItemTypeController  {
 	public String delete(HttpServletRequest request) {
 		String deleteId = request.getParameter("id");
 
-		//long roomId = Long.parseLong(request.getParameter("roomId"));
-		//Room room = roomService.findByPrimaryKey(roomId);
-		
 		itemTypeService.deleteItemType((long) Integer.parseInt(deleteId));
 		List<ItemTypeDTO> catalogo= new ArrayList<>();
 		
-		itemTypeService.deleteItemType((long) Integer.parseInt(deleteId));
 		catalogo= itemTypeService.getAllItemType(); 
 		request.setAttribute("items", catalogo);
 		return "ItemTypeMenu";
