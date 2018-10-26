@@ -14,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.AmebaDevices.dto.ItemDTO;
 import com.AmebaDevices.dto.ItemTypeDTO;
+import com.AmebaDevices.dto.RoomDTO;
 import com.AmebaDevices.model.Building;
 import com.AmebaDevices.model.Floor;
 import com.AmebaDevices.model.Item;
@@ -50,14 +52,14 @@ public class ItemController  {
 		String consumoEnergetico = request.getParameter("consumoEnergetico");
 		String seriale = request.getParameter("seriale");
 		String id = (String) request.getParameter("roomId");
-		Room room= roomService.findByPrimaryKey(Long.parseLong(id));
-		Item item = new Item();
+		RoomDTO room= roomService.findByPrimaryKey(Long.parseLong(id));
+		ItemDTO item = new ItemDTO();
 		item.setConsumoEnergetico(consumoEnergetico);
 		item.setSeriale(seriale);
 		item.setRoom(room);
 		itemService.insertItem(item);
 		request.setAttribute("roomId", id);
-		List <Item> listaPerRoom = new ArrayList<>();
+		List <ItemDTO> listaPerRoom = new ArrayList<>();
 		listaPerRoom = itemService.getAllByRoom(room);
 		request.setAttribute("items", listaPerRoom);
 		return "ItemMenu";
@@ -66,13 +68,13 @@ public class ItemController  {
 	@RequestMapping(value = "/menu", method = RequestMethod.GET)
 	public String menu(HttpServletRequest request) {
 		long roomId=Long.parseLong(request.getParameter("roomId"));
-		Room room= roomService.findByPrimaryKey(roomId);
+		RoomDTO room= roomService.findByPrimaryKey(roomId);
 		List<ItemTypeDTO> tipologieDisponibili= new ArrayList<>();
 		tipologieDisponibili= itemTypeService.getAllItemType();
 		if (tipologieDisponibili.size() == 0) tipologieDisponibili = new ArrayList<>();
 		System.out.println(tipologieDisponibili.size());
 		request.setAttribute("availableItems", tipologieDisponibili);
-		List <Item> yourItems = itemService.getAllByRoom(room);
+		List <ItemDTO> yourItems = itemService.getAllByRoom(room);
 		if (yourItems.size() == 0) yourItems = new ArrayList<>();
 		System.out.println(yourItems.size());
 		request.setAttribute("yourItems", yourItems);
@@ -94,15 +96,15 @@ public class ItemController  {
 		String consumoEnergetico = request.getParameter("consumoEnergetico");
 		String seriale = request.getParameter("seriale");
 		String roomdiD= request.getParameter("roomId");
-		Room room= roomService.findByPrimaryKey(Long.parseLong(roomdiD));
+		RoomDTO room= roomService.findByPrimaryKey(Long.parseLong(roomdiD));
 
-		Item item = new Item();
+		ItemDTO item = new ItemDTO();
 		item.setId(id);
 		item.setConsumoEnergetico(consumoEnergetico);
 		item.setSeriale(seriale);
 		item.setRoom(room);
 		itemService.updateItem(item);
-		List<Item> listaPerRoom= new ArrayList<>();
+		List<ItemDTO> listaPerRoom= new ArrayList<>();
 		listaPerRoom= itemService.getAllByRoom(room); 
 		request.setAttribute("items", listaPerRoom);
 
@@ -118,9 +120,9 @@ public class ItemController  {
 		long roomId=Long.parseLong(request.getParameter("roomId"));
 		String consumoEnergetico = request.getParameter("consumoEnergetico");
 		String seriale = request.getParameter("seriale");
-		Room room= roomService.findByPrimaryKey(roomId);
-		ItemType it = itemTypeService.findByPrimaryKey(itemTypeId);
-		Item item = new Item();
+		RoomDTO room= roomService.findByPrimaryKey(roomId);
+		ItemTypeDTO it = itemTypeService.findByPrimaryKey(itemTypeId);
+		ItemDTO item = new ItemDTO();
 		item.setConsumoEnergetico(consumoEnergetico);
 		item.setSeriale(seriale);
 		item.setRoom(room);
@@ -130,7 +132,7 @@ public class ItemController  {
 		List<ItemTypeDTO> tipologieDisponibili= new ArrayList<>();
 		tipologieDisponibili= itemTypeService.getAllItemType();
 		request.setAttribute("availableItems", tipologieDisponibili);
-		List <Item> yourItems = itemService.getAllByRoom(room);
+		List <ItemDTO> yourItems = itemService.getAllByRoom(room);
 		request.setAttribute("yourItems", yourItems);
 		return "ItemMenu";
 	}
@@ -140,14 +142,14 @@ public class ItemController  {
 		
 		long itemId = Long.parseLong(request.getParameter("itemId"));
 		long roomId=Long.parseLong(request.getParameter("roomId"));
-		Room room= roomService.findByPrimaryKey(roomId);
+		RoomDTO room= roomService.findByPrimaryKey(roomId);
 		itemService.deleteItem(itemId);
 		
 		request.setAttribute("roomId", String.valueOf(roomId));
 		List<ItemTypeDTO> tipologieDisponibili= itemTypeService.getAllItemType();
 		if (tipologieDisponibili.size() == 0) tipologieDisponibili = new ArrayList<>();
 		request.setAttribute("availableItems", tipologieDisponibili);
-		List <Item> yourItems = itemService.getAllByRoom(room);
+		List <ItemDTO> yourItems = itemService.getAllByRoom(room);
 		if (yourItems.size() == 0 ) yourItems = new ArrayList<>();
 		request.setAttribute("yourItems", yourItems);
 		return "ItemMenu";
@@ -164,10 +166,10 @@ public class ItemController  {
 	public String delete(HttpServletRequest request) {
 		String deleteId = request.getParameter("id");
 		long roomId = Long.parseLong(request.getParameter("roomId"));
-		Room room = roomService.findByPrimaryKey(roomId);
+		RoomDTO room = roomService.findByPrimaryKey(roomId);
 		
 		itemService.deleteItem((long) Integer.parseInt(deleteId));
-		List<Item> listaPerRoom= new ArrayList<>();
+		List<ItemDTO> listaPerRoom= new ArrayList<>();
 		listaPerRoom= itemService.getAllByRoom(room); 
 		request.setAttribute("items", listaPerRoom);
 		return "ItemMenu";

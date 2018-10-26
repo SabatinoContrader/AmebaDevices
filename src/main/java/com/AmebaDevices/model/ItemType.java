@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import com.AmebaDevices.dto.ItemTypeDTO;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,6 +38,7 @@ public class ItemType  {
 	@Column
 	@NotNull
 	private String descrizione;
+
 	
 	/*@ManyToOne
 	@JoinColumn (name ="iditemtype")

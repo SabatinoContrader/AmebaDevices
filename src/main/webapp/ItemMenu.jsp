@@ -3,7 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.AmebaDevices.dto.ItemTypeDTO"%>
-<%@page import="com.AmebaDevices.model.Item"%>
+<%@page import="com.AmebaDevices.dto.ItemDTO"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -20,7 +20,7 @@
 <% 
 		String roomId= request.getParameter("roomId");
 		List <ItemTypeDTO> availables = (List <ItemTypeDTO>) request.getAttribute("availableItems");
-		List <Item> yourItems = (List <Item>) request.getAttribute("yourItems");
+		List <ItemDTO> yourItems = (List <ItemDTO>) request.getAttribute("yourItems");
 %>
 	<h2>Item Disponibili </h2>
 	 	<div class="thingDiv">

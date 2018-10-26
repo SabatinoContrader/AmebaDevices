@@ -6,7 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.AmebaDevices.converter.ItemConverter;
+import com.AmebaDevices.converter.RoomConverter;
 import com.AmebaDevices.dao.ItemDAO;
+import com.AmebaDevices.dto.ItemDTO;
+import com.AmebaDevices.dto.RoomDTO;
 import com.AmebaDevices.model.Item;
 import com.AmebaDevices.model.Room;
 @Service
@@ -18,8 +22,8 @@ public class ItemService {
 		this.itemEntityDao=itemEntityDao;
 	}
 	
-	public void insertItem(Item item) {
-		 this.itemEntityDao.save(item);
+	public void insertItem(ItemDTO item) {
+		 this.itemEntityDao.save(ItemConverter.convertToItem(item));
 	}
 	
 	public void deleteItem(Long id) {
@@ -27,18 +31,20 @@ public class ItemService {
 		itemEntityDao.delete(item);
 	}
 	
-	public void updateItem(Item item) {
+	public void updateItem(ItemDTO item) {
 		if (itemEntityDao.findOne(item.getId())!=null)
-		this.itemEntityDao.save(item);
+		this.itemEntityDao.save(ItemConverter.convertToItem(item));
 	}
 	
 	public Item searchItem(Long id) {
 		return this.itemEntityDao.findOne(id);
 	}
 	
-	public List<Item> getAllByRoom(Room room) {
-		List<Item> items = (List<Item>) itemEntityDao.findByRoom(room);
-		return items;
+	public List<ItemDTO> getAllByRoom(RoomDTO room) {
+		List<Item> items = (List<Item>) itemEntityDao.findByRoom(RoomConverter.convertToRoom(room));
+		List<ItemDTO> ItemPerRoom= new ArrayList<>();
+		items.forEach(i->ItemPerRoom.add(ItemConverter.convertToDto(i)));
+		return ItemPerRoom;
 
 	}
 }

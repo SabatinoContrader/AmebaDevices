@@ -50,8 +50,8 @@ public class ItemTypeService {
 		
 	}
 
-	public ItemType findByPrimaryKey(long itemTypeId) {
-		ItemType item= itemTypeDao.findOne(itemTypeId);
+	public ItemTypeDTO findByPrimaryKey(long itemTypeId) {
+		ItemTypeDTO item= ItemTypeConverter.convertToDto(itemTypeDao.findOne(itemTypeId));
 		return item;
 	}
 

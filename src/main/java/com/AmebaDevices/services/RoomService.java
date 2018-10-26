@@ -47,8 +47,8 @@ public class RoomService {
 
 	}
 
-	public Room findByPrimaryKey(long id) {
-		return this.roomdao.findOne(id);
+	public RoomDTO findByPrimaryKey(long id) {
+		return RoomConverter.convertToDto(this.roomdao.findOne(id));
 	}
 
 }
