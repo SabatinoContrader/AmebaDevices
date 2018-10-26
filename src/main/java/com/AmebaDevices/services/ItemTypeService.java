@@ -29,11 +29,7 @@ public class ItemTypeService {
 			items.add(ItemTypeConverter.convertToDto(c));	});
 		return items;
 	}
-	public List<ItemType> getAllByRoom(Room room) {
-		List<ItemType> items = (List<ItemType>) itemTypeDao.findByRoom(room);
-		return items;
 
-	}
 	
 	public void insertItemType(ItemTypeDTO item) {
 		 this.itemTypeDao.save(ItemTypeConverter.convertToItem(item));

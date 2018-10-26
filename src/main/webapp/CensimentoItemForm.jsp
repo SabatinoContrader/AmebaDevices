@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<a href="/ItemType/menu" class="logout">Indietro</a>
+<a href="/Item/menu" class="logout">Indietro</a>
 <link href="/resources/css/styles.css" rel="stylesheet">
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 <meta charset="ISO-8859-1">
@@ -17,30 +17,25 @@
 			class="imgSuperUser">
 	<h1>Item </h1>
 	</div>
-	<form action="/ItemType/insert" method="post">
+	<%String roomId= request.getParameter("roomId"); %>
+	<form action="/Item/insert?roomId=<%=roomId %>" method="post">
 		<table class="insertTable">
 		<tr>
-			<td> <h2>Marca: </h2></td>
-			<td><input type="text" name="marca" placeholder="Inserisci Marca"></td>
+			<td> <h2>ConsumoEnergetico: </h2></td>
+			<td><input type="text" name="consumoEnergetico" placeholder="Inserisci il consumo energetico dell'item"></td>
 		</tr>
 		<tr>
-			<td> <h2>Modello: </h2></td>
-			<td><input type="text" name="modello" placeholder="Inserisci Modello"></td>
+			<td> <h2>Seriale: </h2></td>
+			<td><input type="text" name="seriale" placeholder="Inserisci seriale"></td>
 		</tr>	
-		<tr>
-			<td> <h2>Categoria: </h2></td>
-			<td><input type="text" name="categoria" placeholder="Inserisci Categoria"></td>
-		</tr>
-		<tr>
-			<td> <h2>Descrizione: </h2></td>
-			<td><textarea class="textFont" rows="4" cols="50" name="descrizione" placeholder="Inserisci Descrizione"></textarea></td>
-		</tr>
+	
 		</table> 
 		<h2>
 		
 			<button class="censisciButton" type = "submit" >Censisci</button>
 		</h2>
 		
+		<input type="hidden" name="roomId" value=<%=request.getParameter("roomId")%> >
 	</form>
 </body>
 </html>

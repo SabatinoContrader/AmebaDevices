@@ -7,7 +7,7 @@
 <meta charset="ISO-8859-1">
 <title>Modifica Items</title>
 <link href="/resources/css/styles.css" rel="stylesheet"> 
-	<a href="/ItemType/menu" class="logout">Indietro</a>
+	<a href="/Item/menu" class="logout">Indietro</a>
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 </head>
 <body>
@@ -17,30 +17,23 @@
 	<h1>Modifica Items</h1>
 	
 	</div>	
-		<form class="itemForm" action = "/ItemType/update" method = "POST">
+		<form class="itemForm" action = "/Item/update" method = "POST">
 		<table>
 		<tr>
 			<td> <h2>Id: </h2></td>
 			<td> <input type = "text" name = "id"  placeholder="Inserisci id"> </td>				
 		</tr>
 		<tr>
-			<td> <h2>Marca: </h2></td>
-			<td> <input type = "text" name = "marca" placeholder="Inserisci marca"> </td>				
+			<td> <h2>ConsumoEnergetico: </h2></td>
+			<td> <input type = "text" name = "consumoEnergetico" placeholder="Inserisci consumo energetico dell'item"> </td>				
 		</tr>
 		<tr>
-			<td> <h2>Modello: </h2></td>
-			<td> <input type = "text" name = "modello"  placeholder="Inserisci modello"> </td>				
-		</tr>
-		<tr>
-			<td> <h2>Categoria: </h2></td>
-			<td> <input type = "text" name = "categoria"  placeholder="Inserisci categoria"> </td>				
-		</tr>
-		<tr>
-			<td> <h2>Descrizione: </h2></td>
-			<td>  <textarea class="textFont" rows="4" cols="50" name="descrizione" placeholder="Inserisci descrizione"></textarea> </td>				
+			<td> <h2>Seriale: </h2></td>
+			<td> <input type = "text" name = "seriale"  placeholder="Inserisci seriale"> </td>				
 		</tr>
 		</table>
          	<p><button class = "loginButton" type = "submit" >Modifica</button></p>
+         	<input type="hidden" name="roomId" value=<%=request.getParameter("roomId")%> >
     	</form>
 	
 </body>

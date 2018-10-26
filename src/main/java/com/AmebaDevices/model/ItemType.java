@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
@@ -39,43 +37,15 @@ public class ItemType  {
 	@NotNull
 	private String descrizione;
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn (name ="iditemtype")
-	private Item item;
+	private Item item;*/
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name="idroom")
-	private Room room;
-	
-	public ItemType(Long id, String categoria, String marca, String modello, String descrizione) {
-	
-		this.id = id;
-		this.categoria = categoria;
-		this.modello = modello;
-		this.marca = marca;
-		this.descrizione = descrizione;
-	}
-	
-	public ItemType() {
-		
-	}
+	private Room room;*/
 	
 
-	public String toString() {
-		return "id: " + id + 
-				"\nModello: " + modello + 
-	        	"\nMarca: " +marca + 
-	        	"\nCategoria: "+ categoria +
-	        	"\nDescrizione: " + descrizione;
-	 }
-	 
-	 public boolean equals(Object o) {
-		 if (this == o) return true;
-	        if (o == null || getClass() != o.getClass()) return false;
-
-	        ItemType i = (ItemType) o;
-	        return id == i.id&&modello.equals(i.modello)&&categoria.equals(i.categoria)&&marca.equals(i.marca)&&descrizione.equals(i.descrizione);
-	 }
 	 
 
 }

@@ -44,6 +44,7 @@ public class ItemTypeController  {
 		String categoria = request.getParameter("categoria");
 		String descrizione = request.getParameter("descrizione");
 
+
 		ItemTypeDTO item = new ItemTypeDTO();
 
 		String id = (String) request.getParameter("roomId");
@@ -57,11 +58,19 @@ public class ItemTypeController  {
 		List <ItemTypeDTO> catalogo = new ArrayList<>();
 		catalogo = itemTypeService.getAllItemType();
 		request.setAttribute("items", catalogo);
+
+		
+		itemTypeService.insertItemType(item);
+		List <ItemTypeDTO> listaPerRoom = new ArrayList<>();
+		listaPerRoom = itemTypeService.getAllItemType();
+		request.setAttribute("items", listaPerRoom);
+
 		return "ItemTypeMenu";
 	}
 
 	@RequestMapping(value = "/menu", method = RequestMethod.GET)
 	public String menu(HttpServletRequest request) {
+
 
 		List<ItemTypeDTO> catalogo= new ArrayList<>();
 		catalogo= itemTypeService.getAllItemType(); // fare metodo per ricercare gli item per room
@@ -87,6 +96,7 @@ public class ItemTypeController  {
 	@RequestMapping(value = "/updateForm", method = RequestMethod.GET)
 	public String updateForm(HttpServletRequest request) {
 
+
 		long roomId=Long.parseLong(request.getParameter("roomId"));
 		request.setAttribute("roomId", String.valueOf(roomId));
 		return "ModificaItemTypeForm";
@@ -94,17 +104,19 @@ public class ItemTypeController  {
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(HttpServletRequest request) {
-		Long id = (long) Integer.parseInt(request.getParameter("id"));
+		Long id= Long.parseLong(request.getParameter("id"));
 		String marca = request.getParameter("marca");
 		String modello = request.getParameter("modello");
 		String categoria = request.getParameter("categoria");
 		String descrizione = request.getParameter("descrizione");
+
 		String roomdiD= request.getParameter("roomId");
 		//Room room= roomService.findByPrimaryKey(Long.parseLong(roomdiD));
 
 		ItemTypeDTO item = new ItemTypeDTO(id, categoria, marca, modello, descrizione);
 
 		item.setId(id);
+
 		item.setMarca(marca);
 		item.setModello(modello);
 		item.setCategoria(categoria);
@@ -112,6 +124,7 @@ public class ItemTypeController  {
 
 		itemTypeService.updateItemType(item);
 		List<ItemTypeDTO> listaPerRoom= new ArrayList<>();
+		itemTypeService.updateItemType(item);
 		listaPerRoom= itemTypeService.getAllItemType(); 
 		request.setAttribute("items", listaPerRoom);
 
@@ -126,19 +139,20 @@ public class ItemTypeController  {
 
 	@RequestMapping(value = "/deleteForm", method = RequestMethod.GET)
 	public String deleteForm(HttpServletRequest request) {
-		long roomId=Long.parseLong(request.getParameter("roomId"));
-		request.setAttribute("roomId", String.valueOf(roomId));
 		return "EliminaItemTypeForm";
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(HttpServletRequest request) {
 		String deleteId = request.getParameter("id");
+
 		//long roomId = Long.parseLong(request.getParameter("roomId"));
 		//Room room = roomService.findByPrimaryKey(roomId);
 		
 		itemTypeService.deleteItemType((long) Integer.parseInt(deleteId));
 		List<ItemTypeDTO> listaPerRoom= new ArrayList<>();
+		
+		itemTypeService.deleteItemType((long) Integer.parseInt(deleteId));
 		listaPerRoom= itemTypeService.getAllItemType(); 
 		request.setAttribute("items", listaPerRoom);
 		return "ItemTypeMenu";

@@ -3,23 +3,28 @@ package com.AmebaDevices.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.AmebaDevices.dao.ItemEntityDAO;
-import com.AmebaDevices.model.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.AmebaDevices.dao.ItemDAO;
+import com.AmebaDevices.model.Item;
+import com.AmebaDevices.model.Room;
+@Service
 public class ItemService {
 
-	private ItemEntityDAO itemEntityDao;
-	
-	public ItemService(ItemEntityDAO itemEntityDao) {
+	private ItemDAO itemEntityDao;
+	@Autowired
+	public ItemService(ItemDAO itemEntityDao) {
 		this.itemEntityDao=itemEntityDao;
 	}
 	
-	public Item insertItem(Item f) {
-		return this.itemEntityDao.save(f);
+	public void insertItem(Item item) {
+		 this.itemEntityDao.save(item);
 	}
 	
 	public void deleteItem(Long id) {
-		this.itemEntityDao.delete(id);
+		Item item = itemEntityDao.findOne(id);
+		itemEntityDao.delete(item);
 	}
 	
 	public void updateItem(Item item) {
@@ -31,9 +36,9 @@ public class ItemService {
 		return this.itemEntityDao.findOne(id);
 	}
 	
-	public List<Item> getAllItemType () {
-		List<Item> items = new ArrayList<>();
-		itemEntityDao.findAll().forEach(c -> {items.add(c);	});
+	public List<Item> getAllByRoom(Room room) {
+		List<Item> items = (List<Item>) itemEntityDao.findByRoom(room);
 		return items;
+
 	}
 }

@@ -29,7 +29,7 @@ public class Item {
 	
 	@ManyToOne
 	@JoinColumn (name ="idroom")
-	private Room idroom;
+	private Room room;
 	
 	@ManyToOne
 	@JoinColumn (name ="iditemtype")
