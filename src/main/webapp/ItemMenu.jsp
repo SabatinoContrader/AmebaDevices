@@ -22,18 +22,19 @@
 		List <ItemType> availables = (List <ItemType>) request.getAttribute("availableItems");
 		List <Item> yourItems = (List <Item>) request.getAttribute("yourItems");
 %>
-	<h2 class="things">Item Disponibili </h2>
+	<h2>Item Disponibili </h2>
 	 	<div class="thingDiv">
-	<table class="thingTable table" style="margin-top:-15%;">
-	<tr><th>Id: </th>
-	<th></th>
+	<table class="thingTable table">
+	<tr>
+	<th>Aggiungi</th>
+	<th>Id: </th>
 	<th>Categoria: </th>
 	<th>Marca: </th>
 	<th>Modello: </th>
 	<th>Descrizione: </th>
 	<% for (int i=0; i < availables.size(); i++) { %>
 		<tr>
-			<td><b><a href="/Item/addInRoom?roomId=<% out.println(roomId); %>&itemId=<% out.println(availables.get(i).getId()); %>">+</a></b></td>	
+			<td align="center"><b><a href="/Item/addInRoom?roomId=<% out.println(roomId); %>&itemId=<% out.println(availables.get(i).getId()); %>">+</a></b></td>	
 			<td align="center"><% out.println(availables.get(i).getId()); %></a></td>
 			<td align="center"><% out.println(availables.get(i).getCategoria()); %></a></td>
 			<td align="center"><% out.println(availables.get(i).getMarca()); %></a></td>
@@ -41,18 +42,20 @@
 			<td align="center"><% out.println(availables.get(i).getDescrizione()); %></a></td>
 		</tr>								
 	<%}%>
-	</table>
-	<h2 class="things">I tuoi item </h2>
-	 	<div class="thingDiv">
-	<table class="thingTable table" style="margin-top:-15%;">
-	<th></th>
-	<tr><th>IdInstallazione: </th>
+	</table><br>
+	</div>
+	<h2>I tuoi item </h2>
+	<div class="thingDiv">
+	<table class="thingTable table">
+	<tr>
+	<th>Rimuovi</th>
+	<th>IdInstallazione: </th>
 	<th>Categoria: </th>
 	<th>Marca: </th>
 	<th>Modello: </th>
 	<% for (int k=0; k < yourItems.size(); k++) { %>
 		<tr>
-			<td><b><a href="/Item/removeFromRoom?roomId=<% out.println(roomId); %>&itemId=<% out.println(yourItems.get(k).getId()); %>">-</a></b></td>		
+			<td align="center"><b><a href="/Item/removeFromRoom?roomId=<% out.println(roomId); %>&itemId=<% out.println(yourItems.get(k).getId()); %>">-</a></b></td>		
 			<td align="center"><% out.println(yourItems.get(k).getId()); %></a></td>
 			<td align="center"><% out.println(yourItems.get(k).getItemType().getCategoria()); %></a></td>
 			<td align="center"><% out.println(yourItems.get(k).getItemType().getMarca()); %></a></td>
@@ -60,6 +63,8 @@
 		</tr>								
 	<%}%>
 	</table>
+	</div>
+	
 	<!-- 
 		<div>
 			<div class="insertDiv">
@@ -79,7 +84,6 @@
 					href="/Item/deleteForm?roomId=<%=roomId%>"> Elimina item </a>
 			</div>
 				-->
-		</div> 
 	</div>
 
 </body>
