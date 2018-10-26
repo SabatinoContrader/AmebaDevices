@@ -35,5 +35,10 @@
 			class="customerLink">Elimina un
 			Installer</a> 
 	</div> 
+	<div class="insertDiv">
+		<img src="https://www.ccv.eu/ch-it/wp-content/uploads/sites/15/2018/03/Connect-logo-gross.png"
+			class="imgSuperUser" > <a href="/Installer/associazioneBuildings"
+			class="customerLink">Assegna i buildings </a>
+	</div>
 </body>
 </html>

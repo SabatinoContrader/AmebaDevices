@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.AmebaDevices.dto.BuildingDTO;
 import com.AmebaDevices.dto.CustomerDTO;
 import com.AmebaDevices.model.Building;
 import com.AmebaDevices.model.Customer;
@@ -23,22 +24,28 @@ import com.AmebaDevices.services.CustomerService;
 
 @Controller
 @RequestMapping("/Installer")
-public class InstallerController{
+public class InstallerController {
 
 	private CustomerService customerService;
+	private BuildingService buildingService;
+
 	@Autowired
-	public InstallerController(CustomerService customerService) {
-	this.customerService=customerService;
+	public InstallerController(CustomerService customerService, BuildingService buildingService) {
+		this.buildingService = buildingService;
+		this.customerService = customerService;
 	}
-	@RequestMapping(value="/insertForm", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/insertForm", method = RequestMethod.GET)
 	public String insertForm(HttpServletRequest request) {
 		return "insertInstaller";
-	} 
-	@RequestMapping(value="/goBackSuper", method=RequestMethod.GET)
+	}
+
+	@RequestMapping(value = "/goBackSuper", method = RequestMethod.GET)
 	public String goBackSuper(HttpServletRequest request) {
 		return "superuserhome";
 	}
-	@RequestMapping(value="/insert", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insert(HttpServletRequest request) {
 		CustomerDTO customer = new CustomerDTO();
 		customer.setNome(request.getParameter("nome"));
@@ -50,25 +57,26 @@ public class InstallerController{
 		customer.setUserRole(3);
 		customerService.insertCustomer(customer);
 		return "InstallerMenu";
-	} 
-	
-	@RequestMapping(value="/read", method=RequestMethod.GET)
+	}
+
+	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public String read(HttpServletRequest request, Model model) {
 		List<CustomerDTO> installers = customerService.readInstallers();
 		model.addAttribute("installers", installers);
 		return "readInstaller";
 	}
-	
-	@RequestMapping(value="/updateForm", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/updateForm", method = RequestMethod.GET)
 	public String updateForm(HttpServletRequest request) {
 		List<CustomerDTO> installers = customerService.readInstallers();
 		request.setAttribute("customers", installers);
 		return "UpdateInstaller";
-	} 
-	@RequestMapping(value="/update", method=RequestMethod.POST)
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("idselected"));
-		long l=id;
+		long l = id;
 		CustomerDTO newcustomer = customerService.searchCustomer(l);
 		switch (Integer.parseInt(request.getParameter("selected"))) {
 		case 1:
@@ -91,26 +99,35 @@ public class InstallerController{
 		}
 		customerService.updateCustomer(newcustomer);
 		return "InstallerMenu";
-	} 
-	
-	@RequestMapping(value="/deleteForm", method=RequestMethod.GET)
+	}
+
+	@RequestMapping(value = "/deleteForm", method = RequestMethod.GET)
 	public String deleteForm(HttpServletRequest request) {
 		List<CustomerDTO> installers = customerService.readInstallers();
 		request.setAttribute("installers", installers);
 		return "deleteInstaller";
-	} 
-	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(HttpServletRequest request) {
 		int idDelete = Integer.parseInt(request.getParameter("idselected"));
-		long l=idDelete;
+		long l = idDelete;
 		customerService.deleteCustomer(l);
 		return "InstallerMenu";
-	} 
-	
-	@RequestMapping(value="/goBack", method=RequestMethod.GET)  
+	}
+
+	@RequestMapping(value = "/goBack", method = RequestMethod.GET)
 	public String goBack(HttpServletRequest request) {
 		return "InstallerMenu";
-	} 
+	}
+
+	@RequestMapping(value="/associazioneBuildings", method=RequestMethod.GET)
+	public String associaBuildings(HttpServletRequest request) {
+		List<BuildingDTO> buildings = buildingService.getAll(request.getSession().getAttribute("username").toString());
+		request.setAttribute("buildings", buildings);
+		return "associazioneBuildings";
+	}
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -126,8 +143,7 @@ public class InstallerController{
 	 */
 	protected void customer(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	//	doGet(request, response);
+		// doGet(request, response);
 	}
-
 
 }
