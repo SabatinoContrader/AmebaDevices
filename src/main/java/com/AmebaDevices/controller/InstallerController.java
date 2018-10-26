@@ -101,6 +101,23 @@ public class InstallerController {
 		return "InstallerMenu";
 	}
 
+	@RequestMapping(value = "/associazioneMenu", method = RequestMethod.POST)
+	public String updateAssociations(HttpServletRequest request) {
+		List<BuildingDTO> buildings = buildingService.findAll();
+		for (int i = 0; i < buildings.size(); i++) {
+			String s1 = (String) request.getParameter(String.valueOf(buildings.get(i).getId()));
+			if (s1 != null) {
+				long idselected = Long.parseLong(request.getParameter("idselected"));
+				System.out.println("id selected: " + idselected);
+				CustomerDTO c = customerService.searchCustomer(idselected);
+				buildings.get(i).setInstaller(c);
+				buildingService.update(buildings.get(i));
+			}
+		}
+
+		return "InstallerMenu";
+	}
+
 	@RequestMapping(value = "/deleteForm", method = RequestMethod.GET)
 	public String deleteForm(HttpServletRequest request) {
 		List<CustomerDTO> installers = customerService.readInstallers();
@@ -121,10 +138,19 @@ public class InstallerController {
 		return "InstallerMenu";
 	}
 
-	@RequestMapping(value="/associazioneBuildings", method=RequestMethod.GET)
+	@RequestMapping(value = "/associazioneBuildings", method = RequestMethod.GET)
 	public String associaBuildings(HttpServletRequest request) {
-		List<BuildingDTO> buildings = buildingService.getAll(request.getSession().getAttribute("username").toString());
+		List<BuildingDTO> buildings = buildingService.findAll();
+		for (int i = 0; i < buildings.size(); i++) {
+			if (buildings.get(i).getInstaller() != null) {
+				buildings.remove(i);
+				i--;
+			}
+		}
+		List<CustomerDTO> installers = customerService.readInstallers();
 		request.setAttribute("buildings", buildings);
+		System.out.println(buildings.size());
+		request.setAttribute("installers", installers);
 		return "associazioneBuildings";
 	}
 

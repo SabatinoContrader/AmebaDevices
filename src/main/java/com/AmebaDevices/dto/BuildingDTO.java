@@ -8,11 +8,12 @@ public class BuildingDTO {
 	private String cap;
 	private long interno;
 	private CustomerDTO owner;
+	private CustomerDTO installer;
 
 	public BuildingDTO() {
 	}
 
-	public BuildingDTO(long buildingId, String indirizzo, String citta, String cap, long interno, CustomerDTO owner) {
+	public BuildingDTO(long buildingId, String indirizzo, String citta, String cap, long interno, CustomerDTO owner, CustomerDTO installer) {
 		super();
 		this.id = buildingId;
 		this.address = indirizzo;
@@ -20,6 +21,7 @@ public class BuildingDTO {
 		this.cap = cap;
 		this.interno = interno;
 		this.owner=owner;
+		this.installer = installer;
 	}
 
 	public long getId() {
@@ -69,6 +71,16 @@ public class BuildingDTO {
 	public void setOwner(CustomerDTO owner) {
 		this.owner = owner;
 	}
+
+	public CustomerDTO getInstaller() {
+		return installer;
+	}
+
+	public void setInstaller(CustomerDTO installer) {
+		this.installer = installer;
+	}
+	
+	
 
 	
 }

@@ -46,21 +46,30 @@ public class BuildingService {
 	}
 
 	public List<BuildingDTO> getAll(String owner) {
-		
+
 		List<Building> buildings = new ArrayList<>();
-		List<BuildingDTO>toReturn= new ArrayList<>();
+		List<BuildingDTO> toReturn = new ArrayList<>();
 		Customer ownerC = this.customerdao.findByUsername(owner);
 		buildings = buildingdao.findByOwner(ownerC);
-		buildings.forEach(b->toReturn.add(BuildingConverter.convertToDto(b)));
+		buildings.forEach(b -> toReturn.add(BuildingConverter.convertToDto(b)));
 		System.out.println("----------------------------------->" + buildings.size());
 		return toReturn;
 
 	}
 
+	public List<BuildingDTO> findAll() {
+		List<Building> buildings = (List<Building>) buildingdao.findAll();
+		List<BuildingDTO> toReturn = new ArrayList<>();
+		for (int i = 0; i < buildings.size(); i++) {
+			toReturn.add(BuildingConverter.convertToDto(buildings.get(i)));
+		}
+		return toReturn;
+	}
+
 	public void delete(BuildingDTO toDestroy) {
 		Building b = BuildingConverter.convertToBuilding(toDestroy);
 		b.setOwner(null);
-		List <Floor> floors = floordao.findByBuilding(b);
+		List<Floor> floors = floordao.findByBuilding(b);
 		for (Floor floor : floors) {
 			floor.setBuilding(null);
 			floordao.save(floor);
@@ -85,6 +94,10 @@ public class BuildingService {
 		}
 	}
 
+	public void update(BuildingDTO newValues) {
+		buildingdao.save(BuildingConverter.convertToBuilding(newValues));
+	}
+	
 	public BuildingDTO findByPrimaryKey(long buildingId) {
 		return BuildingConverter.convertToDto(buildingdao.findOne(buildingId));
 	}
@@ -194,5 +207,7 @@ public class BuildingService {
 		}
 		return path;
 	}
+	
+	
 
 }

@@ -1,7 +1,6 @@
 package com.AmebaDevices.model;
 
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,8 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+
 
 import lombok.Getter;
 import lombok.Setter;
@@ -49,6 +47,10 @@ public class Building{
 	@ManyToOne
 	@JoinColumn (name = "owner")
     private Customer owner; 
+	
+	@ManyToOne
+	@JoinColumn (name = "installer")
+    private Customer installer; 
 		
 } 
 
