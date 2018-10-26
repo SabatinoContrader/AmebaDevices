@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="com.AmebaDevices.model.ItemType"%>
 <%@page import="com.AmebaDevices.model.Item"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -15,23 +16,51 @@
 </head>
 <body>
 	<h1>Room Menu</h1>
-<%String roomId= request.getParameter("roomId"); %>
-	<h2 class="things">Item della room con id <%=roomId%> </h2>
+	<h2>Qui puoi personalizzare la tua room inserendo degli item scegliendoli dal nosto catalogo</h2>
+<% 
+		String roomId= request.getParameter("roomId");
+		List <ItemType> availables = (List <ItemType>) request.getAttribute("availableItems");
+		List <Item> yourItems = (List <Item>) request.getAttribute("yourItems");
+%>
+	<h2 class="things">Item Disponibili </h2>
 	 	<div class="thingDiv">
 	<table class="thingTable table" style="margin-top:-15%;">
 	<tr><th>Id: </th>
-	<th>ConsumoEnergetico: </th>
-	<th>Seriale: </th>
-	<th>IdRoom: </th>
-	<% List <Item> item = (List <Item>) request.getAttribute("items"); for (int i=0; i < item.size(); i++) { %>
-		<tr>	<td align="center"><a style="color:white; text-decoration:none" href="/Item/menu"><% out.println(item.get(i).getId()); %></a></td>
-							<td align="center"><a style="color:white; text-decoration:none"href="/Item/menu"><% out.println (item.get(i).getConsumoEnergetico());%></a></td>
-							<td align="center"><a style="color:white; text-decoration:none"href="/Item/menu"><% out.println (item.get(i).getSeriale()); %></a></td>
-							<td align="center"><a style="color:white; text-decoration:none"href="/Item/menu"> <% out.println (item.get(i).getRoom().getId()); %></a></td>
+	<th></th>
+	<th>Categoria: </th>
+	<th>Marca: </th>
+	<th>Modello: </th>
+	<th>Descrizione: </th>
+	<% for (int i=0; i < availables.size(); i++) { %>
+		<tr>
+			<td><b><a href="/Item/addInRoom?roomId=<% out.println(roomId); %>&itemId=<% out.println(availables.get(i).getId()); %>">+</a></b></td>	
+			<td align="center"><% out.println(availables.get(i).getId()); %></a></td>
+			<td align="center"><% out.println(availables.get(i).getCategoria()); %></a></td>
+			<td align="center"><% out.println(availables.get(i).getMarca()); %></a></td>
+			<td align="center"><% out.println(availables.get(i).getModello()); %></a></td>
+			<td align="center"><% out.println(availables.get(i).getDescrizione()); %></a></td>
 		</tr>								
 	<%}%>
 	</table>
-	
+	<h2 class="things">I tuoi item </h2>
+	 	<div class="thingDiv">
+	<table class="thingTable table" style="margin-top:-15%;">
+	<th></th>
+	<tr><th>IdInstallazione: </th>
+	<th>Categoria: </th>
+	<th>Marca: </th>
+	<th>Modello: </th>
+	<% for (int k=0; k < yourItems.size(); k++) { %>
+		<tr>
+			<td><b><a href="/Item/removeFromRoom?roomId=<% out.println(roomId); %>&itemId=<% out.println(availables.get(k).getId()); %>">-</a></b></td>		
+			<td align="center"><% out.println(yourItems.get(k).getId()); %></a></td>
+			<td align="center"><% out.println(yourItems.get(k).getItemType().getCategoria()); %></a></td>
+			<td align="center"><% out.println(yourItems.get(k).getItemType().getMarca()); %></a></td>
+			<td align="center"><% out.println(yourItems.get(k).getItemType().getModello()); %></a></td>
+		</tr>								
+	<%}%>
+	</table>
+	<!-- 
 		<div>
 			<div class="insertDiv">
 				<img src="http://www.aa24.it/wp-content/uploads/2015/03/1426101814_add-notes.png"
@@ -49,8 +78,8 @@
 					class="imgThing"> <a class="customerLink"
 					href="/Item/deleteForm?roomId=<%=roomId%>"> Elimina item </a>
 			</div>
-				
-		</div>
+				-->
+		</div> 
 	</div>
 
 </body>

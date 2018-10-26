@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.AmebaDevices.model.Building;
 import com.AmebaDevices.model.Floor;
 import com.AmebaDevices.model.Item;
+import com.AmebaDevices.model.ItemType;
 import com.AmebaDevices.model.Room;
 import com.AmebaDevices.services.ItemService;
+import com.AmebaDevices.services.ItemTypeService;
 import com.AmebaDevices.services.RoomService;
 import com.AmebaDevices.utils.GestoreEccezioni;
 
@@ -27,11 +29,13 @@ import com.AmebaDevices.utils.GestoreEccezioni;
 public class ItemController  {
 	private ItemService itemService;
 	private RoomService roomService;
+	private ItemTypeService itemTypeService;
 
 	@Autowired
-	public ItemController(ItemService itemService, RoomService roomService) {
+	public ItemController(ItemService itemService, RoomService roomService, ItemTypeService itemTypeService) {
 		this.itemService =itemService; 
 		this.roomService=roomService;
+		this.itemTypeService=itemTypeService;
 	}
 
 	@RequestMapping(value = "insertForm", method = RequestMethod.GET)
@@ -62,10 +66,16 @@ public class ItemController  {
 	public String menu(HttpServletRequest request) {
 		long roomId=Long.parseLong(request.getParameter("roomId"));
 		Room room= roomService.findByPrimaryKey(roomId);
+		List<ItemType> tipologieDisponibili= new ArrayList<>();
+		tipologieDisponibili= itemTypeService.getAllItemType();
+		if (tipologieDisponibili.size() == 0) tipologieDisponibili = new ArrayList<>();
+		System.out.println(tipologieDisponibili.size());
+		request.setAttribute("availableItems", tipologieDisponibili);
+		List <Item> yourItems = itemService.getAllByRoom(room);
+		if (yourItems.size() == 0) yourItems = new ArrayList<>();
+		System.out.println(yourItems.size());
+		request.setAttribute("yourItems", yourItems);
 		request.setAttribute("roomId", String.valueOf(roomId));
-		List<Item> listaPerRoom= new ArrayList<>();
-		listaPerRoom= itemService.getAllByRoom(room); 
-		request.setAttribute("items", listaPerRoom);
 		return "ItemMenu";
 	}
 
@@ -97,6 +107,48 @@ public class ItemController  {
 
 		//ItemType updatedItem = itemTypeService.searchItemType(id);
 		//request.setAttribute("item", updatedItem);
+		return "ItemMenu";
+	}
+	
+	@RequestMapping(value = "/addInRoom", method = RequestMethod.GET)
+	public String addNewItem(HttpServletRequest request) {
+		
+		long itemTypeId = Long.parseLong(request.getParameter("itemId"));
+		long roomId=Long.parseLong(request.getParameter("roomId"));
+		String consumoEnergetico = request.getParameter("consumoEnergetico");
+		String seriale = request.getParameter("seriale");
+		Room room= roomService.findByPrimaryKey(roomId);
+		ItemType it = itemTypeService.findByPrimaryKey(itemTypeId);
+		Item item = new Item();
+		item.setConsumoEnergetico(consumoEnergetico);
+		item.setSeriale(seriale);
+		item.setRoom(room);
+		item.setItemType(it);
+		itemService.insertItem(item);
+		request.setAttribute("roomId", String.valueOf(roomId));
+		List<ItemType> tipologieDisponibili= new ArrayList<>();
+		tipologieDisponibili= itemTypeService.getAllItemType();
+		request.setAttribute("availableItems", tipologieDisponibili);
+		List <Item> yourItems = itemService.getAllByRoom(room);
+		request.setAttribute("yourItems", yourItems);
+		return "ItemMenu";
+	}
+	
+	@RequestMapping(value = "/removeFromRoom", method = RequestMethod.GET)
+	public String removeFromRoom(HttpServletRequest request) {
+		
+		long itemId = Long.parseLong(request.getParameter("itemId"));
+		long roomId=Long.parseLong(request.getParameter("roomId"));
+		Room room= roomService.findByPrimaryKey(roomId);
+		itemService.deleteItem(itemId);
+		
+		request.setAttribute("roomId", String.valueOf(roomId));
+		List<ItemType> tipologieDisponibili= itemTypeService.getAllItemType();
+		if (tipologieDisponibili.size() == 0) tipologieDisponibili = new ArrayList<>();
+		request.setAttribute("availableItems", tipologieDisponibili);
+		List <Item> yourItems = itemService.getAllByRoom(room);
+		if (yourItems.size() == 0 ) yourItems = new ArrayList<>();
+		request.setAttribute("yourItems", yourItems);
 		return "ItemMenu";
 	}
 
