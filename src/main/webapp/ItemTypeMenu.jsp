@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.AmebaDevices.model.ItemType"%>
+<%@page import="com.AmebaDevices.dto.ItemTypeDTO"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,7 @@
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 </head>
 <body>
-	<h1>Room Menu</h1>
+	<h1>Catalogo degli item</h1>
 	<h2 class="things">ItemType </h2>
 	 	<div class="thingDiv">
 	<table class="thingTable table" style="margin-top:-15%;">
@@ -23,12 +23,12 @@
 	<th>Descrizione: </th>
 	<th>Marca: </th>
 	<th>Modello:</th></tr>
-	<% List <ItemType> item = (List <ItemType>) request.getAttribute("items"); for (int i=0; i < item.size(); i++) { %>
+	<% List <ItemTypeDTO> item = (List <ItemTypeDTO>) request.getAttribute("items"); for (int i=0; i < item.size(); i++) { %>
 		<tr>	<td align="center"><a style="color:white; text-decoration:none" href="/Item/menu"><% out.println(item.get(i).getId()); %></a></td>
-							<td align="center"><a style="color:white; text-decoration:none"href="/Item/menu"><% out.println (item.get(i).getCategoria());%></a></td>
-							<td align="center"><a style="color:white; text-decoration:none"href="/Item/menu"><% out.println (item.get(i).getDescrizione()); %></a></td>
-							<td align="center"><a style="color:white; text-decoration:none"href="/Item/menu"> <% out.println (item.get(i).getMarca()); %></a></td>
-							<td align="center"><a style="color:white; text-decoration:none"href="/Item/menu"> <% out.println (item.get(i).getModello()); %></a></td>
+							<td align="center"><a style="color:white; text-decoration:none"><% out.println (item.get(i).getCategoria());%></a></td>
+							<td align="center"><a style="color:white; text-decoration:none"><% out.println (item.get(i).getDescrizione()); %></a></td>
+							<td align="center"><a style="color:white; text-decoration:none"> <% out.println (item.get(i).getMarca()); %></a></td>
+							<td align="center"><a style="color:white; text-decoration:none"> <% out.println (item.get(i).getModello()); %></a></td>
 		</tr>								
 	<%}%>
 	</table>

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.AmebaDevices.dto.ItemTypeDTO;
 import com.AmebaDevices.model.Building;
 import com.AmebaDevices.model.Floor;
 import com.AmebaDevices.model.Item;
@@ -66,7 +67,7 @@ public class ItemController  {
 	public String menu(HttpServletRequest request) {
 		long roomId=Long.parseLong(request.getParameter("roomId"));
 		Room room= roomService.findByPrimaryKey(roomId);
-		List<ItemType> tipologieDisponibili= new ArrayList<>();
+		List<ItemTypeDTO> tipologieDisponibili= new ArrayList<>();
 		tipologieDisponibili= itemTypeService.getAllItemType();
 		if (tipologieDisponibili.size() == 0) tipologieDisponibili = new ArrayList<>();
 		System.out.println(tipologieDisponibili.size());
@@ -126,7 +127,7 @@ public class ItemController  {
 		item.setItemType(it);
 		itemService.insertItem(item);
 		request.setAttribute("roomId", String.valueOf(roomId));
-		List<ItemType> tipologieDisponibili= new ArrayList<>();
+		List<ItemTypeDTO> tipologieDisponibili= new ArrayList<>();
 		tipologieDisponibili= itemTypeService.getAllItemType();
 		request.setAttribute("availableItems", tipologieDisponibili);
 		List <Item> yourItems = itemService.getAllByRoom(room);
@@ -143,7 +144,7 @@ public class ItemController  {
 		itemService.deleteItem(itemId);
 		
 		request.setAttribute("roomId", String.valueOf(roomId));
-		List<ItemType> tipologieDisponibili= itemTypeService.getAllItemType();
+		List<ItemTypeDTO> tipologieDisponibili= itemTypeService.getAllItemType();
 		if (tipologieDisponibili.size() == 0) tipologieDisponibili = new ArrayList<>();
 		request.setAttribute("availableItems", tipologieDisponibili);
 		List <Item> yourItems = itemService.getAllByRoom(room);

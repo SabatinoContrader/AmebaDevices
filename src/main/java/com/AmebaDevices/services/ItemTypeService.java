@@ -50,6 +50,12 @@ public class ItemTypeService {
 		
 	}
 
+	public ItemType findByPrimaryKey(long itemTypeId) {
+		ItemType item= itemTypeDao.findOne(itemTypeId);
+		return item;
+	}
+
+
 	/*
 	public List<Item> getByBuilding(int buildingId) {
 		return itemDao.getByBuilding(buildingId);
