@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.AmebaDevices.dto.BuildingDTO;
 import com.AmebaDevices.dto.FloorDTO;
-import com.AmebaDevices.model.Floor;
 import com.AmebaDevices.services.BuildingService;
 import com.AmebaDevices.services.FloorService;
 

@@ -25,11 +25,9 @@ import com.AmebaDevices.services.CustomerService;
 public class CustomerController  {
 
 	private CustomerService customerService;
-	private BuildingService buildingService;
 	@Autowired
-	public CustomerController(CustomerService customerService, BuildingService buildingService) {
+	public CustomerController(CustomerService customerService) {
 	this.customerService=customerService;
-	this.buildingService = buildingService;
 	}
 	
 	@RequestMapping(value="/insertForm", method=RequestMethod.GET)

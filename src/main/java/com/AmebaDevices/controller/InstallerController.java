@@ -1,14 +1,21 @@
 package com.AmebaDevices.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jdom2.Document;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,18 +24,51 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.AmebaDevices.dto.BuildingDTO;
 import com.AmebaDevices.dto.CustomerDTO;
-import com.AmebaDevices.model.Building;
-import com.AmebaDevices.model.Customer;
 import com.AmebaDevices.services.BuildingService;
 import com.AmebaDevices.services.CustomerService;
 
 @Controller
 @RequestMapping("/Installer")
 public class InstallerController {
-
+	
+	
+	
 	private CustomerService customerService;
 	private BuildingService buildingService;
 
+	private void processRequest(String filePath, HttpServletRequest request, HttpServletResponse response) 
+		      throws ServletException, IOException {
+		        try {
+		            response.setContentType("text/html;charset=UTF-8");
+		            File file = new File(filePath);
+		            FileInputStream inputStream = new FileInputStream(file);
+		            ServletContext context = request.getServletContext();
+		            String mimeType = context.getMimeType(filePath);
+		            if (mimeType == null) {
+		                mimeType = "application/octet-stream";
+		            }
+		            response.setContentType(mimeType);
+		            response.setContentLength((int) file.length());
+		            // forziamo il download del file
+		            String headerKey = "Content-Disposition";
+		            String headerValue = String.format("attachment; filename=\"%s\"", file.getName());
+		            response.setHeader(headerKey, headerValue);
+		            OutputStream outputStream = response.getOutputStream();
+		            byte[] buffer = new byte[4096];
+		            int bytesRead = -1;
+		            while ((bytesRead = inputStream.read(buffer)) != -1) {
+		                outputStream.write(buffer, 0, bytesRead);
+		            }
+		            inputStream.close();
+		            outputStream.close();
+		        } catch (Exception e) {
+		            //gestiamo eventuali errori come file non esistente
+		        }
+		    }
+
+
+	
+	
 	@Autowired
 	public InstallerController(CustomerService customerService, BuildingService buildingService) {
 		this.buildingService = buildingService;
@@ -171,5 +211,61 @@ public class InstallerController {
 			throws ServletException, IOException {
 		// doGet(request, response);
 	}
-
+	
+	@RequestMapping (value = "/download", method = RequestMethod.GET)
+	public String download(HttpServletRequest request, HttpServletResponse response) {
+    	Long buildingId = Long.parseLong(request.getParameter("buildingId"));
+    	BuildingDTO current = buildingService.findByPrimaryKey(buildingId);
+		String type =  request.getParameter("type");
+		switch (type) {
+		case "xml":
+			//xml 
+			System.out.println("entro");
+			Document doc = new Document();
+			doc.setRootElement(buildingService.getElement(current));
+			XMLOutputter x = new XMLOutputter();
+			x.setFormat(Format.getPrettyFormat());
+			try {
+				File file = new File(current.getAddress()+" interno "+current.getInterno()+".xml");
+				System.out.println(file.getAbsolutePath());
+				FileWriter fw = new FileWriter(file);
+				x.output(doc, fw);
+				processRequest(file.getAbsolutePath(), request, response);
+	           
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "csv":
+			try {
+				processRequest(buildingService.buildCSV(current), request, response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		}
+		List <BuildingDTO> buildings = buildingService.findByInstaller((String) request.getSession().getAttribute("username"));
+		CustomerDTO cDTO = customerService.findByUsername((String) request.getSession().getAttribute("username"));
+		request.setAttribute("installer", cDTO);
+		request.setAttribute("buildings", buildings);
+		return "installerHome";
+	}
+	
+	@RequestMapping(value = "fileGenerator", method = RequestMethod.POST)
+	public String fileGenerator(HttpServletRequest request) {
+		long myId = Long.parseLong(request.getParameter("idInstaller"));
+		List<BuildingDTO> myBuildings = buildingService.findAll();
+		for (int i=0; i < myBuildings.size() ; i++) {
+			if (myBuildings.get(i).getInstaller().getId() != myId) {
+				myBuildings.remove(i);
+				i--;
+			}
+		}
+		request.setAttribute("idInstaller", myId);
+		request.setAttribute("myBuildings", myBuildings);
+		return "scegliBuilding";
+		
+	}
 }

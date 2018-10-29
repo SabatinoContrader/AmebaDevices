@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.AmebaDevices.dto.BuildingDTO;
-import com.AmebaDevices.model.Building;
 import com.AmebaDevices.services.BuildingService;
 
 @Controller

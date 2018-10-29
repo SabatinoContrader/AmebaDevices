@@ -14,5 +14,5 @@ public interface BuildingDAO extends CrudRepository<Building, Long>{
 
 	public List<Building> findByOwner(Customer ownerC);
 	public Building findByAddressAndCityAndCapAndInterno(String address, String city, String cap, long interno);
-	
+	public List<Building> findByInstaller (Customer installer);
  }

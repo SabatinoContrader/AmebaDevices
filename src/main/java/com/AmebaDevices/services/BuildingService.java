@@ -20,11 +20,13 @@ import com.AmebaDevices.converter.CustomerConverter;
 import com.AmebaDevices.dao.BuildingDAO;
 import com.AmebaDevices.dao.CustomerDAO;
 import com.AmebaDevices.dao.FloorDAO;
+import com.AmebaDevices.dao.ItemDAO;
 import com.AmebaDevices.dao.RoomDAO;
 import com.AmebaDevices.dto.BuildingDTO;
 import com.AmebaDevices.model.Building;
 import com.AmebaDevices.model.Customer;
 import com.AmebaDevices.model.Floor;
+import com.AmebaDevices.model.Item;
 import com.AmebaDevices.model.Room;
 
 @Service
@@ -34,15 +36,18 @@ public class BuildingService {
 	private CustomerDAO customerdao;
 	private FloorDAO floordao;
 	private RoomDAO roomdao;
-
+	private ItemDAO itemdao;
+	
+	
 	// DEVE permettere operazioni di create, read, update e delete
 	// e probabilmente altre se mi serviranno
 	@Autowired
-	public BuildingService(BuildingDAO buildingDao, CustomerDAO customerDao, FloorDAO floordao, RoomDAO roomdao) {
+	public BuildingService(BuildingDAO buildingDao, CustomerDAO customerDao, FloorDAO floordao, RoomDAO roomdao, ItemDAO itemdao) {
 		this.buildingdao = buildingDao;
 		this.customerdao = customerDao;
 		this.floordao = floordao;
 		this.roomdao = roomdao;
+		this.itemdao = itemdao;
 	}
 
 	public List<BuildingDTO> getAll(String owner) {
@@ -126,8 +131,21 @@ public class BuildingService {
 						roomElement.setAttribute(new Attribute("id", String.valueOf(rooms.get(j).getId())));
 						roomElement.addContent(new Element("nome").setText(rooms.get(j).getNomeRoom()));
 						roomElement.addContent(new Element("descrizione").setText(rooms.get(j).getDescrizione()));
+						Element itemsFather = new Element("items");
+						List <Item> items = itemdao.findByRoom(rooms.get(i));
+						for (int l=0 ; l<items.size(); l++) {
+							Element itemElement = new Element("item");
+							itemElement.setAttribute("id", String.valueOf(items.get(i).getId()));
+							itemElement.addContent(new Element("categoria", items.get(i).getItemType().getCategoria()));
+							itemElement.addContent(new Element("marca", items.get(i).getItemType().getMarca()));
+							itemElement.addContent(new Element("modello", items.get(i).getItemType().getModello()));
+							itemElement.addContent(new Element("seriale", items.get(i).getSeriale()));
+							itemElement.addContent(new Element("consumoEnergetico", items.get(i).getConsumoEnergetico()));
+							itemsFather.addContent(itemElement);
+						}
+						roomElement.addContent(itemsFather);
 						roomsFather.addContent(roomElement);
-						// Manca item
+						
 					}
 
 					floorsElement.addContent(roomsFather);
@@ -142,20 +160,9 @@ public class BuildingService {
 	}
 
 	public String buildCSV(BuildingDTO b) {
-		String[] header = { "edificio", "interno", "citta", "cap", "floor", "", "room", "item" };
-		// la struttura del file � fissa. Abbiamo 8 colonne diverse. La prima contiene
-		// l'indirizzo dell'edificio
-		// la seconda colonna � relativa all'interno
-		// la terza contiene la citt� dell'edificio
-		// la quarta contiene il cap
-		// La quinta e sesta colonna del file contengono i dati relativi al floor
-		// la quinta contiene il nome del floor e la sesta la sua descrizione
-		// La settima colonna contiene il nome della room
-		// L'ottava (ed eventuali successive) contengono le info sugli item
-		// si � pensato per ragioni di ottimizzazione, di "scrivere" le info solo nel
-		// momento di cambiamento
-		// rispetto alle precedenti (es info sul floor solo nella riga relativa alla
-		// prima room di quel floor)
+		String[] header = { "edificio", "interno", "citta", "cap", "floor", "descrizioneFloor", "room", "item", "marcaItem", "modelloItem", "serialeOggetto", "consumo" };
+		
+		
 		BufferedWriter bw;
 		CSVPrinter csvPrinter = null;
 		String path = new File(b.getAddress() + " interno " + b.getInterno() + ".csv").getAbsolutePath();
@@ -163,8 +170,7 @@ public class BuildingService {
 			bw = Files.newBufferedWriter(Paths.get(path));
 			csvPrinter = new CSVPrinter(bw, CSVFormat.DEFAULT.withHeader(header));
 			csvPrinter.flush();
-
-			String[] row = new String[8];
+			String[] row = new String[12];
 			row[0] = b.getAddress();
 			row[1] = String.valueOf(b.getInterno());
 			row[2] = b.getCity();
@@ -176,29 +182,36 @@ public class BuildingService {
 				List<Room> myRooms = roomdao.findByFloor(myFloors.get(i));
 				for (int k = 0; k < myRooms.size(); k++) {
 					row[6] = myRooms.get(k).getNomeRoom();
-					csvPrinter.printRecord(row);
-					csvPrinter.flush();
-					row = new String[8];
-					// ItemService is = new ItemService();
-					// List<Item> myItems =
-					// is.getAllByRoom(Integer.parseInt(myRooms.get(k).getId()));
-					// for sugli item
-					// inserimento di dati nel csv
-
-					// dato che non abbiamo gli items, stampiamo a livello di rooms
+					List<Item> myItems = itemdao.findByRoom(myRooms.get(i));
+					for (int l=0; l < myItems.size(); l++) {
+						row[7] = myItems.get(i).getItemType().getCategoria();
+						row[8] = myItems.get(i).getItemType().getMarca();
+						row[9] = myItems.get(i).getItemType().getModello();
+						row[10] = myItems.get(i).getSeriale();
+						row[11] = myItems.get(i).getConsumoEnergetico();
+						csvPrinter.printRecord(row);
+						csvPrinter.flush();
+						row = new String[12];
+					}
+					if (myItems.size() == 0 ) {
+						// Stampo la riga delle cose relative a building, floor e room
+						csvPrinter.printRecord(row);
+						csvPrinter.flush();
+						row = new String[12];
+					}
 				}
 				if (myRooms.size() == 0) {
 					// Stampo la riga delle cose relative a building e floor
 					csvPrinter.printRecord(row);
 					csvPrinter.flush();
-					row = new String[8];
+					row = new String[12];
 				}
 			}
 			if (myFloors.size() == 0) {
 				// Stampo la riga delle cose relative solamente al building
 				csvPrinter.printRecord(row);
 				csvPrinter.flush();
-				row = new String[8];
+				row = new String[12];
 			}
 
 		} catch (IOException e) {
@@ -206,6 +219,17 @@ public class BuildingService {
 			e.printStackTrace();
 		}
 		return path;
+	}
+
+	public List<BuildingDTO> findByInstaller(String installerUsername) {
+		Customer c = customerdao.findByUsername(installerUsername);
+		List <Building> buildings = buildingdao.findByInstaller(c);
+		List <BuildingDTO> toReturn = new ArrayList<>();
+		for (int i=0 ; i < buildings.size() ; i++) {
+			toReturn.add(BuildingConverter.convertToDto(buildings.get(i)));
+		}
+		
+		return toReturn;
 	}
 	
 	

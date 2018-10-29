@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.AmebaDevices.dto.BuildingDTO;
+import com.AmebaDevices.dto.CustomerDTO;
 import com.AmebaDevices.services.BuildingService;
 import com.AmebaDevices.services.CustomerService;
 
@@ -43,7 +44,15 @@ public class Login {
 			List <BuildingDTO> myBuildings = buildingService.getAll((String) request.getSession().getAttribute("username"));
 			request.setAttribute("buildings", myBuildings);
 			return "CustomerHome";	
-		} else {
+		} else if (userRole == 3) {
+			List <BuildingDTO> buildings = buildingService.findByInstaller((String) request.getSession().getAttribute("username"));
+			CustomerDTO cDTO = customerService.findByUsername((String) request.getSession().getAttribute("username"));
+			request.setAttribute("installer", cDTO);
+			request.setAttribute("buildings", buildings);
+			return "installerHome";
+		}
+		
+		else {
 			return "index";
 		}
 
