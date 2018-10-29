@@ -30,12 +30,6 @@
 			</a></br>	
 		</div>
 		<div class="menuDiv">
-			<img src="https://media.flixcar.com/f360cdn/HP-393556295-c03905319.png"class="imgSuperUser"> 
-			<a href="Customer?mode=InsertForm" class="customerLink">
-			Gestione Item
-			</a></br>	
-		</div>
-		<div class="menuDiv">
 			<img src="https://cdn3.iconfinder.com/data/icons/databases-2-2/512/data_cube-512.png"class="imgSuperUser"> 
 			<a href="/Thing/goBack" class="customerLink">
 			Gestione Thing
