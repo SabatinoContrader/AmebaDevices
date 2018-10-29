@@ -19,7 +19,7 @@
 	<h2>Questi sono i floor relativi al building <%=request.getAttribute("buildingId") %></h2>
 	<table>
 	<%
-										List<FloorDTO> floors = (List<Floor>) request.getAttribute("floors");
+										List<FloorDTO> floors = (List<FloorDTO>) request.getAttribute("floors");
 										String buildingId = String.valueOf(request.getAttribute("buildingId"));
 										for (int i=0; i < floors.size(); i++) {
 									%><tr>	<td><% out.println(floors.get(i).getId()); %></td>
