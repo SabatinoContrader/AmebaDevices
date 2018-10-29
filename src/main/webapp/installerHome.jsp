@@ -34,11 +34,11 @@
 			</th>
 			<c:forEach var="building" items="${buildings}">
 			<tr>
-				<td align="center">${building.id}</td>
-				<td align="center">${building.address}</td>
-				<td align="center">${building.city}</td>
-				<td align="center">${building.cap}</td>
-				<td align="center">${building.interno}</td>
+				<td align="center"><a href="/ThingItems/getAllThree?buildingId=${building.id}">${building.id}</a></td>
+				<td align="center"><a href="/ThingItems/getAllThree?buildingId=${building.id}">${building.address}</a></td>
+				<td align="center"><a href="/ThingItems/getAllThree?buildingId=${building.id}">${building.city}</a></td>
+				<td align="center"><a href="/ThingItems/getAllThree?buildingId=${building.id}">${building.cap}</a></td>
+				<td align="center"><a href="/ThingItems/getAllThree?buildingId=${building.id}">${building.interno}</a></td>
 			</tr>
 		</c:forEach>
 		<br><br>
@@ -50,8 +50,18 @@
 		</select>
 		<select style="border-radius: 10%" name="buildingId">
 			<c:forEach var="building" items="${buildings}">
-  				<option value="${building.id}">${building.address} ${building.interno} ${building.city} ${building.cap}</option>
+  				<option href="/Floors/menu?buildingId=${building.id}"value="${building.id}">${building.address} ${building.interno} ${building.city} ${building.cap}</option>
   			</c:forEach>
+  			
+  			<c:forEach var="building" items="${buildings}">
+			<tr>
+				<td align="center"><a style="text-decoration:none; color:white" href="/Floors/menu?buildingId=${building.id}">${building.id}</a></td>
+				<td align="center"><a style="text-decoration:none; color:white" href="/Floors/menu?buildingId=${building.id}">${building.address}</a></td>
+				<td align="center"><a style="text-decoration:none; color:white" href="/Floors/menu?buildingId=${building.id}">${building.city}</a></td>
+				<td align="center"><a style="text-decoration:none; color:white" href="/Floors/menu?buildingId=${building.id}">${building.cap}</a></td>
+				<td align="center"><a style="text-decoration:none; color:white" href="/Floors/menu?buildingId=${building.id}">${building.interno}</a></ta>
+			</tr>
+		</c:forEach>
 		</select>
 		<button type="submit"> Conferma </button>
 		</form>	
