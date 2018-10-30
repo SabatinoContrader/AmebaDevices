@@ -38,7 +38,7 @@ public class CustomerService {
 
 	public List<CustomerDTO> readAll() {
 		List<CustomerDTO> customers = new ArrayList<>();
-		customerDAO.findAll().forEach(c -> {
+		customerDAO.findByUserRole(2).forEach(c -> {
 			customers.add(CustomerConverter.convertToDto(c));
 			System.out.println(c.getNome());
 		});
