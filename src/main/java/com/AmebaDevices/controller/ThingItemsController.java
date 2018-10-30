@@ -50,7 +50,7 @@ public class ThingItemsController {
 		BuildingTreeDTO buildingTree = new BuildingTreeDTO();
 		BuildingDTO building = buildingService.findByPrimaryKey(_buildingId);
 		buildingTree.setBuilding(building);
-		
+				
 		buildingTree.setFloors(this.floorService.getAllByBuilding(_buildingId));
 				
 		buildingTree.getAllFloors().forEach(floor -> {

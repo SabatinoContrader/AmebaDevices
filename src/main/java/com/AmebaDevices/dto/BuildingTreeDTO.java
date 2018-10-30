@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.mapping.Set;
+
 public class BuildingTreeDTO {
 	
 	private BuildingDTO building;
 	private List<FloorDTO> floors;
 	private Map<Long, List<RoomDTO>> roomsByFloor = new HashMap<>();
 	private Map<Long, List<ItemDTO>> itemsByRoom = new HashMap<>();
+	private int itemCount = 0;
 	
 	public BuildingTreeDTO() {}
 	
@@ -43,6 +46,11 @@ public class BuildingTreeDTO {
 	
 	public List<ItemDTO> getItemsByRoom(long _roomId) {
 		return this.itemsByRoom.get(_roomId);
+	}
+	
+	public int getItemsCount() {
+		itemsByRoom.forEach((k,v) -> itemCount += v.size());
+		return itemCount;
 	}
 	
 }
