@@ -9,6 +9,7 @@
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 <meta charset="ISO-8859-1">
 <title>Associazione Buildings</title>
+		<a href="/Installer/goBack" class="logout">Indietro</a>
 </head>
 <body>
 <h3>Associazione Buildings</h3><form action="/Installer/associazioneMenu" method="POST">

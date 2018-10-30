@@ -9,7 +9,7 @@
 <link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
 
 <title>Thing Menu</title>
-	<a href="superuserhome.jsp" class="logout">Indietro</a>
+<a href="/Installer/goBackSuper" class="logout">Indietro</a>
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 </head>
 <body>

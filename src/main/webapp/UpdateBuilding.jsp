@@ -7,7 +7,7 @@
 <meta charset="ISO-8859-1">
 <title>Modifica Building</title>
 <link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
-<a href="CustomerHome.jsp" class="logout">Indietro</a>
+<a href="/Building/goBack" class="logout">Indietro</a>
 <jsp:include page="HeaderLogout.jsp"></jsp:include>
 </head>
 <body>
