@@ -34,11 +34,11 @@
 			</th>
 			<c:forEach var="building" items="${buildings}">
 			<tr>
-				<td align="center"><a href="/ThingItems/getAllThree?buildingId=${building.id}">${building.id}</a></td>
-				<td align="center"><a href="/ThingItems/getAllThree?buildingId=${building.id}">${building.address}</a></td>
-				<td align="center"><a href="/ThingItems/getAllThree?buildingId=${building.id}">${building.city}</a></td>
-				<td align="center"><a href="/ThingItems/getAllThree?buildingId=${building.id}">${building.cap}</a></td>
-				<td align="center"><a href="/ThingItems/getAllThree?buildingId=${building.id}">${building.interno}</a></td>
+				<td align="center"><a href="/BuildingTree/getTree?buildingId=${building.id}">${building.id}</a></td>
+				<td align="center"><a href="/BuildingTree/getTree?buildingId=${building.id}">${building.address}</a></td>
+				<td align="center"><a href="/BuildingTree/getTree?buildingId=${building.id}">${building.city}</a></td>
+				<td align="center"><a href="/BuildingTree/getTree?buildingId=${building.id}">${building.cap}</a></td>
+				<td align="center"><a href="/BuildingTree/getTree?buildingId=${building.id}">${building.interno}</a></td>
 			</tr>
 		</c:forEach>
 		<br><br>
