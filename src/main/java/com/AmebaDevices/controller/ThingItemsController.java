@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.AmebaDevices.dto.BuildingDTO;
 import com.AmebaDevices.dto.BuildingTreeDTO;
@@ -20,7 +22,7 @@ import com.AmebaDevices.services.RoomService;
 import com.AmebaDevices.services.ThingService;
 import com.AmebaDevices.utils.SolutionGenerator;
 
-@Controller
+@RestController
 @RequestMapping("/BuildingTree")
 public class ThingItemsController {
 
@@ -40,6 +42,31 @@ public class ThingItemsController {
 		this.itemService = _itemService;
 		this.buildingService = _buildingService;
 		this.thingService = ts;
+	}
+	
+	@RequestMapping(value="getTre", method = RequestMethod.GET)
+	public BuildingTreeDTO getAllThre(@RequestParam(value="buildingId") long buildingId) {
+		//long buildingId = Long.parseLong(request.getParameter("buildingId"));
+		//this.building = buildingId;
+		System.out.println("rr");
+		System.out.println(buildingId);
+		BuildingTreeDTO buildingTree = this.BuildingTreeFromBuildingId(buildingId);
+
+		/*things = thingService.searchThingsByBuilding(buildingService.findByPrimaryKey(buildingId));
+		if (things.size() == 0) {
+			SolutionGenerator s = new SolutionGenerator(thingService);
+			things = s.generate(buildingTree.getItems().size());
+			
+		}
+		things.forEach(t -> {
+
+			t.setBuilding(buildingService.findByPrimaryKey(buildingId));
+			thingService.update(t);
+		});
+		request.setAttribute("items", buildingTree.getItems());
+		request.setAttribute("things", things);
+		request.setAttribute("buildingTree", buildingTree);*/
+		return buildingTree;
 	}
 
 	@RequestMapping(value = "getTree", method = RequestMethod.GET)
