@@ -1,10 +1,13 @@
 package com.AmebaDevices.dto;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.hibernate.mapping.Set;
+
+import com.AmebaDevices.model.Item;
 
 public class BuildingTreeDTO {
 	
@@ -48,9 +51,15 @@ public class BuildingTreeDTO {
 		return this.itemsByRoom.get(_roomId);
 	}
 	
-	public int getItemsCount() {
-		itemsByRoom.forEach((k,v) -> itemCount += v.size());
-		return itemCount;
+	public List<ItemDTO> getItems() {
+		List<ItemDTO> items=new ArrayList<>();
+		itemsByRoom.forEach((k,v) -> {
+			v.forEach(i->{
+				if(i.getThing()==null)
+				items.add(i);
+			});
+		});
+		return items;
 	}
 	
 }

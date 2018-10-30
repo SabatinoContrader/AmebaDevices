@@ -36,8 +36,8 @@ public class ItemService {
 		this.itemEntityDao.save(ItemConverter.convertToItem(item));
 	}
 	
-	public Item searchItem(Long id) {
-		return this.itemEntityDao.findOne(id);
+	public ItemDTO searchItem(Long id) {
+		return ItemConverter.convertToDto(this.itemEntityDao.findOne(id));
 	}
 	
 	public List<ItemDTO> getAllByRoom(RoomDTO room) {

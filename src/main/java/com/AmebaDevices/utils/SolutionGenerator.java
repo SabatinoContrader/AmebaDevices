@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.AmebaDevices.dto.ThingDTO;
+import com.AmebaDevices.services.ThingService;
 
 public class SolutionGenerator {
 	int i = 0;
@@ -12,10 +13,12 @@ public class SolutionGenerator {
 	List<Integer> prices;
 	List<Integer> a;
 	public List<Integer> things;
-	int items=0;
+	int items = 0;
+	ThingService ts;
 
-	public SolutionGenerator() {
-		prices= new ArrayList<>();
+	public SolutionGenerator(ThingService ts) {
+		this.ts = ts;
+		prices = new ArrayList<>();
 		a = new ArrayList<>();
 		things = new ArrayList<>();
 		a.add(16);
@@ -24,11 +27,12 @@ public class SolutionGenerator {
 		prices.add(15);
 		a.add(4);
 		prices.add(10);
+
 	}
 
 	public List<ThingDTO> generate(int items) {
-		List<ThingDTO> toReturn=new ArrayList<>();
-	this.items=items;	
+		List<ThingDTO> toReturn = new ArrayList<>();
+		this.items = items;
 
 		List<Integer> thingsTrovate = cercaThings(items, i, a, prices);
 
@@ -48,11 +52,15 @@ public class SolutionGenerator {
 		}
 		System.out.println("---------------------------------------------");
 		thingsTrovate.forEach(t -> System.out.println(t));
-		
-		
-		thingsTrovate.forEach(t->toReturn.add(new ThingDTO(t)));
+
+		thingsTrovate.forEach(t -> {
+			ThingDTO thing = new ThingDTO(getPrezzo(t), t);
+			toReturn.add(ts.create(thing));
+			System.out.println("L'iddddddddddddddddddddddddd è "+ toReturn.get(toReturn.size()-1).getId());
+		});
+
 		return toReturn;
-		
+
 	}
 
 	public int getItems() {
@@ -78,10 +86,6 @@ public class SolutionGenerator {
 
 	}
 
-	
-
-	
-
 	public int getPrezzo(int thing) {
 		for (int i = 0; i < a.size(); i++) {
 			if (a.get(i) == thing)
@@ -93,6 +97,7 @@ public class SolutionGenerator {
 	public void ottimizza(List<Integer> thingTrovate) {
 		ottimizzato = false;
 		for (int i = 0; i < thingTrovate.size(); i++) {
+			if((i+1)<thingTrovate.size()) {
 			int sommaUscite = thingTrovate.get(i) + thingTrovate.get(i + 1);
 			int probabileThing = trovaThing(sommaUscite);
 			if (probabileThing == -1)
@@ -107,7 +112,7 @@ public class SolutionGenerator {
 				// thingTrovate.forEach(t -> System.out.println(t));
 				ottimizzato = true;
 				break;
-			}
+			}}
 
 		}
 

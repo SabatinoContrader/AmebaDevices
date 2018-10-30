@@ -14,6 +14,7 @@ public static ItemDTO convertToDto(Item i) {
 	item.setSeriale(i.getSeriale());
 	item.setRoom(RoomConverter.convertToDto(i.getRoom()));
 	item.setItemType(ItemTypeConverter.convertToDto(i.getItemType()));
+	if(i.getThing()!=null)
 	item.setThing(ThingConverter.convertToDto(i.getThing()));
 	return item;
 	
@@ -26,6 +27,7 @@ public static Item convertToItem(ItemDTO i) {
 	item.setSeriale(i.getSeriale());
 	item.setRoom(RoomConverter.convertToRoom(i.getRoom()));
 	item.setItemType(ItemTypeConverter.convertToItem(i.getItemType()));
+	if(i.getThing()!=null)
 	item.setThing(ThingConverter.convertToThing(i.getThing()));
 	return item;
   	}

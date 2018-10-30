@@ -18,6 +18,10 @@ public class ThingDTO {
 		this.numUscite = numUscite;
 		this.building = building;
 	}
+	public ThingDTO( double prezzo, int numUscite) {
+		this.prezzo = prezzo;
+		this.numUscite = numUscite;
+	}
 	public long getId() {
 		return id;
 	}

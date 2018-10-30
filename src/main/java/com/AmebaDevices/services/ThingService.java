@@ -6,10 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.AmebaDevices.controller.BuildingController;
+import com.AmebaDevices.converter.BuildingConverter;
 import com.AmebaDevices.converter.ItemConverter;
 import com.AmebaDevices.converter.ThingConverter;
 import com.AmebaDevices.dao.ItemDAO;
 import com.AmebaDevices.dao.ThingDAO;
+import com.AmebaDevices.dto.BuildingDTO;
 import com.AmebaDevices.dto.ItemDTO;
 import com.AmebaDevices.dto.ThingDTO;
 import com.AmebaDevices.model.Item;
@@ -27,22 +30,34 @@ public class ThingService {
 		this.itemDAO = itemdao;
 	}
 
-	public List <ItemDTO> getAllItems(ThingDTO thing) {
-		List <ItemDTO> toRet = new ArrayList<>();
+	public List<ItemDTO> getAllItems(ThingDTO thing) {
+		List<ItemDTO> toRet = new ArrayList<>();
 		List<Item> items = itemDAO.findByThing(ThingConverter.convertToThing(thing));
-		for (int i=0 ; i < items.size() ; i++) {
+		for (int i = 0; i < items.size(); i++) {
 			toRet.add(ItemConverter.convertToDto(items.get(i)));
 		}
-		
+
 		return toRet;
 	}
-	
-	public void create(ThingDTO t) {
-		thingDAO.save(ThingConverter.convertToThing(t));
+
+	public ThingDTO create(ThingDTO t) {
+		return ThingConverter.convertToDto(thingDAO.save(ThingConverter.convertToThing(t)));
 
 	}
 
-	
+	public ThingDTO searchThing(long id) {
+		return ThingConverter.convertToDto(thingDAO.findOne(id));
+
+	}
+
+	public List<ThingDTO> searchThingsByBuilding(BuildingDTO building) {
+		List<ThingDTO> toReturn = new ArrayList<>();
+		thingDAO.findByBuilding(BuildingConverter.convertToBuilding(building)).forEach(t -> {
+
+			toReturn.add(ThingConverter.convertToDto(t));
+		});
+		return toReturn;
+	}
 
 	public void delete(long id) {
 		thingDAO.delete(id);

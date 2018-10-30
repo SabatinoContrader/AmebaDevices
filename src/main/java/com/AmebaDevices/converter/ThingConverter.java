@@ -10,6 +10,7 @@ public class ThingConverter {
 		thing.setId(t.getId());
 		thing.setPrezzo(t.getPrezzo());
 		thing.setNumUscite(t.getNumUscite());
+		if(t.getBuilding()!=null)
 		thing.setBuilding(BuildingConverter.convertToDto(t.getBuilding()));
 		return thing;
 	}
@@ -19,6 +20,7 @@ public class ThingConverter {
 		thing.setId(t.getId());
 		thing.setPrezzo(t.getPrezzo());
 		thing.setNumUscite(t.getNumUscite());
+		if(t.getBuilding()!=null)
 		thing.setBuilding(BuildingConverter.convertToBuilding(t.getBuilding()));
 		return thing;
 	}
