@@ -353,4 +353,31 @@ button:hover{
 	
 }
 
+.treeFloorContainer {
+	border-style: solid;
+    border-radius: 9px;
+    border-width: thin;
+    border-color: chartreuse;
+}
+
+.treeBuildingContainer {
+	border-style: double;
+    border-color: chocolate;
+    margin-top: 12px;
+    margin-left: 3px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.treeRoomContainer {
+	border-style: solid;
+    border-radius: 9px;
+    border-width: thin;
+    border-color: darkmagenta;
+}
+
+.treeItemContainer {
+	border-bottom: 1px solid darkmagenta;
+}
+
 
