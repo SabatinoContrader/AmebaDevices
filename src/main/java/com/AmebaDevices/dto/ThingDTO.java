@@ -4,35 +4,31 @@ import com.AmebaDevices.model.ItemType;
 
 public class ThingDTO {
 
-	private String id;
-	private String nome;
+	private long id;
+	private double prezzo;
 	private int numUscite; //potenze di 2
-	
-	private ItemType[] items;
+	private BuildingDTO building;
 	
 	public ThingDTO() {
 	}
-	public ThingDTO(int numUscite) {
-		this.numUscite = numUscite;
-		items = new ItemType[numUscite];
-	}
-	public ThingDTO(String id, String nome, int numUscite, ItemType[] items) {
+	public ThingDTO(long id, double prezzo, int numUscite, BuildingDTO building) {
+		super();
 		this.id = id;
-		this.nome = nome;
+		this.prezzo = prezzo;
 		this.numUscite = numUscite;
-		this.items = items;
+		this.building = building;
 	}
-	public String getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
-	public String getNome() {
-		return nome;
+	public double getPrezzo() {
+		return prezzo;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setPrezzo(double prezzo) {
+		this.prezzo = prezzo;
 	}
 	public int getNumUscite() {
 		return numUscite;
@@ -40,11 +36,14 @@ public class ThingDTO {
 	public void setNumUscite(int numUscite) {
 		this.numUscite = numUscite;
 	}
-	public ItemType[] getItems() {
-		return items;
+	public BuildingDTO getBuilding() {
+		return building;
 	}
-	public void setItems(ItemType[] items) {
-		this.items = items;
+	public void setBuilding(BuildingDTO building) {
+		this.building = building;
 	}
+	
+	
+	
 	
 }

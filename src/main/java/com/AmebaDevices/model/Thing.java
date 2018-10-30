@@ -1,97 +1,58 @@
 package com.AmebaDevices.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Thing {
 	
-	private String id;
-	private String nome;
+	
+	@Id
+	@Column
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Getter
+	@Setter
+	private long id;
+	
+	
+	@NotNull
+	@Column
+	@Getter
+	private double prezzo;
+	
+	@NotNull
+	@Column
+	@Getter
 	private int numUscite; //potenze di 2
 	
-	private ItemType[] items;
-	
-	public Thing(int numUscite) {
-		this.numUscite = numUscite;
-		items = new ItemType[numUscite];
-	}
-	
-	public Thing(int numUscite, String nome) {
-		this.numUscite=numUscite;
-		this.nome=nome;
-	}
-
-	public Thing(String id, String nome, int numUscite) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.numUscite = numUscite;
-		items = new ItemType[numUscite];
-	}
-
-	public Thing() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public int addItem(ItemType item) {
-		int pos = -1;
-		for (int i = 0 ; i < items.length; i++) {
-			if (items[i] == null) {
-				pos = i;
-				items[i] = item;
-				break;
-			}
-		}
-		
-		return pos;
-	}
-	
-	public void removeItem(ItemType item) {
-		for (int i=0 ; i < items.length ; i++) {
-			if (items[i] != null) {
-				if (items[i].getId() == item.getId()) {
-					items[i] = null;
-				}
-				
-			}
-		}
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public int getNumUscite() {
-		return numUscite;
-	}
 
 	public void setNumUscite(int numUscite) {
 		this.numUscite = numUscite;
-	}
-
-	
-	public int usciteLibere() {
-		int freeSlots = 0;
-		for (int i = 0 ; i < items.length; i++) {
-			if (items[i] == null) {
-				freeSlots++;
-			}
-		}
-		return freeSlots;
+		this.prezzo = 5 + numUscite;
 	}
 	
+	
+	@ManyToOne
+	@JoinColumn (name="idbuilding")
+	@Getter
+	@Setter
+	private Building building;
 	
 	
 	

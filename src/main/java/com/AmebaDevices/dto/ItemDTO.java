@@ -10,15 +10,30 @@ public class ItemDTO {
 		private String consumoEnergetico;
 		private RoomDTO room;
 		private ItemTypeDTO itemType;
+		private ThingDTO thing;
 		
-		public ItemDTO(long id, String seriale, String consumoEnergetico, RoomDTO room, ItemTypeDTO itemType) {
+		public ItemDTO(long id, String seriale, String consumoEnergetico, RoomDTO room, ItemTypeDTO itemType, ThingDTO thing) {
 			super();
 			this.id = id;
 			this.seriale=seriale;
 			this.consumoEnergetico=consumoEnergetico;
 			this.room=room;
 			this.itemType=itemType;
+			this.thing = thing;
 		}
+		
+		
+		public ThingDTO getThing() {
+			return thing;
+		}
+
+
+
+		public void setThing(ThingDTO thing) {
+			this.thing = thing;
+		}
+
+
 
 		public ItemDTO() {
 

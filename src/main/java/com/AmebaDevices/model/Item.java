@@ -35,5 +35,9 @@ public class Item {
 	@JoinColumn (name ="iditemtype")
 	private ItemType itemType;
 	
+	@ManyToOne
+	@JoinColumn (name="idthing")
+	private Thing thing;
+	
 
 }

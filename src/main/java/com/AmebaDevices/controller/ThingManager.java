@@ -23,9 +23,10 @@ import com.AmebaDevices.services.ThingService;
 @RequestMapping("/Thing")
 public class ThingManager {
 
+	private ThingService thingService;
+	
 	@Autowired
-	public ThingManager() {
-		super();
+	public ThingManager(ThingService thingService) {
 	}
 
 	@RequestMapping(value = "/insertForm", method = RequestMethod.GET)
@@ -34,20 +35,26 @@ public class ThingManager {
 	}
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insert(HttpServletRequest request) {
-		ThingService thingService= new ThingService();
 		String nomeThing = request.getParameter("thingName");
 		int numeroUscite = Integer.parseInt(request.getParameter("numeroUscite"));
-		ThingDTO thing = new ThingDTO(numeroUscite);
-		thing.setNome(nomeThing);
+		ThingDTO thing = new ThingDTO();
+		thing.setNumUscite(numeroUscite);
 		thingService.create(thing);
 		return goBack(request);
 	}
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public String read(HttpServletRequest request) {
-		ThingService thingService= new ThingService();
-		List<ThingDTO> listaPerBuilding = new ArrayList<>();
-		listaPerBuilding = thingService.getAllItem();
-		request.setAttribute("things", listaPerBuilding);
+		
+		/*
+		 * 		Vedete cosa vi serve fare qui....
+		 * 
+		 * 
+		 * 
+		 */	
+		
+	//	List<ThingDTO> listaPerBuilding = new ArrayList<>();
+	//	listaPerBuilding = thingService.getAllItems();
+	//	request.setAttribute("things", listaPerBuilding);
 		return "ReadThing";
 		//RequestDispatcher view = request.getRequestDispatcher("/ReadThing.jsp");
 		//view.include(request, response);
@@ -58,14 +65,11 @@ public class ThingManager {
 	}
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(HttpServletRequest request) {
-		ThingService thingService= new ThingService();
 		int numberPort = Integer.parseInt(request.getParameter("numberPort"));
 		String nameThing = request.getParameter("nameThing");
 		String roomid = (String) request.getParameter("thingId");
 		ThingDTO newThing = new ThingDTO();
-		newThing.setId(roomid);
 		newThing.setNumUscite(numberPort);
-		newThing.setNome(nameThing);
 		thingService.update(newThing);
 		return "thingManager";
 	}
@@ -76,7 +80,6 @@ public class ThingManager {
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(HttpServletRequest request) {
 		int idThing = Integer.parseInt(request.getParameter("id_thing"));
-		ThingService thingService = new ThingService();
 		thingService.delete(idThing);
 		return "thingManager";
 	}
