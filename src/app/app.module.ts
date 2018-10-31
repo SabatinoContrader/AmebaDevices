@@ -31,6 +31,8 @@ import { LegislationsComponent } from "../components/legislations/legislations.c
 import { UsefulNumbersComponent } from "../components/useful-numbers/useful-numbers.component";
 import { ManagementSlotComponent } from '../components/management-slot/management-slot.component';
 import { SlotService } from '../services/slot.service';
+import { SuperuserComponent } from '../components/superuser/superuser.component';
+import { SuperuserService } from '../services/superuser.service';
 
 
 
@@ -55,7 +57,8 @@ import { SlotService } from '../services/slot.service';
     LegislationsComponent,
     UsefulNumbersComponent,
     IntestazioneComponent,
-    ManagementSlotComponent
+    ManagementSlotComponent,
+    SuperuserComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +70,7 @@ import { SlotService } from '../services/slot.service';
       libraries: ["places"]
     })
   ],
-  providers: [UserService,CustomerService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
+  providers: [UserService,CustomerService, SuperuserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
   bootstrap: [AppComponent]
 })
 

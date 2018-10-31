@@ -66,8 +66,10 @@ export class LoginComponent implements OnInit{
   login(f:NgForm): void{
     this.customerService.login(f.value.username, f.value.password).subscribe((response) => {
       if (response != null) {
+        this.customer=response;
+        sessionStorage.setItem("user", JSON.stringify(this.customer));
            if(response.userRole==1)
-              console.log("sei un superuser");
+           this.router.navigateByUrl("/superuser");
             else if(response.userRole==2)
               console.log("sei un customer");
             else

@@ -20,12 +20,14 @@ import { ManagementParkComponent } from '../components/management-park/managemen
 import { UsefulNumbersComponent } from '../components/useful-numbers/useful-numbers.component';
 import { LegislationsComponent } from '../components/legislations/legislations.component';
 import { ManagementSlotComponent } from '../components/management-slot/management-slot.component';
+import { SuperuserComponent} from '../components/superuser/superuser.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'homeDriver', component: HomeDriverComponent},
+  {path: 'superuser', component: SuperuserComponent},
   {path: 'homeOwner', component: HomeOwnerComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'car', component: CarComponent},
