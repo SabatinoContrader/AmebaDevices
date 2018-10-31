@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.AmebaDevices.dto.CustomerDTO;
+import com.AmebaDevices.dto.NewCustomerDTO;
 import com.AmebaDevices.services.CustomerService;
 
 @RestController
@@ -25,13 +26,15 @@ public class CustomerController {
 
 	// CREATE -> TESTED
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public CustomerDTO newCustomer(HttpServletRequest request, @RequestParam(value = "userRole") int userRole) {
-		CustomerDTO customerDTO = new CustomerDTO();
-		customerDTO.setNome(request.getParameter("nome"));
-		customerDTO.setCognome(request.getParameter("cognome"));
-		customerDTO.setEmail(request.getParameter("email"));
-		customerDTO.setUsername(request.getParameter("username"));
-		customerDTO.setUserRole(userRole);
+	public NewCustomerDTO newCustomer(
+			@RequestParam(value = "userRole") int userRole,
+			@RequestParam(value = "name") String name,
+			@RequestParam(value = "surname") String surname,
+			@RequestParam(value = "email") String email,
+			@RequestParam(value = "username") String username,
+			@RequestParam(value = "password") String password
+	) {
+		NewCustomerDTO customerDTO = new NewCustomerDTO(name, surname, email, username, password, userRole);
 		customerDTO = customerService.insertCustomer(customerDTO);
 		return customerDTO;
 

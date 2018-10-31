@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.AmebaDevices.converter.CustomerConverter;
+import com.AmebaDevices.converter.NewCustomerConverter;
 import com.AmebaDevices.dao.CustomerDAO;
 import com.AmebaDevices.dto.CustomerDTO;
+import com.AmebaDevices.dto.NewCustomerDTO;
 import com.AmebaDevices.model.Customer;
 
 @Service
@@ -28,8 +30,8 @@ public class CustomerService {
 		return customerDTO;
 	}
 
-	public CustomerDTO insertCustomer(CustomerDTO customer) {
-		return CustomerConverter.convertToDto(customerDAO.save(CustomerConverter.convertToCustomer(customer)));
+	public NewCustomerDTO insertCustomer(NewCustomerDTO customer) {
+		return NewCustomerConverter.convertToDto(customerDAO.save(NewCustomerConverter.convertToCustomer(customer)));
 	}
 
 	public List<CustomerDTO> readAll() {
