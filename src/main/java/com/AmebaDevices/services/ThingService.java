@@ -59,12 +59,13 @@ public class ThingService {
 		return toReturn;
 	}
 
-	public void delete(long id) {
+	public boolean delete(long id) {
 		thingDAO.delete(id);
+		return true;
 	}
 
-	public void update(ThingDTO newThing) {
-		this.thingDAO.save(ThingConverter.convertToThing(newThing));
+	public ThingDTO update(ThingDTO newThing) {
+		return ThingConverter.convertToDto(this.thingDAO.save(ThingConverter.convertToThing(newThing)));
 	}
 
 }

@@ -43,11 +43,13 @@ public class FloorController {
 
 	// INSERT
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public FloorDTO newFloor(HttpServletRequest request) {
+	public FloorDTO newFloor(
+			@RequestParam(value = "floorId") long floorId,
+			@RequestParam(value = "nomeFloor") String nomeFloor,
+			@RequestParam(value = "descrizione") String descrizione,
+			@RequestParam(value = "buildingId") long buildingId){
 		FloorDTO fdto = new FloorDTO();
-		fdto.setBuilding(bs.findByPrimaryKey(Integer.parseInt(request.getParameter("buildingId"))));
-		String nomeFloor = request.getParameter("nomeFloor");
-		String descrizione = request.getParameter("descrizione");
+		fdto.setBuilding(bs.findByPrimaryKey(buildingId));
 		fdto.setNomeFloor(nomeFloor);
 		fdto.setDescrizione(descrizione);
 		fdto = fs.insert(fdto);
@@ -57,22 +59,19 @@ public class FloorController {
 
 	// READ
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public FloorDTO getOne(@RequestParam(value = "floorId") long buildingId) {
-		FloorDTO fdto = fs.findByPrimaryKey(buildingId);
+	public FloorDTO getOne(@RequestParam(value = "floorId") long floorId) {
+		FloorDTO fdto = fs.findByPrimaryKey(floorId);
 		return fdto;
 
 	}
 	
 	// UPDATE 
 		@RequestMapping(value="/edit", method= RequestMethod.POST)
-		public FloorDTO updateFloor (HttpServletRequest request, @RequestParam(value="floorId") long floorId){
-			String nomeFloor = request.getParameter("nomeFloor");
-			String descrizione = request.getParameter("descrizione");
-		
-			
+		public FloorDTO updateFloor (HttpServletRequest request, 
+				@RequestParam(value="floorId") long floorId,
+				@RequestParam(value = "nomeFloor", required = false) String nomeFloor,
+				@RequestParam(value = "descrizione", required = false) String descrizione){
 			FloorDTO fdto = fs.findByPrimaryKey(floorId);
-			
-			
 			if (nomeFloor != null) {
 			fdto.setNomeFloor(nomeFloor);
 			}

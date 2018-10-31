@@ -14,9 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.AmebaDevices.dto.BuildingDTO;
+import com.AmebaDevices.dto.CustomerDTO;
 import com.AmebaDevices.dto.ThingDTO;
 import com.AmebaDevices.model.Thing;
+import com.AmebaDevices.services.BuildingService;
 import com.AmebaDevices.services.ThingService;
 
 @Controller
@@ -24,12 +28,53 @@ import com.AmebaDevices.services.ThingService;
 public class ThingController {
 
 	private ThingService thingService;
+	private BuildingService buildingService;
 	
 	@Autowired
-	public ThingController(ThingService thingService) {
+	public ThingController(ThingService thingService, BuildingService buildingService) {
 		this.thingService = thingService;
+		this.buildingService = buildingService;
 	}
 	
+	// CREATE 
+		@RequestMapping(value = "/new", method = RequestMethod.POST)
+		public ThingDTO newThing(
+				@RequestParam(value = "buildingId") long buildingId,
+				@RequestParam(value = "numUscite") int numUscite) {
+			ThingDTO thingDTO = new ThingDTO();
+			BuildingDTO buildingDTO = buildingService.findByPrimaryKey(buildingId);
+			double prezzo = 5 + numUscite;
+			thingDTO.setBuilding(buildingDTO);
+			thingDTO.setNumUscite(numUscite);
+			thingDTO.setPrezzo(prezzo);
+			thingDTO = thingService.create(thingDTO);
+			return thingDTO;
+		}
+		
+	// READ
+		@RequestMapping(value="", method = RequestMethod.GET)
+		public ThingDTO getOne(@RequestParam(value="thingId") long thingId) {
+			ThingDTO thingDTO = thingService.searchThing(thingId);
+			return thingDTO;
+		}
+	
+	// UPDATE
+		@RequestMapping(value="/edit", method = RequestMethod.POST)
+		public ThingDTO updateThing(
+				@RequestParam(value="thingId") long thingId,
+				@RequestParam(value = "numUscite") int numUscite){
+			ThingDTO thing = thingService.searchThing(thingId);
+			thing.setNumUscite(numUscite);
+			thing.setPrezzo(5+numUscite);
+			return thingService.update(thing);
+			
+		}
+		
+	// DELETE
+		@RequestMapping(value="/delete", method = RequestMethod.GET)
+		public boolean delete(@RequestParam(value="thingId") long thingId) {
+			return thingService.delete(thingId);
+		}
 	
 	
 //

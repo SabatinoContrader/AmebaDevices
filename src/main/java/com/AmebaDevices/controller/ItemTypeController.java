@@ -35,14 +35,13 @@ public class ItemTypeController  {
 	}
 	
 	
-	// INSERT -> TESTED
+	// INSERT
 		@RequestMapping(value="/new", method = RequestMethod.POST)
-		public ItemTypeDTO newItemType(HttpServletRequest request) {		
-			String marca =(String) request.getParameter("indirizzo");
-			String modello = (String) request.getParameter("interno");
-			String categoria = (String) request.getParameter("city");
-			String descrizione = (String) request.getParameter("cap");
-		
+		public ItemTypeDTO newItemType(
+				@RequestParam(value = "marca") String marca,
+				@RequestParam(value = "modello") String modello,
+				@RequestParam(value = "categoria") String categoria,
+				@RequestParam(value = "descrizione") String descrizione){		
 			ItemTypeDTO myNewItemType = new ItemTypeDTO();
 			myNewItemType.setMarca(marca);
 			myNewItemType.setCategoria(categoria);
@@ -61,12 +60,13 @@ public class ItemTypeController  {
 	
 	// UPDATE
 		@RequestMapping(value="/edit", method = RequestMethod.POST)
-		public ItemTypeDTO updateItemType(HttpServletRequest request, @RequestParam(value="itemTypeId") long itemTypeId) {
-			String marca =(String) request.getParameter("indirizzo");
-			String modello = (String) request.getParameter("interno");
-			String categoria = (String) request.getParameter("city");
-			String descrizione = (String) request.getParameter("cap");
-		
+		public ItemTypeDTO updateItemType(
+				@RequestParam(value = "marca", required = false) String marca,
+				@RequestParam(value = "modello", required = false) String modello,
+				@RequestParam(value = "categoria", required = false) String categoria,
+				@RequestParam(value = "descrizione", required= false) String descrizione,
+				@RequestParam(value="itemTypeId") long itemTypeId) {
+			
 			ItemTypeDTO myItemType = itemTypeService.findByPrimaryKey(itemTypeId);
 			if (marca!= null)
 			myItemType.setMarca(marca);
@@ -76,7 +76,6 @@ public class ItemTypeController  {
 			myItemType.setModello(modello);
 			if (descrizione != null)
 			myItemType.setDescrizione(descrizione);
-			
 			
 			return itemTypeService.updateItemType(myItemType);
 		}

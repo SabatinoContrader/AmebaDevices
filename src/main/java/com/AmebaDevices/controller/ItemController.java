@@ -52,16 +52,19 @@ public class ItemController  {
 	
 	// INSERT
 		@RequestMapping(value = "/new", method = RequestMethod.POST)
-		public ItemDTO newItem(HttpServletRequest request) {
+		public ItemDTO newItem(
+				@RequestParam(value = "roomId") long roomId,
+				@RequestParam(value = "itemTypeId") long itemTypeId,
+				@RequestParam(value = "thingId") long thingId,
+				@RequestParam(value = "consumoEnergetico", required = false) String consumo,
+				@RequestParam(value = "seriale", required = false) String seriale) {
 			ItemDTO idto = new ItemDTO();
-			RoomDTO room = roomService.findByPrimaryKey(Long.parseLong(request.getParameter("roomId")));
-			ItemTypeDTO itemType = itemTypeService.findByPrimaryKey(Long.parseLong(request.getParameter("itemTypeId")));
-			ThingDTO thing = thingService.searchThing(Long.parseLong(request.getParameter("thingId")));
+			RoomDTO room = roomService.findByPrimaryKey(roomId);
+			ItemTypeDTO itemType = itemTypeService.findByPrimaryKey(itemTypeId);
+			ThingDTO thing = thingService.searchThing(thingId);
 			if (room != null) idto.setRoom(room);
 			if (itemType != null ) idto.setItemType(itemType);
 			if (thing != null ) idto.setThing(thing);
-			String consumo = request.getParameter("consumoEnergetico");
-			String seriale = request.getParameter("seriale");
 			if (consumo != null) idto.setConsumoEnergetico(consumo);
 			if (seriale != null) idto.setSeriale(seriale);
 			
@@ -78,27 +81,28 @@ public class ItemController  {
 		
 	// UPDATE
 		@RequestMapping (value="/edit", method= RequestMethod.POST)
-		public ItemDTO updateItem (HttpServletRequest request, @RequestParam(value="itemId") long itemId){
+		public ItemDTO updateItem (
+				@RequestParam(value = "roomId", required = false) long roomId,
+				@RequestParam(value = "itemTypeId", required = false) long itemTypeId,
+				@RequestParam(value = "thingId", required = false) long thingId,
+				@RequestParam(value = "consumoEnergetico", required = false) String consumo,
+				@RequestParam(value = "seriale", required = false) String seriale,
+				@RequestParam(value="itemId") long itemId){
 			ItemDTO myItem = itemService.searchItem(itemId);
-			String itemTypeId = request.getParameter("itemType");
-			String roomId = request.getParameter("room");
-			String thingId = request.getParameter("thing");
-			String consumoEnergetico = request.getParameter("consumoEnergetico");
-			String seriale = request.getParameter("seriale");
-			if (itemTypeId != null) {
-				ItemTypeDTO itemType = itemTypeService.searchItemType(Long.parseLong(itemTypeId));
+			ItemTypeDTO itemType = itemTypeService.searchItemType(itemTypeId);
+			RoomDTO room = roomService.findByPrimaryKey(roomId);
+			ThingDTO thing = thingService.searchThing(thingId);
+			if (itemType != null) {
 				myItem.setItemType(itemType);
 			}
-			if (roomId != null ) {
-				RoomDTO room = roomService.findByPrimaryKey(Long.parseLong(roomId));
+			if (room != null ) {
 				myItem.setRoom(room);
 			}
-			if (thingId != null ) {
-				ThingDTO thing = thingService.searchThing(Long.parseLong(thingId));
+			if (thing != null ) {
 				myItem.setThing(thing);
 			}
-			if (consumoEnergetico != null) {
-				myItem.setConsumoEnergetico(consumoEnergetico);
+			if (consumo != null) {
+				myItem.setConsumoEnergetico(consumo);
 			}
 			if (seriale!= null) {
 				myItem.setSeriale(seriale);

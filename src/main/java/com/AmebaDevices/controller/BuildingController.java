@@ -29,18 +29,20 @@ public class BuildingController {
 	
 	// INSERT -> TESTED
 	@RequestMapping(value="/new", method = RequestMethod.POST)
-	public BuildingDTO newBuilding(HttpServletRequest request) {		
-		String indirizzo =(String) request.getParameter("indirizzo");
-		Integer interno = Integer.parseInt(request.getParameter("interno"));
-		String city = (String) request.getParameter("city");
-		String cap = (String) request.getParameter("cap");
-		String ownerUsername = (String) request.getParameter("username");
+	public BuildingDTO newBuilding(
+			@RequestParam(value="indirizzo") String indirizzo,
+			@RequestParam(value="interno") int interno,
+			@RequestParam(value="city") String city,
+			@RequestParam(value="username") String username,
+			@RequestParam(value="cap") String cap ) {		
+		
+		
 		BuildingDTO myNewBuilding = new BuildingDTO();
 		myNewBuilding.setAddress(indirizzo);
 		myNewBuilding.setInterno(interno);
 		myNewBuilding.setCity(city);
 		myNewBuilding.setCap(cap);
-		myNewBuilding.setOwner(customerService.findByUsername(ownerUsername));
+		myNewBuilding.setOwner(customerService.findByUsername(username));
 		myNewBuilding = buildingService.create(myNewBuilding);
 		return myNewBuilding;
 	}
@@ -67,22 +69,20 @@ public class BuildingController {
 	
 	// UPDATE -> TESTED
 	@RequestMapping(value="/edit", method= RequestMethod.POST)
-	public BuildingDTO updateBuilding (HttpServletRequest request, @RequestParam(value="buildingId") long buildingId){
-		String indirizzo =(String) request.getParameter("indirizzo");
-		String interno = request.getParameter("interno");
-		String city = (String) request.getParameter("city");
-		String cap = (String) request.getParameter("cap");
-		
-		System.err.println(buildingId+" "+indirizzo +" "+ interno+" " + city +" "+ cap);
-
+	public BuildingDTO updateBuilding (
+			@RequestParam(value="buildingId") long buildingId,
+			@RequestParam(value="indirizzo", required=false) String indirizzo,
+			@RequestParam(value="interno", required=false) int interno,
+			@RequestParam(value="city", required=false) String city,
+			@RequestParam(value="cap", required=false) String cap ) {
 		
 		BuildingDTO bdto = buildingService.findByPrimaryKey(buildingId);
 		
 		if (indirizzo != null) {
 		bdto.setAddress(indirizzo);
 		}
-		if (interno != null) {
-		bdto.setInterno(Integer.parseInt(interno));
+		if (interno != 0) {
+		bdto.setInterno(interno);
 		}
 		if (city != null) {
 		bdto.setCity(city);

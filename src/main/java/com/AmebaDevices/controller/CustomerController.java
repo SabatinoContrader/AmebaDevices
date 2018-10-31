@@ -50,13 +50,13 @@ public class CustomerController {
 
 	// UPDATE -> TESTED
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public CustomerDTO updateCustomer(HttpServletRequest request, @RequestParam(value = "customerId") long customerId) {
-		String nome  = request.getParameter("nome");
-		String cognome = request.getParameter("cognome");
-		String datanascita = request.getParameter("dataDiNascita");
-		String email = request.getParameter("email");
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+	public CustomerDTO updateCustomer(
+			@RequestParam(value = "nome", required=false) String nome, 
+			@RequestParam(value = "cognome", required=false) String cognome, 
+			@RequestParam(value = "email", required=false) String email, 
+			@RequestParam(value = "username", required=false) String username, 
+			@RequestParam(value = "customerId") long customerId) {
+		
 		
 		CustomerDTO cdto = customerService.searchCustomer(customerId);
 		if (nome != null) {
