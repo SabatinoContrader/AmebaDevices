@@ -20,60 +20,114 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.AmebaDevices.dto.BuildingDTO;
 import com.AmebaDevices.dto.FloorDTO;
 import com.AmebaDevices.services.BuildingService;
 import com.AmebaDevices.services.FloorService;
 
-
-
-
-@Controller
+@RestController
 @RequestMapping("/Floors")
 public class FloorController {
-	
+
 	private FloorService fs;
 	private BuildingService bs;
-	
-	@Autowired 
-	public FloorController (FloorService fs, BuildingService bs) {
+
+	@Autowired
+	public FloorController(FloorService fs, BuildingService bs) {
 		this.fs = fs;
 		this.bs = bs;
 	}
-	
-	private void processRequest(String filePath, HttpServletRequest request, HttpServletResponse response) 
-		      throws ServletException, IOException {
-		        try {
-		            response.setContentType("text/html;charset=UTF-8");
-		            File file = new File(filePath);
-		            FileInputStream inputStream = new FileInputStream(file);
-		            ServletContext context = request.getServletContext();
-		            String mimeType = context.getMimeType(filePath);
-		            if (mimeType == null) {
-		                mimeType = "application/octet-stream";
-		            }
-		            response.setContentType(mimeType);
-		            response.setContentLength((int) file.length());
-		            // forziamo il download del file
-		            String headerKey = "Content-Disposition";
-		            String headerValue = String.format("attachment; filename=\"%s\"", file.getName());
-		            response.setHeader(headerKey, headerValue);
-		            OutputStream outputStream = response.getOutputStream();
-		            byte[] buffer = new byte[4096];
-		            int bytesRead = -1;
-		            while ((bytesRead = inputStream.read(buffer)) != -1) {
-		                outputStream.write(buffer, 0, bytesRead);
-		            }
-		            inputStream.close();
-		            outputStream.close();
-		        } catch (Exception e) {
-		            //gestiamo eventuali errori come file non esistente
-		        }
-		    }
 
+	// INSERT
+	@RequestMapping(value = "/new", method = RequestMethod.POST)
+	public FloorDTO newFloor(HttpServletRequest request) {
+		FloorDTO fdto = new FloorDTO();
+		fdto.setBuilding(bs.findByPrimaryKey(Integer.parseInt(request.getParameter("buildingId"))));
+		String nomeFloor = request.getParameter("nomeFloor");
+		String descrizione = request.getParameter("descrizione");
+		fdto.setNomeFloor(nomeFloor);
+		fdto.setDescrizione(descrizione);
+		fdto = fs.insert(fdto);
+		return fdto;
+
+	}
+
+	// READ
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public FloorDTO getOne(@RequestParam(value = "floorId") long buildingId) {
+		FloorDTO fdto = fs.findByPrimaryKey(buildingId);
+		return fdto;
+
+	}
+	
+	// UPDATE 
+		@RequestMapping(value="/edit", method= RequestMethod.POST)
+		public FloorDTO updateFloor (HttpServletRequest request, @RequestParam(value="floorId") long floorId){
+			String nomeFloor = request.getParameter("nomeFloor");
+			String descrizione = request.getParameter("descrizione");
+		
+			
+			FloorDTO fdto = fs.findByPrimaryKey(floorId);
+			
+			
+			if (nomeFloor != null) {
+			fdto.setNomeFloor(nomeFloor);
+			}
+			if (descrizione != null) {
+			fdto.setDescrizione(descrizione);
+			}
+			fdto = fs.update(fdto);
+			return fdto;
+		}
+	
+
+	// DELETE 
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public boolean delete(@RequestParam(value = "floorId") long floorId) {
+		FloorDTO fdto = fs.findByPrimaryKey(floorId);
+		if (fs.delete(fdto))
+			return true;
+		return false;
+
+	}
 
 	
+	
+	private void processRequest(String filePath, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			response.setContentType("text/html;charset=UTF-8");
+			File file = new File(filePath);
+			FileInputStream inputStream = new FileInputStream(file);
+			ServletContext context = request.getServletContext();
+			String mimeType = context.getMimeType(filePath);
+			if (mimeType == null) {
+				mimeType = "application/octet-stream";
+			}
+			response.setContentType(mimeType);
+			response.setContentLength((int) file.length());
+			// forziamo il download del file
+			String headerKey = "Content-Disposition";
+			String headerValue = String.format("attachment; filename=\"%s\"", file.getName());
+			response.setHeader(headerKey, headerValue);
+			OutputStream outputStream = response.getOutputStream();
+			byte[] buffer = new byte[4096];
+			int bytesRead = -1;
+			while ((bytesRead = inputStream.read(buffer)) != -1) {
+				outputStream.write(buffer, 0, bytesRead);
+			}
+			inputStream.close();
+			outputStream.close();
+		} catch (Exception e) {
+			// gestiamo eventuali errori come file non esistente
+		}
+	}
+	
+	/*
+
 	@RequestMapping(value = "/insertForm", method = RequestMethod.GET)
 	public String insertForm(HttpServletRequest request) {
 		int buildingId = Integer.parseInt(request.getParameter("buildingId"));
@@ -125,7 +179,7 @@ public class FloorController {
 		String newDescription = request.getParameter("floorDescription");
 		String buildingid = (String) request.getParameter("buildingId");
 		String floorId = request.getParameter("floorid");
-		System.out.println(floorId + " "+newName+" "+newDescription+" "+buildingid);
+		System.out.println(floorId + " " + newName + " " + newDescription + " " + buildingid);
 		FloorDTO newFloor = new FloorDTO();
 		newFloor.setId(Integer.parseInt(floorId));
 		newFloor.setNomeFloor(newName);
@@ -153,7 +207,7 @@ public class FloorController {
 	public String delete(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("floorid"));
 		fs.deleteById(id);
-		
+
 		int buildingId = Integer.parseInt(request.getParameter("buildingId"));
 		request.setAttribute("buildingId", String.valueOf(buildingId));
 		List<FloorDTO> alreadyExisting = new ArrayList<>();
@@ -161,29 +215,28 @@ public class FloorController {
 		request.setAttribute("floors", alreadyExisting);
 		return "floorManager";
 	}
-	
-	
-	
-	@RequestMapping (value = "/download", method = RequestMethod.GET)
+
+	 */
+	@RequestMapping(value = "/download", method = RequestMethod.GET)
 	public String download(HttpServletRequest request, HttpServletResponse response) {
-    	Long buildingId = Long.parseLong(request.getParameter("buildingId"));
-    	BuildingDTO current = bs.findByPrimaryKey(buildingId);
-		String type =  request.getParameter("type");
+		Long buildingId = Long.parseLong(request.getParameter("buildingId"));
+		BuildingDTO current = bs.findByPrimaryKey(buildingId);
+		String type = request.getParameter("type");
 		switch (type) {
 		case "xml":
-			//xml 
+			// xml
 			System.out.println("entro");
 			Document doc = new Document();
 			doc.setRootElement(bs.getElement(current));
 			XMLOutputter x = new XMLOutputter();
 			x.setFormat(Format.getPrettyFormat());
 			try {
-				File file = new File(current.getAddress()+" interno "+current.getInterno()+".xml");
+				File file = new File(current.getAddress() + " interno " + current.getInterno() + ".xml");
 				System.out.println(file.getAbsolutePath());
 				FileWriter fw = new FileWriter(file);
 				x.output(doc, fw);
 				processRequest(file.getAbsolutePath(), request, response);
-	           
+
 			} catch (ServletException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -201,5 +254,4 @@ public class FloorController {
 		return "floorManager";
 	}
 
-	
 }

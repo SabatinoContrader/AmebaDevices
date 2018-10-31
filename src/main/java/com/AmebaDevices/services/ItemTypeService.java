@@ -31,22 +31,23 @@ public class ItemTypeService {
 	}
 
 	
-	public void insertItemType(ItemTypeDTO item) {
-		 this.itemTypeDao.save(ItemTypeConverter.convertToItem(item));
+	public ItemTypeDTO insertItemType(ItemTypeDTO item) {
+		 return ItemTypeConverter.convertToDto(this.itemTypeDao.save(ItemTypeConverter.convertToItem(item)));
 	}
 	
 	public ItemTypeDTO searchItemType(Long id) {
 		return ItemTypeConverter.convertToDto(this.itemTypeDao.findOne(id));
 	}
 	
-	public void updateItemType(ItemTypeDTO item) {
-		if (itemTypeDao.findOne(item.getId())!=null)
-		this.itemTypeDao.save(ItemTypeConverter.convertToItem(item));
+	public ItemTypeDTO updateItemType(ItemTypeDTO item) {
+		
+		return ItemTypeConverter.convertToDto(this.itemTypeDao.save(ItemTypeConverter.convertToItem(item)));
 	}
 	
-	public void deleteItemType(Long id) {
+	public boolean deleteItemType(Long id) {
 		ItemType item = itemTypeDao.findOne(id);
 		itemTypeDao.delete(item);
+		return true;
 		
 	}
 
@@ -54,6 +55,8 @@ public class ItemTypeService {
 		ItemTypeDTO item= ItemTypeConverter.convertToDto(itemTypeDao.findOne(itemTypeId));
 		return item;
 	}
+
+	
 
 
 	/*

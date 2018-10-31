@@ -28,9 +28,8 @@ public class CustomerService {
 		return customerDTO;
 	}
 
-	public void insertCustomer(CustomerDTO customer) {
-		System.out.println(customer.getNome() + customer.getCognome() + customer.getEmail() + customer.getUsername() + customer.getUserRole());
-		customerDAO.save(CustomerConverter.convertToCustomer(customer));
+	public CustomerDTO insertCustomer(CustomerDTO customer) {
+		return CustomerConverter.convertToDto(customerDAO.save(CustomerConverter.convertToCustomer(customer)));
 	}
 
 	public List<CustomerDTO> readAll() {
@@ -49,8 +48,8 @@ public class CustomerService {
 
 	}
 
-	public void updateCustomer(CustomerDTO customer) {
-		customerDAO.save(CustomerConverter.convertToCustomer(customer));
+	public CustomerDTO updateCustomer(CustomerDTO customer) {
+		return CustomerConverter.convertToDto(customerDAO.save(CustomerConverter.convertToCustomer(customer)));
 	}
 
 	public CustomerDTO searchCustomer(Long id) {

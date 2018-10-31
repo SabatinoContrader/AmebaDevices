@@ -1,28 +1,102 @@
 package com.AmebaDevices.controller;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.AmebaDevices.dto.BuildingDTO;
 import com.AmebaDevices.services.BuildingService;
+import com.AmebaDevices.services.CustomerService;
 
-@Controller
+@RestController
 @RequestMapping("/Building")
 public class BuildingController {
 
 	private BuildingService buildingService;
+	private CustomerService customerService;
 
 	@Autowired
-	public BuildingController(BuildingService bs) {
+	public BuildingController(BuildingService bs, CustomerService cs) {
 		buildingService = bs;
+		customerService = cs;
+	}
+	
+	
+	// INSERT -> TESTED
+	@RequestMapping(value="/new", method = RequestMethod.POST)
+	public BuildingDTO newBuilding(HttpServletRequest request) {		
+		String indirizzo =(String) request.getParameter("indirizzo");
+		Integer interno = Integer.parseInt(request.getParameter("interno"));
+		String city = (String) request.getParameter("city");
+		String cap = (String) request.getParameter("cap");
+		String ownerUsername = (String) request.getParameter("username");
+		BuildingDTO myNewBuilding = new BuildingDTO();
+		myNewBuilding.setAddress(indirizzo);
+		myNewBuilding.setInterno(interno);
+		myNewBuilding.setCity(city);
+		myNewBuilding.setCap(cap);
+		myNewBuilding.setOwner(customerService.findByUsername(ownerUsername));
+		myNewBuilding = buildingService.create(myNewBuilding);
+		return myNewBuilding;
+	}
+	
+	
+	
+	// READ -> TESTED
+	@RequestMapping(value="", method = RequestMethod.GET)
+	public BuildingDTO getOne(@RequestParam(value="buildingId") long buildingId) {
+		BuildingDTO bdto = buildingService.findByPrimaryKey(buildingId);
+		return bdto;
+		
+	}
+	
+	// DELETE -> TESTED
+	@RequestMapping(value="/delete", method = RequestMethod.GET)
+	public boolean delete(@RequestParam(value="buildingId") long buildingId) {
+		BuildingDTO bdto = buildingService.findByPrimaryKey(buildingId);
+		if (buildingService.delete(bdto)) return true;
+		return false;
+		
+	}
+	
+	
+	// UPDATE -> TESTED
+	@RequestMapping(value="/edit", method= RequestMethod.POST)
+	public BuildingDTO updateBuilding (HttpServletRequest request, @RequestParam(value="buildingId") long buildingId){
+		String indirizzo =(String) request.getParameter("indirizzo");
+		String interno = request.getParameter("interno");
+		String city = (String) request.getParameter("city");
+		String cap = (String) request.getParameter("cap");
+		
+		System.err.println(buildingId+" "+indirizzo +" "+ interno+" " + city +" "+ cap);
+
+		
+		BuildingDTO bdto = buildingService.findByPrimaryKey(buildingId);
+		
+		if (indirizzo != null) {
+		bdto.setAddress(indirizzo);
+		}
+		if (interno != null) {
+		bdto.setInterno(Integer.parseInt(interno));
+		}
+		if (city != null) {
+		bdto.setCity(city);
+		}
+		if (cap != null) {
+		bdto.setCap(cap);
+		}
+		bdto = buildingService.update(bdto);
+		return bdto;
 	}
 
+
+	/*
+	
 	@RequestMapping(value = "/insertForm", method = RequestMethod.GET)
 	public String insertForm(HttpServletRequest request) {
 		return "InsertBuilding";
@@ -106,10 +180,13 @@ public class BuildingController {
 		request.setAttribute("buildings", buildings);
 		return "CustomerHome";
 	}
-
+	
+	
+	
 	@RequestMapping(value = "/goBack", method = RequestMethod.GET)
 	public String goBack(HttpServletRequest request) {
 		return "CustomerHome";
 	}
 
+	*/
 }

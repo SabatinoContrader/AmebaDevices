@@ -71,7 +71,7 @@ public class BuildingService {
 		return toReturn;
 	}
 
-	public void delete(BuildingDTO toDestroy) {
+	public boolean delete(BuildingDTO toDestroy) {
 		Building b = BuildingConverter.convertToBuilding(toDestroy);
 		b.setOwner(null);
 		List<Floor> floors = floordao.findByBuilding(b);
@@ -82,6 +82,12 @@ public class BuildingService {
 		}
 		this.buildingdao.save(b);
 		buildingdao.delete(b);
+		
+		return true;
+	}
+	
+	public BuildingDTO create(BuildingDTO myNewBuilding) {
+		return BuildingConverter.convertToDto(buildingdao.save(BuildingConverter.convertToBuilding(myNewBuilding)));
 	}
 
 	public Building create(BuildingDTO myNewBuilding, String owner) {
@@ -99,8 +105,8 @@ public class BuildingService {
 		}
 	}
 
-	public void update(BuildingDTO newValues) {
-		buildingdao.save(BuildingConverter.convertToBuilding(newValues));
+	public BuildingDTO update(BuildingDTO newValues) {
+		return BuildingConverter.convertToDto(buildingdao.save(BuildingConverter.convertToBuilding(newValues)));
 	}
 	
 	public BuildingDTO findByPrimaryKey(long buildingId) {
