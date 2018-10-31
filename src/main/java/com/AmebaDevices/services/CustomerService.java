@@ -21,18 +21,15 @@ public class CustomerService {
 		this.customerDAO = customerDAO;
 	}
 
-	public long login(String username, String password) {
+	public CustomerDTO login(String username, String password) {
 		Customer c = customerDAO.findByUsernameAndPassword(username, password);
-		if (c != null) {
-			if (c.getUserRole() != null)
-				return c.getUserRole();
-		}
-		return -1;
+		CustomerDTO customerDTO = CustomerConverter.convertToDto(c);
+		
+		return customerDTO;
 	}
 
 	public void insertCustomer(CustomerDTO customer) {
-		System.out.println(customer.getId() + customer.getNome() + customer.getCognome() + customer.getDataNascita()
-				+ customer.getEmail() + customer.getUsername() + customer.getPassword() + customer.getUserRole());
+		System.out.println(customer.getNome() + customer.getCognome() + customer.getEmail() + customer.getUsername() + customer.getUserRole());
 		customerDAO.save(CustomerConverter.convertToCustomer(customer));
 	}
 
