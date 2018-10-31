@@ -6,6 +6,7 @@ import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { UserService } from "../services/user.service";
+import { CustomerService } from "../services/customer.service";
 import {BrowserModule} from '@angular/platform-browser';
 import { AppComponent } from "./app.component";
 import { HomeOwnerComponent } from "../components/home-owner/home-owner.component";
@@ -66,7 +67,7 @@ import { SlotService } from '../services/slot.service';
       libraries: ["places"]
     })
   ],
-  providers: [UserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
+  providers: [UserService,CustomerService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
   bootstrap: [AppComponent]
 })
 

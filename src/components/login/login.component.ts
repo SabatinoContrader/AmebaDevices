@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { UserService } from "src/services/user.service";
+import { Router } from "@angular/router";
+import { NgForm } from "@angular/forms";
+import { Customer } from "src/models/Customer";
+import { CustomerService } from "src/services/customer.service";
+
+/*import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/User';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
@@ -37,4 +44,35 @@ export class LoginComponent implements OnInit {
   }
 
 
+}
+*/
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+
+export class LoginComponent implements OnInit{
+
+  customer : Customer;
+
+  constructor(private customerService:CustomerService, private router:  Router){
+
+  }
+  ngOnInit(){
+
+  }
+  login(f:NgForm): void{
+    this.customerService.login(f.value.username, f.value.password).subscribe((response) => {
+      if (response != null) {
+           if(response.userRole==1)
+              console.log("sei un superuser");
+            else if(response.userRole==2)
+              console.log("sei un customer");
+            else
+              console.log(response);
+      }
+  });
+}
 }

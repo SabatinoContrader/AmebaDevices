@@ -10,4 +10,5 @@ export class Car{
         this.name = name;
         this.username = username;
     }
+    
 }

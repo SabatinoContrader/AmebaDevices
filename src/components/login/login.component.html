@@ -9,11 +9,11 @@
       <form class="userForm" #f="ngForm">
 
         <div class="form-group">
-          <input type="text" name="username" id="inputUser" class="form-control" placeholder="Username" ngModel required>
+          <input type="text" name="username" id="inputUser" class="form-control" placeholder="Username" ngModel required/>
         </div>
-
+ 
         <div class="form-group">
-          <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" ngModel required>
+          <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" ngModel required/>
         </div>
 
         <div class="row">
@@ -28,7 +28,7 @@
         </div>
 
         <div class="form-group">
-          <Button (click)="login(f)">Login</Button>
+          <button  type="submit" (click)="login(f)">Login</button>
         </div>
 
         <div class="row">
