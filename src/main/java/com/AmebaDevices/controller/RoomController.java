@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.AmebaDevices.dto.FloorDTO;
 import com.AmebaDevices.dto.RoomDTO;
@@ -24,7 +26,7 @@ import com.AmebaDevices.model.Room;
 import com.AmebaDevices.services.FloorService;
 import com.AmebaDevices.services.RoomService;
 
-@Controller
+@RestController
 @RequestMapping("/Room")
 public class RoomController {
 	
@@ -38,7 +40,50 @@ public class RoomController {
 	
 	}
 
-@RequestMapping(value="/insertForm", method=RequestMethod.GET)
+@RequestMapping(value="edit" , method= RequestMethod.POST)
+public RoomDTO getUpdate(@RequestParam(value="roomId")long roomId
+		,@RequestParam(value="nome_room") String nomeRoom,
+		@RequestParam(value="descrizione") String descrizione) {
+	RoomDTO room2 = rs.findByPrimaryKey(roomId);
+	room2.setDescrizione(descrizione);
+	room2.setNomeRoom(nomeRoom);
+	rs.update(room2);
+	return room2;
+}
+
+@RequestMapping(value="", method= RequestMethod.GET)
+public List<RoomDTO> getList(@RequestParam(value="floorId")long floorId){
+	FloorDTO f = fs.findByPrimaryKey(floorId);
+	List <RoomDTO> listaPerFloor = new ArrayList<>();
+	listaPerFloor = rs.getAllByFloor(f);
+	return listaPerFloor;
+	}
+
+@RequestMapping(value="new", method= RequestMethod.POST)
+public RoomDTO insertRoom(@RequestParam(value="floorId") long floorId
+		,@RequestParam(value="nome_room") String nomeRoom,
+		@RequestParam(value="descrizione") String descrizione) {
+	FloorDTO f = fs.findByPrimaryKey(floorId);
+	RoomDTO room2= new RoomDTO();
+	room2.setDescrizione(descrizione);
+	room2.setNomeRoom(nomeRoom);
+	room2.setFloor(f);
+	rs.insertRoom(room2);
+	return room2;
+	}
+
+@RequestMapping(value = "delete", method = RequestMethod.GET)
+public RoomDTO deleteRoom(@RequestParam(value="roomId") long roomId) {
+
+    RoomDTO room = rs.findByPrimaryKey(roomId);
+    if (room == null) {
+        System.out.println("Non è possibile elimnare la room. Room con id " + roomId + " non esiste");
+    }
+    rs.delete(room);
+    return room;
+	}
+
+/*@RequestMapping(value="/insertForm", method=RequestMethod.GET)
 	public String insertForm(HttpServletRequest request) {
 	String id = (String) request.getAttribute("floorId");
 		return "InsertRoom";
@@ -128,7 +173,7 @@ public String delete(HttpServletRequest request) {
 	List <RoomDTO> listaPerFloor = rs.getAllByFloor(f);
 	request.setAttribute("rooms", listaPerFloor);
 	return "RoomHome";
-}
+}*/
 	
 
 }

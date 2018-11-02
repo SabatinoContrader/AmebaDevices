@@ -8,24 +8,32 @@ import org.springframework.stereotype.Service;
 
 import com.AmebaDevices.converter.FloorConverter;
 import com.AmebaDevices.converter.RoomConverter;
+import com.AmebaDevices.dao.ItemDAO;
 import com.AmebaDevices.dao.RoomDAO;
 import com.AmebaDevices.dto.FloorDTO;
 import com.AmebaDevices.dto.RoomDTO;
+import com.AmebaDevices.model.Item;
 import com.AmebaDevices.model.Room;
 
 @Service
 public class RoomService {
 
 	private RoomDAO roomdao;
+	private ItemDAO itemdao;
 
 	@Autowired
-	public RoomService(RoomDAO roomdao) {
+	public RoomService(RoomDAO roomdao, ItemDAO itemdao) {
 		this.roomdao = roomdao;
+		this.itemdao=itemdao;
 	}
 
-	public void delete(long id) {
-		Room c = roomdao.findOne(id);
-		roomdao.delete(c);
+	public void delete(RoomDTO room) {
+		Room r= RoomConverter.convertToRoom(room);
+		List<Item> list= itemdao.findByRoom(r);
+		for(Item item: list){
+			itemdao.delete(item);
+		}
+		roomdao.delete(r);
 
 	}
 
