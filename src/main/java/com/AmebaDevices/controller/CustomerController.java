@@ -3,7 +3,7 @@ package com.AmebaDevices.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +14,7 @@ import com.AmebaDevices.dto.NewCustomerDTO;
 import com.AmebaDevices.services.CustomerService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/Customer")
 public class CustomerController {
 
@@ -25,16 +26,18 @@ public class CustomerController {
 	}
 
 	// CREATE -> TESTED
+	@CrossOrigin
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public NewCustomerDTO newCustomer(
-			@RequestParam(value = "userRole") int userRole,
+			@RequestParam(value = "userRole") String userRole,
 			@RequestParam(value = "name") String name,
 			@RequestParam(value = "surname") String surname,
 			@RequestParam(value = "email") String email,
 			@RequestParam(value = "username") String username,
 			@RequestParam(value = "password") String password
 	) {
-		NewCustomerDTO customerDTO = new NewCustomerDTO(name, surname, email, username, password, userRole);
+		int role=Integer.parseInt(userRole);
+		NewCustomerDTO customerDTO = new NewCustomerDTO(name, surname, email, username, password, role);
 		customerDTO = customerService.insertCustomer(customerDTO);
 		return customerDTO;
 
