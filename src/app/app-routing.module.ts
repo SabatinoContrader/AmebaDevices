@@ -1,5 +1,5 @@
 import { IntestazioneComponent } from '../components/intestazione/intestazione.component';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import {RouterModule, Routes} from '@angular/router';
@@ -21,6 +21,8 @@ import { UsefulNumbersComponent } from '../components/useful-numbers/useful-numb
 import { LegislationsComponent } from '../components/legislations/legislations.component';
 import { ManagementSlotComponent } from '../components/management-slot/management-slot.component';
 import { SuperuserComponent} from '../components/superuser/superuser.component';
+import { CustomerComponent} from '../components/customer/customer.component';
+
 
 
 const routes: Routes = [
@@ -44,7 +46,8 @@ const routes: Routes = [
   {path: 'usefulNumbers', component: UsefulNumbersComponent},
   {path: 'legislations', component: LegislationsComponent},
   {path: 'intestazione', component: IntestazioneComponent},
-  {path: 'managementSlot', component: ManagementSlotComponent}
+  {path: 'managementSlot', component: ManagementSlotComponent},
+  {path: 'customerManager', component: CustomerComponent}
   
 ];
 

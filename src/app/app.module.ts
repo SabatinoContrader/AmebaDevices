@@ -33,6 +33,7 @@ import { ManagementSlotComponent } from '../components/management-slot/managemen
 import { SlotService } from '../services/slot.service';
 import { SuperuserComponent } from '../components/superuser/superuser.component';
 import { SuperuserService } from '../services/superuser.service';
+import { CustomerComponent} from '../components/customer/customer.component';
 
 
 
@@ -58,7 +59,8 @@ import { SuperuserService } from '../services/superuser.service';
     UsefulNumbersComponent,
     IntestazioneComponent,
     ManagementSlotComponent,
-    SuperuserComponent
+    SuperuserComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
