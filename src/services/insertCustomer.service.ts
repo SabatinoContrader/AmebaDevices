@@ -18,8 +18,7 @@ import { NewCustomer } from "src/models/NewCustomer";
     }
     newCustomer(userRole:string, name:string, 
       surname:string, email:string, username:string, password:string ): Observable<NewCustomer>{
-        console.log("inserisco nuovo customer con "+ name+ "- "+surname+ "-"+email+"-"+username+"-"+password);
-
+      
         const params = new HttpParams().set('userRole', userRole).
          set('name', name).set('surname', surname).set('email', email).set('username', username).set('password', password);
       

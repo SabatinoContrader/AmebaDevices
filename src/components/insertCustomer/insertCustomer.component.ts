@@ -19,8 +19,7 @@ import { Router } from "@angular/router";
    
       this.insertCustomerService.newCustomer("2",f.value.nome,f.value.cognome,f.value.email,f.value.username,f.value.password).subscribe((response) => {
         if (response != null) {
-         console.log(response.username);
-this.router.navigateByUrl("/gestioneCustomer");
+          this.router.navigateByUrl("/gestioneCustomer");
         }
         
     });
