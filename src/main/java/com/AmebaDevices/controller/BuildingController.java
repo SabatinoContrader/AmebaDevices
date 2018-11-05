@@ -1,6 +1,8 @@
 package com.AmebaDevices.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.AmebaDevices.dto.BuildingDTO;
 import com.AmebaDevices.services.BuildingService;
 import com.AmebaDevices.services.CustomerService;
+
 
 @RestController
 @RequestMapping("/Building")
@@ -92,6 +95,14 @@ public class BuildingController {
 		}
 		bdto = buildingService.update(bdto);
 		return bdto;
+	}
+	
+	@RequestMapping(value="/installer", method = RequestMethod.GET)
+	public List<BuildingDTO> getBuildingsByInstaller(
+			@RequestParam(value="installer") String installer
+	) {
+		List<BuildingDTO> buildings = buildingService.findByInstaller(installer);
+		return buildings;
 	}
 
 
