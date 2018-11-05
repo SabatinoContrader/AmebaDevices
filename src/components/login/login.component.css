@@ -1,66 +1,54 @@
-button{
-    margin:0 auto;
-    display: block;
-    background-color: #a8d342;
-    width: 30%;
-    height: 50px;
-    border-radius: 15px;
-    color: #414a52;
-    border-color: #a7d34200;
-    font-family: 'Open Sans', sans-serif;
-}
-
-h1{
-    text-align: center;
-    padding-top: 10%;
-    color: white;
-    font-family: 'Open Sans', sans-serif;
-}
-
 a{
     margin:0 auto;
     text-align: center;
     color: white;
     font-family: 'Open Sans', sans-serif;
 }
-
-.signup {
-    margin: auto;
-    width: 50%;   
+a:hover{
+	color:#59b1e5;
 }
 
-
-body{
-    background-image: url("/assets/img/sfondo.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+body {
+	margin: 0;
+	font: 10px normal Verdana, Arial, Helvetica, sans-serif;
+	background: #1d1d1d;
+	color: #fff;
+	background-image:url("http://www.ipvision.it/wp-content/uploads/2016/01/wallpaper-blu-scuro.jpg"); 
+	background-repeat:no-repeat;
+	background-position:center; 
+	padding:10px;
 }
 
-input{
-    border-color: white;
-    border-radius: 15px;
-    font-family: 'Open Sans', sans-serif;
+.login-form {
+	padding-left: 40%;
+	padding-top: 13%;
+	
 }
-
-#blank{
-    padding-top: 10%;
+.login-form .form-control {
+  border-radius: 4px;
+  height:5%;
+  width: 28%;
 }
-
-label{
-    color: white;
-    font-family: 'Open Sans', sans-serif;
+.login-text{
+	font-size: 34px; 
+    padding-left: 8%;
 }
-
-#forgot{
-    text-align: right;
+.insert{
+	padding-left:8%;
+	font-size: small;
 }
-
-#signup{
-    text-align: center;
+.loginButton{
+	background: #435261 none repeat scroll 0 0;
+    border-color: #fefefe;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    width: 10%;
+    height: 5%;
+    margin-top:2%;
+    margin-left: 6%;
 }
-
-
-
-
+button:hover{
+	color:#59b1e5;
+}
 

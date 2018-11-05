@@ -64,16 +64,20 @@ export class LoginComponent implements OnInit{
 
   }
   login(f:NgForm): void{
+    console.log("mi arrivano username="+ f.value.username + " password= "+ f.value.password)
     this.customerService.login(f.value.username, f.value.password).subscribe((response) => {
       if (response != null) {
         this.customer=response;
+        console.log("nome "+ this.customer.username+ "ruolo "+ this.customer.userRole)
         sessionStorage.setItem("user", JSON.stringify(this.customer));
            if(response.userRole==1)
            this.router.navigateByUrl("/superuser");
             else if(response.userRole==2)
-            this.router.navigateByUrl("/customer");
+            console.log("customer");
             else
-            this.router.navigateByUrl("/installer");
+            console.log("installer");
+           // this.router.navigateByUrl("/customer");
+           // this.router.navigateByUrl("/installer");
       }
   });
 }
