@@ -23,8 +23,7 @@ import { ManagementSlotComponent } from '../components/management-slot/managemen
 import { SuperuserComponent} from '../components/superuser/superuser.component';
 import { GestioneCustomerComponent} from '../components/gestioneCustomer/gestioneCustomer.component';
 import { InsertCustomerComponent } from '../components/insertCustomer/insertCustomer.component';
-
-
+import {ItemtypemanagerComponent} from '../components/itemtype/itemtype.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -33,6 +32,7 @@ const routes: Routes = [
   {path: 'superuser', component: SuperuserComponent},
   {path: 'homeOwner', component: HomeOwnerComponent},
   {path: 'signup', component: SignupComponent},
+  {path: 'itemTypeManager', component: ItemtypemanagerComponent},
   {path: 'car', component: CarComponent},
   {path: 'addCar', component: AddCarComponent},
   {path: 'reportDriver', component: ReportDriverComponent},

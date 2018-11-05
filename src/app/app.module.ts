@@ -36,7 +36,8 @@ import { SuperuserComponent } from '../components/superuser/superuser.component'
 import { SuperuserService } from '../services/superuser.service';
 import { GestioneCustomerComponent} from '../components/gestioneCustomer/gestioneCustomer.component';
 import { InsertCustomerComponent } from '../components/insertCustomer/insertCustomer.component';
-
+import {ItemtypeService} from '../services/itemtype.service';
+import { ItemtypemanagerComponent } from 'src/components/itemtype/itemtype.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { InsertCustomerComponent } from '../components/insertCustomer/insertCust
     LegislationsComponent,
     UsefulNumbersComponent,
     IntestazioneComponent,
+    ItemtypemanagerComponent,
     ManagementSlotComponent,
     SuperuserComponent,
     GestioneCustomerComponent,
