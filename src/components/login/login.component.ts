@@ -71,9 +71,9 @@ export class LoginComponent implements OnInit{
            if(response.userRole==1)
            this.router.navigateByUrl("/superuser");
             else if(response.userRole==2)
-              console.log("sei un customer");
+            this.router.navigateByUrl("/customer");
             else
-              console.log(response);
+            this.router.navigateByUrl("/installer");
       }
   });
 }

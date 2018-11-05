@@ -7,7 +7,12 @@ import { SuperuserService } from "src/services/superuser.service";
     styleUrls: ['./superuser.component.css']
   })
   export class SuperuserComponent implements OnInit{
-    constructor(private superuserService: SuperuserService ){}
-    ngOnInit(){}
+    constructor(private superuserService: SuperuserService ){
+
+    }
+    ngOnInit(){
+
+    }
+    
   }
   
