@@ -21,7 +21,7 @@ import { UsefulNumbersComponent } from '../components/useful-numbers/useful-numb
 import { LegislationsComponent } from '../components/legislations/legislations.component';
 import { ManagementSlotComponent } from '../components/management-slot/management-slot.component';
 import { SuperuserComponent} from '../components/superuser/superuser.component';
-import { CustomerComponent} from '../components/customer/customer.component';
+import { GestioneCustomerComponent} from '../components/gestioneCustomer/gestioneCustomer.component';
 
 
 
@@ -47,7 +47,7 @@ const routes: Routes = [
   {path: 'legislations', component: LegislationsComponent},
   {path: 'intestazione', component: IntestazioneComponent},
   {path: 'managementSlot', component: ManagementSlotComponent},
-  {path: 'customerManager', component: CustomerComponent}
+  {path: 'customerManager', component: GestioneCustomerComponent}
   
 ];
 

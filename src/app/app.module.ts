@@ -33,8 +33,7 @@ import { ManagementSlotComponent } from '../components/management-slot/managemen
 import { SlotService } from '../services/slot.service';
 import { SuperuserComponent } from '../components/superuser/superuser.component';
 import { SuperuserService } from '../services/superuser.service';
-import { CustomerComponent} from '../components/customer/customer.component';
-
+import { GestioneCustomerComponent} from '../components/gestionecustomer/gestioneCustomer.component';
 
 
 @NgModule({
@@ -60,7 +59,7 @@ import { CustomerComponent} from '../components/customer/customer.component';
     IntestazioneComponent,
     ManagementSlotComponent,
     SuperuserComponent,
-    CustomerComponent
+    GestioneCustomerComponent
   ],
   imports: [
     BrowserModule,

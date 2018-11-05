@@ -6,7 +6,7 @@ import { CustomerService } from "src/services/customer.service";
     templateUrl: './customer.component.html',
     styleUrls: ['./customer.component.css']
   })
-  export class CustomerComponent implements OnInit{
+  export class GestioneCustomerComponent implements OnInit{
     constructor(private customerService: CustomerService ){}
     ngOnInit(){}
   }
