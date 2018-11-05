@@ -22,6 +22,7 @@ import { LegislationsComponent } from '../components/legislations/legislations.c
 import { ManagementSlotComponent } from '../components/management-slot/management-slot.component';
 import { SuperuserComponent} from '../components/superuser/superuser.component';
 import { GestioneCustomerComponent} from '../components/gestioneCustomer/gestioneCustomer.component';
+import { InsertCustomerComponent } from '../components/insertCustomer/insertCustomer.component';
 
 
 
@@ -47,8 +48,8 @@ const routes: Routes = [
   {path: 'legislations', component: LegislationsComponent},
   {path: 'intestazione', component: IntestazioneComponent},
   {path: 'managementSlot', component: ManagementSlotComponent},
-  {path: 'customerManager', component: GestioneCustomerComponent}
-  
+  {path: 'gestioneCustomer', component: GestioneCustomerComponent},
+  {path: 'insertCustomer', component: InsertCustomerComponent}  
 ];
 
 @NgModule({

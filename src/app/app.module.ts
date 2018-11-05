@@ -6,6 +6,7 @@ import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { UserService } from "../services/user.service";
+import { InsertCustomerService} from "../services/insertCustomer.service";
 import { CustomerService } from "../services/customer.service";
 import {BrowserModule} from '@angular/platform-browser';
 import { AppComponent } from "./app.component";
@@ -33,7 +34,9 @@ import { ManagementSlotComponent } from '../components/management-slot/managemen
 import { SlotService } from '../services/slot.service';
 import { SuperuserComponent } from '../components/superuser/superuser.component';
 import { SuperuserService } from '../services/superuser.service';
-import { GestioneCustomerComponent} from '../components/gestionecustomer/gestioneCustomer.component';
+import { GestioneCustomerComponent} from '../components/gestioneCustomer/gestioneCustomer.component';
+import { InsertCustomerComponent } from '../components/insertCustomer/insertCustomer.component';
+
 
 
 @NgModule({
@@ -59,7 +62,8 @@ import { GestioneCustomerComponent} from '../components/gestionecustomer/gestion
     IntestazioneComponent,
     ManagementSlotComponent,
     SuperuserComponent,
-    GestioneCustomerComponent
+    GestioneCustomerComponent,
+    InsertCustomerComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +75,7 @@ import { GestioneCustomerComponent} from '../components/gestionecustomer/gestion
       libraries: ["places"]
     })
   ],
-  providers: [UserService,CustomerService, SuperuserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
+  providers: [UserService,CustomerService, InsertCustomerService,SuperuserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
   bootstrap: [AppComponent]
 })
 

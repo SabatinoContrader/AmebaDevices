@@ -13,6 +13,5 @@ import { SuperuserService } from "src/services/superuser.service";
     ngOnInit(){
 
     }
-    
   }
   

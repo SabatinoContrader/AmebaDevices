@@ -68,7 +68,6 @@ export class LoginComponent implements OnInit{
     this.customerService.login(f.value.username, f.value.password).subscribe((response) => {
       if (response != null) {
         this.customer=response;
-        console.log("nome "+ this.customer.username+ "ruolo "+ this.customer.userRole)
         sessionStorage.setItem("user", JSON.stringify(this.customer));
            if(response.userRole==1)
            this.router.navigateByUrl("/superuser");
