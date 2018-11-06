@@ -7,7 +7,9 @@ import { Customer } from '../models/Customer';
 import { Building } from '../models/Building';
 
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class BuildingService {
     baseUrl = 'http://localhost:8080/';
 
@@ -40,4 +42,12 @@ export class BuildingService {
             );
     }
 
+    newBuilding(indirizzo:string, interno:string, city:string, username:string, cap:string):Observable<Building>{
+        const params = new HttpParams().set('indirizzo',indirizzo).set('interno',interno).set('city',city).
+        set('username',username).set('cap',cap);
+
+        return this.http.post<Building>('http://localhost:8080/Building/new',params);
+    }
+
 }
+

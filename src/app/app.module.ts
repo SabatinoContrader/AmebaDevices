@@ -36,6 +36,9 @@ import { SuperuserComponent } from '../components/superuser/superuser.component'
 import { SuperuserService } from '../services/superuser.service';
 import { GestioneCustomerComponent} from '../components/gestioneCustomer/gestioneCustomer.component';
 import { InsertCustomerComponent } from '../components/insertCustomer/insertCustomer.component';
+import { GestioneBuildingComponent } from '../components/gestioneBuilding/gestioneBuilding.component';
+import { InsertBuildingComponent } from '../components/insertBuilding/insertBuilding.component';
+import { BuildingService } from 'src/services/building.service';
 
 
 
@@ -63,7 +66,9 @@ import { InsertCustomerComponent } from '../components/insertCustomer/insertCust
     ManagementSlotComponent,
     SuperuserComponent,
     GestioneCustomerComponent,
-    InsertCustomerComponent
+    InsertCustomerComponent,
+    GestioneBuildingComponent,
+    InsertBuildingComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +80,7 @@ import { InsertCustomerComponent } from '../components/insertCustomer/insertCust
       libraries: ["places"]
     })
   ],
-  providers: [UserService,CustomerService, InsertCustomerService,SuperuserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
+  providers: [UserService,CustomerService, BuildingService, InsertCustomerService,SuperuserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
   bootstrap: [AppComponent]
 })
 

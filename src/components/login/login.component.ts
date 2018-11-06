@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit{
 
   }
   ngOnInit(){
+    console.log("eccolo");
 
   }
   login(f:NgForm): void{
@@ -72,7 +73,7 @@ export class LoginComponent implements OnInit{
            if(response.userRole==1)
            this.router.navigateByUrl("/superuser");
             else if(response.userRole==2)
-            console.log("customer");
+            this.router.navigateByUrl("/gestioneBuilding");
             else
             console.log("installer");
            // this.router.navigateByUrl("/customer");

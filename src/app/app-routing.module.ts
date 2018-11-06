@@ -23,6 +23,9 @@ import { ManagementSlotComponent } from '../components/management-slot/managemen
 import { SuperuserComponent} from '../components/superuser/superuser.component';
 import { GestioneCustomerComponent} from '../components/gestioneCustomer/gestioneCustomer.component';
 import { InsertCustomerComponent } from '../components/insertCustomer/insertCustomer.component';
+import { GestioneBuildingComponent } from '../components/gestioneBuilding/gestioneBuilding.component';
+import { InsertBuildingComponent } from '../components/insertBuilding/insertBuilding.component';
+
 
 
 
@@ -49,7 +52,9 @@ const routes: Routes = [
   {path: 'intestazione', component: IntestazioneComponent},
   {path: 'managementSlot', component: ManagementSlotComponent},
   {path: 'gestioneCustomer', component: GestioneCustomerComponent},
-  {path: 'insertCustomer', component: InsertCustomerComponent}  
+  {path: 'insertCustomer', component: InsertCustomerComponent},
+  {path: 'gestioneBuilding', component: GestioneBuildingComponent},
+  {path: 'insertBuilding', component: InsertBuildingComponent}
 ];
 
 @NgModule({
