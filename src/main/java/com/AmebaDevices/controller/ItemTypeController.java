@@ -9,13 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.AmebaDevices.dto.BuildingDTO;
+import com.AmebaDevices.dto.ItemDTO;
 import com.AmebaDevices.dto.ItemTypeDTO;
+import com.AmebaDevices.dto.RoomDTO;
 import com.AmebaDevices.model.Building;
 import com.AmebaDevices.model.Floor;
 
@@ -23,7 +26,7 @@ import com.AmebaDevices.model.ItemType;
 import com.AmebaDevices.model.Room;
 import com.AmebaDevices.services.ItemTypeService;
 import com.AmebaDevices.services.RoomService;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/ItemType")
 public class ItemTypeController  {
@@ -36,6 +39,7 @@ public class ItemTypeController  {
 	
 	
 	// INSERT
+		@CrossOrigin
 		@RequestMapping(value="/new", method = RequestMethod.POST)
 		public ItemTypeDTO newItemType(
 				@RequestParam(value = "marca") String marca,
@@ -52,22 +56,30 @@ public class ItemTypeController  {
 		}
 		
 	// READ
+		@CrossOrigin
 		@RequestMapping(value="", method = RequestMethod.GET)
 		public ItemTypeDTO getOne(@RequestParam(value="itemTypeId") long itemTypeId) {
 			return itemTypeService.findByPrimaryKey(itemTypeId);		
 		}
 		
+		@CrossOrigin
+		@RequestMapping(value="read", method= RequestMethod.GET)
+		public List<ItemTypeDTO> getRead() {
+			return itemTypeService.getAllItemType();
+		}
+		
 	
 	// UPDATE
+		@CrossOrigin
 		@RequestMapping(value="/edit", method = RequestMethod.POST)
 		public ItemTypeDTO updateItemType(
 				@RequestParam(value = "marca", required = false) String marca,
 				@RequestParam(value = "modello", required = false) String modello,
 				@RequestParam(value = "categoria", required = false) String categoria,
 				@RequestParam(value = "descrizione", required= false) String descrizione,
-				@RequestParam(value="itemTypeId") long itemTypeId) {
+				@RequestParam(value="itemTypeId") String itemTypeId) {
 			
-			ItemTypeDTO myItemType = itemTypeService.findByPrimaryKey(itemTypeId);
+			ItemTypeDTO myItemType = itemTypeService.findByPrimaryKey(Long.parseLong(itemTypeId));
 			if (marca!= null)
 			myItemType.setMarca(marca);
 			if (categoria != null)
@@ -81,9 +93,12 @@ public class ItemTypeController  {
 		}
 		
 	// DELETE
+		@CrossOrigin
 		@RequestMapping(value="/delete", method = RequestMethod.GET)
-		public boolean delete(@RequestParam(value="itemTypeId") long itemTypeId) {
-			return itemTypeService.deleteItemType(itemTypeId);
+		public ItemTypeDTO delete(@RequestParam(value="itemTypeId") String itemTypeId) {
+			ItemTypeDTO item = itemTypeService.findByPrimaryKey(Long.parseLong(itemTypeId));
+			 itemTypeService.deleteItemType(item);
+			 return item;
 			
 		}
 	

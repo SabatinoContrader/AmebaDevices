@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.AmebaDevices.converter.ItemTypeConverter;
+import com.AmebaDevices.converter.RoomConverter;
 import com.AmebaDevices.dao.ItemTypeDao;
 import com.AmebaDevices.dto.ItemTypeDTO;
 import com.AmebaDevices.model.Customer;
@@ -44,10 +45,10 @@ public class ItemTypeService {
 		return ItemTypeConverter.convertToDto(this.itemTypeDao.save(ItemTypeConverter.convertToItem(item)));
 	}
 	
-	public boolean deleteItemType(Long id) {
-		ItemType item = itemTypeDao.findOne(id);
-		itemTypeDao.delete(item);
-		return true;
+	public void deleteItemType(ItemTypeDTO item) {
+		//ItemType item = itemTypeDao.findOne(id);
+		ItemType r= ItemTypeConverter.convertToItem(item);
+		itemTypeDao.delete(r);
 		
 	}
 
