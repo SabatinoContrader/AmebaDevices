@@ -8,12 +8,11 @@ import {ItemType} from "../../models/ItemType";
     styleUrls: ['./itemtype.component.css']
   })
   export class ItemtypemanagerComponent implements OnInit{
-    itemTypeList:Array<ItemType>;
     constructor(private itemtypeService: ItemtypeService ){
       
     }
     ngOnInit(){
-      this.itemtypeService.MyitemTypeList().subscribe(response => {this.itemTypeList = response});
+
     }
     
   }

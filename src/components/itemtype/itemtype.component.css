@@ -13,13 +13,22 @@ body {
 	display: flex;
 	align-items: center;
 	padding-left:30%;
-	padding-bottom:2%;
+	padding-bottom:3%;
 }
 
 .imgThing{
 	width: 5%; 
 	padding-right:2%;
 }
+
+.things{
+	font-size: xx-large;
+    font: 3em -webkit-xxx-large Georgia, 'Times New Roman', Times, serif;
+    padding-left: 30%;
+    
+}
+
+
 
 .customerLink{
 	display: block;

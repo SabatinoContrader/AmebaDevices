@@ -5,8 +5,8 @@ import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-insertitemType',
-    templateUrl: './insertItemType.component.html',
-    styleUrls: ['./insertItemType.component.css']
+    templateUrl: './insertitemType.component.html',
+    styleUrls: ['./insertitemType.component.css']
   })
   export class InsertitemtypeComponent implements OnInit{
     constructor(private itemtypeService: ItemtypeService , private router:  Router){

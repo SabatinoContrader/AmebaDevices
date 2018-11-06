@@ -41,6 +41,7 @@ import { ItemtypemanagerComponent } from '../components/itemtype/itemtype.compon
 import { InsertitemtypeComponent } from '../components/insertItemType/insertItemType.component';
 import { UpdateitemtypeComponent } from '../components/updateitemType/updateitemType.component';
 import { DeleteitemtypeComponent } from '../components/deleteitemType/deleteitemType.component';
+import { ReaditemtypeComponent } from '../components/readitemType/readitemType.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { DeleteitemtypeComponent } from '../components/deleteitemType/deleteitem
     InsertCustomerComponent,
     InsertitemtypeComponent,
     UpdateitemtypeComponent,
-    DeleteitemtypeComponent
+    DeleteitemtypeComponent,
+    ReaditemtypeComponent
   ],
   imports: [
     BrowserModule,

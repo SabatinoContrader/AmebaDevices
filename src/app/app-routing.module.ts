@@ -27,6 +27,7 @@ import {ItemtypemanagerComponent} from '../components/itemtype/itemtype.componen
 import { InsertitemtypeComponent } from '../components/insertItemType/insertItemType.component';
 import { UpdateitemtypeComponent } from '../components/updateitemType/updateitemType.component';
 import { DeleteitemtypeComponent } from '../components/deleteitemType/deleteitemType.component';
+import { ReaditemtypeComponent } from '../components/readitemType/readitemType.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -56,7 +57,8 @@ const routes: Routes = [
   {path: 'insertitemType', component: InsertitemtypeComponent},
   {path: 'itemtype', component:ItemtypemanagerComponent},
   {path: 'updateitemType', component:UpdateitemtypeComponent},
-  {path: 'deleteitemType', component:DeleteitemtypeComponent}
+  {path: 'deleteitemType', component:DeleteitemtypeComponent},
+  {path: 'readitemType', component:ReaditemtypeComponent}
 ];
 
 @NgModule({
