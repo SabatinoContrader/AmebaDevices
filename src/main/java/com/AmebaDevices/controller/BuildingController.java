@@ -20,7 +20,6 @@ import com.AmebaDevices.services.CustomerService;
 @RestController
 @CrossOrigin
 @RequestMapping("/Building")
-@CrossOrigin
 public class BuildingController {
 
 	private BuildingService buildingService;
