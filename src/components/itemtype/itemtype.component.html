@@ -1,16 +1,15 @@
 <body>
     <h1>Lista Catalogo ItemType</h1>
-    <div *ngIf="itemTypeList" class="table-responsive">
+    <div class="table-responsive">
             <table >
-                            <tr><th>Id: </th>
-                                <th>Categoria: </th>
-                                <th>Descrizione: </th>
-                                <th>Marca: </th>
-                                <th>Modello:</th></tr>
+                <tr>
+                                <th>Categoria </th>
+                                <th>Descrizione </th>
+                                <th>Marca </th>
+                                <th>Modello</th></tr>
                     
           
                         <tr *ngFor="let itemType of itemTypeList">
-                        <td>{{itemType.id}}</td>
                         <td>{{itemType.categoria}}</td>
                         <td>{{itemType.descrizione}}</td>
                         <td>{{itemType.marca}}</td>
@@ -20,20 +19,27 @@
                 </table>
     </div>
     
+    
 
-    <div>
+    <div class="insertDiv">
+        <img src="http://www.aa24.it/wp-content/uploads/2015/03/1426101814_add-notes.png"
+        class="imgThing">
         <a class="customerLink"
-        href="/#/"> Inserimento itemType </a>
+        href="/#/insertitemType"> Inserimento itemType </a>
     </div>
 
-    <div>
+    <div class="insertDiv">
+         <img src="http://icongal.com/gallery/image/43791/edit_notes_delete.png"
+        class="imgThing">
         <a class="customerLink"
-        href="/ItemType/updateForm">Modifica itemType </a> 
+        href="/#/updateitemType">Modifica itemType </a> 
     </div>
 
-    <div>
+    <div class="insertDiv">
+        <img src="https://www.shareicon.net/data/512x512/2015/05/10/36482_delete_512x512.png"
+        class="imgThing">
         <a class="customerLink"
-        href="/ItemType/deleteForm"> Elimina itemType </a> 
+        href="/#/deleteitemType"> Elimina itemType </a> 
     </div>
 
 </body>

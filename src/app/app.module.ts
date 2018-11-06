@@ -37,7 +37,10 @@ import { SuperuserService } from '../services/superuser.service';
 import { GestioneCustomerComponent} from '../components/gestioneCustomer/gestioneCustomer.component';
 import { InsertCustomerComponent } from '../components/insertCustomer/insertCustomer.component';
 import {ItemtypeService} from '../services/itemtype.service';
-import { ItemtypemanagerComponent } from 'src/components/itemtype/itemtype.component';
+import { ItemtypemanagerComponent } from '../components/itemtype/itemtype.component';
+import { InsertitemtypeComponent } from '../components/insertItemType/insertItemType.component';
+import { UpdateitemtypeComponent } from '../components/updateitemType/updateitemType.component';
+import { DeleteitemtypeComponent } from '../components/deleteitemType/deleteitemType.component';
 
 
 @NgModule({
@@ -65,7 +68,10 @@ import { ItemtypemanagerComponent } from 'src/components/itemtype/itemtype.compo
     ManagementSlotComponent,
     SuperuserComponent,
     GestioneCustomerComponent,
-    InsertCustomerComponent
+    InsertCustomerComponent,
+    InsertitemtypeComponent,
+    UpdateitemtypeComponent,
+    DeleteitemtypeComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +83,7 @@ import { ItemtypemanagerComponent } from 'src/components/itemtype/itemtype.compo
       libraries: ["places"]
     })
   ],
-  providers: [UserService,CustomerService, InsertCustomerService,SuperuserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
+  providers: [UserService,CustomerService,ItemtypeService, InsertCustomerService,SuperuserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
   bootstrap: [AppComponent]
 })
 

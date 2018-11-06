@@ -17,21 +17,21 @@ import {ItemType} from "../models/ItemType";
       };
     }
 
-    MyitemTypeList(itemTypeId:number): Observable<any>{
-    return this.http.get<any>('http://localhost:8080/ItemType?itemTypeId='+itemTypeId);
+    MyitemTypeList(): Observable<Array<ItemType>>{
+    return this.http.get<Array<ItemType>>('http://localhost:8080/ItemType/read');
     }
 
-    deleteItemType(itemTypeId: number): Observable<any>{
-      return this.http.delete<boolean>('http://localhost:8080/ItemType/delete?itemTypeId='+itemTypeId);
+    deleteItemType(itemTypeId: string){
+      return this.http.get<ItemType>('http://localhost:8080/ItemType/delete?itemTypeId='+itemTypeId);
     }
 
     addNewItemType(categoria:string,modello:string,marca:string,descrizione:string):  Observable<ItemType>{
-      var item = new ItemType(0,categoria,modello,marca,descrizione);
-      return this.http.post<ItemType>('http://localhost:8080/ItemType/new', item);
+      const params = new HttpParams().set('categoria', categoria).set('modello',modello).set('marca',marca).set('descrizione',descrizione);
+      return this.http.post<ItemType>('http://localhost:8080/ItemType/new', params);
     }
 
-    updateItemType(categoria:string,modello:string,marca:string,descrizione:string): Observable<ItemType>{
-      var item: ItemType = new ItemType(0,categoria,modello,marca,descrizione);
-      return this.http.post<ItemType>('http://localhost:8080/ItemType/edit', item);
+    updateItemType(itemTypeId:string,categoria:string,modello:string,marca:string,descrizione:string): Observable<ItemType>{
+      const params = new HttpParams().set('itemTypeId',itemTypeId).set('categoria', categoria).set('modello',modello).set('marca',marca).set('descrizione',descrizione);
+      return this.http.post<ItemType>('http://localhost:8080/ItemType/edit', params);
     }
   }
