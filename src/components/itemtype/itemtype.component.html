@@ -1,0 +1,39 @@
+<body>
+    <h1>Lista Catalogo ItemType</h1>
+    <div *ngIf="itemTypeList" class="table-responsive">
+            <table >
+                            <tr><th>Id: </th>
+                                <th>Categoria: </th>
+                                <th>Descrizione: </th>
+                                <th>Marca: </th>
+                                <th>Modello:</th></tr>
+                    
+          
+                        <tr *ngFor="let itemType of itemTypeList">
+                        <td>{{itemType.id}}</td>
+                        <td>{{itemType.categoria}}</td>
+                        <td>{{itemType.descrizione}}</td>
+                        <td>{{itemType.marca}}</td>
+                        <td>{{itemType.modello}}</td>
+                        <td></td>
+                    </tr>
+                </table>
+    </div>
+    
+
+    <div>
+        <a class="customerLink"
+        href="/#/"> Inserimento itemType </a>
+    </div>
+
+    <div>
+        <a class="customerLink"
+        href="/ItemType/updateForm">Modifica itemType </a> 
+    </div>
+
+    <div>
+        <a class="customerLink"
+        href="/ItemType/deleteForm"> Elimina itemType </a> 
+    </div>
+
+</body>
