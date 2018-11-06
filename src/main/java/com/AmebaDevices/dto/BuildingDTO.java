@@ -1,5 +1,7 @@
 package com.AmebaDevices.dto;
 
+import com.AmebaDevices.services.CustomerWithIdDTO;
+
 public class BuildingDTO {
 
 	private long id;
@@ -7,13 +9,13 @@ public class BuildingDTO {
 	private String city;
 	private String cap;
 	private long interno;
-	private CustomerDTO owner;
-	private CustomerDTO installer;
+	private CustomerWithIdDTO owner;
+	private CustomerWithIdDTO installer;
 
 	public BuildingDTO() {
 	}
 
-	public BuildingDTO(long buildingId, String indirizzo, String citta, String cap, long interno, CustomerDTO owner, CustomerDTO installer) {
+	public BuildingDTO(long buildingId, String indirizzo, String citta, String cap, long interno, CustomerWithIdDTO owner, CustomerWithIdDTO installer) {
 		super();
 		this.id = buildingId;
 		this.address = indirizzo;
@@ -64,19 +66,19 @@ public class BuildingDTO {
 		this.interno = interno;
 	}
 
-	public CustomerDTO getOwner() {
+	public CustomerWithIdDTO getOwner() {
 		return owner;
 	}
 
-	public void setOwner(CustomerDTO owner) {
+	public void setOwner(CustomerWithIdDTO owner) {
 		this.owner = owner;
 	}
 
-	public CustomerDTO getInstaller() {
+	public CustomerWithIdDTO getInstaller() {
 		return installer;
 	}
 
-	public void setInstaller(CustomerDTO installer) {
+	public void setInstaller(CustomerWithIdDTO installer) {
 		this.installer = installer;
 	}
 	

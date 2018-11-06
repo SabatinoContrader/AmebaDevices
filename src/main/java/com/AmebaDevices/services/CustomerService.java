@@ -63,7 +63,7 @@ public class CustomerService {
 		customerDAO.delete(c);
 	}
 
-	public CustomerDTO findByUsername(String username) {
-		return CustomerConverter.convertToDto(customerDAO.findByUsername(username));
+	public CustomerWithIdDTO findByUsername(String username) {
+		return CustomerConverter.convertToDtoWithId(customerDAO.findByUsername(username));
 	}
 }

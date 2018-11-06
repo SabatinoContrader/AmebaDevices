@@ -20,6 +20,7 @@ import com.AmebaDevices.services.CustomerService;
 @RestController
 @CrossOrigin
 @RequestMapping("/Building")
+@CrossOrigin
 public class BuildingController {
 
 	private BuildingService buildingService;
@@ -34,17 +35,18 @@ public class BuildingController {
 	
 	// INSERT -> TESTED
 	@RequestMapping(value="/new", method = RequestMethod.POST)
+	@CrossOrigin
 	public BuildingDTO newBuilding(
 			@RequestParam(value="indirizzo") String indirizzo,
-			@RequestParam(value="interno") int interno,
+			@RequestParam(value="interno") String interno,
 			@RequestParam(value="city") String city,
 			@RequestParam(value="username") String username,
 			@RequestParam(value="cap") String cap ) {		
 		
-		
+		System.out.println(indirizzo+" "+interno+" "+city+" "+cap+" "+username);
 		BuildingDTO myNewBuilding = new BuildingDTO();
 		myNewBuilding.setAddress(indirizzo);
-		myNewBuilding.setInterno(interno);
+		myNewBuilding.setInterno(Integer.parseInt(interno));
 		myNewBuilding.setCity(city);
 		myNewBuilding.setCap(cap);
 		myNewBuilding.setOwner(customerService.findByUsername(username));

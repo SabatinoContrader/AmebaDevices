@@ -87,12 +87,14 @@ public class BuildingService {
 	}
 	
 	public BuildingDTO create(BuildingDTO myNewBuilding) {
-		return BuildingConverter.convertToDto(buildingdao.save(BuildingConverter.convertToBuilding(myNewBuilding)));
+		Building b = BuildingConverter.convertToBuilding(myNewBuilding);
+		System.out.println(b.getOwner().getId());
+		return BuildingConverter.convertToDto(buildingdao.save(b));
 	}
 
 	public Building create(BuildingDTO myNewBuilding, String owner) {
 		Customer c = this.customerdao.findByUsername(owner);
-		myNewBuilding.setOwner(CustomerConverter.convertToDto(c));
+		myNewBuilding.setOwner(CustomerConverter.convertToDtoWithId(c));
 		return buildingdao.save(BuildingConverter.convertToBuilding(myNewBuilding));
 
 	}
@@ -100,7 +102,7 @@ public class BuildingService {
 	public void update(BuildingDTO newValues, String owner) {
 		if (buildingdao.findOne(newValues.getId()) != null) {
 			Customer customer = this.customerdao.findByUsername(owner);
-			newValues.setOwner(CustomerConverter.convertToDto(customer));
+			newValues.setOwner(CustomerConverter.convertToDtoWithId(customer));
 			buildingdao.save(BuildingConverter.convertToBuilding(newValues));
 		}
 	}

@@ -12,9 +12,9 @@ public class BuildingConverter {
 		building.setAddress(b.getAddress());
 		building.setInterno(b.getInterno());
 		if (b.getInstaller() != null) 
-			building.setInstaller(CustomerConverter.convertToDto(b.getInstaller()));
+			building.setInstaller(CustomerConverter.convertToDtoWithId(b.getInstaller()));
 		if (b.getOwner() != null) 
-			building.setOwner(CustomerConverter.convertToDto(b.getOwner()));
+			building.setOwner(CustomerConverter.convertToDtoWithId(b.getOwner()));
 		return building;
 	}
 
