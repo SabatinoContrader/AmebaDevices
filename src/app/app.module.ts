@@ -39,7 +39,12 @@ import { InsertCustomerComponent } from '../components/insertCustomer/insertCust
 import { GestioneBuildingComponent } from '../components/gestioneBuilding/gestioneBuilding.component';
 import { InsertBuildingComponent } from '../components/insertBuilding/insertBuilding.component';
 import { BuildingService } from 'src/services/building.service';
-
+import {ItemtypeService} from '../services/itemtype.service';
+import { ItemtypemanagerComponent } from '../components/itemtype/itemtype.component';
+import { InsertitemtypeComponent } from '../components/insertItemType/insertItemType.component';
+import { UpdateitemtypeComponent } from '../components/updateitemType/updateitemType.component';
+import { DeleteitemtypeComponent } from '../components/deleteitemType/deleteitemType.component';
+import { ReaditemtypeComponent } from '../components/readitemType/readitemType.component';
 
 
 @NgModule({
@@ -63,12 +68,17 @@ import { BuildingService } from 'src/services/building.service';
     LegislationsComponent,
     UsefulNumbersComponent,
     IntestazioneComponent,
+    ItemtypemanagerComponent,
     ManagementSlotComponent,
     SuperuserComponent,
     GestioneCustomerComponent,
     InsertCustomerComponent,
     GestioneBuildingComponent,
-    InsertBuildingComponent
+    InsertBuildingComponent,
+    InsertitemtypeComponent,
+    UpdateitemtypeComponent,
+    DeleteitemtypeComponent,
+    ReaditemtypeComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +90,7 @@ import { BuildingService } from 'src/services/building.service';
       libraries: ["places"]
     })
   ],
-  providers: [UserService,CustomerService, BuildingService, InsertCustomerService,SuperuserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
+  providers: [UserService,CustomerService, ItemtypeService, BuildingService, InsertCustomerService,SuperuserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
   bootstrap: [AppComponent]
 })
 

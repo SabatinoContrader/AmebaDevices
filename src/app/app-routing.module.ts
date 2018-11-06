@@ -25,9 +25,11 @@ import { GestioneCustomerComponent} from '../components/gestioneCustomer/gestion
 import { InsertCustomerComponent } from '../components/insertCustomer/insertCustomer.component';
 import { GestioneBuildingComponent } from '../components/gestioneBuilding/gestioneBuilding.component';
 import { InsertBuildingComponent } from '../components/insertBuilding/insertBuilding.component';
-
-
-
+import {ItemtypemanagerComponent} from '../components/itemtype/itemtype.component';
+import { InsertitemtypeComponent } from '../components/insertItemType/insertItemType.component';
+import { UpdateitemtypeComponent } from '../components/updateitemType/updateitemType.component';
+import { DeleteitemtypeComponent } from '../components/deleteitemType/deleteitemType.component';
+import { ReaditemtypeComponent } from '../components/readitemType/readitemType.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -36,6 +38,7 @@ const routes: Routes = [
   {path: 'superuser', component: SuperuserComponent},
   {path: 'homeOwner', component: HomeOwnerComponent},
   {path: 'signup', component: SignupComponent},
+  {path: 'itemTypeManager', component: ItemtypemanagerComponent},
   {path: 'car', component: CarComponent},
   {path: 'addCar', component: AddCarComponent},
   {path: 'reportDriver', component: ReportDriverComponent},
@@ -54,7 +57,12 @@ const routes: Routes = [
   {path: 'gestioneCustomer', component: GestioneCustomerComponent},
   {path: 'insertCustomer', component: InsertCustomerComponent},
   {path: 'gestioneBuilding', component: GestioneBuildingComponent},
-  {path: 'insertBuilding', component: InsertBuildingComponent}
+  {path: 'insertBuilding', component: InsertBuildingComponent},
+  {path: 'insertitemType', component: InsertitemtypeComponent},
+  {path: 'itemtype', component:ItemtypemanagerComponent},
+  {path: 'updateitemType', component:UpdateitemtypeComponent},
+  {path: 'deleteitemType', component:DeleteitemtypeComponent},
+  {path: 'readitemType', component:ReaditemtypeComponent}
 ];
 
 @NgModule({
