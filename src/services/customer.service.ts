@@ -41,12 +41,12 @@ export class CustomerService{
         return this.http.get<Customer>('http://localhost:8080/Customer?customerId='+customerId);
     }
     readByUsername(username:string): Observable<Customer>{
-        console.log("mi arriva "+ username);
         const params = new HttpParams().set('username', username);
         return this.http.post<Customer>('http://localhost:8080/Customer/readOne',params);
     }
-    delete(customerId:string):Observable<boolean>{
-        return this.http.get<boolean>('http://localhost:8080/Customer/delete?customerId='+customerId);
+    delete(username:string):Observable<boolean>{
+        const params = new HttpParams().set('username', username);
+        return this.http.post<boolean>('http://localhost:8080/Customer/delete',params);
     }
 
 
@@ -67,6 +67,10 @@ export class CustomerService{
                 return this.http.post<NewCustomer>('http://localhost:8080/Customer/edit', params); 
             }
 
+    }
+    update(username: string, field: string, newValue: string):Observable<NewCustomer>{
+        const params= new HttpParams().set('username',username).set('field',field).set('newValue',newValue);
+       return this.http.post<NewCustomer>('http://localhost:8080/Customer/edit', params);
     }
 
 
