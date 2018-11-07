@@ -8,10 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.AmebaDevices.converter.FloorConverter;
 import com.AmebaDevices.converter.RoomConverter;
+import com.AmebaDevices.converter.TreeFloorConverter;
+import com.AmebaDevices.converter.TreeRoomConverter;
 import com.AmebaDevices.dao.ItemDAO;
 import com.AmebaDevices.dao.RoomDAO;
 import com.AmebaDevices.dto.FloorDTO;
 import com.AmebaDevices.dto.RoomDTO;
+import com.AmebaDevices.dto.TreeFloorDTO;
+import com.AmebaDevices.dto.TreeRoomDTO;
 import com.AmebaDevices.model.Item;
 import com.AmebaDevices.model.Room;
 
@@ -20,11 +24,13 @@ public class RoomService {
 
 	private RoomDAO roomdao;
 	private ItemDAO itemdao;
+	private ItemService itemService;
 
 	@Autowired
-	public RoomService(RoomDAO roomdao, ItemDAO itemdao) {
+	public RoomService(RoomDAO roomdao, ItemDAO itemdao, ItemService itemService) {
 		this.roomdao = roomdao;
 		this.itemdao=itemdao;
+		this.itemService = itemService;
 	}
 
 	public void delete(RoomDTO room) {
@@ -52,7 +58,17 @@ public class RoomService {
 		List<RoomDTO> toReturn= new ArrayList<>();
 		rooms.forEach(r->toReturn.add(RoomConverter.convertToDto(r)));
 		return toReturn;
-
+	}
+	
+	public List<TreeRoomDTO> getAllTreeByFloor(TreeFloorDTO f) {
+		List<Room> rooms = (List<Room>) roomdao.findByFloor(TreeFloorConverter.convertToFloor(f));
+		List<TreeRoomDTO> toReturn= new ArrayList<>();
+		rooms.forEach(room-> {
+			TreeRoomDTO treeRoom = TreeRoomConverter.convertToDTO(room);
+			treeRoom.setItems(itemService.getAllTreeItem(treeRoom));
+			toReturn.add(treeRoom);
+		});
+		return toReturn;
 	}
 
 	public RoomDTO findByPrimaryKey(long id) {

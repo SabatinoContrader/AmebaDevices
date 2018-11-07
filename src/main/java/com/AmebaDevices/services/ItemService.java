@@ -8,9 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.AmebaDevices.converter.ItemConverter;
 import com.AmebaDevices.converter.RoomConverter;
+import com.AmebaDevices.converter.TreeItemConverter;
+import com.AmebaDevices.converter.TreeRoomConverter;
 import com.AmebaDevices.dao.ItemDAO;
 import com.AmebaDevices.dto.ItemDTO;
 import com.AmebaDevices.dto.RoomDTO;
+import com.AmebaDevices.dto.TreeItemDTO;
+import com.AmebaDevices.dto.TreeRoomDTO;
 import com.AmebaDevices.model.Item;
 import com.AmebaDevices.model.Room;
 
@@ -47,6 +51,14 @@ public class ItemService {
 		List<ItemDTO> ItemPerRoom = new ArrayList<>();
 		items.forEach(i -> ItemPerRoom.add(ItemConverter.convertToDto(i)));
 		return ItemPerRoom;
+
+	}
+	
+	public List<TreeItemDTO> getAllTreeItem(TreeRoomDTO room) {
+		List<Item> items = (List<Item>) itemEntityDao.findByRoom(TreeRoomConverter.convertToRoom(room));
+		List<TreeItemDTO> itemPerRoom = new ArrayList<>();
+		items.forEach(item -> itemPerRoom.add(TreeItemConverter.convertToDto(item)));
+		return itemPerRoom;
 
 	}
 }

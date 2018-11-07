@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.AmebaDevices.converter.BuildingConverter;
 import com.AmebaDevices.converter.FloorConverter;
+import com.AmebaDevices.converter.TreeFloorConverter;
 import com.AmebaDevices.dao.BuildingDAO;
 import com.AmebaDevices.dao.FloorDAO;
 import com.AmebaDevices.dao.RoomDAO;
 import com.AmebaDevices.dto.FloorDTO;
+import com.AmebaDevices.dto.TreeFloorDTO;
 import com.AmebaDevices.model.Building;
 import com.AmebaDevices.model.Floor;
 import com.AmebaDevices.model.Room;
@@ -22,13 +24,14 @@ public class FloorService {
 	private FloorDAO floordao;
 	private BuildingDAO buildingdao;
 	private RoomDAO roomdao;
+	private RoomService roomService;
 	
 	@Autowired
-	public FloorService(FloorDAO floorDAO, BuildingDAO buildingdao, RoomDAO roomdao) {
+	public FloorService(FloorDAO floorDAO, BuildingDAO buildingdao, RoomDAO roomdao, RoomService _roomService) {
 		this.floordao = floorDAO;
 		this.buildingdao = buildingdao;
 		this.roomdao = roomdao;
-
+		this.roomService = _roomService;
 	}
 	
 	
@@ -43,6 +46,18 @@ public class FloorService {
 		List <Floor> floors = (List<Floor>) floordao.findByBuilding(b);
 		List<FloorDTO> toReturn= new ArrayList<>();
 		floors.forEach(f->toReturn.add(FloorConverter.convertToDto(f)));
+		return toReturn;
+	}
+	
+	public List<TreeFloorDTO> getTreeByBuilding(long buildingid) {
+		Building b = buildingdao.findOne(buildingid);
+		List <Floor> floors = (List<Floor>) floordao.findByBuilding(b);
+		List<TreeFloorDTO> toReturn = new ArrayList<>();
+		floors.forEach(floor -> {
+			TreeFloorDTO floorDTO = TreeFloorConverter.convertToDTO(floor);
+			floorDTO.setRooms(roomService.getAllTreeByFloor(floorDTO));
+			toReturn.add(floorDTO);
+		});
 		return toReturn;
 	}
 	

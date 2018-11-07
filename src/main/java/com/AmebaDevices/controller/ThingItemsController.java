@@ -15,6 +15,7 @@ import com.AmebaDevices.dto.BuildingDTO;
 import com.AmebaDevices.dto.BuildingTreeDTO;
 import com.AmebaDevices.dto.ItemDTO;
 import com.AmebaDevices.dto.ThingDTO;
+import com.AmebaDevices.dto.TreeBuildingDTO;
 import com.AmebaDevices.services.BuildingService;
 import com.AmebaDevices.services.FloorService;
 import com.AmebaDevices.services.ItemService;
@@ -23,7 +24,7 @@ import com.AmebaDevices.services.ThingService;
 import com.AmebaDevices.utils.SolutionGenerator;
 
 @RestController
-@RequestMapping("/BuildingTree")
+@RequestMapping("/buildingTree")
 public class ThingItemsController {
 
 	private FloorService floorService;
@@ -44,29 +45,13 @@ public class ThingItemsController {
 		this.thingService = ts;
 	}
 	
-	@RequestMapping(value="getTre", method = RequestMethod.GET)
-	public BuildingTreeDTO getAllThre(@RequestParam(value="buildingId") long buildingId) {
-		//long buildingId = Long.parseLong(request.getParameter("buildingId"));
-		//this.building = buildingId;
-		System.out.println("rr");
-		System.out.println(buildingId);
-		BuildingTreeDTO buildingTree = this.BuildingTreeFromBuildingId(buildingId);
-
-		/*things = thingService.searchThingsByBuilding(buildingService.findByPrimaryKey(buildingId));
-		if (things.size() == 0) {
-			SolutionGenerator s = new SolutionGenerator(thingService);
-			things = s.generate(buildingTree.getItems().size());
-			
-		}
-		things.forEach(t -> {
-
-			t.setBuilding(buildingService.findByPrimaryKey(buildingId));
-			thingService.update(t);
-		});
-		request.setAttribute("items", buildingTree.getItems());
-		request.setAttribute("things", things);
-		request.setAttribute("buildingTree", buildingTree);*/
-		return buildingTree;
+	
+	@RequestMapping(value = "tree", method = RequestMethod.GET)
+	public TreeBuildingDTO getTreeByBuilding(
+			@RequestParam(value="buildingId") long buildingId
+	) {
+		TreeBuildingDTO treeBuilding = this.getTreeBuilding(buildingId);
+		return treeBuilding;
 	}
 
 	@RequestMapping(value = "getTree", method = RequestMethod.GET)
@@ -126,6 +111,13 @@ public class ThingItemsController {
 		});
 
 		return buildingTree;
+	}
+	
+	private TreeBuildingDTO getTreeBuilding(long _buildingId) {
+		TreeBuildingDTO treeBuilding = new TreeBuildingDTO();
+		treeBuilding.setTreeFloor(this.floorService.getTreeByBuilding(_buildingId));
+		return treeBuilding;
+
 	}
 
 }
