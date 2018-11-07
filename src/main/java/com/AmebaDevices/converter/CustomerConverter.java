@@ -40,6 +40,7 @@ public class CustomerConverter {
 		customer.setCognome(c.getCognome());
 		customer.setEmail(c.getEmail());
 		customer.setUsername(c.getUsername());
+		customer.setPassword(c.getPassword());
 		customer.setUserRole(c.getUserRole());
 		return customer;
 	}
@@ -54,6 +55,7 @@ public class CustomerConverter {
 			customerDTO.setCognome(c.getCognome());
 			customerDTO.setEmail(c.getEmail());
 			customerDTO.setUsername(c.getUsername());
+			customerDTO.setPassword(c.getPassword());
 			customerDTO.setUserRole(c.getUserRole());
 		} else {
 			customerDTO.setUserRole(-1);
@@ -70,6 +72,16 @@ public class CustomerConverter {
 		newCustomer.setUserRole(c.getUserRole());
 		newCustomer.setPassword(c.getPassword());
 		return newCustomer;
+	}
+
+	public static NewCustomerDTO convertCustomerWithIdToNewCustomer(CustomerWithIdDTO customer) {
+		NewCustomerDTO newCustomerDto= new NewCustomerDTO();
+		newCustomerDto.setNome(customer.getNome());
+		newCustomerDto.setCognome(customer.getCognome());
+		newCustomerDto.setEmail(customer.getEmail());
+		newCustomerDto.setUsername(customer.getUsername());
+		newCustomerDto.setPassword(customer.getPassword());
+		return newCustomerDto;
 	}
 	
 }

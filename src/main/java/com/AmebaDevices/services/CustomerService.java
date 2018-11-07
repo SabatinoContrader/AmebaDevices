@@ -39,7 +39,6 @@ public class CustomerService {
 		List<NewCustomerDTO> customers = new ArrayList<>();
 		customerDAO.findByUserRole(2).forEach(c -> {
 			customers.add(CustomerConverter.convertToNewCustomerDTO(c));
-			System.out.println(c.getNome()+ c.getPassword());
 		});
 		return customers;
 	}
@@ -52,7 +51,7 @@ public class CustomerService {
 	}
 
 	public CustomerWithIdDTO updateCustomer(CustomerWithIdDTO customer) {
-		return CustomerConverter.convertToDtoWithId((customerDAO.save(CustomerConverter.convertToCustomer(customer))));
+			return CustomerConverter.convertToDtoWithId((customerDAO.save(CustomerConverter.convertToCustomer(customer))));
 	}
 
 	public CustomerDTO searchCustomer(Long id) {
