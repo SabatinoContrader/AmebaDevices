@@ -1,9 +1,9 @@
 package com.AmebaDevices.converter;
 
 import com.AmebaDevices.dto.CustomerDTO;
+import com.AmebaDevices.dto.CustomerWithIdDTO;
 import com.AmebaDevices.dto.NewCustomerDTO;
 import com.AmebaDevices.model.Customer;
-import com.AmebaDevices.services.CustomerWithIdDTO;
 
 public class CustomerConverter {
 
@@ -60,6 +60,16 @@ public class CustomerConverter {
 		}
 		
 		return customerDTO;
+	}
+	public static NewCustomerDTO convertToNewCustomerDTO(Customer c) {
+		NewCustomerDTO newCustomer= new NewCustomerDTO();
+		newCustomer.setNome(c.getNome());
+		newCustomer.setCognome(c.getCognome());
+		newCustomer.setEmail(c.getEmail());
+		newCustomer.setUsername(c.getUsername());
+		newCustomer.setUserRole(c.getUserRole());
+		newCustomer.setPassword(c.getPassword());
+		return newCustomer;
 	}
 	
 }

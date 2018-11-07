@@ -1,5 +1,7 @@
 package com.AmebaDevices.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.AmebaDevices.dto.CustomerDTO;
+import com.AmebaDevices.dto.CustomerWithIdDTO;
 import com.AmebaDevices.dto.NewCustomerDTO;
 import com.AmebaDevices.services.CustomerService;
 
@@ -44,24 +47,41 @@ public class CustomerController {
 	}
 
 	// READ -> TESTED
+	@CrossOrigin
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public CustomerDTO getOne(@RequestParam(value = "customerId") long customerId) {
 		CustomerDTO cdto = customerService.searchCustomer(customerId);
 		return cdto;
 
 	}
-
+	@CrossOrigin
+	@RequestMapping(value = "/read", method = RequestMethod.GET)
+	public List<NewCustomerDTO> readAll(){
+		List<NewCustomerDTO> customers = customerService.readAll();
+		return customers;
+	}
+	@CrossOrigin
+	@RequestMapping(value = "/readOne", method = RequestMethod.POST)
+	public CustomerWithIdDTO readOne(@RequestParam(value = "username") String username){
+		CustomerWithIdDTO customer = customerService.findByUsername(username);
+		System.out.println("ho un customer con username "+customer.getUsername());
+		return customer;
+	}
 	// UPDATE -> TESTED
+	@CrossOrigin
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public CustomerDTO updateCustomer(
+	public CustomerWithIdDTO updateCustomer(
 			@RequestParam(value = "nome", required=false) String nome, 
 			@RequestParam(value = "cognome", required=false) String cognome, 
 			@RequestParam(value = "email", required=false) String email, 
-			@RequestParam(value = "username", required=false) String username, 
-			@RequestParam(value = "customerId") long customerId) {
+			@RequestParam(value = "username", required=false) String username,
+			@RequestParam(value= "oldUsername") String oldUsername
+			) {
 		
-		
-		CustomerDTO cdto = customerService.searchCustomer(customerId);
+		System.out.println("username è "+ oldUsername);
+		CustomerWithIdDTO cdto = customerService.findByUsername(oldUsername);
+		System.out.println(cdto.getId()+".---------------------");
+		System.out.println(nome+"/"+cognome+"/"+email+"/"+username);
 		if (nome != null) {
 			cdto.setNome(nome);
 		}
@@ -75,12 +95,13 @@ public class CustomerController {
 		if (username != null) {
 			cdto.setUsername(username);
 		}
-		
+		System.out.println(cdto.getNome()+"-"+cdto.getCognome()+ "-"+ cdto.getEmail()+"-"+ cdto.getUsername()+"-"+cdto.getPassword());
 		cdto = customerService.updateCustomer(cdto);
 		return cdto;
 	}
 	
 	// DELETE -> TESTED
+	@CrossOrigin
 	@RequestMapping(value="/delete", method = RequestMethod.GET)
 	public boolean delete(@RequestParam(value="customerId") long customerId) {
 		customerService.deleteCustomer(customerId);

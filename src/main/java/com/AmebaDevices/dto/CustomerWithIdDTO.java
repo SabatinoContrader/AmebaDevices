@@ -1,4 +1,4 @@
-package com.AmebaDevices.services;
+package com.AmebaDevices.dto;
 
 public class CustomerWithIdDTO{
 	

@@ -1,6 +1,5 @@
 package com.AmebaDevices.dto;
 
-import com.AmebaDevices.services.CustomerWithIdDTO;
 
 public class BuildingDTO {
 

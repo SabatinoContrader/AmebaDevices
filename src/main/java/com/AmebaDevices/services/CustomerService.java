@@ -10,6 +10,7 @@ import com.AmebaDevices.converter.CustomerConverter;
 import com.AmebaDevices.converter.NewCustomerConverter;
 import com.AmebaDevices.dao.CustomerDAO;
 import com.AmebaDevices.dto.CustomerDTO;
+import com.AmebaDevices.dto.CustomerWithIdDTO;
 import com.AmebaDevices.dto.NewCustomerDTO;
 import com.AmebaDevices.model.Customer;
 
@@ -34,11 +35,11 @@ public class CustomerService {
 		return NewCustomerConverter.convertToDto(customerDAO.save(NewCustomerConverter.convertToCustomer(customer)));
 	}
 
-	public List<CustomerDTO> readAll() {
-		List<CustomerDTO> customers = new ArrayList<>();
+	public List<NewCustomerDTO> readAll() {
+		List<NewCustomerDTO> customers = new ArrayList<>();
 		customerDAO.findByUserRole(2).forEach(c -> {
-			customers.add(CustomerConverter.convertToDto(c));
-			System.out.println(c.getNome());
+			customers.add(CustomerConverter.convertToNewCustomerDTO(c));
+			System.out.println(c.getNome()+ c.getPassword());
 		});
 		return customers;
 	}
@@ -50,8 +51,8 @@ public class CustomerService {
 
 	}
 
-	public CustomerDTO updateCustomer(CustomerDTO customer) {
-		return CustomerConverter.convertToDto(customerDAO.save(CustomerConverter.convertToCustomer(customer)));
+	public CustomerWithIdDTO updateCustomer(CustomerWithIdDTO customer) {
+		return CustomerConverter.convertToDtoWithId((customerDAO.save(CustomerConverter.convertToCustomer(customer))));
 	}
 
 	public CustomerDTO searchCustomer(Long id) {
