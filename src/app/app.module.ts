@@ -39,8 +39,8 @@ import { GestioneCustomerComponent} from '../components/gestioneCustomer/gestion
 import { InsertCustomerComponent } from '../components/insertCustomer/insertCustomer.component';
 import { GestioneBuildingComponent } from '../components/gestioneBuilding/gestioneBuilding.component';
 import { InsertBuildingComponent } from '../components/insertBuilding/insertBuilding.component';
-import { BuildingService } from 'src/services/building.service';
 import { RoomService } from '../services/room.service';
+import { BuildingService } from '../services/building.service';
 import {ItemtypeService} from '../services/itemtype.service';
 import { ItemtypemanagerComponent } from '../components/itemtype/itemtype.component';
 import { InsertitemtypeComponent } from '../components/insertItemType/insertItemType.component';
@@ -49,7 +49,6 @@ import { DeleteitemtypeComponent } from '../components/deleteitemType/deleteitem
 import { ReaditemtypeComponent } from '../components/readitemType/readitemType.component';
 import { ReadCustomerComponent } from '../components/readCustomer/readCustomer.component';
 import { UpdateCustomerComponent } from '../components/updateCustomer/updateCustomer.component';
-import { DeleteCustomerComponent } from '../components/deleteCustomer/deleteCustomer.component';
 import { UpdateBuildingComponent } from '../components/updateBuilding/updateBuilding.component';
 import { DeleteBuildingComponent } from '../components/deleteBuilding/deleteBuilding.component';
 import { FloorService } from '../services/floor.service';
@@ -60,6 +59,11 @@ import { GestioneFloorComponent } from './../components/gestioneFloor/gestioneFl
 import { InsertRoomComponent } from 'src/components/insertRoom/insertRoom.component';
 import { DeleteRoomComponent } from 'src/components/deleteRoom/deleteRoom.component';
 import { InstallermanagerComponent } from '../components/installer/installer.component';
+import { InsertinstallerComponent } from '../components/insertInstaller/insertInstaller.component';
+import { InstallerService } from '../services/installer.service';
+import { ReadinstallerComponent } from '../components/readInstaller/readInstaller.component';
+import { UpdateinstallerComponent } from '../components/updateInstaller/updateInstaller.component';
+import { DeleteCustomerComponent } from '../components/deleteCustomer/deleteCustomer.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +110,11 @@ import { InstallermanagerComponent } from '../components/installer/installer.com
     InsertRoomComponent,
     UpdateRoomComponent,
     DeleteRoomComponent,
-    InstallermanagerComponent
+    InstallermanagerComponent,
+    InsertinstallerComponent,
+    ReadinstallerComponent,
+    UpdateinstallerComponent,
+    DeleteCustomerComponent
   ],
   imports: [
     BrowserModule,

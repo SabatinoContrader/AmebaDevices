@@ -9,11 +9,10 @@ body {
 	padding:10px;
 }
 
-.insertDiv{
+.insertCustomer{
+	padding-left:25%; 
 	display: flex;
 	align-items: center;
-	padding-left:30%;
-	padding-bottom:3%;
 }
 
 .imgSuperUser{
@@ -21,17 +20,22 @@ body {
 	padding-right:2%;
 }
 
+.insertTable{
+	padding-left: 35%;
+}
 
-.customerLink{
-	display: block;
-    height: 25%;
+.customerForm .form-control{
+    border-radius: 4px;
+    height:5%;
+  }
+
+  .registerButton{
     background: #435261 none repeat scroll 0 0;
-    padding: 8px;
-    text-align: center;
-    border-radius: 8px;
-    border-color: #fefefe;
-    font-weight: bold;
-    font-size: x-large; 
-    text-decoration: none;
-    color:white;
+border-color: #fefefe;
+border-radius: 8px;
+color: #ffffff;
+font-size: 18px;
+width: 12%;
+margin-top: 2%;
+margin-left: 40%;
 }

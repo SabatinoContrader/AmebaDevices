@@ -9,29 +9,31 @@ body {
 	padding:10px;
 }
 
-.insertDiv{
-	display: flex;
-	align-items: center;
-	padding-left:30%;
-	padding-bottom:3%;
-}
-
 .imgSuperUser{
 	width: 5%; 
 	padding-right:2%;
 }
 
-
-.customerLink{
-	display: block;
-    height: 25%;
-    background: #435261 none repeat scroll 0 0;
-    padding: 8px;
-    text-align: center;
-    border-radius: 8px;
-    border-color: #fefefe;
-    font-weight: bold;
-    font-size: x-large; 
-    text-decoration: none;
-    color:white;
+.itemForm{
+	padding-left: 40%;
 }
+
+.censisciButton{
+	background: #435261 none repeat scroll 0 0;
+    border-color: #fefefe;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    width: 10%;
+    height: 5%;
+    margin-top:2%;
+    margin-left: 25%;
+}
+
+.readCustomer{
+	padding-left:37%; 
+	display: flex;
+	align-items: center;
+}
+
+
