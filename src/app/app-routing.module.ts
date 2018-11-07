@@ -43,6 +43,7 @@ import { UpdateFloorComponent } from 'src/components/updateFloor/updateFloor.com
 import { DeleteFloorComponent } from 'src/components/deleteFloor/deleteFloor.component';
 import { GestioneRoomComponent } from 'src/components/gestioneRoom/gestioneRoom.component';
 import { InsertRoomComponent } from 'src/components/insertRoom/insertRoom.component';
+import { InstallermanagerComponent } from '../components/installer/installer.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -88,10 +89,8 @@ const routes: Routes = [
   {path: 'gestioneRoom/:floorId', component: GestioneRoomComponent},
   {path: 'insertRoom/:floorId', component: InsertRoomComponent},
   {path: 'updateRoom/:floorId', component: UpdateRoomComponent},
-  {path: 'deleteRoom/:floorId', component: DeleteRoomComponent}
-
-
-
+  {path: 'deleteRoom/:floorId', component: DeleteRoomComponent},
+  {path: 'installer', component:InstallermanagerComponent}
 ];
 
 @NgModule({

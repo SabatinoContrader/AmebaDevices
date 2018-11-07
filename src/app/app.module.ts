@@ -59,6 +59,7 @@ import { InsertFloorComponent } from './../components/insertFloor/insertFloor.co
 import { GestioneFloorComponent } from './../components/gestioneFloor/gestioneFloor.component';
 import { InsertRoomComponent } from 'src/components/insertRoom/insertRoom.component';
 import { DeleteRoomComponent } from 'src/components/deleteRoom/deleteRoom.component';
+import { InstallermanagerComponent } from '../components/installer/installer.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { DeleteRoomComponent } from 'src/components/deleteRoom/deleteRoom.compon
     GestioneRoomComponent,
     InsertRoomComponent,
     UpdateRoomComponent,
-    DeleteRoomComponent
+    DeleteRoomComponent,
+    InstallermanagerComponent
   ],
   imports: [
     BrowserModule,

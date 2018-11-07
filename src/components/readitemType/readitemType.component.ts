@@ -3,6 +3,7 @@ import { ItemtypeService } from "src/services/itemtype.service";
 import { NgForm } from "@angular/forms";
 import {ItemType} from "../../models/ItemType";
 import { Router } from "@angular/router";
+import { first } from "rxjs/operators";
 
 @Component({
     selector: 'app-readitemType',
