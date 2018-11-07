@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { InsertCustomerService } from "src/services/insertCustomer.service";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
+import { CustomerService } from "src/services/customer.service";
 
 @Component({
     selector: 'app-insertCustomer',
@@ -9,7 +10,7 @@ import { Router } from "@angular/router";
     styleUrls: ['./insertCustomer.component.css']
   })
   export class InsertCustomerComponent implements OnInit{
-    constructor(private insertCustomerService: InsertCustomerService , private router:  Router){
+    constructor(private customerService: CustomerService , private router:  Router){
 
     }
     ngOnInit(){
@@ -17,7 +18,7 @@ import { Router } from "@angular/router";
     }
     register(f:NgForm){
    
-      this.insertCustomerService.newCustomer("2",f.value.nome,f.value.cognome,f.value.email,f.value.username,f.value.password).subscribe((response) => {
+      this.customerService.newCustomer("2",f.value.nome,f.value.cognome,f.value.email,f.value.username,f.value.password).subscribe((response) => {
         if (response != null) {
           this.router.navigateByUrl("/gestioneCustomer");
         }

@@ -16,14 +16,6 @@ import { NewCustomer } from "src/models/NewCustomer";
         return of(result as T);
       };
     }
-    newCustomer(userRole:string, name:string, 
-      surname:string, email:string, username:string, password:string ): Observable<NewCustomer>{
-      
-        const params = new HttpParams().set('userRole', userRole).
-         set('name', name).set('surname', surname).set('email', email).set('username', username).set('password', password);
-      
-      return this.http.post<NewCustomer>('http://localhost:8080/Customer/new', params); 
-
-  }
+  
 
   }

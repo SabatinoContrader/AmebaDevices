@@ -6,7 +6,6 @@ import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { UserService } from "../services/user.service";
-import { InsertCustomerService} from "../services/insertCustomer.service";
 import { CustomerService } from "../services/customer.service";
 import {BrowserModule} from '@angular/platform-browser';
 import { AppComponent } from "./app.component";
@@ -45,7 +44,8 @@ import { InsertitemtypeComponent } from '../components/insertItemType/insertItem
 import { UpdateitemtypeComponent } from '../components/updateitemType/updateitemType.component';
 import { DeleteitemtypeComponent } from '../components/deleteitemType/deleteitemType.component';
 import { ReaditemtypeComponent } from '../components/readitemType/readitemType.component';
-
+import { ReadCustomerComponent } from '../components/readCustomer/readCustomer.component';
+import { UpdateCustomerComponent } from '../components/updateCustomer/updateCustomer.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +78,10 @@ import { ReaditemtypeComponent } from '../components/readitemType/readitemType.c
     InsertitemtypeComponent,
     UpdateitemtypeComponent,
     DeleteitemtypeComponent,
-    ReaditemtypeComponent
+    ReaditemtypeComponent,
+    ReadCustomerComponent, 
+    UpdateCustomerComponent
+
   ],
   imports: [
     BrowserModule,
@@ -90,7 +93,8 @@ import { ReaditemtypeComponent } from '../components/readitemType/readitemType.c
       libraries: ["places"]
     })
   ],
-  providers: [UserService,CustomerService, ItemtypeService, BuildingService, InsertCustomerService,SuperuserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
+
+  providers: [UserService,CustomerService, ItemtypeService, BuildingService, SuperuserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
   bootstrap: [AppComponent]
 })
 

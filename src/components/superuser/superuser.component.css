@@ -47,3 +47,9 @@ h1 small{
 	display: block;
 	color: #666;
 }
+.select{
+	margin-top:5%;
+	margin-bottom:5%;
+	margin-right: 5%;
+	margin-left:5%;
+}

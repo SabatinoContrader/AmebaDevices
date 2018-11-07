@@ -35,6 +35,33 @@ body {
     text-decoration: none;
     color:white;
 }
-
-
+.select{
+	margin-top:5%;
+	margin-bottom:5%;
+	margin-right: 5%;
+	margin-left:21%;
+}
+a{
+    /*margin:0 auto;*/
+    /*text-align: center;*/
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+a:hover{
+	color:#59b1e5;
+}
+/*h1 {
+	font: 5em normal Georgia, 'Times New Roman', Times, serif;
+	text-align:center;
+	padding-bottom: 10px;
+}
+h1 span { color: #cbff78; }
+h1 small{
+	font: 0.2em normal Verdana, Arial, Helvetica, sans-serif;
+	text-transform:uppercase;
+	letter-spacing: 1.5em;
+	display: block;
+	color: #666;
+}
+*/
 

@@ -25,25 +25,47 @@ export class CustomerService{
         );
     }
 
+    newCustomer(userRole:string, name:string, 
+        surname:string, email:string, username:string, password:string ): Observable<NewCustomer>{
+        
+          const params = new HttpParams().set('userRole', userRole).
+           set('name', name).set('surname', surname).set('email', email).set('username', username).set('password', password);
+        
+        return this.http.post<NewCustomer>('http://localhost:8080/Customer/new', params); 
   
+    }
+    readAll():Observable<Array<NewCustomer>>{
+        return this.http.get<Array<NewCustomer>>('http://localhost:8080/Customer/read');
+    }
     readOne(customerId:string): Observable<Customer>{
         return this.http.get<Customer>('http://localhost:8080/Customer?customerId='+customerId);
     }
-    
+    readByUsername(username:string): Observable<Customer>{
+        console.log("mi arriva "+ username);
+        const params = new HttpParams().set('username', username);
+        return this.http.post<Customer>('http://localhost:8080/Customer/readOne',params);
+    }
     delete(customerId:string):Observable<boolean>{
         return this.http.get<boolean>('http://localhost:8080/Customer/delete?customerId='+customerId);
     }
 
 
-    updateCustomer(customerId:string, nome:string, 
-        cognome:string, email:string, username:string): Observable<Customer>{
-            const params = new HttpParams().set('customerId', customerId);
-            params.set('nome', nome);
-            params.set('cognome', cognome);
-            params.set('email', email);
-            params.set('username', username);
-        
-        return this.http.post<Customer>('http://localhost:8080/Customer/edit', params); 
+    updateCustomer(nome:string, 
+        cognome:string, email:string, username:string, oldUsername: string): Observable<NewCustomer>{
+            console.log("in update "+ nome+"-"+ cognome+"-"+email+"-"+username);
+            if(nome!="null"){
+            const params = new HttpParams().set('nome', nome).set('oldUsername',oldUsername);
+            return this.http.post<NewCustomer>('http://localhost:8080/Customer/edit', params); 
+            }else if(cognome!="null"){
+            const params= new HttpParams().set('cognome',cognome).set('oldUsername',oldUsername);
+            return this.http.post<NewCustomer>('http://localhost:8080/Customer/edit', params); 
+            }else if(email!=null){
+            const params= new HttpParams().set('email',email).set('oldUsername',oldUsername);
+            return this.http.post<NewCustomer>('http://localhost:8080/Customer/edit', params); 
+            }else {
+                const params= new HttpParams().set('password',username).set('oldUsername',oldUsername);
+                return this.http.post<NewCustomer>('http://localhost:8080/Customer/edit', params); 
+            }
 
     }
 

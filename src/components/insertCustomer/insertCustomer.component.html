@@ -1,11 +1,11 @@
-
-	<div class="insertCustomer">
+<body>
+	<div class="select insertCustomer">
             <img
                 src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/add-user.png"
                 class="imgSuperUser">
-            <h1>Inserisci il tuo Customer</h1>
+            <h1 >Inserisci il tuo Customer</h1>
         </div>
-    
+    <div class="login-form">
             <form class="userForm" #f="ngForm">
             <table class="insertTable">
                 <tr>
@@ -17,11 +17,6 @@
                     <td><h2>Cognome:</h2></td>
                     <td><input type="text" class="form-control" id="cognome" name="cognome"
                         placeholder="Inserisci Cognome" ngModel></td>
-                </tr>
-                <tr>
-                    <td><h2>Data di Nascita:</h2></td>
-                    <td><input type="date" class="form-control" id="dataDiNascita" name="dataDiNascita"
-                        placeholder="Inserisci Data di Nascita" ngModel></td>
                 </tr>
                 <tr>
                     <td><h2>Email:</h2></td>
@@ -39,7 +34,10 @@
                         placeholder="Inserisci Password" ngModel></td>
                 </tr>
             </table>
-            <button class="registerButton" type="submit" (click)="register(f)">Login</button>
+            <button class="registerButton" type="submit" (click)="register(f)">Register</button>
     
         </form>
+        
+</div>
+    </body>
     
