@@ -9,6 +9,7 @@ public class TreeItemConverter {
 		TreeItemDTO item = new TreeItemDTO();
 		item.setId(i.getId());
 		item.setSeriale(i.getSeriale());
+		item.setThingId(item.getThingId());
 		return item;
 	}
 }

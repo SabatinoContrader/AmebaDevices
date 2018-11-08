@@ -31,6 +31,10 @@ public class TreeRoomDTO {
 	public String getNomeRoom() {
 		return nomeRoom;
 	}
+	
+	public String getName() {
+		return nomeRoom;
+	}
 
 	public void setNomeRoom(String nomeRoom) {
 		this.nomeRoom = nomeRoom;
@@ -49,6 +53,10 @@ public class TreeRoomDTO {
 	}
 	
 	public List<TreeItemDTO> getItems() {
+		return this.items;
+	}
+	
+	public List<TreeItemDTO> getChildren() {
 		return this.items;
 	}
 

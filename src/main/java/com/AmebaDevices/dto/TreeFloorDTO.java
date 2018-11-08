@@ -27,6 +27,10 @@ public class TreeFloorDTO {
 	public String getNomeFloor() {
 		return nomeFloor;
 	}
+	
+	public String getName() {
+		return nomeFloor;
+	}
 
 	public void setNomeFloor(String nomeFloor) {
 		this.nomeFloor = nomeFloor;
@@ -45,6 +49,10 @@ public class TreeFloorDTO {
 	}
 	
 	public List<TreeRoomDTO> getRooms() {
+		return this.rooms;
+	}
+	
+	public List<TreeRoomDTO> getChildren() {
 		return this.rooms;
 	}
 }

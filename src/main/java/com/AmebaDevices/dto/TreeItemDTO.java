@@ -8,6 +8,8 @@ public class TreeItemDTO {
 	private String descrizione;
 	private String marca;
 	private String modello;
+	private String type = "item";
+	private int thingId;
 	
 	public TreeItemDTO() {};
 	
@@ -28,7 +30,15 @@ public class TreeItemDTO {
 	public long getId() {
 		return id;
 	}
+	
+	public long getName() {
+		return id;
+	}
 
+	public String getType() {
+		return this.type;
+	}
+	
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -63,5 +73,13 @@ public class TreeItemDTO {
 
 	public void setModello(String modello) {
 		this.modello = modello;
+	}
+	
+	public void setThingId(int id) {
+		this.thingId = id;
+	}
+	
+	public int getThingId() {
+		return this.thingId;
 	}
 }
