@@ -26,7 +26,7 @@ import { BuildingService } from "src/services/building.service";
    
       this.installerService.associazioneBuildings(f.value.buildingSelected,f.value.installerSelected).subscribe((response) => {
         if (response != null) {
-          this.router.navigateByUrl("/itemtype");
+          this.router.navigateByUrl("/installerManager");
         }
         
     });  
