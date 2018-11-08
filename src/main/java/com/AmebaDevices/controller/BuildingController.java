@@ -53,6 +53,14 @@ public class BuildingController {
 		return myNewBuilding;
 	}
 	
+	// READ BUILDINGS
+	@CrossOrigin
+	@RequestMapping(value="/read", method = RequestMethod.GET)
+	public List<BuildingDTO> findAll(){
+		List<BuildingDTO> buildings = buildingService.findAll();
+		return buildings;
+	}
+	
 	
 	
 	// READ -> TESTED
