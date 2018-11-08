@@ -13,12 +13,12 @@
           </tr>
       </thead>
       <tbody>
-        <tr *ngFor = "let building of buildings">
-            <td><a style="text-decoration:none; color:white" href="/Floors/menu?buildingId=${building.id}">{{building.id}}</a></td>
-            <td><a style="text-decoration:none; color:white" href="/Floors/menu?buildingId=${building.id}">{{building.address}}</a></td>
-            <td><a style="text-decoration:none; color:white" href="/Floors/menu?buildingId=${building.id}">{{building.city}}</a></td>
-            <td><a style="text-decoration:none; color:white" href="/Floors/menu?buildingId=${building.id}">{{building.cap}}</a></td>
-            <td><a style="text-decoration:none; color:white" href="/Floors/menu?buildingId=${building.id}">{{building.interno}}</a></td>
+        <tr *ngFor = "let building of buildings" (click) = 'toFloorMenu(building.id)'>
+            <td >{{building.id}}</td>
+            <td>{{building.address}}</td>
+            <td>{{building.city}}</td>
+            <td>{{building.cap}}</td>
+            <td>{{building.interno}}</td>
         </tr>
       </tbody>
   </table>

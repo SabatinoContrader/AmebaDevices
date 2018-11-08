@@ -1,3 +1,5 @@
+import { UpdateRoomComponent } from './../components/updateRoom/updateRoom.component';
+import { GestioneRoomComponent } from './../components/gestioneRoom/gestioneRoom.component';
 import { IntestazioneComponent } from '../components/intestazione/intestazione.component';
 import { LoginComponent } from "../components/login/login.component";
 import { HomeDriverComponent } from "../components/home-driver/home-driver.component";
@@ -38,6 +40,7 @@ import { InsertCustomerComponent } from '../components/insertCustomer/insertCust
 import { GestioneBuildingComponent } from '../components/gestioneBuilding/gestioneBuilding.component';
 import { InsertBuildingComponent } from '../components/insertBuilding/insertBuilding.component';
 import { BuildingService } from 'src/services/building.service';
+import { RoomService } from '../services/room.service';
 import {ItemtypeService} from '../services/itemtype.service';
 import { ItemtypemanagerComponent } from '../components/itemtype/itemtype.component';
 import { InsertitemtypeComponent } from '../components/insertItemType/insertItemType.component';
@@ -49,6 +52,13 @@ import { UpdateCustomerComponent } from '../components/updateCustomer/updateCust
 import { DeleteCustomerComponent } from '../components/deleteCustomer/deleteCustomer.component';
 import { UpdateBuildingComponent } from '../components/updateBuilding/updateBuilding.component';
 import { DeleteBuildingComponent } from '../components/deleteBuilding/deleteBuilding.component';
+import { FloorService } from '../services/floor.service';
+import { DeleteFloorComponent } from 'src/components/deleteFloor/deleteFloor.component';
+import { UpdateFloorComponent } from 'src/components/updateFloor/updateFloor.component';
+import { InsertFloorComponent } from './../components/insertFloor/insertFloor.component';
+import { GestioneFloorComponent } from './../components/gestioneFloor/gestioneFloor.component';
+import { InsertRoomComponent } from 'src/components/insertRoom/insertRoom.component';
+import { DeleteRoomComponent } from 'src/components/deleteRoom/deleteRoom.component';
 
 @NgModule({
   declarations: [
@@ -86,8 +96,15 @@ import { DeleteBuildingComponent } from '../components/deleteBuilding/deleteBuil
     UpdateCustomerComponent,
     DeleteCustomerComponent,
     UpdateBuildingComponent,
-    DeleteBuildingComponent
-
+    DeleteBuildingComponent,
+    GestioneFloorComponent,
+    InsertFloorComponent,
+    UpdateFloorComponent,
+    DeleteFloorComponent,
+    GestioneRoomComponent,
+    InsertRoomComponent,
+    UpdateRoomComponent,
+    DeleteRoomComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +117,7 @@ import { DeleteBuildingComponent } from '../components/deleteBuilding/deleteBuil
     })
   ],
 
-  providers: [UserService,CustomerService, ItemtypeService, BuildingService, SuperuserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
+  providers: [UserService,CustomerService, RoomService, FloorService, ItemtypeService, BuildingService, SuperuserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
   bootstrap: [AppComponent]
 })
 

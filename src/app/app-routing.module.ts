@@ -1,3 +1,5 @@
+import { DeleteRoomComponent } from './../components/deleteRoom/deleteRoom.component';
+import { UpdateRoomComponent } from './../components/updateRoom/updateRoom.component';
 import { IntestazioneComponent } from '../components/intestazione/intestazione.component';
 import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -35,9 +37,12 @@ import { UpdateCustomerComponent } from '../components/updateCustomer/updateCust
 import { DeleteCustomerComponent } from '../components/deleteCustomer/deleteCustomer.component';
 import { UpdateBuildingComponent } from '../components/updateBuilding/updateBuilding.component';
 import { DeleteBuildingComponent } from '../components/deleteBuilding/deleteBuilding.component';
-
-
-
+import { GestioneFloorComponent } from '../components/gestioneFloor/gestioneFloor.component';
+import { InsertFloorComponent} from '../components/insertFloor/insertFloor.component';
+import { UpdateFloorComponent } from 'src/components/updateFloor/updateFloor.component';
+import { DeleteFloorComponent } from 'src/components/deleteFloor/deleteFloor.component';
+import { GestioneRoomComponent } from 'src/components/gestioneRoom/gestioneRoom.component';
+import { InsertRoomComponent } from 'src/components/insertRoom/insertRoom.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -75,7 +80,16 @@ const routes: Routes = [
   {path: 'updateCustomer', component: UpdateCustomerComponent},
   {path: 'deleteCustomer', component: DeleteCustomerComponent},
   {path: 'updateBuilding', component: UpdateBuildingComponent},
-  {path: 'deleteBuilding', component: DeleteBuildingComponent}
+  {path: 'deleteBuilding', component: DeleteBuildingComponent},
+  {path: 'gestioneFloor/:buildingId', component: GestioneFloorComponent},
+  {path: 'insertFloor/:buildingId', component: InsertFloorComponent},
+  {path: 'updateFloor/:buildingId', component: UpdateFloorComponent},
+  {path: 'deleteFloor/:buildingId', component: DeleteFloorComponent},
+  {path: 'gestioneRoom/:floorId', component: GestioneRoomComponent},
+  {path: 'insertRoom/:floorId', component: InsertRoomComponent},
+  {path: 'updateRoom/:floorId', component: UpdateRoomComponent},
+  {path: 'deleteRoom/:floorId', component: DeleteRoomComponent}
+
 
 
 ];

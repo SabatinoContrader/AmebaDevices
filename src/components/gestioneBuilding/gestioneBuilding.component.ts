@@ -23,6 +23,10 @@ export class GestioneBuildingComponent implements OnInit{
             console.log("la size è"+this.buildings.length);
         })
     }
+
+    toFloorMenu(buildingId:string){
+        this.router.navigateByUrl("/gestioneFloor/"+buildingId);
+    }
 }
 
 
