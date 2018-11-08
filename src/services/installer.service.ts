@@ -41,4 +41,9 @@ import {NewCustomer} from "../models/NewCustomer";
     const params = new HttpParams().set('username', username);
     return this.http.post<boolean>('http://localhost:8080/Customer/delete',params);
 }
+
+  associazioneBuildings(buildingId : string, username:string): Observable<Array<NewCustomer>>{
+      const params = new HttpParams().set('buildingId', buildingId).set('username',username);
+      return this.http.post<Array<NewCustomer>>('http://localhost:8080/Building/associazioneBuildingInstaller',params);
+  }
 }

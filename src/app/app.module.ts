@@ -65,6 +65,7 @@ import { ReadinstallerComponent } from '../components/readInstaller/readInstalle
 import { UpdateinstallerComponent } from '../components/updateInstaller/updateInstaller.component';
 import { DeleteCustomerComponent } from '../components/deleteCustomer/deleteCustomer.component';
 import { DeleteinstallerComponent } from '../components/deleteInstaller/deleteInstaller.component';
+import { AssociazioneBuildingsComponent } from '../components/associazioneBuildings/associazioneBuildings.components';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { DeleteinstallerComponent } from '../components/deleteInstaller/deleteIn
     ReadinstallerComponent,
     UpdateinstallerComponent,
     DeleteCustomerComponent,
-    DeleteinstallerComponent
+    DeleteinstallerComponent,
+    AssociazioneBuildingsComponent
   ],
   imports: [
     BrowserModule,
