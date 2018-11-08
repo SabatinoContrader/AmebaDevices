@@ -5,18 +5,15 @@ import { Building } from "src/models/Building";
 import { NgForm } from "@angular/forms";
 
 @Component({
-    selector:'app-updateBuilding',
-    templateUrl:'./updateBuilding.component.html',
-    styleUrls:['./updateBuilding.component.css']
+    selector:'app-deleteBuilding',
+    templateUrl:'./deleteBuilding.component.html',
+    styleUrls:['./deleteBuilding.component.css']
 })
 
-export class UpdateBuildingComponent implements OnInit{
+export class DeleteBuildingComponent implements OnInit{
     public buildings: Array<Building>
-    public idSelected: string;
-    
-     
     constructor(private buildingService:BuildingService, private router:Router){
-
+        
     }
 
     ngOnInit(){
@@ -25,12 +22,11 @@ export class UpdateBuildingComponent implements OnInit{
         })
     }
 
-    update(f : NgForm){
-        this.buildingService.update(f.value.idselected, f.value.newindirizzo, f.value.newinterno, f.value.newcitta, f.value.newcap).subscribe((response) => {
-            this.router.navigateByUrl("/gestioneBuilding");
-
-        })
+    delete(f:NgForm){
+          this.buildingService.delete(f.value.idSelected).subscribe((response)=>{
+          if (response != null) {
+           this.router.navigateByUrl("/gestioneBuilding");
+            }
+       });
     }
-
-    
 }

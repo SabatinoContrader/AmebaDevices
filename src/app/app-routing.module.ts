@@ -33,6 +33,9 @@ import { ReaditemtypeComponent } from '../components/readitemType/readitemType.c
 import { ReadCustomerComponent } from '../components/readCustomer/readCustomer.component';
 import { UpdateCustomerComponent } from '../components/updateCustomer/updateCustomer.component';
 import { DeleteCustomerComponent } from '../components/deleteCustomer/deleteCustomer.component';
+import { UpdateBuildingComponent } from '../components/updateBuilding/updateBuilding.component';
+import { DeleteBuildingComponent } from '../components/deleteBuilding/deleteBuilding.component';
+
 
 
 
@@ -71,6 +74,9 @@ const routes: Routes = [
   {path: 'readCustomer', component: ReadCustomerComponent},  
   {path: 'updateCustomer', component: UpdateCustomerComponent},
   {path: 'deleteCustomer', component: DeleteCustomerComponent},
+  {path: 'updateBuilding', component: UpdateBuildingComponent},
+  {path: 'deleteBuilding', component: DeleteBuildingComponent}
+
 
 ];
 

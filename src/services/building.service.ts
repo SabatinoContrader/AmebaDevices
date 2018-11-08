@@ -11,7 +11,9 @@ import { Building } from '../models/Building';
     providedIn: 'root'
 })
 export class BuildingService {
-    baseUrl = 'http://localhost:8080/';
+    baseUrl: string;
+    
+    
 
     constructor(private http: HttpClient) {}
 
@@ -47,6 +49,24 @@ export class BuildingService {
         set('username',username).set('cap',cap);
 
         return this.http.post<Building>('http://localhost:8080/Building/new',params);
+    }
+
+    findAll():Observable<Array<Building>>{
+        return this.http.get<Array<Building>>('http://localhost:8080/Building/read');
+    }
+
+    delete(buildingId : string):Observable<boolean>{
+        let url : string = 'http://localhost:8080/Building/delete?buildingId='+buildingId;
+        return this.http.get<boolean>(url);
+
+    }
+   
+    update(idSelected: string, newindirizzo: string, newinterno: string, newcitta: string, newcap: string):Observable<Building>{
+        console.log(idSelected+" "+newinterno+" "+newindirizzo+" "+newcitta+" "+newcap);
+        const params = new HttpParams().set('buildingId',idSelected).set('indirizzo', newindirizzo).set('interno',newinterno).
+        set('city', newcitta).set('cap', newcap);
+        console.log("ok");
+        return this.http.post<Building>('http://localhost:8080/Building/edit', params);
     }
 
 }

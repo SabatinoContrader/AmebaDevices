@@ -19,3 +19,27 @@ body {
 	width: 5%; 
 	padding-right:2%;
 }
+
+.thingDiv{
+	display:flex;
+	align-items:center;
+    padding-top: 2%;
+}
+
+.updateThing{
+	padding-left:5%; 
+	display: flex;
+	align-items: center;
+}
+
+.deleteButton{
+    background: #435261 none repeat scroll 0 0;
+border-color: #fefefe;
+border-radius: 8px;
+color: #ffffff;
+font-size: 170%;
+width: 58%;
+height: 5%;
+margin-top:4%;
+margin-left: 20%;
+}

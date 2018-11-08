@@ -47,6 +47,8 @@ import { ReaditemtypeComponent } from '../components/readitemType/readitemType.c
 import { ReadCustomerComponent } from '../components/readCustomer/readCustomer.component';
 import { UpdateCustomerComponent } from '../components/updateCustomer/updateCustomer.component';
 import { DeleteCustomerComponent } from '../components/deleteCustomer/deleteCustomer.component';
+import { UpdateBuildingComponent } from '../components/updateBuilding/updateBuilding.component';
+import { DeleteBuildingComponent } from '../components/deleteBuilding/deleteBuilding.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +84,9 @@ import { DeleteCustomerComponent } from '../components/deleteCustomer/deleteCust
     ReaditemtypeComponent,
     ReadCustomerComponent, 
     UpdateCustomerComponent,
-    DeleteCustomerComponent
+    DeleteCustomerComponent,
+    UpdateBuildingComponent,
+    DeleteBuildingComponent
 
   ],
   imports: [

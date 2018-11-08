@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { BuildingService } from "src/services/building.service";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
+import { Building } from "src/models/Building";
 
 @Component({
     selector:'app-gestioneBuilding',
@@ -10,13 +11,17 @@ import { NgForm } from "@angular/forms";
 })
 
 export class GestioneBuildingComponent implements OnInit{
+    public buildings: Array<Building>
 
     constructor(private buildingService:BuildingService, private router:Router){
 
     }
 
     ngOnInit(){
-        //inizializzo variabili
+        this.buildingService.findAll().subscribe((response) => {
+            this.buildings = response;
+            console.log("la size è"+this.buildings.length);
+        })
     }
 }
 

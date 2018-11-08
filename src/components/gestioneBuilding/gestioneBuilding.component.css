@@ -9,6 +9,10 @@ body {
 	padding:10px;
 }
 
+.title{
+	margin-left: 35%;
+}
+
 .thingDiv{
 	display:flex;
 	align-items:center;
@@ -23,6 +27,7 @@ body {
 
 .thingTable{
 	width:40%;
+	margin-top: 5%;
 	margin-left:5%;
 }
 
