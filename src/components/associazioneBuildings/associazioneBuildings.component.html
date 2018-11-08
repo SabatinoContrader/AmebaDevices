@@ -1,0 +1,29 @@
+<body>
+    <h3>Associazione Buildings</h3>
+    <form #f="ngForm">
+        <div class="idCustomer"><h3>Installatore:</h3>
+
+            <div class="readTable">
+                <table class="table">
+                        <thead>
+                            <tr>
+                                    <th>Nome</th>
+                                    <th>Cognome</th>
+                                    <th>Username</th>
+                                    <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <tr *ngFor="let installer of installers">
+                                    <td >{{installer.nome}}</td>
+                                    <td >{{installer.cognome}}</td>
+                                    <td >{{installer.username}}</td>
+                                    <td >{{installer.password}}</td>
+                                </tr>
+                        </tbody>
+                </table>
+                </div>
+                
+        <button type="submit"> Conferma </button>
+        </form>
+    </body>
