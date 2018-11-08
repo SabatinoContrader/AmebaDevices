@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.AmebaDevices.dto.BuildingDTO;
+import com.AmebaDevices.dto.CustomerDTO;
+import com.AmebaDevices.dto.CustomerWithIdDTO;
+import com.AmebaDevices.dto.NewCustomerDTO;
 import com.AmebaDevices.services.BuildingService;
 import com.AmebaDevices.services.CustomerService;
 
@@ -64,6 +67,7 @@ public class BuildingController {
 	
 	
 	// READ -> TESTED
+	@CrossOrigin
 	@RequestMapping(value="", method = RequestMethod.GET)
 	public BuildingDTO getOne(@RequestParam(value="buildingId") long buildingId) {
 		BuildingDTO bdto = buildingService.findByPrimaryKey(buildingId);
@@ -72,6 +76,7 @@ public class BuildingController {
 	}
 	
 	// DELETE -> TESTED
+	@CrossOrigin
 	@RequestMapping(value="/delete", method = RequestMethod.GET)
 	public boolean delete(@RequestParam(value="buildingId") long buildingId) {
 		BuildingDTO bdto = buildingService.findByPrimaryKey(buildingId);
@@ -82,6 +87,7 @@ public class BuildingController {
 	
 	
 	// UPDATE -> TESTED
+	@CrossOrigin
 	@RequestMapping(value="/edit", method= RequestMethod.POST)
 	public BuildingDTO updateBuilding (
 			@RequestParam(value="buildingId") long buildingId,
@@ -107,7 +113,7 @@ public class BuildingController {
 		bdto = buildingService.update(bdto);
 		return bdto;
 	}
-	
+	@CrossOrigin
 	@RequestMapping(value="/installer", method = RequestMethod.GET)
 	public List<BuildingDTO> getBuildingsByInstaller(
 			@RequestParam(value="installer") String installer
@@ -115,7 +121,26 @@ public class BuildingController {
 		List<BuildingDTO> buildings = buildingService.findByInstaller(installer);
 		return buildings;
 	}
-
+	
+	@CrossOrigin
+	@RequestMapping(value = "/associazioneBuildingInstaller", method = RequestMethod.POST)
+	public List<BuildingDTO> updateAssociations( @RequestParam(value="buildingId") String buildingId,
+			@RequestParam(value="username") String username) {
+		List<BuildingDTO> buildings = buildingService.findAll();
+		long idBuilding= Long.parseLong(buildingId);
+		//List<NewCustomerDTO> installers = customerService.readInstallers();
+		for (int i = 0; i < buildings.size(); i++) {
+				CustomerWithIdDTO c= customerService.searchCustomer(idBuilding);
+				buildings.get(i).setInstaller(c); //username
+				buildingService.update(buildings.get(i));
+				/*if (buildings.get(i).getInstaller() != null) {
+					buildings.remove(i);
+					i--;
+				}*/
+			
+		}
+		return buildings;
+	}
 
 	/*
 	

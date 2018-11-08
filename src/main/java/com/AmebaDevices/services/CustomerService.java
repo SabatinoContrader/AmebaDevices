@@ -59,8 +59,8 @@ public class CustomerService {
 			return CustomerConverter.convertToDtoWithId((customerDAO.save(CustomerConverter.convertToCustomer(customer))));
 	}
 
-	public CustomerDTO searchCustomer(Long id) {
-		return CustomerConverter.convertToDto(customerDAO.findOne(id));
+	public CustomerWithIdDTO searchCustomer(Long id) {
+		return CustomerConverter.convertToDtoWithId(customerDAO.findOne(id));
 	}
 
 	public void deleteCustomer(Long id) {

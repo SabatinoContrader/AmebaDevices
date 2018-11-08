@@ -50,8 +50,8 @@ public class CustomerController {
 	// READ -> TESTED
 	@CrossOrigin
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public CustomerDTO getOne(@RequestParam(value = "customerId") long customerId) {
-		CustomerDTO cdto = customerService.searchCustomer(customerId);
+	public CustomerWithIdDTO getOne(@RequestParam(value = "customerId") long customerId) {
+		CustomerWithIdDTO cdto = customerService.searchCustomer(customerId);
 		return cdto;
 
 	}
