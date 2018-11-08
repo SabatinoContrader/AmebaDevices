@@ -61,6 +61,13 @@ public class CustomerController {
 		List<NewCustomerDTO> customers = customerService.readAll();
 		return customers;
 	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/readInstaller", method = RequestMethod.GET)
+	public List<NewCustomerDTO> readInstaller(){
+		List<NewCustomerDTO> customers = customerService.readInstallers();
+		return customers;
+	}
 	@CrossOrigin
 	@RequestMapping(value = "/readOne", method = RequestMethod.POST)
 	public CustomerWithIdDTO readOne(@RequestParam(value = "username") String username){
