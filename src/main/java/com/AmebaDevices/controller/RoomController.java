@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +29,7 @@ import com.AmebaDevices.services.RoomService;
 
 @RestController
 @RequestMapping("/Room")
+@CrossOrigin
 public class RoomController {
 	
     private RoomService rs;
@@ -41,6 +43,7 @@ public class RoomController {
 	}
 
 @RequestMapping(value="edit" , method= RequestMethod.POST)
+@CrossOrigin
 public RoomDTO getUpdate(@RequestParam(value="roomId")long roomId
 		,@RequestParam(value="nome_room") String nomeRoom,
 		@RequestParam(value="descrizione") String descrizione) {
@@ -52,6 +55,7 @@ public RoomDTO getUpdate(@RequestParam(value="roomId")long roomId
 }
 
 @RequestMapping(value="", method= RequestMethod.GET)
+@CrossOrigin
 public List<RoomDTO> getList(@RequestParam(value="floorId")long floorId){
 	FloorDTO f = fs.findByPrimaryKey(floorId);
 	List <RoomDTO> listaPerFloor = new ArrayList<>();
@@ -60,6 +64,7 @@ public List<RoomDTO> getList(@RequestParam(value="floorId")long floorId){
 	}
 
 @RequestMapping(value="new", method= RequestMethod.POST)
+@CrossOrigin
 public RoomDTO insertRoom(@RequestParam(value="floorId") long floorId
 		,@RequestParam(value="nome_room") String nomeRoom,
 		@RequestParam(value="descrizione") String descrizione) {
@@ -73,6 +78,7 @@ public RoomDTO insertRoom(@RequestParam(value="floorId") long floorId
 	}
 
 @RequestMapping(value = "delete", method = RequestMethod.GET)
+@CrossOrigin
 public RoomDTO deleteRoom(@RequestParam(value="roomId") long roomId) {
 
     RoomDTO room = rs.findByPrimaryKey(roomId);

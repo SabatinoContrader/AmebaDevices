@@ -18,6 +18,7 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +31,7 @@ import com.AmebaDevices.services.FloorService;
 
 @RestController
 @RequestMapping("/Floors")
+@CrossOrigin
 public class FloorController {
 
 	private FloorService fs;
@@ -43,8 +45,8 @@ public class FloorController {
 
 	// INSERT
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
+	@CrossOrigin
 	public FloorDTO newFloor(
-			@RequestParam(value = "floorId") long floorId,
 			@RequestParam(value = "nomeFloor") String nomeFloor,
 			@RequestParam(value = "descrizione") String descrizione,
 			@RequestParam(value = "buildingId") long buildingId){
@@ -59,14 +61,23 @@ public class FloorController {
 
 	// READ
 	@RequestMapping(value = "", method = RequestMethod.GET)
+	@CrossOrigin
 	public FloorDTO getOne(@RequestParam(value = "floorId") long floorId) {
 		FloorDTO fdto = fs.findByPrimaryKey(floorId);
 		return fdto;
 
 	}
 	
+	@RequestMapping(value = "/floorsByBuilding", method = RequestMethod.GET)
+	@CrossOrigin
+	public List<FloorDTO> getFloorsByBuilding(@RequestParam(value = "buildingId") long buildingId){
+		List <FloorDTO> myList = fs.getAllByBuilding(buildingId);
+		return myList;
+	}
+	
 	// UPDATE 
 		@RequestMapping(value="/edit", method= RequestMethod.POST)
+		@CrossOrigin
 		public FloorDTO updateFloor (HttpServletRequest request, 
 				@RequestParam(value="floorId") long floorId,
 				@RequestParam(value = "nomeFloor", required = false) String nomeFloor,
@@ -85,6 +96,7 @@ public class FloorController {
 
 	// DELETE 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@CrossOrigin
 	public boolean delete(@RequestParam(value = "floorId") long floorId) {
 		FloorDTO fdto = fs.findByPrimaryKey(floorId);
 		if (fs.delete(fdto))
@@ -217,6 +229,7 @@ public class FloorController {
 
 	 */
 	@RequestMapping(value = "/download", method = RequestMethod.GET)
+	@CrossOrigin
 	public String download(HttpServletRequest request, HttpServletResponse response) {
 		Long buildingId = Long.parseLong(request.getParameter("buildingId"));
 		BuildingDTO current = bs.findByPrimaryKey(buildingId);
