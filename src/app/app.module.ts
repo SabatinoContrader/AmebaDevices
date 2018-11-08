@@ -64,6 +64,7 @@ import { InstallerService } from '../services/installer.service';
 import { ReadinstallerComponent } from '../components/readInstaller/readInstaller.component';
 import { UpdateinstallerComponent } from '../components/updateInstaller/updateInstaller.component';
 import { DeleteCustomerComponent } from '../components/deleteCustomer/deleteCustomer.component';
+import { DeleteinstallerComponent } from '../components/deleteInstaller/deleteInstaller.component';
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import { DeleteCustomerComponent } from '../components/deleteCustomer/deleteCust
     InsertinstallerComponent,
     ReadinstallerComponent,
     UpdateinstallerComponent,
-    DeleteCustomerComponent
+    DeleteCustomerComponent,
+    DeleteinstallerComponent
   ],
   imports: [
     BrowserModule,

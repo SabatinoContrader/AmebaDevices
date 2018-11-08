@@ -31,22 +31,14 @@ import {NewCustomer} from "../models/NewCustomer";
         return this.http.get<Array<NewCustomer>>('http://localhost:8080/Customer/readInstaller');
         }
 
-        update(nome:string, 
-          cognome:string, email:string, username:string, oldUsername: string): Observable<NewCustomer>{
-              console.log("in update "+ nome+"-"+ cognome+"-"+email+"-"+username);
-              if(nome!="null"){
-              const params = new HttpParams().set('nome', nome).set('oldUsername',oldUsername);
-              return this.http.post<NewCustomer>('http://localhost:8080/Customer/edit', params); 
-              }else if(cognome!="null"){
-              const params= new HttpParams().set('cognome',cognome).set('oldUsername',oldUsername);
-              return this.http.post<NewCustomer>('http://localhost:8080/Customer/edit', params); 
-              }else if(email!=null){
-              const params= new HttpParams().set('email',email).set('oldUsername',oldUsername);
-              return this.http.post<NewCustomer>('http://localhost:8080/Customer/edit', params); 
-              }else {
-                  const params= new HttpParams().set('password',username).set('oldUsername',oldUsername);
-                  return this.http.post<NewCustomer>('http://localhost:8080/Customer/edit', params); 
-              }
-  
-      }
+        update(username: string, field: string, newValue: string):Observable<NewCustomer>{
+          const params= new HttpParams().set('username',username).set('field',field).set('newValue',newValue);  
+          console.log("username= "+username+"field= "+field+"newValue= "+newValue);     
+          return this.http.post<NewCustomer>('http://localhost:8080/Customer/edit', params);
   }
+
+  delete(username:string):Observable<boolean>{
+    const params = new HttpParams().set('username', username);
+    return this.http.post<boolean>('http://localhost:8080/Customer/delete',params);
+}
+}

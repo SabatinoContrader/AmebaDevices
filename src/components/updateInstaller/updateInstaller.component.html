@@ -6,11 +6,11 @@
         </div>
         <div class="modifyCustomer">
         <h2 >Seleziona l'username del installer da modificare</h2>
-          <form class="userForm" #f="ngForm">
+          <form #f="ngForm">
             <div class="idCustomer"><h3>Username Installer:</h3>
                 <div style="padding-left:2%">
-                    <select style="border-radius: 10%" name="usernameSelected" ngModel="usernameSelected">
-                      <option *ngFor="let customer of customers" [attr.value]="customer.username">{{customer.username}}</option>
+                    <select name="usernameSelected" ngModel="usernameSelected">
+                      <option *ngFor="let customer of installers" [attr.value]="customer.username">{{customer.username}}</option>
                 </select>
                 </div>
                 
