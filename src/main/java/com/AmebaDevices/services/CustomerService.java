@@ -49,6 +49,11 @@ public class CustomerService {
 		return installers;
 
 	}
+	public List<CustomerDTO> readManufacturers(){
+		List<CustomerDTO> manufacturers = new ArrayList<>();
+		customerDAO.findByUserRole(4).forEach(i -> manufacturers.add(CustomerConverter.convertToDto(i)));
+		return manufacturers;
+	}
 
 	public CustomerWithIdDTO updateCustomer(CustomerWithIdDTO customer) {
 			return CustomerConverter.convertToDtoWithId((customerDAO.save(CustomerConverter.convertToCustomer(customer))));
