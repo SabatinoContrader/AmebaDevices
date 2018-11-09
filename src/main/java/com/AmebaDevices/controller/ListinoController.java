@@ -48,6 +48,7 @@ public class ListinoController {
 		listDTO.setNomeListino(nomeListino);
 		listDTO.setAnno(anno);
 		listDTO.setManufacturer(manufacturer);
+		listinoService.edit(listDTO);
 		return listDTO;
 	}
 	
@@ -60,13 +61,10 @@ public class ListinoController {
 	
 	//delete
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public boolean delete(@RequestParam(value="nomeListino") String nomeListino) {
-		listinoService.delete(ListinoConverter.convertToListino(listinoService.findByNomeListino(nomeListino)));
+	public boolean delete(@RequestParam(value="id") long id) {
+		listinoService.delete(ListinoConverter.convertToListino(listinoService.findById(id)));
 		return true;
 	}
 	
-	
-	
-			
 	
 }
