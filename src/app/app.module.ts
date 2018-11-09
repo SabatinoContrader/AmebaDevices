@@ -3,6 +3,8 @@ import { LoginComponent } from "../components/login/login.component";
 import { HomeDriverComponent } from "../components/home-driver/home-driver.component";
 import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
+import { TreeModule } from 'primeng/primeng';
+import {DragDropModule} from 'primeng/dragdrop';
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { UserService } from "../services/user.service";
@@ -33,8 +35,11 @@ import { ManagementSlotComponent } from '../components/management-slot/managemen
 import { SlotService } from '../services/slot.service';
 import { SuperuserComponent } from '../components/superuser/superuser.component';
 import { SuperuserService } from '../services/superuser.service';
-
-
+import { InstallerComponent } from '../components/installer/installer.component';
+import { BuildingService } from '../services/building.service';
+import { BuildingTableComponent } from '../components/building-table/building-table.component';
+import { BuildingTreeComponent } from '../components/building-tree/building-tree.component';
+import { BuildingTreeService } from '../services/buildingTree.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +63,10 @@ import { SuperuserService } from '../services/superuser.service';
     UsefulNumbersComponent,
     IntestazioneComponent,
     ManagementSlotComponent,
-    SuperuserComponent
+    SuperuserComponent,
+    InstallerComponent,
+    BuildingTableComponent,
+    BuildingTreeComponent
   ],
   imports: [
     BrowserModule,
@@ -68,9 +76,22 @@ import { SuperuserService } from '../services/superuser.service';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAUf_fIZF0iu40Uiwhj3RhFE3Kd1KrWUFw',
       libraries: ["places"]
-    })
+    }),
+    TreeModule,
+    DragDropModule
   ],
-  providers: [UserService,CustomerService, SuperuserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
+  providers: [
+    UserService,
+    CustomerService, 
+    SuperuserService, 
+    ReportService, 
+    CarService,
+    PaymentService,
+    GoogleMapService, 
+    SlotService,
+    BuildingService,
+    BuildingTreeService
+  ],
   bootstrap: [AppComponent]
 })
 

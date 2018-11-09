@@ -21,7 +21,9 @@ import { UsefulNumbersComponent } from '../components/useful-numbers/useful-numb
 import { LegislationsComponent } from '../components/legislations/legislations.component';
 import { ManagementSlotComponent } from '../components/management-slot/management-slot.component';
 import { SuperuserComponent} from '../components/superuser/superuser.component';
-
+import { BuildingTreeComponent } from '../components/building-tree/building-tree.component';
+import { InstallerComponent } from '../components/installer/installer.component';
+import { BuildingTableComponent } from '../components/building-table/building-table.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -44,8 +46,10 @@ const routes: Routes = [
   {path: 'usefulNumbers', component: UsefulNumbersComponent},
   {path: 'legislations', component: LegislationsComponent},
   {path: 'intestazione', component: IntestazioneComponent},
-  {path: 'managementSlot', component: ManagementSlotComponent}
-  
+  {path: 'managementSlot', component: ManagementSlotComponent},
+  {path: 'installer/buildingTree/:buildingId', component: BuildingTreeComponent },
+  {path: 'installer', component: InstallerComponent },
+  {path: 'installer/buildings', component: BuildingTableComponent}
 ];
 
 @NgModule({

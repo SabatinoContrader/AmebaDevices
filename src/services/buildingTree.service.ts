@@ -3,12 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { Customer } from '../models/Customer';
-import { Building } from '../models/Building';
-
+import { BuildingTree } from '../models/BuildingTree';
 
 @Injectable()
-export class BuildingService {
+export class BuildingTreeService {
     baseUrl = 'http://localhost:8080/';
 
     constructor(private http: HttpClient) {}
@@ -21,13 +19,12 @@ export class BuildingService {
         };
     }
 
-    getBuildingsByInstaller():Observable<Building[]> {
-        let installer: Customer = JSON.parse(sessionStorage.getItem('user'));
+    getBuildingTree(buildingId: number):Observable<BuildingTree> {
         let httpHeaders = new HttpHeaders().set('Accept', 'application/json');
-        let httpParams = new HttpParams().set('installer', installer.username);
-        let url: string = this.baseUrl + 'Building/installer';
-	
-        return this.http.get<Building[]>(url, {
+        let httpParams = new HttpParams().set('buildingId', buildingId.toString());
+        let url: string = this.baseUrl + 'buildingTree/tree';
+    
+        return this.http.get<BuildingTree>(url, {
             headers: httpHeaders,
             params: httpParams, 
             responseType: 'json'

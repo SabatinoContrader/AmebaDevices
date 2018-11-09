@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
 export class AddCarComponent implements OnInit {
   feedback: string;
   
-  constructor(private carService: CarService, private router: Router) { 
+  constructor(
+    private carService: CarService, private router: Router) { 
 
   }
 
