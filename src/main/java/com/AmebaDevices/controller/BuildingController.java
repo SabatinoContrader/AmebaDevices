@@ -124,22 +124,32 @@ public class BuildingController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/associazioneBuildingInstaller", method = RequestMethod.POST)
-	public List<BuildingDTO> updateAssociations( @RequestParam(value="buildingId") String buildingId,
+	public void updateAssociations( @RequestParam(value="buildingId") String buildingId,
 			@RequestParam(value="username") String username) {
 		List<BuildingDTO> buildings = buildingService.findAll();
-		long idBuilding= Long.parseLong(buildingId);
-		//List<NewCustomerDTO> installers = customerService.readInstallers();
+		List<CustomerWithIdDTO> installers = customerService.readInstallers();
+		CustomerWithIdDTO customer= new CustomerWithIdDTO();
+		BuildingDTO building= new BuildingDTO();
+		
+		for(int k=0; k< installers.size(); k++) {
+			if(installers.get(k).getUsername().equals(username))
+				customer= installers.get(k);
+		}
 		for (int i = 0; i < buildings.size(); i++) {
-				CustomerWithIdDTO c= customerService.searchCustomer(idBuilding);
-				buildings.get(i).setInstaller(c); //username
-				buildingService.update(buildings.get(i));
+			
+				if(buildings.get(i).getId()==Long.parseLong(buildingId)) {
+					building=buildings.get(i);
+				}
+		}
+				System.out.println("buildingId="+buildingId);
+				System.out.println("username= "+username);
+				building.setInstaller(customer);
+				buildingService.update(building);
 				/*if (buildings.get(i).getInstaller() != null) {
 					buildings.remove(i);
 					i--;
 				}*/
 			
-		}
-		return buildings;
 	}
 
 	/*

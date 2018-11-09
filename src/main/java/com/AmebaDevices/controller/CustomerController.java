@@ -64,8 +64,8 @@ public class CustomerController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/readInstaller", method = RequestMethod.GET)
-	public List<NewCustomerDTO> readInstaller(){
-		List<NewCustomerDTO> customers = customerService.readInstallers();
+	public List<CustomerWithIdDTO> readInstaller(){
+		List<CustomerWithIdDTO> customers = customerService.readInstallers();
 		return customers;
 	}
 	@CrossOrigin
