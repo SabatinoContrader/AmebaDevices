@@ -1,13 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { InstallerService } from "src/services/installer.service";
-import {Installer} from "../../models/Installer";
 
 @Component({
-    selector: 'app-installer',
-    templateUrl: './installer.component.html',
-    styleUrls: ['./installer.component.css']
+    selector: 'app-gestioneInstaller',
+    templateUrl: './gestioneInstaller.component.html',
+    styleUrls: ['./gestioneInstaller.component.css']
   })
-  export class InstallerComponent implements OnInit{
+  export class GestioneInstallerComponent implements OnInit{
     constructor(private installerService: InstallerService ){
       
     }

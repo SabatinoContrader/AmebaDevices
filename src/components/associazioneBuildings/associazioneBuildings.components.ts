@@ -20,10 +20,13 @@ import { BuildingService } from "src/services/building.service";
     ngOnInit(){
         this.installerService.readAll().subscribe(response => {this.installers = response});
         this.buildingService.findAll().subscribe(response => {this.buildings = response});
+       
     }
     
     associa(f:NgForm){
-   
+      this.installers.forEach(function (value) {
+        console.log(value);
+    });
       this.installerService.associazioneBuildings(f.value.buildingSelected,f.value.installerSelected).subscribe((response) => {
         if (response != null) {
           this.router.navigateByUrl("/installerManager");

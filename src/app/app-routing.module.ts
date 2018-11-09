@@ -24,7 +24,6 @@ import { LegislationsComponent } from '../components/legislations/legislations.c
 import { ManagementSlotComponent } from '../components/management-slot/management-slot.component';
 import { SuperuserComponent} from '../components/superuser/superuser.component';
 import { BuildingTreeComponent } from '../components/building-tree/building-tree.component';
-import { InstallerComponent } from '../components/installer/installer.component';
 import { BuildingTableComponent } from '../components/building-table/building-table.component';
 import { GestioneCustomerComponent} from '../components/gestioneCustomer/gestioneCustomer.component';
 import { InsertCustomerComponent } from '../components/insertCustomer/insertCustomer.component';
@@ -51,6 +50,7 @@ import { ReadinstallerComponent } from '../components/readInstaller/readInstalle
 import { UpdateinstallerComponent } from '../components/updateInstaller/updateInstaller.component';
 import { DeleteinstallerComponent } from '../components/deleteInstaller/deleteInstaller.component';
 import { AssociazioneBuildingsComponent } from '../components/associazioneBuildings/associazioneBuildings.components';
+import { GestioneInstallerComponent } from '../components/gestioneInstaller/gestioneInstaller.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -76,7 +76,6 @@ const routes: Routes = [
   {path: 'intestazione', component: IntestazioneComponent},
   {path: 'managementSlot', component: ManagementSlotComponent},
   {path: 'installer/buildingTree/:buildingId', component: BuildingTreeComponent },
-  {path: 'installer', component: InstallerComponent },
   {path: 'installer/buildings', component: BuildingTableComponent},
   {path: 'gestioneCustomer', component: GestioneCustomerComponent},
   {path: 'insertCustomer', component: InsertCustomerComponent},
@@ -100,7 +99,7 @@ const routes: Routes = [
   {path: 'insertRoom/:floorId', component: InsertRoomComponent},
   {path: 'updateRoom/:floorId', component: UpdateRoomComponent},
   {path: 'deleteRoom/:floorId', component: DeleteRoomComponent},
-  {path: 'installerManager', component:InstallerComponent},
+  {path: 'gestioneInstaller', component:GestioneInstallerComponent},
   {path: 'insertInstaller', component:InsertinstallerComponent},
   {path: 'readInstaller', component:ReadinstallerComponent},
   {path: 'updateInstaller', component:UpdateinstallerComponent},

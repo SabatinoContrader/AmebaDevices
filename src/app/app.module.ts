@@ -37,7 +37,6 @@ import { ManagementSlotComponent } from '../components/management-slot/managemen
 import { SlotService } from '../services/slot.service';
 import { SuperuserComponent } from '../components/superuser/superuser.component';
 import { SuperuserService } from '../services/superuser.service';
-import { InstallerComponent } from '../components/installer/installer.component';
 import { BuildingService } from '../services/building.service';
 import { BuildingTableComponent } from '../components/building-table/building-table.component';
 import { BuildingTreeComponent } from '../components/building-tree/building-tree.component';
@@ -65,12 +64,13 @@ import { GestioneFloorComponent } from './../components/gestioneFloor/gestioneFl
 import { InsertRoomComponent } from 'src/components/insertRoom/insertRoom.component';
 import { DeleteRoomComponent } from 'src/components/deleteRoom/deleteRoom.component';
 import { InsertinstallerComponent } from '../components/insertInstaller/insertInstaller.component';
-import { InstallerService } from '../services/installer.service';
 import { ReadinstallerComponent } from '../components/readInstaller/readInstaller.component';
 import { UpdateinstallerComponent } from '../components/updateInstaller/updateInstaller.component';
 import { DeleteCustomerComponent } from '../components/deleteCustomer/deleteCustomer.component';
 import { DeleteinstallerComponent } from '../components/deleteInstaller/deleteInstaller.component';
 import { AssociazioneBuildingsComponent } from '../components/associazioneBuildings/associazioneBuildings.components';
+import { GestioneInstallerComponent } from '../components/gestioneInstaller/gestioneInstaller.component';
+import { InstallerService } from '../services/installer.service';
 
 @NgModule({
   declarations: [
@@ -96,7 +96,6 @@ import { AssociazioneBuildingsComponent } from '../components/associazioneBuildi
     ItemtypemanagerComponent,
     ManagementSlotComponent,
     SuperuserComponent,
-    InstallerComponent,
     BuildingTableComponent,
     BuildingTreeComponent,
     GestioneCustomerComponent,
@@ -120,6 +119,7 @@ import { AssociazioneBuildingsComponent } from '../components/associazioneBuildi
     InsertRoomComponent,
     UpdateRoomComponent,
     DeleteRoomComponent,
+    GestioneInstallerComponent,
     InsertinstallerComponent,
     ReadinstallerComponent,
     UpdateinstallerComponent,
@@ -153,6 +153,7 @@ import { AssociazioneBuildingsComponent } from '../components/associazioneBuildi
     RoomService,
     FloorService, 
     ItemtypeService,
+    InstallerService
   ],
  bootstrap: [AppComponent]
 })
