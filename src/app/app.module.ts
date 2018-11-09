@@ -71,6 +71,7 @@ import { DeleteinstallerComponent } from '../components/deleteInstaller/deleteIn
 import { AssociazioneBuildingsComponent } from '../components/associazioneBuildings/associazioneBuildings.components';
 import { GestioneInstallerComponent } from '../components/gestioneInstaller/gestioneInstaller.component';
 import { InstallerService } from '../services/installer.service';
+import { InstallerComponent } from '../components/installer/installer.component';
 
 @NgModule({
   declarations: [
@@ -125,7 +126,8 @@ import { InstallerService } from '../services/installer.service';
     UpdateinstallerComponent,
     DeleteCustomerComponent,
     DeleteinstallerComponent,
-    AssociazioneBuildingsComponent
+    AssociazioneBuildingsComponent,
+    InstallerComponent
   ],
   imports: [
     BrowserModule,

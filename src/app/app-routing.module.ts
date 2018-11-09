@@ -51,6 +51,7 @@ import { UpdateinstallerComponent } from '../components/updateInstaller/updateIn
 import { DeleteinstallerComponent } from '../components/deleteInstaller/deleteInstaller.component';
 import { AssociazioneBuildingsComponent } from '../components/associazioneBuildings/associazioneBuildings.components';
 import { GestioneInstallerComponent } from '../components/gestioneInstaller/gestioneInstaller.component';
+import { InstallerComponent } from '../components/installer/installer.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -104,7 +105,8 @@ const routes: Routes = [
   {path: 'readInstaller', component:ReadinstallerComponent},
   {path: 'updateInstaller', component:UpdateinstallerComponent},
   {path: 'deleteInstaller', component:DeleteinstallerComponent},
-  {path: 'associazioneBuildings', component:AssociazioneBuildingsComponent}
+  {path: 'associazioneBuildings', component:AssociazioneBuildingsComponent},
+  {path: 'installer', component: InstallerComponent}
 ];
 
 @NgModule({
