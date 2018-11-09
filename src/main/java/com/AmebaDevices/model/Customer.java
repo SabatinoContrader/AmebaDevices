@@ -34,18 +34,17 @@ public class Customer {
 	@Column
 	@NonNull
 	private String nome;
+
 	@Column
-	@NonNull
 	private String cognome;
-	@Column
-	@NonNull
-	private String dataNascita;
+
 	@Column
 	private String email;
+
 	@Column
-	@NotNull
 	@NonNull
 	private String username;
+
 	@Column
 	private String password;
 

@@ -46,6 +46,19 @@ public class CustomerController {
 		return customerDTO;
 
 	}
+	@CrossOrigin
+	@RequestMapping(value = "/manufacturer", method = RequestMethod.POST)
+	public NewCustomerDTO newManufacturer(
+			@RequestParam(value = "userRole") String userRole,
+			@RequestParam(value = "name") String name,
+			@RequestParam(value = "email") String email
+	) {
+		int role=Integer.parseInt(userRole);
+		NewCustomerDTO customerDTO = new NewCustomerDTO(name, "", email, name, "", role);
+		customerDTO = customerService.insertCustomer(customerDTO);
+		return customerDTO;
+
+	}
 
 	// READ -> TESTED
 	@CrossOrigin
@@ -67,6 +80,12 @@ public class CustomerController {
 	public List<CustomerWithIdDTO> readInstaller(){
 		List<CustomerWithIdDTO> customers = customerService.readInstallers();
 		return customers;
+	}
+	@CrossOrigin
+	@RequestMapping(value = "/readManufacturers", method = RequestMethod.GET)
+	public List<CustomerWithIdDTO> readManufacturers(){
+		List<CustomerWithIdDTO> manufacturers = customerService.readManufacturers();
+		return manufacturers;
 	}
 	@CrossOrigin
 	@RequestMapping(value = "/readOne", method = RequestMethod.POST)
