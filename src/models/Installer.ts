@@ -1,9 +1,20 @@
 export class Installer {
+    nome:string
+    cognome:string
+    email:string
+    username:string
+    userRole:number
     constructor(
-        public nome: string,
-        public cognome: string,
-        public email: string,
-        public username: string,
-        public userRole: number
-    ) {}
+         nome: string,
+         cognome: string,
+         email: string,
+         username: string,
+         userRole: number
+    ) {
+        this.nome=nome;
+        this.cognome=cognome;
+        this.email=email;
+        this.username=username;
+        this.userRole=userRole;
+    }
 }

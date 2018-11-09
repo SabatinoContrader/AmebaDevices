@@ -8,7 +8,7 @@ export class Building {
         public city: string,
         public cap: string,
         public interno: number,
-        owner: Owner,
-        installer: Installer
+        public owner: Owner,
+        public installer: Installer
     ) {}
 }

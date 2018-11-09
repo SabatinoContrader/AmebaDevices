@@ -1,3 +1,5 @@
+import { UpdateRoomComponent } from './../components/updateRoom/updateRoom.component';
+import { GestioneRoomComponent } from './../components/gestioneRoom/gestioneRoom.component';
 import { IntestazioneComponent } from '../components/intestazione/intestazione.component';
 import { LoginComponent } from "../components/login/login.component";
 import { HomeDriverComponent } from "../components/home-driver/home-driver.component";
@@ -40,6 +42,35 @@ import { BuildingService } from '../services/building.service';
 import { BuildingTableComponent } from '../components/building-table/building-table.component';
 import { BuildingTreeComponent } from '../components/building-tree/building-tree.component';
 import { BuildingTreeService } from '../services/buildingTree.service';
+import { GestioneCustomerComponent} from '../components/gestioneCustomer/gestioneCustomer.component';
+import { InsertCustomerComponent } from '../components/insertCustomer/insertCustomer.component';
+import { GestioneBuildingComponent } from '../components/gestioneBuilding/gestioneBuilding.component';
+import { InsertBuildingComponent } from '../components/insertBuilding/insertBuilding.component';
+import { RoomService } from '../services/room.service';
+import {ItemtypeService} from '../services/itemtype.service';
+import { ItemtypemanagerComponent } from '../components/itemtype/itemtype.component';
+import { InsertitemtypeComponent } from '../components/insertItemType/insertItemType.component';
+import { UpdateitemtypeComponent } from '../components/updateitemType/updateitemType.component';
+import { DeleteitemtypeComponent } from '../components/deleteitemType/deleteitemType.component';
+import { ReaditemtypeComponent } from '../components/readitemType/readitemType.component';
+import { ReadCustomerComponent } from '../components/readCustomer/readCustomer.component';
+import { UpdateCustomerComponent } from '../components/updateCustomer/updateCustomer.component';
+import { UpdateBuildingComponent } from '../components/updateBuilding/updateBuilding.component';
+import { DeleteBuildingComponent } from '../components/deleteBuilding/deleteBuilding.component';
+import { FloorService } from '../services/floor.service';
+import { DeleteFloorComponent } from 'src/components/deleteFloor/deleteFloor.component';
+import { UpdateFloorComponent } from 'src/components/updateFloor/updateFloor.component';
+import { InsertFloorComponent } from './../components/insertFloor/insertFloor.component';
+import { GestioneFloorComponent } from './../components/gestioneFloor/gestioneFloor.component';
+import { InsertRoomComponent } from 'src/components/insertRoom/insertRoom.component';
+import { DeleteRoomComponent } from 'src/components/deleteRoom/deleteRoom.component';
+import { InsertinstallerComponent } from '../components/insertInstaller/insertInstaller.component';
+import { InstallerService } from '../services/installer.service';
+import { ReadinstallerComponent } from '../components/readInstaller/readInstaller.component';
+import { UpdateinstallerComponent } from '../components/updateInstaller/updateInstaller.component';
+import { DeleteCustomerComponent } from '../components/deleteCustomer/deleteCustomer.component';
+import { DeleteinstallerComponent } from '../components/deleteInstaller/deleteInstaller.component';
+import { AssociazioneBuildingsComponent } from '../components/associazioneBuildings/associazioneBuildings.components';
 
 @NgModule({
   declarations: [
@@ -62,11 +93,39 @@ import { BuildingTreeService } from '../services/buildingTree.service';
     LegislationsComponent,
     UsefulNumbersComponent,
     IntestazioneComponent,
+    ItemtypemanagerComponent,
     ManagementSlotComponent,
     SuperuserComponent,
     InstallerComponent,
     BuildingTableComponent,
-    BuildingTreeComponent
+    BuildingTreeComponent,
+    GestioneCustomerComponent,
+    InsertCustomerComponent,
+    GestioneBuildingComponent,
+    InsertBuildingComponent,
+    InsertitemtypeComponent,
+    UpdateitemtypeComponent,
+    DeleteitemtypeComponent,
+    ReaditemtypeComponent,
+    ReadCustomerComponent, 
+    UpdateCustomerComponent,
+    DeleteCustomerComponent,
+    UpdateBuildingComponent,
+    DeleteBuildingComponent,
+    GestioneFloorComponent,
+    InsertFloorComponent,
+    UpdateFloorComponent,
+    DeleteFloorComponent,
+    GestioneRoomComponent,
+    InsertRoomComponent,
+    UpdateRoomComponent,
+    DeleteRoomComponent,
+    InsertinstallerComponent,
+    ReadinstallerComponent,
+    UpdateinstallerComponent,
+    DeleteCustomerComponent,
+    DeleteinstallerComponent,
+    AssociazioneBuildingsComponent
   ],
   imports: [
     BrowserModule,
@@ -90,9 +149,12 @@ import { BuildingTreeService } from '../services/buildingTree.service';
     GoogleMapService, 
     SlotService,
     BuildingService,
-    BuildingTreeService
+    BuildingTreeService,
+    RoomService,
+    FloorService, 
+    ItemtypeService,
   ],
-  bootstrap: [AppComponent]
+ bootstrap: [AppComponent]
 })
 
 export class AppModule { }
