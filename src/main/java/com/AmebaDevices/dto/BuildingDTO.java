@@ -1,6 +1,5 @@
 package com.AmebaDevices.dto;
 
-
 public class BuildingDTO {
 
 	private long id;

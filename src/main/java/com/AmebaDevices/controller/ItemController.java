@@ -1,6 +1,5 @@
 package com.AmebaDevices.controller;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.AmebaDevices.converter.ItemConverter;
+import com.AmebaDevices.dto.BasicItemDTO;
 import com.AmebaDevices.dto.BuildingDTO;
 import com.AmebaDevices.dto.FloorDTO;
 import com.AmebaDevices.dto.ItemDTO;
@@ -36,88 +37,115 @@ import com.AmebaDevices.utils.GestoreEccezioni;
 
 @RestController
 @RequestMapping("/Item")
-public class ItemController  {
+@CrossOrigin
+public class ItemController {
+
 	private ItemService itemService;
 	private RoomService roomService;
 	private ItemTypeService itemTypeService;
 	private ThingService thingService;
 
 	@Autowired
-	public ItemController(ItemService itemService, RoomService roomService, ItemTypeService itemTypeService, ThingService thingService) {
-		this.itemService =itemService; 
-		this.roomService=roomService;
-		this.itemTypeService=itemTypeService;
+	public ItemController(ItemService itemService, RoomService roomService, ItemTypeService itemTypeService,
+			ThingService thingService) {
+		this.itemService = itemService;
+		this.roomService = roomService;
+		this.itemTypeService = itemTypeService;
 		this.thingService = thingService;
 	}
-	
-	// INSERT
-		@RequestMapping(value = "/new", method = RequestMethod.POST)
-		public ItemDTO newItem(
-				@RequestParam(value = "roomId") long roomId,
-				@RequestParam(value = "itemTypeId") long itemTypeId,
-				@RequestParam(value = "thingId") long thingId,
-				@RequestParam(value = "consumoEnergetico", required = false) String consumo,
-				@RequestParam(value = "seriale", required = false) String seriale) {
-			ItemDTO idto = new ItemDTO();
-			RoomDTO room = roomService.findByPrimaryKey(roomId);
-			ItemTypeDTO itemType = itemTypeService.findByPrimaryKey(itemTypeId);
-			ThingDTO thing = thingService.searchThing(thingId);
-			if (room != null) idto.setRoom(room);
-			if (itemType != null ) idto.setItemType(itemType);
-			if (thing != null ) idto.setThing(thing);
-			if (consumo != null) idto.setConsumoEnergetico(consumo);
-			if (seriale != null) idto.setSeriale(seriale);
-			
-			idto = itemService.insertItem(idto);
-			return idto;
 
+	// INSERT
+	@RequestMapping(value = "/new", method = RequestMethod.POST)
+	@CrossOrigin
+	public ItemDTO newItem(@RequestParam(value = "roomId") long roomId,
+			@RequestParam(value = "itemTypeId") long itemTypeId,
+			@RequestParam(value = "thingId", required = false) Long thingId,
+			@RequestParam(value = "consumoEnergetico", required = false) String consumo,
+			@RequestParam(value = "seriale", required = false) String seriale) {
+		ItemDTO idto = new ItemDTO();
+		RoomDTO room = roomService.findByPrimaryKey(roomId);
+		ThingDTO thing = null;
+		if (thingId != null) {
+			thing = thingService.searchThing(thingId);
 		}
-		
+		ItemTypeDTO itemType = itemTypeService.findByPrimaryKey(itemTypeId);
+		if (room != null)
+			idto.setRoom(room);
+		if (itemType != null)
+			idto.setItemType(itemType);
+		if (thing != null)
+			idto.setThing(thing);
+		if (consumo != null)
+			idto.setConsumoEnergetico(consumo);
+		if (seriale != null)
+			idto.setSeriale(seriale);
+
+		idto = itemService.insertItem(idto);
+		return idto;
+
+	}
+
 	// READ
-		@RequestMapping (value ="", method = RequestMethod.GET)
-		public ItemDTO getOne(@RequestParam(value="itemId") long itemId) {
-			return itemService.searchItem(itemId);
-		}
-		
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	@CrossOrigin
+	public ItemDTO getOne(@RequestParam(value = "itemId") long itemId) {
+		return itemService.searchItem(itemId);
+	}
+
 	// UPDATE
-		@RequestMapping (value="/edit", method= RequestMethod.POST)
-		public ItemDTO updateItem (
-				@RequestParam(value = "roomId", required = false) long roomId,
-				@RequestParam(value = "itemTypeId", required = false) long itemTypeId,
-				@RequestParam(value = "thingId", required = false) long thingId,
-				@RequestParam(value = "consumoEnergetico", required = false) String consumo,
-				@RequestParam(value = "seriale", required = false) String seriale,
-				@RequestParam(value="itemId") long itemId){
-			ItemDTO myItem = itemService.searchItem(itemId);
-			ItemTypeDTO itemType = itemTypeService.searchItemType(itemTypeId);
-			RoomDTO room = roomService.findByPrimaryKey(roomId);
-			ThingDTO thing = thingService.searchThing(thingId);
-			if (itemType != null) {
-				myItem.setItemType(itemType);
-			}
-			if (room != null ) {
-				myItem.setRoom(room);
-			}
-			if (thing != null ) {
-				myItem.setThing(thing);
-			}
-			if (consumo != null) {
-				myItem.setConsumoEnergetico(consumo);
-			}
-			if (seriale!= null) {
-				myItem.setSeriale(seriale);
-			}
-			
-			return itemService.updateItem(myItem);
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	@CrossOrigin
+	public ItemDTO updateItem(@RequestParam(value = "roomId", required = false) long roomId,
+			@RequestParam(value = "itemTypeId", required = false) long itemTypeId,
+			@RequestParam(value = "thingId", required = false) long thingId,
+			@RequestParam(value = "consumoEnergetico", required = false) String consumo,
+			@RequestParam(value = "seriale", required = false) String seriale,
+			@RequestParam(value = "itemId") long itemId) {
+		ItemDTO myItem = itemService.searchItem(itemId);
+		ItemTypeDTO itemType = itemTypeService.searchItemType(itemTypeId);
+		RoomDTO room = roomService.findByPrimaryKey(roomId);
+		ThingDTO thing = thingService.searchThing(thingId);
+		if (itemType != null) {
+			myItem.setItemType(itemType);
 		}
-	
+		if (room != null) {
+			myItem.setRoom(room);
+		}
+		if (thing != null) {
+			myItem.setThing(thing);
+		}
+		if (consumo != null) {
+			myItem.setConsumoEnergetico(consumo);
+		}
+		if (seriale != null) {
+			myItem.setSeriale(seriale);
+		}
+
+		return itemService.updateItem(myItem);
+	}
 
 	// DELETE
-		@RequestMapping (value = "delete", method = RequestMethod.GET)
-		public boolean delete (@RequestParam(value="itemId") long itemId) {
-			return itemService.deleteItem(itemId);
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@CrossOrigin
+	public boolean delete(@RequestParam(value = "itemId") long itemId) {
+		System.err.println("deleting " + itemId);
+		return itemService.deleteItem(itemId);
+	}
+
+	@RequestMapping(value = "byRoom", method = RequestMethod.GET)
+	@CrossOrigin
+	public List<BasicItemDTO> findByRoom(@RequestParam(value = "roomId") long roomId) {
+
+		List<ItemDTO> items = itemService.getAllByRoom(roomService.findByPrimaryKey(roomId));
+		List<BasicItemDTO> baseItems = new ArrayList<>();
+
+		for (int i = 0; i < items.size(); i++) {
+			baseItems.add(new BasicItemDTO(items.get(i).getId(), items.get(i).getRoom(), items.get(i).getItemType()));
 		}
-	
+
+		return baseItems;
+	}
+
 //		
 //		
 //	@RequestMapping(value = "insertForm", method = RequestMethod.GET)
