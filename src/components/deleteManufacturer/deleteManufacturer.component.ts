@@ -5,17 +5,19 @@ import { NewCustomer } from "src/models/NewCustomer";
 import { NgForm } from "@angular/forms";
 
 @Component({
-    selector: 'app-deleteCustomer',
-    templateUrl: './deleteCustomer.component.html',
-    styleUrls: ['./deleteCustomer.component.css']
+    selector: 'app-deleteManufacture',
+    templateUrl: './deleteManufacturer.component.html',
+    styleUrls: ['./deleteManufacturer.component.css']
 })
-export class DeleteCustomerComponent implements OnInit{
-    public customers: Array<NewCustomer>;
+export class DeleteManufacturerComponent implements OnInit{
+    public manufacturers: Array<NewCustomer>;
     constructor(private customerService: CustomerService, private router: Router){}
     ngOnInit(){ 
-        this.customerService.readAll().subscribe((response) => {
-        this.customers = response;
+        console.log("sono qua!");
+        this.customerService.readAllManufacturers().subscribe((response) => {
+        this.manufacturers = response;
     });
+    
 }
     delete(f:NgForm){
         this.customerService.delete(f.value.usernameSelected).subscribe((response)=>{

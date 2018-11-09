@@ -34,8 +34,20 @@ export class CustomerService{
         return this.http.post<NewCustomer>('http://localhost:8080/Customer/new', params); 
   
     }
+    newManufacturer(userRole:string, name:string, 
+        email:string): Observable<NewCustomer>{
+        
+          const params = new HttpParams().set('userRole', userRole).
+           set('name', name).set('email', email);
+        
+        return this.http.post<NewCustomer>('http://localhost:8080/Customer/manufacturer', params); 
+  
+    }
     readAll():Observable<Array<NewCustomer>>{
         return this.http.get<Array<NewCustomer>>('http://localhost:8080/Customer/read');
+    }
+    readAllManufacturers():Observable<Array<NewCustomer>>{
+        return this.http.get<Array<NewCustomer>>('http://localhost:8080/Customer/readManufacturers');
     }
     readOne(customerId:string): Observable<Customer>{
         return this.http.get<Customer>('http://localhost:8080/Customer?customerId='+customerId);

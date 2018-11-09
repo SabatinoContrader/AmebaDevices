@@ -7,21 +7,8 @@ import { CustomerService } from "src/services/customer.service";
     styleUrls: ['./gestioneCustomer.component.css']
   })
   export class GestioneCustomerComponent implements OnInit{
-    constructor(private customerService: CustomerService ){}
-    ngOnInit(){
-      console.log("sono qua!");
-    }
-    goToInsert(){
-      console.log("sono in insert!");
-    }
-    goToRead(){
-      console.log("leggo");
-    }
-    goToUpdate(){
-      console.log("updato");
-    }
-    goToDelete(){
-      console.log("delitto");
-    }
+    constructor(){}
+    ngOnInit(){ }
+   
   }
   

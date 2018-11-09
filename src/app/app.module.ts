@@ -74,6 +74,11 @@ import { InstallerService } from '../services/installer.service';
 import { InstallerComponent } from '../components/installer/installer.component';
 import { CollegaItemRoom } from 'src/components/collegaItemRoom/collegaItemRoom.component';
 import { ItemService } from 'src/services/item.service';
+import { GestioneManufacturerComponent } from '../components/gestioneManufacturer/gestioneManufacturer.component';
+import { InsertManufacturerComponent } from '../components/insertManufacturer/insertManufacturer.component';
+import { ReadManufacturerComponent } from '../components/readManufacturer/readManufacturer.component';
+import { DeleteManufacturerComponent } from '../components/deleteManufacturer/deleteManufacturer.component';
+
 
 @NgModule({
   declarations: [
@@ -130,7 +135,11 @@ import { ItemService } from 'src/services/item.service';
     DeleteinstallerComponent,
     AssociazioneBuildingsComponent,
     InstallerComponent,
-    CollegaItemRoom
+    CollegaItemRoom,
+    GestioneManufacturerComponent,
+    InsertManufacturerComponent,
+    ReadManufacturerComponent,
+    DeleteManufacturerComponent
   ],
   imports: [
     BrowserModule,

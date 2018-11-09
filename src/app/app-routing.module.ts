@@ -53,6 +53,10 @@ import { DeleteinstallerComponent } from '../components/deleteInstaller/deleteIn
 import { AssociazioneBuildingsComponent } from '../components/associazioneBuildings/associazioneBuildings.components';
 import { GestioneInstallerComponent } from '../components/gestioneInstaller/gestioneInstaller.component';
 import { InstallerComponent } from '../components/installer/installer.component';
+import { GestioneManufacturerComponent } from '../components/gestioneManufacturer/gestioneManufacturer.component';
+import { InsertManufacturerComponent } from '../components/insertManufacturer/insertManufacturer.component';
+import { ReadManufacturerComponent } from '../components/readManufacturer/readManufacturer.component';
+import { DeleteManufacturerComponent } from '../components/deleteManufacturer/deleteManufacturer.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -108,10 +112,11 @@ const routes: Routes = [
   {path: 'deleteInstaller', component:DeleteinstallerComponent},
   {path: 'associazioneBuildings', component:AssociazioneBuildingsComponent},
   {path: 'installer', component: InstallerComponent},
-  {path: 'configurazioneRoom/:roomId', component: CollegaItemRoom}
-
-
-
+  {path: 'configurazioneRoom/:roomId', component: CollegaItemRoom},
+  {path: 'gestioneManufacturer', component: GestioneManufacturerComponent},
+  {path: 'insertManufacturer', component: InsertManufacturerComponent},
+  {path: 'readManufacturer', component: ReadManufacturerComponent},
+  {path: 'deleteManufacturer', component: DeleteManufacturerComponent}
 ];
 
 @NgModule({
