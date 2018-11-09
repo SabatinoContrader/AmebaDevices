@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { Room } from 'src/models/Room';
+import { Floor } from 'src/models/Floor';
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +11,6 @@ import { Room } from 'src/models/Room';
 
 export class RoomService {
    
-    
     baseUrl = 'http://localhost:8080/';
 
     roomsByFloor(floorId: string): Observable<Array<Room>> {
@@ -47,5 +47,16 @@ export class RoomService {
         console.log(url);
         return <Observable<boolean>> this.http.get<boolean>(url);
     }
+
+    findById(roomId: string): Observable<Room> {
+       let url : string = this.baseUrl + 'Room/one?roomId='+roomId;
+       return <Observable<Room>> this.http.get(url);
+    }
+
+    myFloor(roomId: string): Observable<Floor> {
+        let url : string = this.baseUrl + 'Room/myFloor?roomId='+roomId;
+       return <Observable<Floor>> this.http.get(url);
+    }
+    
 
 }

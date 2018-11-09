@@ -7,7 +7,7 @@
         <tr><th>Id: </th>
         <th>Nome: </th>
         <th>Descrizione: </th>
-        <tr *ngFor="let room of rooms">
+        <tr *ngFor="let room of rooms" (click) = 'toRoomConfigurator(room.id)'>
         <td>{{room.id}}</td>
         <td>{{room.nomeRoom}}</td>
         <td>{{room.descrizione}}</td>

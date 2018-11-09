@@ -72,6 +72,8 @@ import { AssociazioneBuildingsComponent } from '../components/associazioneBuildi
 import { GestioneInstallerComponent } from '../components/gestioneInstaller/gestioneInstaller.component';
 import { InstallerService } from '../services/installer.service';
 import { InstallerComponent } from '../components/installer/installer.component';
+import { CollegaItemRoom } from 'src/components/collegaItemRoom/collegaItemRoom.component';
+import { ItemService } from 'src/services/item.service';
 
 @NgModule({
   declarations: [
@@ -127,7 +129,8 @@ import { InstallerComponent } from '../components/installer/installer.component'
     DeleteCustomerComponent,
     DeleteinstallerComponent,
     AssociazioneBuildingsComponent,
-    InstallerComponent
+    InstallerComponent,
+    CollegaItemRoom
   ],
   imports: [
     BrowserModule,
@@ -155,9 +158,22 @@ import { InstallerComponent } from '../components/installer/installer.component'
     RoomService,
     FloorService, 
     ItemtypeService,
-    InstallerService
+    InstallerService,
+    UserService,
+    CustomerService,
+    RoomService,
+    FloorService, 
+    ItemService, 
+    ItemtypeService, 
+    BuildingService, 
+    SuperuserService, 
+    ReportService, 
+    CarService, 
+    PaymentService, 
+    GoogleMapService, 
+    SlotService
   ],
- bootstrap: [AppComponent]
+  bootstrap: [AppComponent]
 })
 
 export class AppModule { }

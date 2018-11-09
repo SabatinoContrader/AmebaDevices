@@ -11,7 +11,7 @@ import { Building } from '../models/Building';
     providedIn: 'root'
 })
 export class BuildingService {
-    baseUrl: string = "http://localhost:8080/";
+    baseUrl = 'http://localhost:8080/';
     
     constructor(private http: HttpClient) {}
 

@@ -1,3 +1,4 @@
+import { CollegaItemRoom } from 'src/components/collegaItemRoom/collegaItemRoom.component';
 import { DeleteRoomComponent } from './../components/deleteRoom/deleteRoom.component';
 import { UpdateRoomComponent } from './../components/updateRoom/updateRoom.component';
 import { IntestazioneComponent } from '../components/intestazione/intestazione.component';
@@ -106,7 +107,11 @@ const routes: Routes = [
   {path: 'updateInstaller', component:UpdateinstallerComponent},
   {path: 'deleteInstaller', component:DeleteinstallerComponent},
   {path: 'associazioneBuildings', component:AssociazioneBuildingsComponent},
-  {path: 'installer', component: InstallerComponent}
+  {path: 'installer', component: InstallerComponent},
+  {path: 'configurazioneRoom/:roomId', component: CollegaItemRoom}
+
+
+
 ];
 
 @NgModule({

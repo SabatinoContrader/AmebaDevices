@@ -39,5 +39,9 @@ export class GestioneRoomComponent implements OnInit{
         this.router.navigateByUrl("/deleteRoom/"+floorId);
     }
 
+    toRoomConfigurator(roomId: string){
+        this.router.navigateByUrl("/configurazioneRoom/"+roomId);
+    }
+
 
 }
