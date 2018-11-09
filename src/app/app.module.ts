@@ -6,7 +6,7 @@ import { HomeDriverComponent } from "../components/home-driver/home-driver.compo
 import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { TreeModule } from 'primeng/primeng';
-import {DragDropModule} from 'primeng/dragdrop';
+import { DragDropModule} from 'primeng/dragdrop';
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { UserService } from "../services/user.service";
@@ -78,7 +78,9 @@ import { GestioneManufacturerComponent } from '../components/gestioneManufacture
 import { InsertManufacturerComponent } from '../components/insertManufacturer/insertManufacturer.component';
 import { ReadManufacturerComponent } from '../components/readManufacturer/readManufacturer.component';
 import { DeleteManufacturerComponent } from '../components/deleteManufacturer/deleteManufacturer.component';
-
+import { GestioneListinoComponent } from '../components/gestioneListino/gestioneListino.component';
+import { ListinoService } from 'src/services/listino.service';
+import { InsertListinoComponent } from '../components/insertListino/insertListino.component';
 
 @NgModule({
   declarations: [
@@ -139,7 +141,9 @@ import { DeleteManufacturerComponent } from '../components/deleteManufacturer/de
     GestioneManufacturerComponent,
     InsertManufacturerComponent,
     ReadManufacturerComponent,
-    DeleteManufacturerComponent
+    DeleteManufacturerComponent,
+    GestioneListinoComponent,
+    InsertListinoComponent
   ],
   imports: [
     BrowserModule,
@@ -180,7 +184,8 @@ import { DeleteManufacturerComponent } from '../components/deleteManufacturer/de
     CarService, 
     PaymentService, 
     GoogleMapService, 
-    SlotService
+    SlotService,
+    ListinoService
   ],
   bootstrap: [AppComponent]
 })
