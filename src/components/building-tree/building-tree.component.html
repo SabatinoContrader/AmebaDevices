@@ -5,7 +5,8 @@
       layout="horizontal" 
       selectionMode="single" 
       pDraggable="dd"
-      (onNodeSelect)="nodeSelect($event)">
+      (onNodeSelect)="nodeSelect($event)"
+      [(selection)]="selectedFile3">
     </p-tree>
   </div>
   <div class="col-xs-4">

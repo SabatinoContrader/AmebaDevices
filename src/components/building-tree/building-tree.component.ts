@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BuildingTreeService } from '../../services/buildingTree.service';
 import { BuildingTree } from 'src/models/BuildingTree';
 import { TreeNode } from 'primeng/primeng';
+import { Floor } from '../../models/Floor';
 
 @Component({
   selector: 'app-building-tree',
@@ -15,7 +16,9 @@ export class BuildingTreeComponent implements OnInit {
   things: any[];
   selectedNode: any = null;
   itemsByThing: any;
+  addedItemsToTings: any[] = [];
   droppableAdded: boolean = false;
+  thingsFromServer: any[];
   nodeCommonProp = {
     expandedIcon: "fa fa-folder-open",
     collapsedIcon:"fa fa-folder",
@@ -35,7 +38,8 @@ export class BuildingTreeComponent implements OnInit {
 
   drop(event) {
     let thing = event.srcElement.innerText;
-    this.addItemToThing(thing, this.selectedNode);
+    this.addedItemsToTings.push({ thing, name: this.selectedNode });
+    this.buildThingsTree();
   }
 
   nodeSelect(event) {
@@ -60,32 +64,36 @@ export class BuildingTreeComponent implements OnInit {
   getBuildingTree() {
     const buildingId: number = +this.route.snapshot.paramMap.get('buildingId');
     this.BuildingTreeService.getBuildingTree(buildingId)
-      .subscribe(response => this.buildTree(response));
+      .subscribe(response => this.buildAllTree(response));
   }
 
-  buildTree(treeJson: BuildingTree) {
+  buildAllTree(treeJson: BuildingTree) {
     let {treeFloor, things} = treeJson;
+    this.thingsFromServer = things;
 
+    this.buildBuildingTree(treeJson.name, treeFloor);
+    this.buildThingsTree();
+  }
+
+  buildBuildingTree(buildingName: string, floors: Floor[]) {
     this.tree.push({
-      label: treeJson.name,
-      children: this.buildingNode(treeFloor),
+      label: buildingName,
+      children: this.buildingNode(floors),
       ...this.nodeCommonProp
     });
-
-    this.buildThingsTree(things);
   }
 
-  addItemToThing(thing: any, item: any) {
-    this.things = this.things.reduce((acc, thing) => {
-      console.log('ciao');
-      console.log(thing);
-    }, []);
-  }
+  buildThingsTree() {
+    this.things = this.thingsFromServer.reduce((acc, thing) => {
+      let nodeToAdd = this.addedItemsToTings.filter(relation => thing.numUscite = relation.thing);
+      let node: TreeNode = {
+        label: thing.numUscite.toString(),
+        ...this.nodeCommonProp
+      };
 
-  buildThingsTree(things: any[]) {
-    this.things = things.reduce((acc, thing) => {
-      let node: TreeNode = {label: thing.numUscite.toString()};
+      node.children = this.buildingNode(nodeToAdd);
       acc.push([node]);
+
       return acc;
     }, []);
   }
@@ -103,6 +111,7 @@ export class BuildingTreeComponent implements OnInit {
         node.children = this.buildingNode(children);
       }
       acc.push(node);
+
       return acc;
     }, <TreeNode[]>[])
   }
