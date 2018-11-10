@@ -12,13 +12,15 @@ import { Floor } from '../../models/Floor';
 })
 export class BuildingTreeComponent implements OnInit {
 
-  tree: TreeNode[] = [];
+  tree: TreeNode[];
   things: any[];
   selectedNode: any = null;
   itemsByThing: any;
   addedItemsToTings: any[] = [];
   droppableAdded: boolean = false;
   thingsFromServer: any[];
+  buildingName: string;
+  floors: Floor[];
   nodeCommonProp = {
     expandedIcon: "fa fa-folder-open",
     collapsedIcon:"fa fa-folder",
@@ -36,22 +38,25 @@ export class BuildingTreeComponent implements OnInit {
     this.getBuildingTree();
   }
 
-  drop(event) {
+  drop(event, id) {
     let thing = event.srcElement.innerText;
-    this.addedItemsToTings.push({ thing, name: this.selectedNode });
+    this.addedItemsToTings.push({ 
+      thing, 
+      name: this.selectedNode,
+      id 
+    });
+
     this.buildThingsTree();
+    this.buildBuildingTree();
   }
 
   nodeSelect(event) {
-    this.selectedNode = event.node.type = 'item' ? event.node.label : null;
+    this.selectedNode = event.node.type == 'item' ? event.node.label : null;
   }
 
   ngAfterViewChecked() {
     let nodes: any[] = this.elRef.nativeElement.querySelectorAll('.ui-treenode-content');
-
-    if(nodes.length > 0 && !this.droppableAdded) {
-      this.addDraggableToEachNode(nodes);
-    }
+    this.addDraggableToEachNode(nodes);
   }
 
   addDraggableToEachNode(nodes: any[]) {
@@ -70,30 +75,36 @@ export class BuildingTreeComponent implements OnInit {
   buildAllTree(treeJson: BuildingTree) {
     let {treeFloor, things} = treeJson;
     this.thingsFromServer = things;
+    this.buildingName = treeJson.name;
+    this.floors = treeFloor;
 
-    this.buildBuildingTree(treeJson.name, treeFloor);
+    this.buildBuildingTree();
     this.buildThingsTree();
   }
 
-  buildBuildingTree(buildingName: string, floors: Floor[]) {
+  buildBuildingTree() {
+    this.tree = [];
     this.tree.push({
-      label: buildingName,
-      children: this.buildingNode(floors),
+      label: this.buildingName,
+      children: this.buildingNode(this.floors),
       ...this.nodeCommonProp
     });
   }
 
   buildThingsTree() {
     this.things = this.thingsFromServer.reduce((acc, thing) => {
-      let nodeToAdd = this.addedItemsToTings.filter(relation => thing.numUscite = relation.thing);
+      let nodeToAdd = this.addedItemsToTings.filter(relation => thing.id == relation.id);
       let node: TreeNode = {
         label: thing.numUscite.toString(),
+        data: thing.id.toString(),
         ...this.nodeCommonProp
       };
 
-      node.children = this.buildingNode(nodeToAdd);
-      acc.push([node]);
+      if(nodeToAdd) {
+        node.children = this.buildingNode(nodeToAdd);
+      }
 
+      acc.push([node]);
       return acc;
     }, []);
   }
@@ -101,17 +112,22 @@ export class BuildingTreeComponent implements OnInit {
   buildingNode(items: any[]): TreeNode[] {
     return items.reduce((acc, item) => {
       let {name = null, children = null, type = null} = item;
-      let node: TreeNode = {
-        label: name,
-        type: type ? type : 'father',
-        ...this.nodeCommonProp
-      };
+      let isItemNodeAddedToThing = type == 'item' && 
+                                   this.addedItemsToTings.filter(relation => name === relation.name).length > 0;
 
-      if (children) {
-        node.children = this.buildingNode(children);
+      if(!isItemNodeAddedToThing) {
+        let node: TreeNode = {
+          label: name,
+          type: type ? type : 'father',
+          ...this.nodeCommonProp
+        };
+  
+        if (children) {
+          node.children = this.buildingNode(children);
+        }
+        acc.push(node);
       }
-      acc.push(node);
-
+  
       return acc;
     }, <TreeNode[]>[])
   }

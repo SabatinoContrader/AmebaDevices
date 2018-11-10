@@ -10,8 +10,9 @@
     </p-tree>
   </div>
   <div class="col-xs-4">
-    <div class="col-xs-4" pDroppable="dd" *ngFor="let thing of things" (onDrop)="drop($event)" >
+    <div id="{{thing.data}}" class="col-xs-4" pDroppable="dd" *ngFor="let thing of things" (onDrop)="drop($event, thing[0].data)" >
         <p-tree 
+          id="{{thing[0].data}}"
           [value]=thing
           layout="horizontal" 
           selectionMode="single"
