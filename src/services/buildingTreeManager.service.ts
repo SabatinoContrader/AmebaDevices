@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BuildingTree } from '../models/BuildingTree';
 import { TreeNode } from 'primeng/primeng';
 import { Floor } from '../models/Floor';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable()
 export class BuildingTreeManagerService {
@@ -11,6 +12,7 @@ export class BuildingTreeManagerService {
     buildingName: string;
     addedItemsToTings: any[] = [];
     itemsByThingCounter: any[] = [];
+    itemCount: number = 0;
     nodeCommonProp = {
         expandedIcon: "fa fa-folder-open",
         collapsedIcon:"fa fa-folder",
@@ -19,10 +21,10 @@ export class BuildingTreeManagerService {
       };
 
     setTreeFromServer(tree: BuildingTree) {
-        this.things = tree.things;
-        this.buildingName = tree.name;
-        this.floors = tree.treeFloor;
-        this.setItemsByThingCounter();
+      this.things = tree.things;
+      this.buildingName = tree.name;
+      this.floors = tree.treeFloor;
+      this.setItemsByThingCounter();
     }
 
     setItemsByThingCounter() {
@@ -34,14 +36,16 @@ export class BuildingTreeManagerService {
     }
 
     buildBuildingTree(): TreeNode[] {
-        let buildingTree: TreeNode[] = [];
-        buildingTree.push({
-            label: this.buildingName,
-            children: this.buildingNode(this.floors),
-            ...this.nodeCommonProp
-        });
+      let buildingTree: TreeNode[] = [];
+      this.itemCount = 0;
 
-        return buildingTree;
+      buildingTree.push({
+        label: this.buildingName,
+        children: this.buildingNode(this.floors),
+        ...this.nodeCommonProp
+      });
+
+      return buildingTree;
     }
 
     setAddedItemToThings(thing, name, id) {
@@ -54,45 +58,54 @@ export class BuildingTreeManagerService {
     }
 
     buildThingsTree() {
-        let thingsTree = this.things.reduce((acc, thing) => {
-            let nodeToAdd = this.addedItemsToTings.filter(relation => thing.id == relation.id);
-            let node: TreeNode = {
-              label: thing.numUscite.toString(),
-              data: thing.id.toString(),
-              ...this.nodeCommonProp
-            };
+      let thingsTree = this.things.reduce((acc, thing) => {
+        let nodeToAdd = this.addedItemsToTings.filter(relation => thing.id == relation.id);
+        let node: TreeNode = {
+          label: thing.numUscite.toString(),
+          data: thing.id.toString(),
+          ...this.nodeCommonProp
+        };
+        
+        if(nodeToAdd) {
+          node.children = this.buildingNode(nodeToAdd);
+        }
+        
+        acc.push([node]);
+        return acc;
+      }, []);
       
-            if(nodeToAdd) {
-              node.children = this.buildingNode(nodeToAdd);
-            }
-      
-            acc.push([node]);
-            return acc;
-          }, []);
-
-          return thingsTree;
+      return thingsTree;
     }
     
     buildingNode(items: any[]): TreeNode[] {
-        return items.reduce((acc, item) => {
-          let {name = null, children = null, type = null} = item;
-          let isItemNodeAddedToThing = type == 'item' && 
-                                       this.addedItemsToTings.filter(relation => name === relation.name).length > 0;
+      return items.reduce((acc, item) => {
+        let {name = null, children = null, type = null} = item;
+        let isItemNodeAddedToThing = type == 'item' && 
+                                     this.addedItemsToTings.filter(relation => name === relation.name).length > 0;
     
-          if(!isItemNodeAddedToThing) {
-            let node: TreeNode = {
-              label: name,
-              type: type ? type : 'father',
-              ...this.nodeCommonProp
-            };
+        if(!isItemNodeAddedToThing) {
+          let node: TreeNode = {
+            label: name,
+            type: type ? type : 'father',
+            ...this.nodeCommonProp
+          };
       
-            if (children) {
-              node.children = this.buildingNode(children);
-            }
-            acc.push(node);
+          if (children) {
+            node.children = this.buildingNode(children);
           }
-      
-          return acc;
-        }, <TreeNode[]>[])
-      }
+          acc.push(node);
+        }
+
+        if(type === 'item') {
+          this.itemCount++;
+        }
+        
+        return acc;
+      }, <TreeNode[]>[])
+    }
+
+    allThingsExitsAreFull(): boolean {
+      var counter: number = this.itemsByThingCounter.reduce((acc, obj) => acc = acc + obj.counter , 0);
+      return counter == this.itemCount;
+    }
 }

@@ -16,6 +16,7 @@ export class BuildingTreeComponent implements OnInit {
   things: any[];
   selectedNode: any = null;
   droppableAdded: boolean = false;
+  saveButtonDisabled: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,11 +29,16 @@ export class BuildingTreeComponent implements OnInit {
     this.getBuildingTree();
   }
 
+  save() {
+    console.log('save');
+  }
+
   drop(event, id) {
     let thing = event.srcElement.innerText;
     
     this.buildingTreeManagerService.setAddedItemToThings(thing, this.selectedNode, id);
     this.initTrees();
+    this.saveButtonDisabled = !this.buildingTreeManagerService.allThingsExitsAreFull();
   }
 
   nodeSelect(event) {
@@ -44,6 +50,8 @@ export class BuildingTreeComponent implements OnInit {
   ngAfterViewChecked() {
     let nodes: any[] = this.elRef.nativeElement.querySelectorAll('.ui-treenode-content');
     this.addDraggableToEachNode(nodes);
+    
+    console.log(this.buildingTreeManagerService.allThingsExitsAreFull());
   }
 
   addDraggableToEachNode(nodes: any[]) {
