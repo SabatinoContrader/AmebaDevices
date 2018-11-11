@@ -69,6 +69,7 @@ import { UpdateinstallerComponent } from '../components/updateInstaller/updateIn
 import { DeleteCustomerComponent } from '../components/deleteCustomer/deleteCustomer.component';
 import { DeleteinstallerComponent } from '../components/deleteInstaller/deleteInstaller.component';
 import { AssociazioneBuildingsComponent } from '../components/associazioneBuildings/associazioneBuildings.components';
+<<<<<<< HEAD
 import { GestioneInstallerComponent } from '../components/gestioneInstaller/gestioneInstaller.component';
 import { InstallerService } from '../services/installer.service';
 import { InstallerComponent } from '../components/installer/installer.component';
@@ -81,6 +82,9 @@ import { DeleteManufacturerComponent } from '../components/deleteManufacturer/de
 import { GestioneListinoComponent } from '../components/gestioneListino/gestioneListino.component';
 import { ListinoService } from 'src/services/listino.service';
 import { InsertListinoComponent } from '../components/insertListino/insertListino.component';
+=======
+import { BuildingTreeManagerService } from '../services/buildingTreeManager.service';
+>>>>>>> refactor buildingTree Component
 
 @NgModule({
   declarations: [
@@ -171,6 +175,7 @@ import { InsertListinoComponent } from '../components/insertListino/insertListin
     RoomService,
     FloorService, 
     ItemtypeService,
+<<<<<<< HEAD
     InstallerService,
     UserService,
     CustomerService,
@@ -186,6 +191,9 @@ import { InsertListinoComponent } from '../components/insertListino/insertListin
     GoogleMapService, 
     SlotService,
     ListinoService
+=======
+    BuildingTreeManagerService
+>>>>>>> refactor buildingTree Component
   ],
   bootstrap: [AppComponent]
 })
