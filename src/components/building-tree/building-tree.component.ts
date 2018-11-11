@@ -50,8 +50,6 @@ export class BuildingTreeComponent implements OnInit {
   ngAfterViewChecked() {
     let nodes: any[] = this.elRef.nativeElement.querySelectorAll('.ui-treenode-content');
     this.addDraggableToEachNode(nodes);
-    
-    console.log(this.buildingTreeManagerService.allThingsExitsAreFull());
   }
 
   addDraggableToEachNode(nodes: any[]) {
