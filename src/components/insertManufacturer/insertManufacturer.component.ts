@@ -16,7 +16,7 @@ export class InsertManufacturerComponent implements OnInit{
    
         this.customerService.newManufacturer("4",f.value.nome,f.value.email).subscribe((response) => {
           if (response != null) {
-            this.router.navigateByUrl("/gestioneCustomer");
+            this.router.navigateByUrl("/gestioneManufacturer");
           }
           
       });

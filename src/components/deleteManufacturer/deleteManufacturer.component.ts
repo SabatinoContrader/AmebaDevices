@@ -22,7 +22,7 @@ export class DeleteManufacturerComponent implements OnInit{
     delete(f:NgForm){
         this.customerService.delete(f.value.usernameSelected).subscribe((response)=>{
             if (response != null) {
-                this.router.navigateByUrl("/gestioneCustomer");
+                this.router.navigateByUrl("/gestioneManufacturer");
               }
         });
     }

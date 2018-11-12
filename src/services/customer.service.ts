@@ -82,7 +82,7 @@ export class CustomerService{
     }
     update(username: string, field: string, newValue: string):Observable<NewCustomer>{
         const params= new HttpParams().set('username',username).set('field',field).set('newValue',newValue);
-       return this.http.post<NewCustomer>('http://localhost:8080/Customer/edit', params);
+       return this.http.post<NewCustomer>('http://localhost:8080/Customer/editManufacturer', params);
     }
 
 

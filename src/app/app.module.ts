@@ -82,6 +82,8 @@ import { GestioneListinoComponent } from '../components/gestioneListino/gestione
 import { ListinoService } from 'src/services/listino.service';
 import { InsertListinoComponent } from '../components/insertListino/insertListino.component';
 import { BuildingTreeManagerService } from '../services/buildingTreeManager.service';
+import { UpdateManufacturerComponent } from '../components/updateManufacturer/updateManufacturer.component';
+
 
 @NgModule({
   declarations: [
@@ -144,7 +146,8 @@ import { BuildingTreeManagerService } from '../services/buildingTreeManager.serv
     ReadManufacturerComponent,
     DeleteManufacturerComponent,
     GestioneListinoComponent,
-    InsertListinoComponent
+    InsertListinoComponent,
+    UpdateManufacturerComponent
   ],
   imports: [
     BrowserModule,
