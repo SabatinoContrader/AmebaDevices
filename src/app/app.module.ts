@@ -79,11 +79,13 @@ import { InsertManufacturerComponent } from '../components/insertManufacturer/in
 import { ReadManufacturerComponent } from '../components/readManufacturer/readManufacturer.component';
 import { DeleteManufacturerComponent } from '../components/deleteManufacturer/deleteManufacturer.component';
 import { GestioneListinoComponent } from '../components/gestioneListino/gestioneListino.component';
-import { ListinoService } from 'src/services/listino.service';
+import { ListinoService } from '../services/listino.service';
 import { InsertListinoComponent } from '../components/insertListino/insertListino.component';
 import { BuildingTreeManagerService } from '../services/buildingTreeManager.service';
 import { UpdateManufacturerComponent } from '../components/updateManufacturer/updateManufacturer.component';
-
+import { ReadListinoComponent } from '../components/readListino/readListino.component';
+import { DeleteListinoComponent } from '../components/deleteListino/deleteListino.component';
+import { UpdateListinoComponent } from '../components/updateListino/updateListino.component';
 
 @NgModule({
   declarations: [
@@ -147,7 +149,10 @@ import { UpdateManufacturerComponent } from '../components/updateManufacturer/up
     DeleteManufacturerComponent,
     GestioneListinoComponent,
     InsertListinoComponent,
-    UpdateManufacturerComponent
+    UpdateManufacturerComponent,
+    ReadListinoComponent,
+    DeleteListinoComponent,
+    UpdateListinoComponent
   ],
   imports: [
     BrowserModule,
@@ -191,6 +196,7 @@ import { UpdateManufacturerComponent } from '../components/updateManufacturer/up
     SlotService,
     ListinoService,
     BuildingTreeManagerService
+
   ],
   bootstrap: [AppComponent]
 })

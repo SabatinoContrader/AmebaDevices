@@ -60,6 +60,9 @@ import { DeleteManufacturerComponent } from '../components/deleteManufacturer/de
 import { GestioneListinoComponent } from '../components/gestioneListino/gestioneListino.component';
 import { InsertListinoComponent } from '../components/insertListino/insertListino.component';
 import { UpdateManufacturerComponent } from '../components/updateManufacturer/updateManufacturer.component';
+import { ReadListinoComponent } from '../components/readListino/readListino.component';
+import { DeleteListinoComponent } from '../components/deleteListino/deleteListino.component';
+import { UpdateListinoComponent } from '../components/updateListino/updateListino.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -122,7 +125,11 @@ const routes: Routes = [
   {path: 'deleteManufacturer', component: DeleteManufacturerComponent},
   {path: 'gestioneListino', component: GestioneListinoComponent},
   {path: 'insertListino', component: InsertListinoComponent},
-  {path: 'updateManufacturer', component: UpdateManufacturerComponent}
+  {path: 'updateManufacturer', component: UpdateManufacturerComponent},
+  {path: 'readListino', component: ReadListinoComponent},
+  {path: 'deleteListino', component: DeleteListinoComponent},
+  {path: 'updateListino', component: UpdateListinoComponent}
+
 ];
 
 @NgModule({
