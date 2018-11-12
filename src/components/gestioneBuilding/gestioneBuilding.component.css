@@ -18,6 +18,12 @@ body {
 	align-items:center;
     padding-top: 2%;
 }
+
+.thingTable{
+	width:40%;
+	margin-left:5%;
+}
+
 .things{
 	font-size: xx-large;
     font: 3em -webkit-xxx-large Georgia, 'Times New Roman', Times, serif;
@@ -25,11 +31,6 @@ body {
     margin-bottom: -4%;
 }
 
-.thingTable{
-	width:40%;
-	margin-top: 5%;
-	margin-left:5%;
-}
 
 .insertDiv{
 	display: flex;
@@ -64,3 +65,12 @@ body {
    overflow: hidden;
      width: 60%;
 }
+
+.table tr {
+	border-color: #46637f;
+	font-size:large;
+ }
+ 
+ .table th {
+	color: #dd5;
+ }
