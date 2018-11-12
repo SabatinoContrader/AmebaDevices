@@ -27,6 +27,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
         console.log(url);
         return <Observable<Array<BasicItem>>> this.http.get<Array<BasicItem>>(url);
     }
+    
+
+    findByBuilding(buildingId: string): Observable<Array<BasicItem>>{
+        let url : string = this.baseUrl+"Item/byBuilding?buildingId="+buildingId;
+        return <Observable<Array<BasicItem>>> this.http.get<Array<BasicItem>>(url);  
+    }
+
 
     save(item: BasicItem): Observable<BasicItem> {
         console.log("sto salvando");

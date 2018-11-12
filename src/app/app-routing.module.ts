@@ -1,3 +1,4 @@
+import { SelectManufacturerComponent } from './../components/selectManufacturer/selectManufacturer.component';
 import { CollegaItemRoom } from 'src/components/collegaItemRoom/collegaItemRoom.component';
 import { DeleteRoomComponent } from './../components/deleteRoom/deleteRoom.component';
 import { UpdateRoomComponent } from './../components/updateRoom/updateRoom.component';
@@ -128,8 +129,8 @@ const routes: Routes = [
   {path: 'updateManufacturer', component: UpdateManufacturerComponent},
   {path: 'readListino', component: ReadListinoComponent},
   {path: 'deleteListino', component: DeleteListinoComponent},
-  {path: 'updateListino', component: UpdateListinoComponent}
-
+  {path: 'updateListino', component: UpdateListinoComponent},
+  {path: 'selectManufacturer/:buildingId', component: SelectManufacturerComponent}
 ];
 
 @NgModule({

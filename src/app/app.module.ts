@@ -1,3 +1,4 @@
+import { SelectManufacturerComponent } from './../components/selectManufacturer/selectManufacturer.component';
 import { UpdateRoomComponent } from './../components/updateRoom/updateRoom.component';
 import { GestioneRoomComponent } from './../components/gestioneRoom/gestioneRoom.component';
 import { IntestazioneComponent } from '../components/intestazione/intestazione.component';
@@ -152,7 +153,8 @@ import { UpdateListinoComponent } from '../components/updateListino/updateListin
     UpdateManufacturerComponent,
     ReadListinoComponent,
     DeleteListinoComponent,
-    UpdateListinoComponent
+    UpdateListinoComponent,
+    SelectManufacturerComponent
   ],
   imports: [
     BrowserModule,
