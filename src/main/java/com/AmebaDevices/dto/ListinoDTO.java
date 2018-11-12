@@ -5,14 +5,14 @@ import com.AmebaDevices.model.Customer;
 public class ListinoDTO {
 	private long id;
 	private String nomeListino;
-	private int anno;
+	private String anno;
 	private Customer manufacturer;
 	
 public ListinoDTO() {
 
 }
 
-public ListinoDTO(long id, String nomeListino, int anno, Customer manufacturer) {
+public ListinoDTO(long id, String nomeListino, String anno, Customer manufacturer) {
 	this.id = id;
 	this.nomeListino = nomeListino;
 	this.anno = anno;
@@ -35,11 +35,11 @@ public void setNomeListino(String nomeListino) {
 	this.nomeListino = nomeListino;
 }
 
-public int getAnno() {
+public String getAnno() {
 	return anno;
 }
 
-public void setAnno(int anno) {
+public void setAnno(String anno) {
 	this.anno = anno;
 }
 

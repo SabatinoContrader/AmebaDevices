@@ -26,11 +26,13 @@ public class ListinoController {
 	}
 	
 	//insert
+	@CrossOrigin
 	@RequestMapping(value="/insert",method=RequestMethod.POST)
 	public ListinoDTO newListino (
 			@RequestParam(value = "nomeListino") String nomeListino,
-			@RequestParam(value = "anno") int anno,
+			@RequestParam(value = "anno") String anno,
 			@RequestParam(value = "idManufacturer") Customer manufacturer) {
+		//int newAnno= Integer.parseInt(anno);
 		ListinoDTO myNewListino = new ListinoDTO();
 		myNewListino.setNomeListino(nomeListino);
 		myNewListino.setAnno(anno);
@@ -39,20 +41,22 @@ public class ListinoController {
 	}
 	
 	//update
+	@CrossOrigin
 	@RequestMapping(value="/edit", method = RequestMethod.POST)
 	public ListinoDTO updateListino(
+			@RequestParam(value = "id") long id,
 			@RequestParam(value = "nomeListino") String nomeListino,
-			@RequestParam(value = "anno") int anno,
-			@RequestParam(value = "idManufacturer") Customer manufacturer) {
-		ListinoDTO listDTO = listinoService.findByNomeListino(nomeListino);
+			@RequestParam(value = "anno") String anno)
+			{
+		ListinoDTO listDTO = listinoService.findById(id);
 		listDTO.setNomeListino(nomeListino);
 		listDTO.setAnno(anno);
-		listDTO.setManufacturer(manufacturer);
 		listinoService.edit(listDTO);
 		return listDTO;
 	}
 	
 	//read
+	@CrossOrigin
 	@RequestMapping(value="/read",method = RequestMethod.GET)
 	public List<ListinoDTO> readAll(){
 		List<ListinoDTO> listini = listinoService.readAll();
@@ -60,6 +64,7 @@ public class ListinoController {
 	}
 	
 	//delete
+	@CrossOrigin
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public boolean delete(@RequestParam(value="id") long id) {
 		listinoService.delete(ListinoConverter.convertToListino(listinoService.findById(id)));

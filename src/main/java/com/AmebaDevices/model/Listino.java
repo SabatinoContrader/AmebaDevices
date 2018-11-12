@@ -30,7 +30,7 @@ public class Listino {
 	private String nomeListino;
 	
 	@Column
-	private int anno;
+	private String anno;
 	
 	@ManyToOne
 	@NonNull
