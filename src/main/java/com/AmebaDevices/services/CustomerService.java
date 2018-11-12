@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.AmebaDevices.converter.CustomerConverter;
+import com.AmebaDevices.converter.ManufacturerConverter;
 import com.AmebaDevices.converter.NewCustomerConverter;
 import com.AmebaDevices.dao.CustomerDAO;
 import com.AmebaDevices.dto.CustomerDTO;
 import com.AmebaDevices.dto.CustomerWithIdDTO;
+import com.AmebaDevices.dto.ManufacturerDTO;
 import com.AmebaDevices.dto.NewCustomerDTO;
 import com.AmebaDevices.model.Customer;
 
@@ -49,9 +51,9 @@ public class CustomerService {
 		return installers;
 
 	}
-	public List<CustomerWithIdDTO> readManufacturers(){
-		List<CustomerWithIdDTO> manufacturers = new ArrayList<>();
-		customerDAO.findByUserRole(4).forEach(i -> manufacturers.add(CustomerConverter.convertToDtoWithId(i)));
+	public List<ManufacturerDTO> readManufacturers(){
+		List<ManufacturerDTO> manufacturers = new ArrayList<>();
+		customerDAO.findByUserRole(4).forEach(i -> manufacturers.add(ManufacturerConverter.convertToDto(i)));
 		return manufacturers;
 	}
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.AmebaDevices.converter.CustomerConverter;
 import com.AmebaDevices.dto.CustomerDTO;
 import com.AmebaDevices.dto.CustomerWithIdDTO;
+import com.AmebaDevices.dto.ManufacturerDTO;
 import com.AmebaDevices.dto.NewCustomerDTO;
 import com.AmebaDevices.services.CustomerService;
 
@@ -83,8 +84,8 @@ public class CustomerController {
 	}
 	@CrossOrigin
 	@RequestMapping(value = "/readManufacturers", method = RequestMethod.GET)
-	public List<CustomerWithIdDTO> readManufacturers(){
-		List<CustomerWithIdDTO> manufacturers = customerService.readManufacturers();
+	public List<ManufacturerDTO> readManufacturers(){
+		List<ManufacturerDTO> manufacturers = customerService.readManufacturers();
 		return manufacturers;
 	}
 	@CrossOrigin
@@ -145,8 +146,30 @@ public class CustomerController {
 		}else if(Integer.parseInt(field)==5) {
 			customerWithIdDTO.setPassword(newValue);
 		}
+		System.out.println(customerWithIdDTO.getNome());
 		return CustomerConverter.convertCustomerWithIdToNewCustomer(customerService.updateCustomer(customerWithIdDTO));
 	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/editManufacturer", method = RequestMethod.POST)
+	public NewCustomerDTO updateManufacturer(
+			@RequestParam(value = "username") String username, 
+			@RequestParam(value = "field") String field, 
+			@RequestParam(value = "newValue") String newValue 
+			) {
+		CustomerWithIdDTO customerWithIdDTO= customerService.findByUsername(username);
+		if(customerWithIdDTO==null) {
+			customerWithIdDTO= new CustomerWithIdDTO();
+			customerWithIdDTO.setUserRole(4);
+		}
+		if(Integer.parseInt(field)==1)
+		customerWithIdDTO.setNome(newValue);
+		else if(Integer.parseInt(field)==2) {
+		customerWithIdDTO.setEmail(newValue);
+		}
+		return CustomerConverter.convertCustomerWithIdToNewCustomer(customerService.updateCustomer(customerWithIdDTO));
+	}
+	
 	// DELETE -> TESTED
 	@CrossOrigin
 	@RequestMapping(value="/delete", method = RequestMethod.POST)

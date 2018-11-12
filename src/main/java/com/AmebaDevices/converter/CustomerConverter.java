@@ -36,10 +36,14 @@ public class CustomerConverter {
 	public static Customer convertToCustomer(CustomerWithIdDTO c) {
 		Customer customer= new Customer();
 		customer.setId(c.getId());
+		if(c.getNome()!=null)
 		customer.setNome(c.getNome());
+		if(c.getCognome()!=null)
 		customer.setCognome(c.getCognome());
+		if(c.getEmail()!=null)
 		customer.setEmail(c.getEmail());
 		customer.setUsername(c.getUsername());
+		if(c.getPassword()!=null)
 		customer.setPassword(c.getPassword());
 		customer.setUserRole(c.getUserRole());
 		return customer;
@@ -51,10 +55,14 @@ public class CustomerConverter {
 		
 		if(c != null) {
 			customerDTO.setId(c.getId());
+			if(c.getNome()!=null)
 			customerDTO.setNome(c.getNome());
+			if(c.getCognome()!=null)
 			customerDTO.setCognome(c.getCognome());
+			if(c.getEmail()!=null)
 			customerDTO.setEmail(c.getEmail());
 			customerDTO.setUsername(c.getUsername());
+			if(c.getPassword()!=null)
 			customerDTO.setPassword(c.getPassword());
 			customerDTO.setUserRole(c.getUserRole());
 		} else {
