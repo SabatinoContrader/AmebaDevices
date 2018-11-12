@@ -145,6 +145,14 @@ public class ItemController {
 
 		return baseItems;
 	}
+	
+	@RequestMapping(value = "byBuilding", method = RequestMethod.GET)
+	@CrossOrigin
+	public List<BasicItemDTO> findByBuilding(@RequestParam(value = "buildingId") long buildingId){
+		
+		List <BasicItemDTO> toReturn = itemService.getByBuilding(buildingId);
+		return toReturn;
+	}
 
 //		
 //		

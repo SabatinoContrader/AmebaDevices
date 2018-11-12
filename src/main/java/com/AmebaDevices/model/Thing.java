@@ -54,6 +54,11 @@ public class Thing {
 	@Setter
 	private Building building;
 	
+	@ManyToOne
+	@JoinColumn (name ="manufacturer")
+	@Getter
+	@Setter
+	private Customer manufacturer;
 	
 	
 }

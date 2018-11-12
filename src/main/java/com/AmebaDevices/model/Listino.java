@@ -36,4 +36,10 @@ public class Listino {
 	@NonNull
 	@JoinColumn (name ="idManufacturer")
 	private Customer manufacturer;
+	
+	@ManyToOne
+	@NonNull
+	@JoinColumn (name ="idInstaller")
+	private Customer installer;
+
 }

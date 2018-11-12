@@ -158,12 +158,16 @@ public class CustomerController {
 			@RequestParam(value = "newValue") String newValue 
 			) {
 		CustomerWithIdDTO customerWithIdDTO= customerService.findByUsername(username);
+		System.out.println("l'username is "+ customerWithIdDTO.getUsername());
 		if(customerWithIdDTO==null) {
 			customerWithIdDTO= new CustomerWithIdDTO();
 			customerWithIdDTO.setUserRole(4);
+			customerWithIdDTO.setUsername(username);
 		}
-		if(Integer.parseInt(field)==1)
+		if(Integer.parseInt(field)==1) {
 		customerWithIdDTO.setNome(newValue);
+		customerWithIdDTO.setUsername(newValue);
+		}
 		else if(Integer.parseInt(field)==2) {
 		customerWithIdDTO.setEmail(newValue);
 		}

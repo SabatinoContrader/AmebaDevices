@@ -10,11 +10,16 @@ import com.AmebaDevices.converter.ItemConverter;
 import com.AmebaDevices.converter.RoomConverter;
 import com.AmebaDevices.converter.TreeItemConverter;
 import com.AmebaDevices.converter.TreeRoomConverter;
+import com.AmebaDevices.dao.BuildingDAO;
+import com.AmebaDevices.dao.FloorDAO;
 import com.AmebaDevices.dao.ItemDAO;
+import com.AmebaDevices.dao.RoomDAO;
+import com.AmebaDevices.dto.BasicItemDTO;
 import com.AmebaDevices.dto.ItemDTO;
 import com.AmebaDevices.dto.RoomDTO;
 import com.AmebaDevices.dto.TreeItemDTO;
 import com.AmebaDevices.dto.TreeRoomDTO;
+import com.AmebaDevices.model.Floor;
 import com.AmebaDevices.model.Item;
 import com.AmebaDevices.model.Room;
 
@@ -22,10 +27,16 @@ import com.AmebaDevices.model.Room;
 public class ItemService {
 
 	private ItemDAO itemEntityDao;
+	private BuildingDAO buildingDao;
+	private FloorDAO floorDao;
+	private RoomDAO roomDao;
 
 	@Autowired
-	public ItemService(ItemDAO itemEntityDao) {
+	public ItemService(ItemDAO itemEntityDao, BuildingDAO buildingDAO, FloorDAO floorDao, RoomDAO roomDao) {
 		this.itemEntityDao = itemEntityDao;
+		this.buildingDao = buildingDAO;
+		this.floorDao = floorDao;
+		this.roomDao = roomDao;
 	}
 
 	public ItemDTO insertItem(ItemDTO item) {
@@ -61,4 +72,24 @@ public class ItemService {
 		return itemPerRoom;
 
 	}
+
+	public List<BasicItemDTO> getByBuilding(long buildingId) {
+		List <Floor> floors = floorDao.findByBuilding(buildingDao.findOne(buildingId));
+		List <Room> rooms = new ArrayList<>();
+		for (Floor floor : floors) {
+			rooms.addAll(roomDao.findByFloor(floor));
+		}
+		List <Item> items = new ArrayList<>();
+		for (Room room : rooms) {
+			items.addAll(itemEntityDao.findByRoom(room));
+		}
+		List <BasicItemDTO> itemsdto = new ArrayList<>();
+		for (Item item : items) {
+			itemsdto.add(ItemConverter.convertToBasicDto(item));
+		}
+		
+		return itemsdto;
+	}
+	
+	
 }

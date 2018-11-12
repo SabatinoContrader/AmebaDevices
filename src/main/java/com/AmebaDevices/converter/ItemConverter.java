@@ -1,5 +1,6 @@
 package com.AmebaDevices.converter;
 
+import com.AmebaDevices.dto.BasicItemDTO;
 import com.AmebaDevices.dto.ItemDTO;
 import com.AmebaDevices.dto.ItemTypeDTO;
 import com.AmebaDevices.model.Item;
@@ -16,6 +17,16 @@ public static ItemDTO convertToDto(Item i) {
 	item.setItemType(ItemTypeConverter.convertToDto(i.getItemType()));
 	if(i.getThing()!=null)
 	item.setThing(ThingConverter.convertToDto(i.getThing()));
+	return item;
+	
+	}
+
+
+public static BasicItemDTO convertToBasicDto(Item i) {
+	BasicItemDTO item= new BasicItemDTO();
+	item.setId(i.getId());
+	item.setRoom(RoomConverter.convertToDto(i.getRoom()));
+	item.setItemType(ItemTypeConverter.convertToDto(i.getItemType()));
 	return item;
 	
 	}

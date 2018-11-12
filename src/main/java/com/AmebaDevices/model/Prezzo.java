@@ -7,35 +7,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
+
+@Entity
 @Getter
 @Setter
-@Entity
-public class Item {
-
+@Table (name="prezzo")
+public class Prezzo {
+	
 	@Id
-	@Column
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column 
+	private long id;
 	
 	@Column
-	private String seriale;
-	
-	@Column
-	private String consumoEnergetico;
-	
-	@ManyToOne
-	@JoinColumn (name ="idroom")
-	private Room room;
-	
-
-	@ManyToOne
-	@JoinColumn (name="idthing")
-	private Thing thing;
-	
+	private double prezzo;
 	
 	@ManyToOne
 	@JoinColumn (name = "idItemType")
