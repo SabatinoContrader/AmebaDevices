@@ -8,6 +8,7 @@ import { FloorService } from 'src/services/floor.service';
 import { RoomService } from 'src/services/room.service';
 import { BasicItem } from 'src/models/BasicItem';
 import { NewItem } from 'src/models/NewItem';
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'app-selectManufacturer',
@@ -38,7 +39,7 @@ import { NewItem } from 'src/models/NewItem';
             console.log(response.length);
         })
     }
-
+associa(f:NgForm){}
 
     // Mi prendo i MIEI LISTINI - SONO un installatore quindi posso vedere solo i listini che ho creato io
     // Di conseguenza, sceglierò un listino che varrà per ogni item all'interno del building

@@ -6,8 +6,7 @@
       </tr>
     </thead>
     <tbody>
-     <!-- <tr *ngFor="let building of buildings" routerLink="/installer/buildingTree/{{building.id}}" > -->
-      <tr *ngFor="let building of buildings" routerLink="/selectManufacturer/{{building.id}}" >
+      <tr *ngFor="let building of buildings" routerLink="/installer/buildingTree/{{building.id}}" >
         <th scope="row">{{building.id}}</th>
         <td>{{building.address}}</td>
         <td>{{building.city}}</td>
