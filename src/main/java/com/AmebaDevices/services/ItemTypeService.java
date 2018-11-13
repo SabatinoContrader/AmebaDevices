@@ -40,6 +40,7 @@ public class ItemTypeService {
 		return ItemTypeConverter.convertToDto(this.itemTypeDao.findOne(id));
 	}
 	
+	
 	public ItemTypeDTO updateItemType(ItemTypeDTO item) {
 		
 		return ItemTypeConverter.convertToDto(this.itemTypeDao.save(ItemTypeConverter.convertToItem(item)));

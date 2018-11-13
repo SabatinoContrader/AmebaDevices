@@ -43,8 +43,9 @@ public class ListinoService {
 		return listiniDTO;
 	}
 	
-	public ListinoDTO findById(long id) {
-		return ListinoConverter.convertToDTO(listinoDAO.findOne(id));
+	public ListinoDTO findById(long idListino) {
+		ListinoDTO listino= ListinoConverter.convertToDTO(listinoDAO.findOne(idListino));
+		return listino;
 	}
 	
 	public void delete(Listino listino) {
