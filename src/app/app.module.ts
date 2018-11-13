@@ -87,6 +87,8 @@ import { UpdateManufacturerComponent } from '../components/updateManufacturer/up
 import { ReadListinoComponent } from '../components/readListino/readListino.component';
 import { DeleteListinoComponent } from '../components/deleteListino/deleteListino.component';
 import { UpdateListinoComponent } from '../components/updateListino/updateListino.component';
+import { PopolaListinoComponent } from 'src/components/popolaListino/popolaListino.component';
+import { PrezzoService } from '../services/prezzo.service';
 
 @NgModule({
   declarations: [
@@ -154,7 +156,8 @@ import { UpdateListinoComponent } from '../components/updateListino/updateListin
     ReadListinoComponent,
     DeleteListinoComponent,
     UpdateListinoComponent,
-    SelectManufacturerComponent
+    SelectManufacturerComponent,
+    PopolaListinoComponent
   ],
   imports: [
     BrowserModule,
@@ -197,7 +200,8 @@ import { UpdateListinoComponent } from '../components/updateListino/updateListin
     GoogleMapService, 
     SlotService,
     ListinoService,
-    BuildingTreeManagerService
+    BuildingTreeManagerService,
+    PrezzoService
 
   ],
   bootstrap: [AppComponent]

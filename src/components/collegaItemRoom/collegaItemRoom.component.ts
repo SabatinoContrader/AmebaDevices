@@ -34,7 +34,7 @@ export class CollegaItemRoom{
         console.log("gestione Items da room");   
         this.itemTypeService.MyitemTypeList().subscribe((response)=>{ this.available = response});
         this.itemService.findByRoom(this.roomId).subscribe((response)=> {this.myItems = response});
-        this.removedIds = new Array();2
+        this.removedIds = new Array();
 
     }
 

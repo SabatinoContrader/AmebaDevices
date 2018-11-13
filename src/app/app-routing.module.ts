@@ -64,6 +64,7 @@ import { UpdateManufacturerComponent } from '../components/updateManufacturer/up
 import { ReadListinoComponent } from '../components/readListino/readListino.component';
 import { DeleteListinoComponent } from '../components/deleteListino/deleteListino.component';
 import { UpdateListinoComponent } from '../components/updateListino/updateListino.component';
+import { PopolaListinoComponent } from '../components/popolaListino/popolaListino.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -130,7 +131,8 @@ const routes: Routes = [
   {path: 'readListino', component: ReadListinoComponent},
   {path: 'deleteListino', component: DeleteListinoComponent},
   {path: 'updateListino', component: UpdateListinoComponent},
-  {path: 'selectManufacturer/:buildingId', component: SelectManufacturerComponent}
+  {path: 'selectManufacturer/:buildingId', component: SelectManufacturerComponent},
+  {path: 'popolaListino', component:PopolaListinoComponent}
 ];
 
 @NgModule({
