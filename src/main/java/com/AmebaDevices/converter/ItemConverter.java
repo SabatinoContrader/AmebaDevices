@@ -14,6 +14,7 @@ public static ItemDTO convertToDto(Item i) {
 	item.setConsumoEnergetico(i.getConsumoEnergetico());
 	item.setSeriale(i.getSeriale());
 	item.setRoom(RoomConverter.convertToDto(i.getRoom()));
+	if(i.getItemType()!=null)
 	item.setItemType(ItemTypeConverter.convertToDto(i.getItemType()));
 	if(i.getThing()!=null)
 	item.setThing(ThingConverter.convertToDto(i.getThing()));
@@ -26,6 +27,7 @@ public static BasicItemDTO convertToBasicDto(Item i) {
 	BasicItemDTO item= new BasicItemDTO();
 	item.setId(i.getId());
 	item.setRoom(RoomConverter.convertToDto(i.getRoom()));
+	if(i.getItemType()!=null)
 	item.setItemType(ItemTypeConverter.convertToDto(i.getItemType()));
 	return item;
 	
@@ -37,6 +39,7 @@ public static Item convertToItem(ItemDTO i) {
 	item.setConsumoEnergetico(i.getConsumoEnergetico());
 	item.setSeriale(i.getSeriale());
 	item.setRoom(RoomConverter.convertToRoom(i.getRoom()));
+	if(i.getItemType()!=null)
 	item.setItemType(ItemTypeConverter.convertToItem(i.getItemType()));
 	if(i.getThing()!=null)
 	item.setThing(ThingConverter.convertToThing(i.getThing()));

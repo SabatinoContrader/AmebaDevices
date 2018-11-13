@@ -22,6 +22,7 @@ import com.AmebaDevices.dto.BuildingDTO;
 import com.AmebaDevices.dto.FloorDTO;
 import com.AmebaDevices.dto.ItemDTO;
 import com.AmebaDevices.dto.ItemTypeDTO;
+import com.AmebaDevices.dto.NewItemDTO;
 import com.AmebaDevices.dto.RoomDTO;
 import com.AmebaDevices.dto.ThingDTO;
 import com.AmebaDevices.model.Building;
@@ -148,10 +149,29 @@ public class ItemController {
 	
 	@RequestMapping(value = "byBuilding", method = RequestMethod.GET)
 	@CrossOrigin
-	public List<BasicItemDTO> findByBuilding(@RequestParam(value = "buildingId") long buildingId){
+	public List<NewItemDTO> findByBuilding(@RequestParam(value = "buildingId") long buildingId){
 		
 		List <BasicItemDTO> toReturn = itemService.getByBuilding(buildingId);
-		return toReturn;
+		List<NewItemDTO> lista=new ArrayList<>();
+		toReturn.forEach(t->{
+			NewItemDTO n= new NewItemDTO();
+			n.setId(t.getId());
+			if(t.getItemType()==null)
+			{
+				
+//				ItemDTO item= itemService.searchItem(t.getId());
+//				System.out.println(item.getItemType().getManufacturer().getId()+"   ------------");
+//				System.out.println("schifooooo -> "+itemService.searchItem(t.getId()));
+//				n.setItemType(t.getItemType());
+//				System.out.println("è diverso da null per id= "+ n.getId() + " che ha itemType " + t.getItemType().getId());
+//				n.setManufacturer(itemTypeService.searchItemType(t.getItemType().getId()).getManufacturer());
+				//n.setManufacturer(t.getItemType().getManufacturer());
+				n.setRoom(t.getRoom());
+				lista.add(n);
+			}
+			//System.out.println("aggiungo "+ n.getId()+ " con manufacturer "+ n.getManufacturer().getId());
+		});
+		return lista;
 	}
 
 //		

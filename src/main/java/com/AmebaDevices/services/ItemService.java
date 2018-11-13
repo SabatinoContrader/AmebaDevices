@@ -85,6 +85,7 @@ public class ItemService {
 		}
 		List <BasicItemDTO> itemsdto = new ArrayList<>();
 		for (Item item : items) {
+			
 			itemsdto.add(ItemConverter.convertToBasicDto(item));
 		}
 		

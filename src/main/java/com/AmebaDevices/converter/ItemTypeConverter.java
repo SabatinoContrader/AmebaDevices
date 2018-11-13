@@ -12,6 +12,7 @@ public class ItemTypeConverter {
 		item.setCategoria(i.getCategoria());
 		item.setMarca(i.getMarca());
 		item.setModello(i.getModello());
+		item.setManufacturer(i.getManufacturer());
 		return item;
 	}
 
@@ -22,6 +23,7 @@ public class ItemTypeConverter {
 		item.setCategoria(i.getCategoria());
 		item.setMarca(i.getMarca());
 		item.setModello(i.getModello());
+		item.setManufacturer(i.getManufacturer());
 		return item;
 	}
 }
