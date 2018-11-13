@@ -6,6 +6,8 @@ import { NewCustomer } from "src/models/NewCustomer";
 import { BuildingService } from 'src/services/building.service';
 import { FloorService } from 'src/services/floor.service';
 import { RoomService } from 'src/services/room.service';
+import { BasicItem } from 'src/models/BasicItem';
+import { NewItem } from 'src/models/NewItem';
 
 @Component({
     selector: 'app-selectManufacturer',
@@ -16,6 +18,7 @@ import { RoomService } from 'src/services/room.service';
 
     public manufacturers: Array<NewCustomer>;
     public buildingId: string;
+    public items: Array<NewItem>;
 
     constructor(private buildingService: BuildingService,
         private itemService: ItemService,
@@ -30,6 +33,10 @@ import { RoomService } from 'src/services/room.service';
             this.manufacturers = response;
             console.log("la size è "+ this.manufacturers.length);
         });
+        this.itemService.findByBuilding(this.buildingId).subscribe((response)=>{
+            this.items=response;
+            console.log(response.length);
+        })
     }
 
 

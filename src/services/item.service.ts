@@ -2,6 +2,7 @@ import { BasicItem } from './../models/BasicItem';
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { NewItem } from 'src/models/NewItem';
 
 @Injectable({
     providedIn: 'root'
@@ -29,9 +30,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
     }
     
 
-    findByBuilding(buildingId: string): Observable<Array<BasicItem>>{
+    findByBuilding(buildingId: string): Observable<Array<NewItem>>{
         let url : string = this.baseUrl+"Item/byBuilding?buildingId="+buildingId;
-        return <Observable<Array<BasicItem>>> this.http.get<Array<BasicItem>>(url);  
+        return <Observable<Array<NewItem>>> this.http.get<Array<NewItem>>(url);  
     }
 
 
